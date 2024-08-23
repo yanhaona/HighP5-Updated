@@ -1,0 +1,14 @@
+"Initiate LU" {
+	Space A: 1	// Cores
+}
+
+"Transposed LU Factorization" {
+	Space A: 1	// CPU
+	Space B: 1	// Cores
+}
+
+"Subtract Matrix Multiply Result" {
+	Space A: 1	// hyperthreads
+}
+
+
