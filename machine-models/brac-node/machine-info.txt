@@ -1,0 +1,546 @@
+
+processor model name	: 13th Gen Intel(R) Core(TM) i5-13600KF
+total memory: 15 GB
+--------------------------------------------------------------------------
+processor	: 0	physical id	: 0	core id		: 0
+processor	: 1	physical id	: 0	core id		: 0
+processor	: 2	physical id	: 0	core id		: 4
+processor	: 3	physical id	: 0	core id		: 4
+processor	: 4	physical id	: 0	core id		: 8
+processor	: 5	physical id	: 0	core id		: 8
+processor	: 6	physical id	: 0	core id		: 12
+processor	: 7	physical id	: 0	core id		: 12
+processor	: 8	physical id	: 0	core id		: 16
+processor	: 9	physical id	: 0	core id		: 16
+processor	: 10	physical id	: 0	core id		: 20
+processor	: 11	physical id	: 0	core id		: 20
+processor	: 12	physical id	: 0	core id		: 24
+processor	: 13	physical id	: 0	core id		: 25
+processor	: 14	physical id	: 0	core id		: 26
+processor	: 15	physical id	: 0	core id		: 27
+processor	: 16	physical id	: 0	core id		: 28
+processor	: 17	physical id	: 0	core id		: 29
+processor	: 18	physical id	: 0	core id		: 30
+processor	: 19	physical id	: 0	core id		: 31
+
+cache configuration
+CPU: /sys/devices/system/cpu/cpu0 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 48K
+participant CPUs: 0-1
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 0-1
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 2048K
+participant CPUs: 0-1
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
+CPU: /sys/devices/system/cpu/cpu1 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 48K
+participant CPUs: 0-1
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 0-1
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 2048K
+participant CPUs: 0-1
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
+CPU: /sys/devices/system/cpu/cpu10 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 48K
+participant CPUs: 10-11
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 10-11
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 2048K
+participant CPUs: 10-11
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
+CPU: /sys/devices/system/cpu/cpu11 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 48K
+participant CPUs: 10-11
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 10-11
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 2048K
+participant CPUs: 10-11
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
+CPU: /sys/devices/system/cpu/cpu12 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 12
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 64K
+participant CPUs: 12
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 4096K
+participant CPUs: 12-15
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
+CPU: /sys/devices/system/cpu/cpu13 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 13
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 64K
+participant CPUs: 13
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 4096K
+participant CPUs: 12-15
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
+CPU: /sys/devices/system/cpu/cpu14 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 14
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 64K
+participant CPUs: 14
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 4096K
+participant CPUs: 12-15
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
+CPU: /sys/devices/system/cpu/cpu15 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 15
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 64K
+participant CPUs: 15
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 4096K
+participant CPUs: 12-15
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
+CPU: /sys/devices/system/cpu/cpu16 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 16
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 64K
+participant CPUs: 16
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 4096K
+participant CPUs: 16-19
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
+CPU: /sys/devices/system/cpu/cpu17 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 17
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 64K
+participant CPUs: 17
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 4096K
+participant CPUs: 16-19
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
+CPU: /sys/devices/system/cpu/cpu18 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 18
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 64K
+participant CPUs: 18
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 4096K
+participant CPUs: 16-19
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
+CPU: /sys/devices/system/cpu/cpu19 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 19
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 64K
+participant CPUs: 19
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 4096K
+participant CPUs: 16-19
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
+CPU: /sys/devices/system/cpu/cpu2 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 48K
+participant CPUs: 2-3
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 2-3
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 2048K
+participant CPUs: 2-3
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
+CPU: /sys/devices/system/cpu/cpu3 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 48K
+participant CPUs: 2-3
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 2-3
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 2048K
+participant CPUs: 2-3
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
+CPU: /sys/devices/system/cpu/cpu4 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 48K
+participant CPUs: 4-5
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 4-5
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 2048K
+participant CPUs: 4-5
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
+CPU: /sys/devices/system/cpu/cpu5 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 48K
+participant CPUs: 4-5
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 4-5
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 2048K
+participant CPUs: 4-5
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
+CPU: /sys/devices/system/cpu/cpu6 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 48K
+participant CPUs: 6-7
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 6-7
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 2048K
+participant CPUs: 6-7
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
+CPU: /sys/devices/system/cpu/cpu7 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 48K
+participant CPUs: 6-7
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 6-7
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 2048K
+participant CPUs: 6-7
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
+CPU: /sys/devices/system/cpu/cpu8 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 48K
+participant CPUs: 8-9
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 8-9
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 2048K
+participant CPUs: 8-9
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
+CPU: /sys/devices/system/cpu/cpu9 ----------------------------------------
+cache level: 1
+type: Data
+transaction width (bytes): 64
+size: 48K
+participant CPUs: 8-9
+
+cache level: 1
+type: Instruction
+transaction width (bytes): 64
+size: 32K
+participant CPUs: 8-9
+
+cache level: 2
+type: Unified
+transaction width (bytes): 64
+size: 2048K
+participant CPUs: 8-9
+
+cache level: 3
+type: Unified
+transaction width (bytes): 64
+size: 24576K
+participant CPUs: 0-19
+
+cache level: type: transaction width (bytes): size: participant CPUs: 
