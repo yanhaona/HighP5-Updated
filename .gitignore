@@ -1,0 +1,2 @@
+# ignore all object files inside the compiler directories
+compilers/*/*.o
