@@ -6,7 +6,7 @@
 //Space #Number : 	        $Space-Name	(#PPU-Count)	// Comment
 //--------------------------------------------------------------------------------------
 Space 	5:  		        Cluster 	(1)		// 			
-Space 	4<unit><segment>:  	Node 		(4)		// 15 GB RAM in each CPU			
+Space 	4<unit><segment>:  	Node 		(1)		// 15 GB RAM in each CPU			
 Space 	3: 		        L3-Cache 	(1) 		// 24 MB L3 cache shared by all cores		
 Space   2: 	                Core-Pair     	(6)		// 2 MB Cache shared between core pair
 Space   1<core>:                Core            (2)             // 24 KB Cache per core
