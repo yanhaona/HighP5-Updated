@@ -53,7 +53,7 @@ do
 		cd run-${run}
 
 		# execute the program using the input file piping command line inputs
-		../../pthread_exec.o $cache_block $version $input_size > output.txt
+		(time ../../pthread_exec.o $cache_block $version $input_size) > output.txt 2>&1
 		cat output.txt
 
 		# come back to the parent directory

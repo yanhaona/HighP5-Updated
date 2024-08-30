@@ -69,7 +69,7 @@ do
 		echo N >> input.txt
 
 		# execute the program using the input file piping command line inputs
-		../executable.o < input.txt > output.txt
+		(time ../executable.o < input.txt) > output.txt 2>&1
 		cat output.txt
 
 		# come back to the parent directory

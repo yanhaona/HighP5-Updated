@@ -58,7 +58,7 @@ do
 		echo ../../m2.txt >> input.txt
 
 		# execute the program using the input file piping command line inputs
-		../../pthread_exec.o m1 m2 $cache_block $version < input.txt > output.txt
+		(time ../../pthread_exec.o m1 m2 $cache_block $version < input.txt) > output.txt 2>&1
 		cat output.txt
 
 		# come back to the parent directory
