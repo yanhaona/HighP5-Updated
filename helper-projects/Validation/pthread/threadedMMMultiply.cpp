@@ -73,11 +73,10 @@ void *computeBMMM(void *arg) {
 }
 
 //----------------------------------------------------------------------------------------------- main function
-int main(int argc, const char *argv[]) {
+int mainTMMM(int argc, const char *argv[]) {
 
 	if (argc < 5) {
-                std::cout << "provide input file 1, input file 2, blocking size, and thread count";
-                std::cout << " be generated per cell\n";
+                std::cout << "provide input file 1, input file 2, and blocking size\n";
                 std::cout << "then specify the number of threads to be used as the last argument\n";
                 std::exit(EXIT_FAILURE);
         }

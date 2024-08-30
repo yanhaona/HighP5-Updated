@@ -86,7 +86,7 @@ void *computeBLUF(void *arg) {
                         // repeat loop
                         for (int k = range.min; k <= range.max; k++) {
 
-                                //**************************************** Select Pivot step
+                                // **************************************** Select Pivot step
 				
 				// determine which thread will do the pivot selection
 				int blockNo = k / blockStride;
@@ -113,7 +113,7 @@ void *computeBLUF(void *arg) {
 				// wait on the barrier to make the pivot available to all
 				pthread_barrier_wait(&barrier);
 
-				//************************************ Interchange Rows step
+				// ************************************ Interchange Rows step
 				
 				if (k != pivot) {
 
@@ -148,7 +148,7 @@ void *computeBLUF(void *arg) {
                                         }
                                 }
 
-				//*************************************** Update Lower step
+				// *************************************** Update Lower step
 			
 				// the same thread that did the pivot selection is responsible for the
 				// recording of next column of L (L is transposed)	
@@ -162,7 +162,7 @@ void *computeBLUF(void *arg) {
 				// wait on barrier to make the change of L visible to all threads
 				pthread_barrier_wait(&barrier);
 				
-				//***************************** Update Upper Row Block step 
+				// ***************************** Update Upper Row Block step 
 	
 				// determine the starting index for update for a thread
 				int i = blockNo * blockStride + blockSize * threadId;
@@ -181,7 +181,7 @@ void *computeBLUF(void *arg) {
 					}
 				}
 				
-				//****************************** Generate Pivot Column step
+				// ****************************** Generate Pivot Column step
 				
 				// determine the starting index for update for a thread
 				blockNo = range.min / blockStride;
@@ -202,7 +202,7 @@ void *computeBLUF(void *arg) {
 				// wait on the barrier to make available the new p_column
 				pthread_barrier_wait(&barrier);
 				
-				//******************************** Update Upper Column step
+				// ******************************** Update Upper Column step
 
 				// determine the starting index for update for a thread
 				blockNo = (range.max + 1) / blockStride;
@@ -230,7 +230,7 @@ void *computeBLUF(void *arg) {
 
 		if (lastRow < max1) { // conditional execution of the SAXPY task
 
-			//****************************************************** SAXPY step
+			// ****************************************************** SAXPY step
 
 			int cols = uDims[1].length;
 			int saxpyBlockId = 0;	// a variable used to evenly distribute work among threads
@@ -276,7 +276,11 @@ void *computeBLUF(void *arg) {
 			pthread_barrier_wait(&barrier);
 
 		} // end of the SAXPY step
-	}	
+		
+	}
+
+	// exit pthread
+	pthread_exit(NULL);
 }
 
 //--------------------------------------------------------------------------- Main Function
@@ -297,7 +301,7 @@ void initializeARandomly(int dimLength) {
 	}
 }
 
-int mainTBLUF(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
 
 	if (argc < 3) {
 		cout << "There are two modes for using this program\n";
@@ -369,6 +373,8 @@ int mainTBLUF(int argc, char *argv[]) {
                         exit(EXIT_FAILURE);
                 }
         }
+	
+	cout << "number of threads: " << threadCount << "\n";
 
 	// join threads
 	for (int i = 0; i < threadCount; i++) {
