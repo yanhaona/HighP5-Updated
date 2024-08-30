@@ -1,0 +1,306 @@
+Array Metadata
+Array: a 0--1023 0--1023
+Array: b 0--1023 0--1023
+Array: c 0--1023 0--1023
+Thread No: 0
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+		Id: 0
+	LPS Name: A
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 20
+		Id: 0
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Thread No: 1
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+	LPS Name: A
+		Group Id: 1
+		Group Size: 1
+		PPU Count: 20
+		Id: 1
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Thread No: 2
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+	LPS Name: A
+		Group Id: 2
+		Group Size: 1
+		PPU Count: 20
+		Id: 2
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Thread No: 3
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+	LPS Name: A
+		Group Id: 3
+		Group Size: 1
+		PPU Count: 20
+		Id: 3
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Thread No: 4
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+	LPS Name: A
+		Group Id: 4
+		Group Size: 1
+		PPU Count: 20
+		Id: 4
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Thread No: 5
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+	LPS Name: A
+		Group Id: 5
+		Group Size: 1
+		PPU Count: 20
+		Id: 5
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Thread No: 6
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+	LPS Name: A
+		Group Id: 6
+		Group Size: 1
+		PPU Count: 20
+		Id: 6
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Thread No: 7
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+	LPS Name: A
+		Group Id: 7
+		Group Size: 1
+		PPU Count: 20
+		Id: 7
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Thread No: 8
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+	LPS Name: A
+		Group Id: 8
+		Group Size: 1
+		PPU Count: 20
+		Id: 8
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Thread No: 9
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+	LPS Name: A
+		Group Id: 9
+		Group Size: 1
+		PPU Count: 20
+		Id: 9
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Thread No: 10
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+	LPS Name: A
+		Group Id: 10
+		Group Size: 1
+		PPU Count: 20
+		Id: 10
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Thread No: 11
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+	LPS Name: A
+		Group Id: 11
+		Group Size: 1
+		PPU Count: 20
+		Id: 11
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Thread No: 12
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+	LPS Name: A
+		Group Id: 12
+		Group Size: 1
+		PPU Count: 20
+		Id: 12
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Thread No: 13
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+	LPS Name: A
+		Group Id: 13
+		Group Size: 1
+		PPU Count: 20
+		Id: 13
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Thread No: 14
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+	LPS Name: A
+		Group Id: 14
+		Group Size: 1
+		PPU Count: 20
+		Id: 14
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Thread No: 15
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+	LPS Name: A
+		Group Id: 15
+		Group Size: 1
+		PPU Count: 20
+		Id: 15
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Thread No: 16
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+	LPS Name: A
+		Group Id: 16
+		Group Size: 1
+		PPU Count: 20
+		Id: 16
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Thread No: 17
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+	LPS Name: A
+		Group Id: 17
+		Group Size: 1
+		PPU Count: 20
+		Id: 17
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Thread No: 18
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+	LPS Name: A
+		Group Id: 18
+		Group Size: 1
+		PPU Count: 20
+		Id: 18
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Thread No: 19
+	LPS Name: Root
+		Group Id: 0
+		Group Size: 20
+		PPU Count: 1
+	LPS Name: A
+		Group Id: 19
+		Group Size: 1
+		PPU Count: 20
+		Id: 19
+	LPS Name: A_Sub
+		Group Id: 0
+		Group Size: 1
+		PPU Count: 1
+		Id: 0
+Execution Time: 1.93829 Seconds

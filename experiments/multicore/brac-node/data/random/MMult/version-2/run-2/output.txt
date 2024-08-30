@@ -1,0 +1,27 @@
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+writing results to output files
+Want to save array "a" in a file?
+Type 'Y' for yes or 'N' for no
+Want to save array "b" in a file?
+Type 'Y' for yes or 'N' for no
+Want to save array "c" in a file?
+Type 'Y' for yes or 'N' for no
+Parallel Execution Time: 1.83586 Seconds
