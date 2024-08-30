@@ -1,2 +1,7 @@
 # ignore all object files inside the compiler directories
 compilers/**/*.o
+
+# ignore all generated files inside segmented memory compiler
+compilers/new-segmented-backend/build/**/*.cc
+compilers/new-segmented-backend/build/**/*.o
+compilers/new-segmented-backend/build/**/*.h

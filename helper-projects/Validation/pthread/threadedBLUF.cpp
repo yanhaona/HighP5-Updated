@@ -301,7 +301,7 @@ void initializeARandomly(int dimLength) {
 	}
 }
 
-int main(int argc, char *argv[]) {
+int mainTBluf(int argc, char *argv[]) {
 
 	if (argc < 3) {
 		cout << "There are two modes for using this program\n";

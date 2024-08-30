@@ -36,7 +36,7 @@ LD = g++
 # settings for development and debugging
 #CFLAGS = -g -Wall -fno-inline -Wno-unused -Wno-sign-compare -O0
 # settings for optimized code generation
-CFLAGS = -O3
+CFLAGS = -O2
 # settings for vectorization support
 #CFLAGS = -O3 -mtune=native -march=native -mfpmath=sse
 

@@ -11,11 +11,9 @@ mode=../executables/thread-pinned
 parallel_runs=2
 
 # input parameter configuration
-precision=0.000001
 cell_length=1000
-points_per_cell=10
+points_per_cell=100
 grid_dim=1024
-max_rounds=10
 
 monte_dir=${mode}/Monte
 parallelism=( 20 12 8 6 2 1 )
@@ -59,9 +57,8 @@ do
 
 		# execute the program with proper parameters
 		(time mpirun -n 1 ../executable.o \
-			precision=$precision max_rounds=$max_rounds \
 			cell_length=$cell_length grid_dim=$grid_dim \
-			points_per_cell=$points_per_cell) > output.txt 2>&1
+			points_per_cell=$points_per_cell b=$version) > output.txt 2>&1
 		cat output.txt
 
 		# come back to the parent directory

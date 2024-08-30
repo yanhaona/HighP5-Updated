@@ -8,7 +8,7 @@
 #include <pthread.h>
 #include <math.h>
 
-namespace pthread_monte {
+namespace pthread_monte_simple {
 
 //------------------------------------------------------------------- Supporting structures
 
@@ -25,8 +25,6 @@ double *sub_area_estimates;
 int cell_length;
 int grid_dimension;
 int points_per_cell;
-double precision;
-int max_rounds;
 
 //----------------------------------------------------------------- Thread Interaction data
 
@@ -53,36 +51,21 @@ void *computeSubEstimate(void *arg) {
                         cell.left = cell_length * x;
                         cell.right = cell_length * (x + 1) - 1;
 
-			double previousEstimate = 0.00000d;
-			int totalInternalPoints = 0;
-			for (int round = 1; round <= max_rounds; round++) {
-                        
-				// do appropriate number of random sampling
-                        	int points_inside = 0;
-                        	for (int s = 0; s < points_per_cell; s++) {
-                                	int x = rand_r((unsigned int *) &threadId) % cell_length + cell.left;
-                                	int y = rand_r((unsigned int *) &threadId) % cell_length + cell.bottom;
-                                	double result = 10 * sin(pow(x, 2)) + 50 * cos(pow(y, 3));
-                                	if (result <= 0.0) {
-                                        	points_inside++;
-                                	}
-                        	}
-				totalInternalPoints += points_inside;
+			// do appropriate number of random sampling
+                        int points_inside = 0;
+                        for (int s = 0; s < points_per_cell; s++) {
+                                int x = rand_r((unsigned int *) &threadId) % cell_length + cell.left;
+                                int y = rand_r((unsigned int *) &threadId) % cell_length + cell.bottom;
+                                double result = 10 * sin(pow(x, 2)) + 50 * cos(pow(y, 3));
+                                if (result <= 0.0) {
+                                        points_inside++;
+                                }
+                        }
                         	
-				// calculate the subarea estimate for the grid cell
-                        	double currentEstimate = cell_size * totalInternalPoints / (round * points_per_cell);
+			// calculate the subarea estimate for the grid cell
+                        double estimate = cell_size * points_inside / points_per_cell;
 				
-				double estimateDiff = 0.0000d;
-				if (currentEstimate > previousEstimate) {
-					estimateDiff = currentEstimate - previousEstimate;
-				} else {
-					estimateDiff = previousEstimate - currentEstimate;
-				}
-				previousEstimate = currentEstimate;
-				if (estimateDiff < precision) break;
-			}
-
-                        sub_area_estimates[rowIndex + x] = previousEstimate;
+                        sub_area_estimates[rowIndex + x] = estimate;
                 }
         }
 	
@@ -94,13 +77,13 @@ void *computeSubEstimate(void *arg) {
 
 //--------------------------------------------------------------------------- Main Function
 
-using namespace pthread_monte;
+using namespace pthread_monte_simple;
 
-int mainTMonteA(int argc, char *argv[]) {
+int mainTMonteS(int argc, char *argv[]) {
 
-	if (argc < 7) {
+	if (argc < 5) {
                 std::cout << "provide cell length, grid dimension in number of cells, points to";
-                std::cout << " be generated per cell,\n desired precision, and maximum sampling rounds \n";
+                std::cout << " be generated per cell,\n";
 		std::cout << "then specify the number of threads to be used as the last argument\n";
                 std::exit(EXIT_FAILURE);
         }
@@ -112,9 +95,7 @@ int mainTMonteA(int argc, char *argv[]) {
         cell_length = atoi(argv[1]);
         grid_dimension = atoi(argv[2]);
         points_per_cell = atoi(argv[3]);
-	precision = atof(argv[4]);
-	max_rounds = atoi(argv[5]);
-	threadCount = atoi(argv[6]);
+	threadCount = atoi(argv[4]);
 
 	// initialize the random number generator
         srand(time(NULL));
