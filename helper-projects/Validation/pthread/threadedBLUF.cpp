@@ -14,6 +14,7 @@
 #include "../utils.h"
 #include "../structures.h"
 #include "../fileUtility.h"
+#include "../cpuCores.h"
 
 using namespace std;
 
@@ -303,13 +304,14 @@ void initializeARandomly(int dimLength) {
 
 int mainTBluf(int argc, char *argv[]) {
 
-	if (argc < 3) {
+	if (argc < 4) {
 		cout << "There are two modes for using this program\n";
-		cout << "If you want to read/write data from/to files then pass two arguments\n";
+		cout << "If you want to read/write data from/to files then pass three arguments\n";
 		cout << "\t1. Provide the block size for partitioning the argument matrix\n";
 		cout << "\t2. Provide the number of threads\n";
+		cout << "\t3. Provide the machine name tozammel|brac\n";
 		cout << "If you rather want to check timing on randomly generated data then pass 1 more argument\n";
-		cout << "\t3. The dimension length of the square argument matrix\n";
+		cout << "\t4. The dimension length of the square argument matrix\n";
 		exit(EXIT_FAILURE);		
 	}
 
@@ -317,10 +319,11 @@ int mainTBluf(int argc, char *argv[]) {
 	bool fileIOMode = true;
 	blockSize = atoi(argv[1]);	
 	threadCount = atoi(argv[2]);
+	char *machine = argv[3];
 	int dimensionLength;
-	if (argc >= 4) {
+	if (argc >= 5) {
 		fileIOMode = false;
-		dimensionLength = atoi(argv[3]);	
+		dimensionLength = atoi(argv[4]);	
 		
 	}
 
@@ -360,14 +363,34 @@ int mainTBluf(int argc, char *argv[]) {
 			- (start.tv_sec + start.tv_usec / 1000000.0));
 	cout << "data structure setup overhead: " << setupTime << " Seconds\n";
 
+
+	// retrieve the processor core numbering for the machine and thread count configuration
+        int* coreOrder = getCoreNumberingArray(machine, threadCount);
+        int coreCount = getCoreCount(machine, threadCount);
+        int coreJump = coreCount / threadCount;
+        std::cout << "executing for " << machine << " machine with " << coreCount << " core model" << std::endl;
+
+        // prepare attribute for thread pinning
+        pthread_attr_t attr;
+        cpu_set_t cpus;
+        pthread_attr_init(&attr);
+
 	// start the threads
 	gettimeofday(&start, NULL);
-	// create arrays of 5 thread Ids and thread objects
         int threadIds[threadCount];
         pthread_t threads[threadCount];
 	for (int i = 0; i < threadCount; i++) {
                 threadIds[i] = i;
-                int status = pthread_create(&threads[i], NULL, computeBLUF, (void*) &threadIds[i]);
+		
+		// get the CPU core's physical ID for pinning
+                int cpuId = i * coreJump;
+                int physicalId = coreOrder[cpuId];
+                CPU_ZERO(&cpus);
+                CPU_SET(physicalId, &cpus);
+                pthread_attr_setaffinity_np(&attr, sizeof(cpu_set_t), &cpus);
+
+		// run thread
+                int status = pthread_create(&threads[i], &attr, computeBLUF, (void*) &threadIds[i]);
                 if (status != 0) {
                         cout << "Could not create some pthreads\n";
                         exit(EXIT_FAILURE);

@@ -5,13 +5,14 @@ curr_dir=`pwd`
 
 # adjust these two variables based on the mode of the experiment
 ref_target=brac-node
+machine=brac
 parallelism=( 20 12 8 6 2 1 )
 executable=../executables/pthread-bluf.o
 array_generator=../../../../../tools/array-generator
 
 # parallel run counts and input size configuration
-parallel_runs=2
-input_size=1024
+parallel_runs=50
+input_size=12288
 cache_block=64
 
 # make data directory for experiments
@@ -53,7 +54,7 @@ do
 		cd run-${run}
 
 		# execute the program using the input file piping command line inputs
-		(time ../../pthread_exec.o $cache_block $version $input_size) > output.txt 2>&1
+		(time ../../pthread_exec.o $cache_block $version $machine $input_size) > output.txt 2>&1
 		cat output.txt
 
 		# come back to the parent directory

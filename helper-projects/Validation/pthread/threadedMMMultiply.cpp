@@ -75,7 +75,7 @@ void *computeBMMM(void *arg) {
 }
 
 //----------------------------------------------------------------------------------------------- main function
-int main(int argc, const char *argv[]) {
+int mainTMMM(int argc, const char *argv[]) {
 
 	if (argc < 6) {
                 std::cout << "provide input file 1, input file 2, and blocking size\n";
@@ -129,6 +129,7 @@ int main(int argc, const char *argv[]) {
                 CPU_ZERO(&cpus);
                 CPU_SET(physicalId, &cpus);
 		pthread_attr_setaffinity_np(&attr, sizeof(cpu_set_t), &cpus);
+
                 int status = pthread_create(&threads[i], &attr, computeBMMM, (void*) &threadIds[i]);
                 if (status != 0) {
                         std::cout << "Could not create some pthreads\n";
