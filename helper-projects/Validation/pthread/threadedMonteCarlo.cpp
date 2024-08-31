@@ -7,6 +7,7 @@
 #include <time.h>
 #include <pthread.h>
 #include <math.h>
+#include "../cpuCores.h"
 
 namespace pthread_monte {
 

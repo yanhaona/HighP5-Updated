@@ -5,16 +5,17 @@ curr_dir=`pwd`
 
 # adjust these two variables based on the mode of the experiment
 ref_target=brac-node
+machine=brac
 parallelism=( 20 12 8 6 2 1 )
 executable=../executables/pthread-monte-simple.o
 
 # parallel runs count
-parallel_runs=2
+parallel_runs=50
 
 # sampling parameters
 cell_length=1000
-grid_dim=1024
-points_per_cell=100
+grid_dim=10240
+points_per_cell=1000
 
 # make data directory for experiments
 mkdir -p ../../../$ref_target/data/pthread/Monte
@@ -52,7 +53,7 @@ do
 		cd run-${run}
 
 		# execute the program using the input file piping command line inputs
-		(time ../../pthread_exec.o $cell_length $grid_dim $points_per_cell $version) > output.txt 2>&1
+		(time ../../pthread_exec.o $cell_length $grid_dim $points_per_cell $version $machine) > output.txt 2>&1
 		cat output.txt
 
 		# come back to the parent directory
