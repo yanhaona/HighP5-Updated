@@ -5,6 +5,7 @@ curr_dir=`pwd`
 
 # adjust these two variables based on the mode of the experiment
 ref_target=brac-node
+machine=brac
 parallelism=( 20 12 8 6 2 1 )
 executable=../executables/pthread-mmult.o
 array_generator=../../../../../tools/array-generator
@@ -58,7 +59,7 @@ do
 		echo ../../m2.txt >> input.txt
 
 		# execute the program using the input file piping command line inputs
-		(time ../../pthread_exec.o m1 m2 $cache_block $version < input.txt) > output.txt 2>&1
+		(time ../../pthread_exec.o m1 m2 $cache_block $version $machine < input.txt) > output.txt 2>&1
 		cat output.txt
 
 		# come back to the parent directory

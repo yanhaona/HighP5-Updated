@@ -9,9 +9,11 @@
 #include <deque>
 #include <sys/time.h>
 #include <time.h>
+#include <array>
 #include "../utils.h"
 #include "../structures.h"
 #include "../fileUtility.h"
+#include "../cpuCores.h"
 
 
 // ---------------------------------------------------------------------------------- Matrix Information
@@ -73,11 +75,12 @@ void *computeBMMM(void *arg) {
 }
 
 //----------------------------------------------------------------------------------------------- main function
-int mainTMMM(int argc, const char *argv[]) {
+int main(int argc, const char *argv[]) {
 
-	if (argc < 5) {
+	if (argc < 6) {
                 std::cout << "provide input file 1, input file 2, and blocking size\n";
-                std::cout << "then specify the number of threads to be used as the last argument\n";
+                std::cout << "then specify the number of threads to be used \n";
+		std::cout << "finally specify the machine name (tozammel|brac)\n";
                 std::exit(EXIT_FAILURE);
         }
 
@@ -86,6 +89,7 @@ int mainTMMM(int argc, const char *argv[]) {
         const char* matrix2File= argv[2];
         blockSizeMMM = atoi(argv[3]);
         threadCountMMM = atoi(argv[4]);
+	const char* machine = argv[5];
 
 
 	// load original inputs and output from generated files
@@ -102,12 +106,30 @@ int mainTMMM(int argc, const char *argv[]) {
 	c = new double[cSize];
 	for (int i = 0; i < cSize; i++) c[i] = 0;
 
+	// retrieve the processor core numbering for the machine and thread count configuration
+	int* coreOrder = getCoreNumberingArray(machine, threadCountMMM);
+	int coreCount = getCoreCount(machine, threadCountMMM);
+	int coreJump = coreCount / threadCountMMM;
+	std::cout << "executing for " << machine << " machine with " << coreCount << " core model" << std::endl;
+
+	// prepare attribute for thread pinning
+	pthread_attr_t attr;
+        cpu_set_t cpus;
+        pthread_attr_init(&attr);
+
 	// start the threads
         int threadIds[threadCountMMM];
         pthread_t threads[threadCountMMM];
         for (int i = 0; i < threadCountMMM; i++) {
                 threadIds[i] = i;
-                int status = pthread_create(&threads[i], NULL, computeBMMM, (void*) &threadIds[i]);
+
+		// get the CPU core's physical ID for pinning
+		int cpuId = i * coreJump;
+                int physicalId = coreOrder[cpuId];
+                CPU_ZERO(&cpus);
+                CPU_SET(physicalId, &cpus);
+		pthread_attr_setaffinity_np(&attr, sizeof(cpu_set_t), &cpus);
+                int status = pthread_create(&threads[i], &attr, computeBMMM, (void*) &threadIds[i]);
                 if (status != 0) {
                         std::cout << "Could not create some pthreads\n";
                         std::exit(EXIT_FAILURE);
