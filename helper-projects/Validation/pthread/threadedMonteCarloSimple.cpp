@@ -68,7 +68,7 @@ void *computeSubEstimate(void *arg) {
 				
                         sub_area_estimates[rowIndex + x] = estimate;
                 }
-        }
+        } 
 	
 	// exit thread
 	pthread_exit(NULL);
@@ -80,7 +80,7 @@ void *computeSubEstimate(void *arg) {
 
 using namespace pthread_monte_simple;
 
-int main(int argc, char *argv[]) {
+int mainTMonteS(int argc, char *argv[]) {
 
 	if (argc < 6) {
                 std::cout << "provide cell length, grid dimension in number of cells, points to";
