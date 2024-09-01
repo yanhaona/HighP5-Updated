@@ -1,5 +1,5 @@
 /*
- * structures.h
+ * cpuCores.h
  *
  *  Created on: Aug, 2024
  *      Author: yan
