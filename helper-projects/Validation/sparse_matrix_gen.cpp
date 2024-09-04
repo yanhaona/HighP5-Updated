@@ -11,6 +11,8 @@
 #include "sparse_matrix_gen.h"
 #include "fileUtility.h"
 #include "structures.h"
+#include "stream.h"
+#include "list.h"
 
 namespace sparse_matrix {
 
@@ -22,7 +24,43 @@ namespace sparse_matrix {
 using namespace std;
 using namespace sparse_matrix;
 
-void genCSRMatrix(int sparsity, int rowCount, int colCount, int dataType) {
+void saveDoubleArrayInBinaryFile(const char* fileName, Dimension dimension, double *data) {
+	
+	List<Dimension*> *dimensionList = new List<Dimension*>();
+	dimensionList->Append(&dimension);
+	TypedOutputStream<double> stream = TypedOutputStream<double>(fileName, dimensionList, true);
+	stream.open();
+	for (int i = 0; i < dimension.length; i++) {
+		stream.writeNextElement(data[i]);
+	}
+	stream.close();
+}
+
+void saveFloatArrayInBinaryFile(const char* fileName, Dimension dimension, float *data) {
+
+	List<Dimension*> *dimensionList = new List<Dimension*>();
+	dimensionList->Append(&dimension);
+	TypedOutputStream<float> stream = TypedOutputStream<float>(fileName, dimensionList, true);
+	stream.open();
+	for (int i = 0; i < dimension.length; i++) {
+		stream.writeNextElement(data[i]);
+	}
+	stream.close();
+}
+
+void saveIntArrayInBinaryFile(const char* fileName, Dimension dimension, int *data) {
+
+	List<Dimension*> *dimensionList = new List<Dimension*>();
+	dimensionList->Append(&dimension);
+	TypedOutputStream<int> stream = TypedOutputStream<int>(fileName, dimensionList, true);
+	stream.open();
+	for (int i = 0; i < dimension.length; i++) {
+		stream.writeNextElement(data[i]);
+	}
+	stream.close();
+}
+
+void genCSRMatrix(int sparsity, int rowCount, int colCount, int dataType, bool binary) {
 
 
         srand(time(NULL));
@@ -38,21 +76,36 @@ void genCSRMatrix(int sparsity, int rowCount, int colCount, int dataType) {
 	if (dataType == INT_TYPE) {
 		int *valueArray = allocate<int>(1, &valueDim);
 		for (int i = 0; i < nonZeroEntries; i++) {
-			valueArray[i] = rand() % 100 + 1;
+			valueArray[i] = rand() % 100 + 1;	
+		}
+		if (binary == true) {
+			cout << "saving the value array in file 'values'\n";
+			saveIntArrayInBinaryFile("values", valueDim, valueArray);
+		} else {
+			writeArrayToFile<int>("values", valueArray, 1, &valueDim);
 		}	
-		writeArrayToFile<int>("values", valueArray, 1, &valueDim);	
 	} else if (dataType == FLOAT_TYPE) {
 		float *valueArray = allocate<float>(1, &valueDim);
 		for (int i = 0; i < nonZeroEntries; i++) {
 			valueArray[i] = (rand() % 100) * 1.0 / (rand() % 100 + 1);
 		}
-		writeArrayToFile<float>("values", valueArray, 1, &valueDim);	
+		if (binary == true) {
+			cout << "saving the value array in file 'values'\n";
+			saveFloatArrayInBinaryFile("values", valueDim, valueArray);
+		} else {
+			writeArrayToFile<float>("values", valueArray, 1, &valueDim);
+		}	
 	} else if (dataType == DOUBLE_TYPE) {
 		double *valueArray = allocate<double>(1, &valueDim);
 		for (int i = 0; i < nonZeroEntries; i++) {
 			valueArray[i] = (rand() % 100) * 1.0 / (rand() % 100 + 1);
 		}	
-		writeArrayToFile<double>("values", valueArray, 1, &valueDim);	
+		if (binary == true) {
+			cout << "saving the value array in file 'values'\n";
+			saveDoubleArrayInBinaryFile("values", valueDim, valueArray);
+		} else {
+			writeArrayToFile<double>("values", valueArray, 1, &valueDim);
+		}	
 	}
 
 	// --------------------------------------------------------------- Generate the Column Index Array
@@ -113,7 +166,12 @@ void genCSRMatrix(int sparsity, int rowCount, int colCount, int dataType) {
 			filled++;
 		}
 	}
-	writeArrayToFile<int>("colIndexes", colIndexArray, 1, &valueDim);	
+	if (binary == true) {
+		cout << "saving the column index array in file 'columns'\n";
+		saveIntArrayInBinaryFile("columns", valueDim, colIndexArray);
+	} else {
+		writeArrayToFile<int>("colIndexes", colIndexArray, 1, &valueDim);
+	}	
 	
 	// ------------------------------------------------------------------ Generate the Row Range Array
 	
@@ -127,13 +185,18 @@ void genCSRMatrix(int sparsity, int rowCount, int colCount, int dataType) {
 		rowRangeArray[row] = nonZerosPerColumn * (row + 1) - 1;
 	}
 	rowRangeArray[rowCount - 1] = nonZeroEntries - 1;
-	writeArrayToFile<int>("rowRanges", rowRangeArray, 1, &rangeDim);	
+	if (binary == true) {
+		cout << "saving the row range array in file 'rows'\n";
+		saveIntArrayInBinaryFile("rows", rangeDim, rowRangeArray);
+	} else {
+		writeArrayToFile<int>("rowRanges", rowRangeArray, 1, &rangeDim);
+	}	
 
 }
 
 int main(int argc, const char* argv[]) {
 
-	if (argc < 5) {
+	if (argc < 6) {
                 std::cout << "provide the following information\n";
                 std::cout << "1. the number of rows in the matrix,\n";
                 std::cout << "2. the number of columns in the matrix\n";
@@ -141,7 +204,8 @@ int main(int argc, const char* argv[]) {
 		std::cout << "4. data type of the matrix\n";
 		std::cout << "\t1 = int\n";
 		std::cout << "\t2 = float\n";
-		std::cout << "\t1 = double\n";
+		std::cout << "\t3 = double\n";
+		std::cout << "5. File type binary=1, text=0\n";
                 std::exit(EXIT_FAILURE);
         }
 
@@ -149,8 +213,9 @@ int main(int argc, const char* argv[]) {
 	int colCount = atoi(argv[2]);
 	int sparsity = atoi(argv[3]);
 	int dataType = atoi(argv[4]);
+	bool binaryFile = (atoi(argv[5]) == 1);
 
-	genCSRMatrix(sparsity, rowCount, colCount, dataType);
+	genCSRMatrix(sparsity, rowCount, colCount, dataType, binaryFile);
 	return 0;
 }
 
