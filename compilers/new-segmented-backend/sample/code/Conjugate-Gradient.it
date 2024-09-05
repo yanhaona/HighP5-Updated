@@ -70,7 +70,7 @@ Program (args) {
         } while iteration < maxIterations and norm > args.precision
 
         // store the final solution vector in an output file
-        bind_output(vaEnv2, "w", args.solution_vector)
+        // bind_output(vaEnv2, "w", args.solution_vector)
 }
 
 Task "Vector Addition":
