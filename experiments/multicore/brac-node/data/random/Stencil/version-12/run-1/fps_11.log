@@ -1,6 +1,0 @@
-Thread Id: 135274870867520
-Thread CPU Id: 0
-Iterator Statistics:
-	#times current position is the searched position  (direct return): 9600
-	#times next position is the searched position  (one step advance): 1111
-	#times iterator has been put to a new location (container search): 101

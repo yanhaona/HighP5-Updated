@@ -1,9 +1,0 @@
-going to execute task: Five Points Stencil
-	task initialization is complete
-	segment grouping of threads is complete
-	memory allocation is complete
-Memory preparation time: 1.03347 Seconds
-	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage8No1
-	communicators have been created
-Communicators setup time: 0.125697 Seconds
-	launching threads

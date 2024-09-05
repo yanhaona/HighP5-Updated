@@ -1,9 +1,0 @@
-Data reading/intialization time: 0.0352712 Seconds
-executing for brac machine with 12 core model
-Could not create some pthreads
-
-real	0m0.042s
-user	0m0.015s
-sys	0m0.004s
-Plate Dimension 1024 by 1024
-Refinement iterations 400
