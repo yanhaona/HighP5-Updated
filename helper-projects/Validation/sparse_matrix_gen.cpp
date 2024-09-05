@@ -194,7 +194,7 @@ void genCSRMatrix(int sparsity, int rowCount, int colCount, int dataType, bool b
 
 }
 
-int main(int argc, const char* argv[]) {
+int mainSPG(int argc, const char* argv[]) {
 
 	if (argc < 6) {
                 std::cout << "provide the following information\n";
