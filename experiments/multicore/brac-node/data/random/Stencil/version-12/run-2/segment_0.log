@@ -1,0 +1,44 @@
+going to execute task: Five Points Stencil
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 1.04378 Seconds
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage8No1
+	communicators have been created
+Communicators setup time: 0.212169 Seconds
+	launching threads
+		launched thread #0
+		launched thread #1
+		launched thread #2
+		launched thread #3
+		launched thread #4
+		launched thread #5
+		launched thread #6
+		launched thread #7
+		launched thread #8
+		launched thread #9
+		launched thread #10
+		launched thread #11
+Computation time: 0.912357 Seconds
+Computation + overhead time: 1.12453 Seconds
+		Dependency: plateStage8No1:
+			Confinements processing time: 0.0106049
+			Buffer setup time: 0.200079
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 0.275886
+				MPI transfer: 0.000116825
+				Buffer writing: 0.0476718
+				Total: 0.323675
+		Dependency: plateStage9No1:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 0
+				Buffer writing: 0
+				Total: 0
+Total communication time: 0.323675 Seconds
+Computation without communication time: 0.588682 Seconds
+Execution Time: 2.17049 Seconds

@@ -1,0 +1,32 @@
+going to execute task: Five Points Stencil
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 1.05011 Seconds
+	communicators have been created
+Communicators setup time: 0.00101805 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.488243 Seconds
+Computation + overhead time: 0.489261 Seconds
+		Dependency: plateStage8No1:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 0
+				Buffer writing: 0
+				Total: 0
+		Dependency: plateStage9No1:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 0
+				Buffer writing: 0
+				Total: 0
+Total communication time: 0 Seconds
+Computation without communication time: 0.488243 Seconds
+Execution Time: 1.54279 Seconds

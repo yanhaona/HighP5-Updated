@@ -4,7 +4,7 @@ Program (args) {
         execute(task: "Five Points Stencil"; environment: stencilEnv; 			\
 			initialize: args.iterations; 					\
 			partition: args.k, args.l, args.m, args.n, args.p1, args.p2)	
-        bind_output(stencilEnv, "plate", args.output_file)
+        // bind_output(stencilEnv, "plate", args.output_file)
 }
 
 Task "Five Points Stencil":

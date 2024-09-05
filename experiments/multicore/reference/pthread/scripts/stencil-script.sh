@@ -13,8 +13,8 @@ executable=../executables/pthread-stencil.o
 parallel_runs=2
 
 # sampling parameters
-plate_dim=1024
-iterations=1000
+plate_dim=10240
+iterations=2000
 padding=4
 
 # make data directory for experiments
@@ -54,6 +54,9 @@ do
 
 		# execute the program using the input file piping command line inputs
 		(time ../../pthread_exec.o $plate_dim $iterations $padding $version $machine) > output.txt 2>&1
+		let refinements=$iterations*$padding
+		echo "Plate Dimension $plate_dim by $plate_dim" >> output.txt
+		echo "Refinement iterations $refinements" >> output.txt
 		cat output.txt
 
 		# come back to the parent directory

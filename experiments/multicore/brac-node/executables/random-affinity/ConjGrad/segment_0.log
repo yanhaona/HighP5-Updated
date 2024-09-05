@@ -1,0 +1,5401 @@
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.214358 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0385849 Seconds
+Computation + overhead time: 0.0385849 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00343895 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00119305 Seconds
+Computation + overhead time: 0.00119305 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00167108 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00102496 Seconds
+Computation + overhead time: 0.00102496 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0305359 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.035254 Seconds
+Computation + overhead time: 0.035254 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000643015 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00079608 Seconds
+Computation + overhead time: 0.00079608 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00149393 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000669003 Seconds
+Computation + overhead time: 0.000669003 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00155091 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0415249 Seconds
+Computation + overhead time: 0.0415249 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000895023 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000505924 Seconds
+Computation + overhead time: 0.000505924 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000962019 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000663042 Seconds
+Computation + overhead time: 0.000663042 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00152779 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.037951 Seconds
+Computation + overhead time: 0.037951 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000715971 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000473022 Seconds
+Computation + overhead time: 0.000473022 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00192213 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0110669 Seconds
+Computation + overhead time: 0.0110669 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00133705 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0409639 Seconds
+Computation + overhead time: 0.0409639 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000908136 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000504017 Seconds
+Computation + overhead time: 0.000504017 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000654936 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000435114 Seconds
+Computation + overhead time: 0.000435114 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.001127 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0371909 Seconds
+Computation + overhead time: 0.0371909 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00100493 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00101805 Seconds
+Computation + overhead time: 0.00101805 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00216389 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00136518 Seconds
+Computation + overhead time: 0.00136518 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00158596 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0407891 Seconds
+Computation + overhead time: 0.0407891 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000869989 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000484943 Seconds
+Computation + overhead time: 0.000484943 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00104785 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000735998 Seconds
+Computation + overhead time: 0.000735998 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00174594 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0379131 Seconds
+Computation + overhead time: 0.0379131 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0010159 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000858068 Seconds
+Computation + overhead time: 0.000858068 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00124812 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000637054 Seconds
+Computation + overhead time: 0.000637054 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000993967 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.038197 Seconds
+Computation + overhead time: 0.038197 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00119996 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000936985 Seconds
+Computation + overhead time: 0.000936985 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000674963 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000488997 Seconds
+Computation + overhead time: 0.000488997 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000955105 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.038296 Seconds
+Computation + overhead time: 0.038296 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00105715 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000905991 Seconds
+Computation + overhead time: 0.000905991 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00130391 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000601053 Seconds
+Computation + overhead time: 0.000601053 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00114799 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.037024 Seconds
+Computation + overhead time: 0.037024 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000874043 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000515938 Seconds
+Computation + overhead time: 0.000515938 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000653982 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000463009 Seconds
+Computation + overhead time: 0.000463009 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00159001 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.037236 Seconds
+Computation + overhead time: 0.037236 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000994921 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000648022 Seconds
+Computation + overhead time: 0.000648022 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00190806 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000844002 Seconds
+Computation + overhead time: 0.000844002 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00178885 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0361302 Seconds
+Computation + overhead time: 0.0361302 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000864983 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000484943 Seconds
+Computation + overhead time: 0.000484943 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000651121 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000568867 Seconds
+Computation + overhead time: 0.000568867 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00156999 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0356221 Seconds
+Computation + overhead time: 0.0356221 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00100017 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000900984 Seconds
+Computation + overhead time: 0.000900984 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00138903 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000573158 Seconds
+Computation + overhead time: 0.000573158 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00171089 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.039402 Seconds
+Computation + overhead time: 0.039402 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000905991 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000516176 Seconds
+Computation + overhead time: 0.000516176 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00102186 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000718117 Seconds
+Computation + overhead time: 0.000718117 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00168896 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0445299 Seconds
+Computation + overhead time: 0.0445299 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000748873 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000556231 Seconds
+Computation + overhead time: 0.000556231 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00201488 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000864983 Seconds
+Computation + overhead time: 0.000864983 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00102901 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0390608 Seconds
+Computation + overhead time: 0.0390608 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00118995 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00110602 Seconds
+Computation + overhead time: 0.00110602 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000744104 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000597954 Seconds
+Computation + overhead time: 0.000597954 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00102711 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0388241 Seconds
+Computation + overhead time: 0.0388241 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000735044 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000509024 Seconds
+Computation + overhead time: 0.000509024 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00206804 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000792027 Seconds
+Computation + overhead time: 0.000792027 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00167704 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0407519 Seconds
+Computation + overhead time: 0.0407519 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000925064 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000494003 Seconds
+Computation + overhead time: 0.000494003 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000696898 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000522137 Seconds
+Computation + overhead time: 0.000522137 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00107503 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.040257 Seconds
+Computation + overhead time: 0.040257 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000754118 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000521898 Seconds
+Computation + overhead time: 0.000521898 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00129294 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000622034 Seconds
+Computation + overhead time: 0.000622034 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00171995 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0416999 Seconds
+Computation + overhead time: 0.0416999 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00140405 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000520945 Seconds
+Computation + overhead time: 0.000520945 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00071907 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000473022 Seconds
+Computation + overhead time: 0.000473022 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00106311 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.037478 Seconds
+Computation + overhead time: 0.037478 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00107813 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000980854 Seconds
+Computation + overhead time: 0.000980854 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.002038 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000836849 Seconds
+Computation + overhead time: 0.000836849 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00166297 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0404341 Seconds
+Computation + overhead time: 0.0404341 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000932932 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000710964 Seconds
+Computation + overhead time: 0.000710964 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000821829 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000467062 Seconds
+Computation + overhead time: 0.000467062 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00100088 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0390589 Seconds
+Computation + overhead time: 0.0390589 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00110292 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000478983 Seconds
+Computation + overhead time: 0.000478983 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00123 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000511885 Seconds
+Computation + overhead time: 0.000511885 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000990152 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0377228 Seconds
+Computation + overhead time: 0.0377228 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00118518 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000926971 Seconds
+Computation + overhead time: 0.000926971 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000846863 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00070715 Seconds
+Computation + overhead time: 0.00070715 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00174689 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0379951 Seconds
+Computation + overhead time: 0.0379951 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00100803 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000613928 Seconds
+Computation + overhead time: 0.000613928 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00219393 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00115705 Seconds
+Computation + overhead time: 0.00115705 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00161099 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0392799 Seconds
+Computation + overhead time: 0.0392799 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00133395 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000705957 Seconds
+Computation + overhead time: 0.000705957 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00100613 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000747919 Seconds
+Computation + overhead time: 0.000747919 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00157714 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.038789 Seconds
+Computation + overhead time: 0.038789 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00262189 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000682116 Seconds
+Computation + overhead time: 0.000682116 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00438285 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000916004 Seconds
+Computation + overhead time: 0.000916004 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00208092 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0381939 Seconds
+Computation + overhead time: 0.0381939 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00120306 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000657082 Seconds
+Computation + overhead time: 0.000657082 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000912189 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000678778 Seconds
+Computation + overhead time: 0.000678778 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00293016 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.040817 Seconds
+Computation + overhead time: 0.040817 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000972033 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00089407 Seconds
+Computation + overhead time: 0.00089407 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0012629 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000568151 Seconds
+Computation + overhead time: 0.000568151 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000957012 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.04035 Seconds
+Computation + overhead time: 0.04035 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000884056 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000525951 Seconds
+Computation + overhead time: 0.000525951 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000677109 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000432968 Seconds
+Computation + overhead time: 0.000432968 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00115609 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.037972 Seconds
+Computation + overhead time: 0.037972 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000999928 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000952959 Seconds
+Computation + overhead time: 0.000952959 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00121212 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000527859 Seconds
+Computation + overhead time: 0.000527859 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000989199 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.036732 Seconds
+Computation + overhead time: 0.036732 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00116491 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00101709 Seconds
+Computation + overhead time: 0.00101709 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00071907 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000550985 Seconds
+Computation + overhead time: 0.000550985 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000984907 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0394571 Seconds
+Computation + overhead time: 0.0394571 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00111198 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000902176 Seconds
+Computation + overhead time: 0.000902176 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00134802 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000627995 Seconds
+Computation + overhead time: 0.000627995 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000892878 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0388069 Seconds
+Computation + overhead time: 0.0388069 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0012989 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000512123 Seconds
+Computation + overhead time: 0.000512123 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000755072 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000540972 Seconds
+Computation + overhead time: 0.000540972 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0011282 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0392048 Seconds
+Computation + overhead time: 0.0392048 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0010829 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000942945 Seconds
+Computation + overhead time: 0.000942945 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00124002 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000541925 Seconds
+Computation + overhead time: 0.000541925 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000921011 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0402451 Seconds
+Computation + overhead time: 0.0402451 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000920057 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000476837 Seconds
+Computation + overhead time: 0.000476837 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000751972 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000539064 Seconds
+Computation + overhead time: 0.000539064 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00102592 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0400412 Seconds
+Computation + overhead time: 0.0400412 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000763893 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000515938 Seconds
+Computation + overhead time: 0.000515938 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00199485 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000801086 Seconds
+Computation + overhead time: 0.000801086 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00166416 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.037966 Seconds
+Computation + overhead time: 0.037966 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0011518 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00107813 Seconds
+Computation + overhead time: 0.00107813 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00104213 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000755787 Seconds
+Computation + overhead time: 0.000755787 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0010891 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.039315 Seconds
+Computation + overhead time: 0.039315 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000993013 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000863791 Seconds
+Computation + overhead time: 0.000863791 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00123096 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000538826 Seconds
+Computation + overhead time: 0.000538826 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000955105 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0387969 Seconds
+Computation + overhead time: 0.0387969 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00118589 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000921965 Seconds
+Computation + overhead time: 0.000921965 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000666142 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000593901 Seconds
+Computation + overhead time: 0.000593901 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0010128 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0376792 Seconds
+Computation + overhead time: 0.0376792 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000678062 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000454903 Seconds
+Computation + overhead time: 0.000454903 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00126791 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000578165 Seconds
+Computation + overhead time: 0.000578165 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000931978 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0442588 Seconds
+Computation + overhead time: 0.0442588 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00132489 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000534058 Seconds
+Computation + overhead time: 0.000534058 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000641823 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000548124 Seconds
+Computation + overhead time: 0.000548124 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00157404 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0379231 Seconds
+Computation + overhead time: 0.0379231 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000697136 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00048995 Seconds
+Computation + overhead time: 0.00048995 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00116515 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000500917 Seconds
+Computation + overhead time: 0.000500917 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00143909 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.037113 Seconds
+Computation + overhead time: 0.037113 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00089097 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000597954 Seconds
+Computation + overhead time: 0.000597954 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000666857 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000456095 Seconds
+Computation + overhead time: 0.000456095 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00156689 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0418952 Seconds
+Computation + overhead time: 0.0418952 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000690937 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000463009 Seconds
+Computation + overhead time: 0.000463009 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00115705 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000530005 Seconds
+Computation + overhead time: 0.000530005 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00142813 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.041105 Seconds
+Computation + overhead time: 0.041105 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000916004 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000500917 Seconds
+Computation + overhead time: 0.000500917 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000730991 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000492096 Seconds
+Computation + overhead time: 0.000492096 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00103092 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.038816 Seconds
+Computation + overhead time: 0.038816 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000976086 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000905037 Seconds
+Computation + overhead time: 0.000905037 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00211692 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00109291 Seconds
+Computation + overhead time: 0.00109291 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00157905 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.038867 Seconds
+Computation + overhead time: 0.038867 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00123596 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000696182 Seconds
+Computation + overhead time: 0.000696182 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000972986 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000666857 Seconds
+Computation + overhead time: 0.000666857 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00103378 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.038274 Seconds
+Computation + overhead time: 0.038274 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0010221 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000916958 Seconds
+Computation + overhead time: 0.000916958 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00127816 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000645876 Seconds
+Computation + overhead time: 0.000645876 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000972986 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0365288 Seconds
+Computation + overhead time: 0.0365288 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00118399 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000965118 Seconds
+Computation + overhead time: 0.000965118 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00111914 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000727892 Seconds
+Computation + overhead time: 0.000727892 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00106716 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0386949 Seconds
+Computation + overhead time: 0.0386949 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000927925 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00100613 Seconds
+Computation + overhead time: 0.00100613 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00213408 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00106597 Seconds
+Computation + overhead time: 0.00106597 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00190377 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.037755 Seconds
+Computation + overhead time: 0.037755 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00118804 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000924826 Seconds
+Computation + overhead time: 0.000924826 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000705957 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000534058 Seconds
+Computation + overhead time: 0.000534058 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00172997 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.037956 Seconds
+Computation + overhead time: 0.037956 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000941038 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000612974 Seconds
+Computation + overhead time: 0.000612974 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00182486 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000797987 Seconds
+Computation + overhead time: 0.000797987 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00148702 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0373549 Seconds
+Computation + overhead time: 0.0373549 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000898838 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000495195 Seconds
+Computation + overhead time: 0.000495195 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000988007 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000622988 Seconds
+Computation + overhead time: 0.000622988 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00159407 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.044168 Seconds
+Computation + overhead time: 0.044168 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00068903 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00048995 Seconds
+Computation + overhead time: 0.00048995 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0012269 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000766039 Seconds
+Computation + overhead time: 0.000766039 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0019331 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0433798 Seconds
+Computation + overhead time: 0.0433798 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00121617 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000905037 Seconds
+Computation + overhead time: 0.000905037 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000669003 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00057292 Seconds
+Computation + overhead time: 0.00057292 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00162292 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.039603 Seconds
+Computation + overhead time: 0.039603 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00102806 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00089407 Seconds
+Computation + overhead time: 0.00089407 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00119305 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000491142 Seconds
+Computation + overhead time: 0.000491142 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00152111 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.03807 Seconds
+Computation + overhead time: 0.03807 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00117803 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000622988 Seconds
+Computation + overhead time: 0.000622988 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000697136 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00045681 Seconds
+Computation + overhead time: 0.00045681 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00161195 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0382202 Seconds
+Computation + overhead time: 0.0382202 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00105 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000915051 Seconds
+Computation + overhead time: 0.000915051 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00196815 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00128102 Seconds
+Computation + overhead time: 0.00128102 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00123096 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0364821 Seconds
+Computation + overhead time: 0.0364821 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00131297 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00119996 Seconds
+Computation + overhead time: 0.00119996 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00125003 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000801086 Seconds
+Computation + overhead time: 0.000801086 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00172091 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.039535 Seconds
+Computation + overhead time: 0.039535 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00101304 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000949144 Seconds
+Computation + overhead time: 0.000949144 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00136495 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000571966 Seconds
+Computation + overhead time: 0.000571966 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00165415 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0386839 Seconds
+Computation + overhead time: 0.0386839 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000879049 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000483036 Seconds
+Computation + overhead time: 0.000483036 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000751019 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000509024 Seconds
+Computation + overhead time: 0.000509024 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00102186 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.03948 Seconds
+Computation + overhead time: 0.03948 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000964165 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000627041 Seconds
+Computation + overhead time: 0.000627041 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0021801 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00128293 Seconds
+Computation + overhead time: 0.00128293 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0015769 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.039331 Seconds
+Computation + overhead time: 0.039331 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00123215 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000916958 Seconds
+Computation + overhead time: 0.000916958 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000774145 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000620842 Seconds
+Computation + overhead time: 0.000620842 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00171185 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0381691 Seconds
+Computation + overhead time: 0.0381691 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000996828 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000928164 Seconds
+Computation + overhead time: 0.000928164 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00114012 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000540972 Seconds
+Computation + overhead time: 0.000540972 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00101304 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.03743 Seconds
+Computation + overhead time: 0.03743 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00151896 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00108004 Seconds
+Computation + overhead time: 0.00108004 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000710011 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000498056 Seconds
+Computation + overhead time: 0.000498056 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.004179 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0603571 Seconds
+Computation + overhead time: 0.0603571 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00113988 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000666142 Seconds
+Computation + overhead time: 0.000666142 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00216198 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000798941 Seconds
+Computation + overhead time: 0.000798941 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00165486 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.038193 Seconds
+Computation + overhead time: 0.038193 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00200605 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000939131 Seconds
+Computation + overhead time: 0.000939131 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00218105 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000834942 Seconds
+Computation + overhead time: 0.000834942 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00185704 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0414369 Seconds
+Computation + overhead time: 0.0414369 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000709057 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00051403 Seconds
+Computation + overhead time: 0.00051403 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00126791 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000627995 Seconds
+Computation + overhead time: 0.000627995 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000961065 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.041044 Seconds
+Computation + overhead time: 0.041044 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000957012 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000569105 Seconds
+Computation + overhead time: 0.000569105 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000707865 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00049901 Seconds
+Computation + overhead time: 0.00049901 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000993967 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0389709 Seconds
+Computation + overhead time: 0.0389709 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000969887 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000911951 Seconds
+Computation + overhead time: 0.000911951 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00130415 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000640869 Seconds
+Computation + overhead time: 0.000640869 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00163603 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.041115 Seconds
+Computation + overhead time: 0.041115 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00088501 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000514984 Seconds
+Computation + overhead time: 0.000514984 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00104809 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000825882 Seconds
+Computation + overhead time: 0.000825882 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00158787 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.038656 Seconds
+Computation + overhead time: 0.038656 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000997782 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000873089 Seconds
+Computation + overhead time: 0.000873089 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.001261 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000542879 Seconds
+Computation + overhead time: 0.000542879 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000920057 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.039917 Seconds
+Computation + overhead time: 0.039917 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00131416 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00051403 Seconds
+Computation + overhead time: 0.00051403 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00103617 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000700951 Seconds
+Computation + overhead time: 0.000700951 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00166607 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0413821 Seconds
+Computation + overhead time: 0.0413821 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00107789 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000595093 Seconds
+Computation + overhead time: 0.000595093 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00182509 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000766993 Seconds
+Computation + overhead time: 0.000766993 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00145411 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0391538 Seconds
+Computation + overhead time: 0.0391538 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00128102 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000701189 Seconds
+Computation + overhead time: 0.000701189 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000927925 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000723124 Seconds
+Computation + overhead time: 0.000723124 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00166202 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0383649 Seconds
+Computation + overhead time: 0.0383649 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00100112 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000896931 Seconds
+Computation + overhead time: 0.000896931 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00210023 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00106597 Seconds
+Computation + overhead time: 0.00106597 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00163007 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0380819 Seconds
+Computation + overhead time: 0.0380819 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00117993 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000955105 Seconds
+Computation + overhead time: 0.000955105 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000771046 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000504971 Seconds
+Computation + overhead time: 0.000504971 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000996113 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0406048 Seconds
+Computation + overhead time: 0.0406048 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000710011 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000480175 Seconds
+Computation + overhead time: 0.000480175 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00196791 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000799894 Seconds
+Computation + overhead time: 0.000799894 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00165391 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0427232 Seconds
+Computation + overhead time: 0.0427232 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000934124 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000500917 Seconds
+Computation + overhead time: 0.000500917 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00100207 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000731945 Seconds
+Computation + overhead time: 0.000731945 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0017271 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0422809 Seconds
+Computation + overhead time: 0.0422809 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00307584 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00103211 Seconds
+Computation + overhead time: 0.00103211 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00170207 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00102687 Seconds
+Computation + overhead time: 0.00102687 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00173998 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.044332 Seconds
+Computation + overhead time: 0.044332 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000938177 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000566006 Seconds
+Computation + overhead time: 0.000566006 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00072813 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000510931 Seconds
+Computation + overhead time: 0.000510931 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00107193 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0411661 Seconds
+Computation + overhead time: 0.0411661 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.001122 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000731945 Seconds
+Computation + overhead time: 0.000731945 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00216413 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000968933 Seconds
+Computation + overhead time: 0.000968933 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00220704 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0383661 Seconds
+Computation + overhead time: 0.0383661 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00121403 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000918865 Seconds
+Computation + overhead time: 0.000918865 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00138307 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000740051 Seconds
+Computation + overhead time: 0.000740051 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00170207 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0445518 Seconds
+Computation + overhead time: 0.0445518 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000815868 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000486135 Seconds
+Computation + overhead time: 0.000486135 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00135112 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000599861 Seconds
+Computation + overhead time: 0.000599861 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000977039 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.037925 Seconds
+Computation + overhead time: 0.037925 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00118208 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000922918 Seconds
+Computation + overhead time: 0.000922918 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000823021 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000616074 Seconds
+Computation + overhead time: 0.000616074 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00174093 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0407081 Seconds
+Computation + overhead time: 0.0407081 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000741005 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00049305 Seconds
+Computation + overhead time: 0.00049305 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00148296 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000860929 Seconds
+Computation + overhead time: 0.000860929 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00105906 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0417809 Seconds
+Computation + overhead time: 0.0417809 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00122976 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00101519 Seconds
+Computation + overhead time: 0.00101519 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0010891 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000570059 Seconds
+Computation + overhead time: 0.000570059 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0011282 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0377328 Seconds
+Computation + overhead time: 0.0377328 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000731945 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000545979 Seconds
+Computation + overhead time: 0.000545979 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00157213 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000844955 Seconds
+Computation + overhead time: 0.000844955 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00161195 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.038044 Seconds
+Computation + overhead time: 0.038044 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0011971 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000950098 Seconds
+Computation + overhead time: 0.000950098 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00121617 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000633955 Seconds
+Computation + overhead time: 0.000633955 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00114083 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0385141 Seconds
+Computation + overhead time: 0.0385141 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00108385 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000939131 Seconds
+Computation + overhead time: 0.000939131 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00220704 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000931978 Seconds
+Computation + overhead time: 0.000931978 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00115705 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.03986 Seconds
+Computation + overhead time: 0.03986 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000926018 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000504017 Seconds
+Computation + overhead time: 0.000504017 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000925064 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000808001 Seconds
+Computation + overhead time: 0.000808001 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00184393 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0388629 Seconds
+Computation + overhead time: 0.0388629 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000977039 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000602961 Seconds
+Computation + overhead time: 0.000602961 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00183105 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000746012 Seconds
+Computation + overhead time: 0.000746012 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00148582 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0369802 Seconds
+Computation + overhead time: 0.0369802 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000967979 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00142407 Seconds
+Computation + overhead time: 0.00142407 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00368404 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000818014 Seconds
+Computation + overhead time: 0.000818014 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00268102 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.038419 Seconds
+Computation + overhead time: 0.038419 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00101686 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00062108 Seconds
+Computation + overhead time: 0.00062108 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00180316 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000769854 Seconds
+Computation + overhead time: 0.000769854 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00147319 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.037432 Seconds
+Computation + overhead time: 0.037432 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00123882 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000680208 Seconds
+Computation + overhead time: 0.000680208 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000854015 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000570059 Seconds
+Computation + overhead time: 0.000570059 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00159311 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.038322 Seconds
+Computation + overhead time: 0.038322 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00100803 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000910997 Seconds
+Computation + overhead time: 0.000910997 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00129914 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000577927 Seconds
+Computation + overhead time: 0.000577927 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000941992 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0417261 Seconds
+Computation + overhead time: 0.0417261 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000963926 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000511885 Seconds
+Computation + overhead time: 0.000511885 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000982046 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000689983 Seconds
+Computation + overhead time: 0.000689983 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00180101 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0424299 Seconds
+Computation + overhead time: 0.0424299 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000730991 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000473022 Seconds
+Computation + overhead time: 0.000473022 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00204396 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000912905 Seconds
+Computation + overhead time: 0.000912905 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.001688 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.039269 Seconds
+Computation + overhead time: 0.039269 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00138402 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000521183 Seconds
+Computation + overhead time: 0.000521183 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000751972 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000955105 Seconds
+Computation + overhead time: 0.000955105 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00183105 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0394709 Seconds
+Computation + overhead time: 0.0394709 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00105906 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000912905 Seconds
+Computation + overhead time: 0.000912905 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00207806 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000827789 Seconds
+Computation + overhead time: 0.000827789 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00160193 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0372441 Seconds
+Computation + overhead time: 0.0372441 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00137901 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000504017 Seconds
+Computation + overhead time: 0.000504017 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000782967 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000546932 Seconds
+Computation + overhead time: 0.000546932 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00105691 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0375721 Seconds
+Computation + overhead time: 0.0375721 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000700951 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000527859 Seconds
+Computation + overhead time: 0.000527859 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00187898 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000764847 Seconds
+Computation + overhead time: 0.000764847 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00147891 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0391991 Seconds
+Computation + overhead time: 0.0391991 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00124311 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000712872 Seconds
+Computation + overhead time: 0.000712872 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000684977 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000589132 Seconds
+Computation + overhead time: 0.000589132 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0016191 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0382879 Seconds
+Computation + overhead time: 0.0382879 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000983 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000622988 Seconds
+Computation + overhead time: 0.000622988 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00187683 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000849009 Seconds
+Computation + overhead time: 0.000849009 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00141907 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0381999 Seconds
+Computation + overhead time: 0.0381999 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0012629 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000720024 Seconds
+Computation + overhead time: 0.000720024 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000679016 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000467062 Seconds
+Computation + overhead time: 0.000467062 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00160503 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0411019 Seconds
+Computation + overhead time: 0.0411019 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000788927 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000544071 Seconds
+Computation + overhead time: 0.000544071 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0012579 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000552177 Seconds
+Computation + overhead time: 0.000552177 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00162601 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0428679 Seconds
+Computation + overhead time: 0.0428679 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00119209 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000895023 Seconds
+Computation + overhead time: 0.000895023 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000716925 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000519037 Seconds
+Computation + overhead time: 0.000519037 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00177503 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.045203 Seconds
+Computation + overhead time: 0.045203 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000810146 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000452995 Seconds
+Computation + overhead time: 0.000452995 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00132489 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000530005 Seconds
+Computation + overhead time: 0.000530005 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000916004 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.043242 Seconds
+Computation + overhead time: 0.043242 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000921011 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000545025 Seconds
+Computation + overhead time: 0.000545025 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000730991 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000544071 Seconds
+Computation + overhead time: 0.000544071 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00174403 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.041734 Seconds
+Computation + overhead time: 0.041734 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00143981 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000511169 Seconds
+Computation + overhead time: 0.000511169 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0013361 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000556946 Seconds
+Computation + overhead time: 0.000556946 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00163984 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0436211 Seconds
+Computation + overhead time: 0.0436211 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000921011 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000508785 Seconds
+Computation + overhead time: 0.000508785 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000757933 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000629902 Seconds
+Computation + overhead time: 0.000629902 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.001055 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0392802 Seconds
+Computation + overhead time: 0.0392802 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00106502 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000936031 Seconds
+Computation + overhead time: 0.000936031 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00136399 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000683069 Seconds
+Computation + overhead time: 0.000683069 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0016849 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0403631 Seconds
+Computation + overhead time: 0.0403631 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00123596 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000699997 Seconds
+Computation + overhead time: 0.000699997 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00132799 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00115705 Seconds
+Computation + overhead time: 0.00115705 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00167012 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0386009 Seconds
+Computation + overhead time: 0.0386009 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00118399 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00101805 Seconds
+Computation + overhead time: 0.00101805 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00226307 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00127292 Seconds
+Computation + overhead time: 0.00127292 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00169516 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0380669 Seconds
+Computation + overhead time: 0.0380669 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000936031 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000555992 Seconds
+Computation + overhead time: 0.000555992 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000734806 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000553131 Seconds
+Computation + overhead time: 0.000553131 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.001755 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0399439 Seconds
+Computation + overhead time: 0.0399439 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00105095 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000941992 Seconds
+Computation + overhead time: 0.000941992 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.001266 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000551939 Seconds
+Computation + overhead time: 0.000551939 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000947952 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0389321 Seconds
+Computation + overhead time: 0.0389321 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00115013 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000939846 Seconds
+Computation + overhead time: 0.000939846 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000731945 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000501156 Seconds
+Computation + overhead time: 0.000501156 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00100398 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0365989 Seconds
+Computation + overhead time: 0.0365989 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000982046 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00065589 Seconds
+Computation + overhead time: 0.00065589 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00219607 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00132895 Seconds
+Computation + overhead time: 0.00132895 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00109792 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0387909 Seconds
+Computation + overhead time: 0.0387909 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00128293 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000687122 Seconds
+Computation + overhead time: 0.000687122 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00131202 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00203013 Seconds
+Computation + overhead time: 0.00203013 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00115919 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0429449 Seconds
+Computation + overhead time: 0.0429449 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00103807 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000844002 Seconds
+Computation + overhead time: 0.000844002 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00118399 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000675917 Seconds
+Computation + overhead time: 0.000675917 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00100589 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0382872 Seconds
+Computation + overhead time: 0.0382872 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00128794 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000946045 Seconds
+Computation + overhead time: 0.000946045 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000751972 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00049305 Seconds
+Computation + overhead time: 0.00049305 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00101519 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0413539 Seconds
+Computation + overhead time: 0.0413539 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000728846 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00049901 Seconds
+Computation + overhead time: 0.00049901 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00199318 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000800848 Seconds
+Computation + overhead time: 0.000800848 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00174403 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0408509 Seconds
+Computation + overhead time: 0.0408509 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00120687 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000998974 Seconds
+Computation + overhead time: 0.000998974 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000720978 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000543118 Seconds
+Computation + overhead time: 0.000543118 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00172591 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0436749 Seconds
+Computation + overhead time: 0.0436749 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00105214 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000665903 Seconds
+Computation + overhead time: 0.000665903 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00200009 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000802994 Seconds
+Computation + overhead time: 0.000802994 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00191998 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0376511 Seconds
+Computation + overhead time: 0.0376511 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00119996 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000866175 Seconds
+Computation + overhead time: 0.000866175 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000723839 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00048995 Seconds
+Computation + overhead time: 0.00048995 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00173712 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.038923 Seconds
+Computation + overhead time: 0.038923 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00128794 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000972033 Seconds
+Computation + overhead time: 0.000972033 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00387478 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00198412 Seconds
+Computation + overhead time: 0.00198412 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0016911 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0648839 Seconds
+Computation + overhead time: 0.0648839 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00101185 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000511169 Seconds
+Computation + overhead time: 0.000511169 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000730038 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000505924 Seconds
+Computation + overhead time: 0.000505924 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00109601 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0389979 Seconds
+Computation + overhead time: 0.0389979 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000987053 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00117016 Seconds
+Computation + overhead time: 0.00117016 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00137806 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000577927 Seconds
+Computation + overhead time: 0.000577927 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00154901 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.040626 Seconds
+Computation + overhead time: 0.040626 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00120497 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000694036 Seconds
+Computation + overhead time: 0.000694036 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00120282 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.001158 Seconds
+Computation + overhead time: 0.001158 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00112987 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0457251 Seconds
+Computation + overhead time: 0.0457251 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00068903 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000516891 Seconds
+Computation + overhead time: 0.000516891 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00116611 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000533819 Seconds
+Computation + overhead time: 0.000533819 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00148606 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0423889 Seconds
+Computation + overhead time: 0.0423889 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000921965 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00056386 Seconds
+Computation + overhead time: 0.00056386 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000686884 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000550032 Seconds
+Computation + overhead time: 0.000550032 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0017848 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0424612 Seconds
+Computation + overhead time: 0.0424612 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00141907 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000972986 Seconds
+Computation + overhead time: 0.000972986 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00122404 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000597 Seconds
+Computation + overhead time: 0.000597 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00091815 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.039449 Seconds
+Computation + overhead time: 0.039449 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00117993 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000946045 Seconds
+Computation + overhead time: 0.000946045 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.001091 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000809908 Seconds
+Computation + overhead time: 0.000809908 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00171089 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.04017 Seconds
+Computation + overhead time: 0.04017 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000705957 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000488997 Seconds
+Computation + overhead time: 0.000488997 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00115204 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000526905 Seconds
+Computation + overhead time: 0.000526905 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0014739 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0412431 Seconds
+Computation + overhead time: 0.0412431 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00124002 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000721931 Seconds
+Computation + overhead time: 0.000721931 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00135088 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00117493 Seconds
+Computation + overhead time: 0.00117493 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00183105 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0397458 Seconds
+Computation + overhead time: 0.0397458 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00124192 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00105119 Seconds
+Computation + overhead time: 0.00105119 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00199389 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000802994 Seconds
+Computation + overhead time: 0.000802994 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00168085 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0381939 Seconds
+Computation + overhead time: 0.0381939 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0013628 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000650167 Seconds
+Computation + overhead time: 0.000650167 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000930786 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000605106 Seconds
+Computation + overhead time: 0.000605106 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00154996 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0388112 Seconds
+Computation + overhead time: 0.0388112 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000957012 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000573158 Seconds
+Computation + overhead time: 0.000573158 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00176501 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000754118 Seconds
+Computation + overhead time: 0.000754118 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00143099 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0381579 Seconds
+Computation + overhead time: 0.0381579 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000888109 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000494003 Seconds
+Computation + overhead time: 0.000494003 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000954866 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000658989 Seconds
+Computation + overhead time: 0.000658989 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00160909 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.039731 Seconds
+Computation + overhead time: 0.039731 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00101995 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000913143 Seconds
+Computation + overhead time: 0.000913143 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.001477 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00058198 Seconds
+Computation + overhead time: 0.00058198 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000962973 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0388939 Seconds
+Computation + overhead time: 0.0388939 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0012548 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00089407 Seconds
+Computation + overhead time: 0.00089407 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00070715 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000557899 Seconds
+Computation + overhead time: 0.000557899 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00178814 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0397749 Seconds
+Computation + overhead time: 0.0397749 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00110412 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000492811 Seconds
+Computation + overhead time: 0.000492811 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00141692 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000684977 Seconds
+Computation + overhead time: 0.000684977 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.001616 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0561469 Seconds
+Computation + overhead time: 0.0561469 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00125098 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00117707 Seconds
+Computation + overhead time: 0.00117707 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00130391 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000957966 Seconds
+Computation + overhead time: 0.000957966 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00173211 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.044657 Seconds
+Computation + overhead time: 0.044657 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00110698 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0010891 Seconds
+Computation + overhead time: 0.0010891 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00224805 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00124383 Seconds
+Computation + overhead time: 0.00124383 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00157499 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0450389 Seconds
+Computation + overhead time: 0.0450389 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00120783 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000921965 Seconds
+Computation + overhead time: 0.000921965 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000738859 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000512123 Seconds
+Computation + overhead time: 0.000512123 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00173616 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.03966 Seconds
+Computation + overhead time: 0.03966 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000686884 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000469923 Seconds
+Computation + overhead time: 0.000469923 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00128818 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000590801 Seconds
+Computation + overhead time: 0.000590801 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000954866 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.039638 Seconds
+Computation + overhead time: 0.039638 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000942945 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000503063 Seconds
+Computation + overhead time: 0.000503063 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000746012 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000555038 Seconds
+Computation + overhead time: 0.000555038 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00102592 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0380321 Seconds
+Computation + overhead time: 0.0380321 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00100613 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000904083 Seconds
+Computation + overhead time: 0.000904083 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00124788 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000658989 Seconds
+Computation + overhead time: 0.000658989 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000941992 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.04284 Seconds
+Computation + overhead time: 0.04284 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00123215 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000980854 Seconds
+Computation + overhead time: 0.000980854 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00105786 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000777006 Seconds
+Computation + overhead time: 0.000777006 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00160408 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0378709 Seconds
+Computation + overhead time: 0.0378709 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00114298 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000831842 Seconds
+Computation + overhead time: 0.000831842 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00199103 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000789881 Seconds
+Computation + overhead time: 0.000789881 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00155091 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.045238 Seconds
+Computation + overhead time: 0.045238 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000955105 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00051403 Seconds
+Computation + overhead time: 0.00051403 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00104308 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000678778 Seconds
+Computation + overhead time: 0.000678778 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00167704 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0417101 Seconds
+Computation + overhead time: 0.0417101 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000864029 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000619888 Seconds
+Computation + overhead time: 0.000619888 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00230002 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00126696 Seconds
+Computation + overhead time: 0.00126696 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00156093 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0375042 Seconds
+Computation + overhead time: 0.0375042 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00104594 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00116205 Seconds
+Computation + overhead time: 0.00116205 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00101399 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000692129 Seconds
+Computation + overhead time: 0.000692129 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00160003 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0394239 Seconds
+Computation + overhead time: 0.0394239 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00096488 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000618935 Seconds
+Computation + overhead time: 0.000618935 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00179005 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000731945 Seconds
+Computation + overhead time: 0.000731945 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00138998 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.038377 Seconds
+Computation + overhead time: 0.038377 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000921011 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000509024 Seconds
+Computation + overhead time: 0.000509024 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000673056 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000470877 Seconds
+Computation + overhead time: 0.000470877 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00158381 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0508342 Seconds
+Computation + overhead time: 0.0508342 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00110292 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000663042 Seconds
+Computation + overhead time: 0.000663042 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00225902 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00120783 Seconds
+Computation + overhead time: 0.00120783 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00188613 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.04354 Seconds
+Computation + overhead time: 0.04354 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00153708 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000804901 Seconds
+Computation + overhead time: 0.000804901 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00127196 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00128317 Seconds
+Computation + overhead time: 0.00128317 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00107002 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0406079 Seconds
+Computation + overhead time: 0.0406079 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00116491 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000996113 Seconds
+Computation + overhead time: 0.000996113 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00126481 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000563145 Seconds
+Computation + overhead time: 0.000563145 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000966787 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0399001 Seconds
+Computation + overhead time: 0.0399001 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00116992 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00112414 Seconds
+Computation + overhead time: 0.00112414 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00106096 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00068593 Seconds
+Computation + overhead time: 0.00068593 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00169802 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.039196 Seconds
+Computation + overhead time: 0.039196 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000990152 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00103378 Seconds
+Computation + overhead time: 0.00103378 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00119591 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000551939 Seconds
+Computation + overhead time: 0.000551939 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0010221 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.042387 Seconds
+Computation + overhead time: 0.042387 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000917912 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000537157 Seconds
+Computation + overhead time: 0.000537157 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00108314 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00068593 Seconds
+Computation + overhead time: 0.00068593 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00177884 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.03948 Seconds
+Computation + overhead time: 0.03948 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00100613 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000927925 Seconds
+Computation + overhead time: 0.000927925 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00128293 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000596046 Seconds
+Computation + overhead time: 0.000596046 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0016129 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.048944 Seconds
+Computation + overhead time: 0.048944 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000931025 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000473976 Seconds
+Computation + overhead time: 0.000473976 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000848055 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000519991 Seconds
+Computation + overhead time: 0.000519991 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00103903 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0722859 Seconds
+Computation + overhead time: 0.0722859 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00109291 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00101805 Seconds
+Computation + overhead time: 0.00101805 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00130892 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000579119 Seconds
+Computation + overhead time: 0.000579119 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00166893 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0416031 Seconds
+Computation + overhead time: 0.0416031 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00132513 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000823975 Seconds
+Computation + overhead time: 0.000823975 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00105381 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000768185 Seconds
+Computation + overhead time: 0.000768185 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00170112 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0403159 Seconds
+Computation + overhead time: 0.0403159 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00114703 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000662088 Seconds
+Computation + overhead time: 0.000662088 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00195217 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000814915 Seconds
+Computation + overhead time: 0.000814915 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00174713 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0382469 Seconds
+Computation + overhead time: 0.0382469 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00128508 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000684977 Seconds
+Computation + overhead time: 0.000684977 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00128508 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00117683 Seconds
+Computation + overhead time: 0.00117683 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00186801 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0391719 Seconds
+Computation + overhead time: 0.0391719 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000680923 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000567913 Seconds
+Computation + overhead time: 0.000567913 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00115299 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000547886 Seconds
+Computation + overhead time: 0.000547886 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00140786 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0397911 Seconds
+Computation + overhead time: 0.0397911 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00124598 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000668049 Seconds
+Computation + overhead time: 0.000668049 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00196695 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.00349903 Seconds
+Computation + overhead time: 0.00349903 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00214195 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.039855 Seconds
+Computation + overhead time: 0.039855 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000701904 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000482082 Seconds
+Computation + overhead time: 0.000482082 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00127101 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000706911 Seconds
+Computation + overhead time: 0.000706911 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00146294 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0388589 Seconds
+Computation + overhead time: 0.0388589 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00124788 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000975132 Seconds
+Computation + overhead time: 0.000975132 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000735998 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000553846 Seconds
+Computation + overhead time: 0.000553846 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00174189 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0447762 Seconds
+Computation + overhead time: 0.0447762 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00100613 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000850916 Seconds
+Computation + overhead time: 0.000850916 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00131106 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000551939 Seconds
+Computation + overhead time: 0.000551939 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000925064 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0406289 Seconds
+Computation + overhead time: 0.0406289 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0012331 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000903845 Seconds
+Computation + overhead time: 0.000903845 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000726938 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000483036 Seconds
+Computation + overhead time: 0.000483036 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00104785 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.03811 Seconds
+Computation + overhead time: 0.03811 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00098896 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000892162 Seconds
+Computation + overhead time: 0.000892162 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0012989 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000540972 Seconds
+Computation + overhead time: 0.000540972 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000977039 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0409729 Seconds
+Computation + overhead time: 0.0409729 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000927925 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000497103 Seconds
+Computation + overhead time: 0.000497103 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000714064 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000509024 Seconds
+Computation + overhead time: 0.000509024 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00104618 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0384619 Seconds
+Computation + overhead time: 0.0384619 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000707865 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000530005 Seconds
+Computation + overhead time: 0.000530005 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00129914 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000642061 Seconds
+Computation + overhead time: 0.000642061 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000946045 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0392191 Seconds
+Computation + overhead time: 0.0392191 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00111294 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000916958 Seconds
+Computation + overhead time: 0.000916958 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0011611 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000730991 Seconds
+Computation + overhead time: 0.000730991 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00174499 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.037111 Seconds
+Computation + overhead time: 0.037111 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000989914 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000699997 Seconds
+Computation + overhead time: 0.000699997 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00190187 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000810146 Seconds
+Computation + overhead time: 0.000810146 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00146985 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0375102 Seconds
+Computation + overhead time: 0.0375102 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000952959 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000480175 Seconds
+Computation + overhead time: 0.000480175 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000648022 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000520945 Seconds
+Computation + overhead time: 0.000520945 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0015409 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0394711 Seconds
+Computation + overhead time: 0.0394711 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000702858 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000482082 Seconds
+Computation + overhead time: 0.000482082 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00190687 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000750065 Seconds
+Computation + overhead time: 0.000750065 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00148201 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0384271 Seconds
+Computation + overhead time: 0.0384271 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000898838 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000712156 Seconds
+Computation + overhead time: 0.000712156 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00067997 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000458956 Seconds
+Computation + overhead time: 0.000458956 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00160503 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.078053 Seconds
+Computation + overhead time: 0.078053 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00106597 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000977039 Seconds
+Computation + overhead time: 0.000977039 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00197411 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000824928 Seconds
+Computation + overhead time: 0.000824928 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00167608 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.040241 Seconds
+Computation + overhead time: 0.040241 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000914097 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000549793 Seconds
+Computation + overhead time: 0.000549793 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00277495 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000745058 Seconds
+Computation + overhead time: 0.000745058 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00320196 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0507641 Seconds
+Computation + overhead time: 0.0507641 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000793934 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000540972 Seconds
+Computation + overhead time: 0.000540972 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00118113 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000571966 Seconds
+Computation + overhead time: 0.000571966 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00113082 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.044492 Seconds
+Computation + overhead time: 0.044492 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00113702 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000976086 Seconds
+Computation + overhead time: 0.000976086 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000730038 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000579119 Seconds
+Computation + overhead time: 0.000579119 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00102305 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0391059 Seconds
+Computation + overhead time: 0.0391059 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000975132 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000907898 Seconds
+Computation + overhead time: 0.000907898 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00121903 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000569105 Seconds
+Computation + overhead time: 0.000569105 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00093317 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.039258 Seconds
+Computation + overhead time: 0.039258 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000929117 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000607967 Seconds
+Computation + overhead time: 0.000607967 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000762939 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000511169 Seconds
+Computation + overhead time: 0.000511169 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00102901 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0391438 Seconds
+Computation + overhead time: 0.0391438 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00101495 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000876904 Seconds
+Computation + overhead time: 0.000876904 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0012691 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000552893 Seconds
+Computation + overhead time: 0.000552893 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000952005 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0402431 Seconds
+Computation + overhead time: 0.0402431 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.0014081 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000511885 Seconds
+Computation + overhead time: 0.000511885 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.001086 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000678062 Seconds
+Computation + overhead time: 0.000678062 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00177193 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0401011 Seconds
+Computation + overhead time: 0.0401011 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00106311 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000876904 Seconds
+Computation + overhead time: 0.000876904 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00131917 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000550032 Seconds
+Computation + overhead time: 0.000550032 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000916004 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.038861 Seconds
+Computation + overhead time: 0.038861 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00120091 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000916958 Seconds
+Computation + overhead time: 0.000916958 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00078392 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000449181 Seconds
+Computation + overhead time: 0.000449181 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00105691 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0379951 Seconds
+Computation + overhead time: 0.0379951 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00107718 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000990868 Seconds
+Computation + overhead time: 0.000990868 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00123811 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000582933 Seconds
+Computation + overhead time: 0.000582933 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000936985 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.041265 Seconds
+Computation + overhead time: 0.041265 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00141001 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000506878 Seconds
+Computation + overhead time: 0.000506878 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000802994 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000542879 Seconds
+Computation + overhead time: 0.000542879 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00112796 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.039674 Seconds
+Computation + overhead time: 0.039674 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000735998 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000468016 Seconds
+Computation + overhead time: 0.000468016 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.001194 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000515938 Seconds
+Computation + overhead time: 0.000515938 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000954866 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0448041 Seconds
+Computation + overhead time: 0.0448041 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000951052 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000484943 Seconds
+Computation + overhead time: 0.000484943 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00100303 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000770092 Seconds
+Computation + overhead time: 0.000770092 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00211382 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.0435212 Seconds
+Computation + overhead time: 0.0435212 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000760078 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000581026 Seconds
+Computation + overhead time: 0.000581026 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00132394 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000620127 Seconds
+Computation + overhead time: 0.000620127 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00107002 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.038801 Seconds
+Computation + overhead time: 0.038801 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00101304 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000533104 Seconds
+Computation + overhead time: 0.000533104 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.000982046 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000663996 Seconds
+Computation + overhead time: 0.000663996 Seconds
+going to execute task: CSR Matrix Vector Multiply
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00170517 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.039712 Seconds
+Computation + overhead time: 0.039712 Seconds
+going to execute task: Vector Dot Product
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00103092 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000928879 Seconds
+Computation + overhead time: 0.000928879 Seconds
+going to execute task: Vector Addition
+	task initialization is complete
+	segment grouping of threads is complete
+	memory allocation is complete
+Memory preparation time: 0.00132489 Seconds
+	launching threads
+		launched thread #0
+Computation time: 0.000638962 Seconds
+Computation + overhead time: 0.000638962 Seconds
+Execution Time: 9.64614 Seconds

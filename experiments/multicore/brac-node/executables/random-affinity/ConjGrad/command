@@ -1,0 +1,1 @@
+mpirun -n 1 ./conjugate-gradient-random-1-way.o arg_matrix_cols=input/columns arg_matrix_rows=input/rows arg_matrix_values=input/values known_vector=input/known.txt prediction_vector=input/pred.txt b=10 r=10 maxIterations=100 precision=0.0001 solution_vector=solution

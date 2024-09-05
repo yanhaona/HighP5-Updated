@@ -1,0 +1,5 @@
+Parallel Execution Time: 3.67453 Seconds
+
+real	0m4.131s
+user	0m2.462s
+sys	0m1.197s

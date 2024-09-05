@@ -1,0 +1,7 @@
+Could not start some PThread
+
+real	0m1.571s
+user	0m0.282s
+sys	0m0.889s
+plate dimension 1024 by 1024
+refinement iterations 8000
