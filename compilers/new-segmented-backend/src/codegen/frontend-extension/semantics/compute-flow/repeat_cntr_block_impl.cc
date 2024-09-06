@@ -4,6 +4,8 @@
 #include "../../../../../../frontend/src/syntax/ast_expr.h"
 #include "../../../../../../frontend/src/semantics/task_space.h"
 #include "../../../../../../frontend/src/semantics/computation_flow.h"
+#include "../../../../../../frontend/src/static-analysis/sync_stat.h"
+#include "../../../../../../frontend/src/static-analysis/data_dependency.h"
 
 #include <fstream>
 #include <sstream>
@@ -63,6 +65,37 @@ void RepeatControlBlock::generateInvocationCode(std::ofstream &stream, int inden
 	}
 	// declare all synchronization counter variables here that will be updated inside repeat loop 
 	declareSynchronizationCounters(stream, indentation + 1, this->repeatIndex + 1);
+
+	// accumulate the backward dependencies from the repeat loop
+        List<SyncRequirement*> *backwardDependencies = new List<SyncRequirement*>;
+	List<List<FlowStage*>*> *stageGroups = getConsecutiveNonLPSCrossingStages();
+        for (int i = 0; i < stageGroups->NumElements(); i++) {
+
+                List<FlowStage*> *currentGroup = stageGroups->Nth(i);
+
+                // retrieve all data dependencies, and sort them to ensure waitings for updates happen in order
+                List<SyncRequirement*> *dataDependencies = getDataDependeciesOfGroup(currentGroup);
+                dataDependencies = SyncRequirement::sortList(dataDependencies);
+
+                int segmentedPPS = space->getSegmentedPPS();
+                List<SyncRequirement*> *commDependencies = new List<SyncRequirement*>;
+                List<SyncRequirement*> *syncDependencies = new List<SyncRequirement*>;
+                SyncRequirement::separateCommunicationFromSynchronizations(segmentedPPS,
+                                dataDependencies, commDependencies, syncDependencies);
+
+		// filter out the backward dependencies from a later stage of the repeat to an earlier stage
+        	for (int i = 0; i < commDependencies->NumElements(); i++) {
+                	SyncRequirement *comm = commDependencies->Nth(i);
+                	if (!comm->isActive()) continue;
+                	DependencyArc *arc = comm->getDependencyArc();
+                	FlowStage *source = arc->getSource();
+                	FlowStage *destination = arc->getDestination();
+                	if (source->getIndex() >= destination->getIndex()) {
+                		backwardDependencies->Append(comm);
+			}
+        	}
+	}
+
 	// translate the repeat body
 	CompositeStage::generateInvocationCode(stream, indentation + 1, containerSpace);
 	// increase the loop iteration counter
@@ -72,4 +105,45 @@ void RepeatControlBlock::generateInvocationCode(std::ofstream &stream, int inden
 
 	// exit the scope created for the repeat loop 
 	stream << indentStr << "} // scope exit for repeat loop\n";
+
+	// generate data receive code for all inverse data dependencies at the end of the repeat loop
+        if (backwardDependencies->NumElements() > 0) {
+                stream << std::endl << indentStr << "// waiting on backward dependencies at repeat loop end\n";
+		for (int i = 0; i < backwardDependencies->NumElements(); i++) {
+
+                        SyncRequirement *comm = backwardDependencies->Nth(i);
+
+			// if the data send for this communicator has been replaced with some earlier communicator then the data
+                	// receive is done using that earlier communicator too
+                        SyncRequirement *commReplacement = comm->getReplacementSync();
+                        bool signalReplaced = false;
+                        if (commReplacement != NULL) {
+                                comm = commReplacement;
+				signalReplaced = true;
+                        }
+
+                        int commIndex = comm->getIndex();
+                        Space *dependentLps = comm->getDependentLps();
+                        stream << indentStr;
+                        stream << "if (threadState->isValidPpu(Space_" << dependentLps->getName();
+                        stream << ")) {\n";
+                        stream << indentStr << indent;
+                        stream << "Communicator *communicator = threadState->getCommunicator(\"";
+                        stream << comm->getDependencyArc()->getArcName() << "\")" << stmtSeparator;
+                        stream << indentStr << indent << "if (communicator != NULL) {\n";
+                        stream << indentStr << doubleIndent;
+                        stream << "communicator->receive(REQUESTING_COMMUNICATION";
+                        stream << paramSeparator << "commCounter" << commIndex << ")" << stmtSeparator;
+                        stream << indentStr << indent << "}\n";
+                        stream << indentStr << "}\n";
+
+			// The counter should be advanced regardless of this PPU's participation in communication to keep the
+                	// counter value uniform across all PPUs and segments. The exeception is when the data send signal has
+                	// been replaced by some other communicator. This is because, we will have two receive calls for the
+                	// replacement communicator then and we would want to make the second call to bypass any data processing.
+                	if (!signalReplaced) {
+                        	stream << indentStr << "commCounter" << commIndex << "++" << stmtSeparator;
+                	}
+        	}
+	}
 }

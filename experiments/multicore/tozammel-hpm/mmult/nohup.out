@@ -1,0 +1,1503 @@
+./autorun.sh: 1: !#/bin/bash: not found
+chmod: missing operand after ‘a+x’
+Try 'chmod --help' for more information.
+Going to run the HighP5 program versions
+--------------------------------------------------------------------------------------------------------
+running 128-way parallel experiments
+Executable ../executables/mmult-toza-128-way.o
+
+
+Experiment run 1
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 3072 by 3072
+
+
+Experiment run 2
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 3072 by 3072
+
+--------------------------------------------------------------------------------------------------------
+running 64-way parallel experiments
+Executable ../executables/mmult-toza-64-way.o
+
+
+Experiment run 1
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 3072 by 3072
+
+
+Experiment run 2
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 3072 by 3072
+
+--------------------------------------------------------------------------------------------------------
+running 32-way parallel experiments
+Executable ../executables/mmult-toza-32-way.o
+
+
+Experiment run 1
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 3072 by 3072
+
+
+Experiment run 2
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 3072 by 3072
+
+--------------------------------------------------------------------------------------------------------
+running 16-way parallel experiments
+Executable ../executables/mmult-toza-16-way.o
+
+
+Experiment run 1
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 3072 by 3072
+
+
+Experiment run 2
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 3072 by 3072
+
+--------------------------------------------------------------------------------------------------------
+running 8-way parallel experiments
+Executable ../executables/mmult-toza-8-way.o
+
+
+Experiment run 1
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 3072 by 3072
+
+
+Experiment run 2
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 3072 by 3072
+
+--------------------------------------------------------------------------------------------------------
+running 4-way parallel experiments
+Executable ../executables/mmult-toza-4-way.o
+
+
+Experiment run 1
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 3072 by 3072
+
+
+Experiment run 2
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 3072 by 3072
+
+--------------------------------------------------------------------------------------------------------
+running 2-way parallel experiments
+Executable ../executables/mmult-toza-2-way.o
+
+
+Experiment run 1
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 3072 by 3072
+
+
+Experiment run 2
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 3072 by 3072
+
+--------------------------------------------------------------------------------------------------------
+running 1-way parallel experiments
+Executable ../executables/mmult-toza-1-way.o
+
+
+Experiment run 1
+./autorun.sh: 1: !#/bin/bash: not found
+chmod: missing operand after ‘a+x’
+Try 'chmod --help' for more information.
+Going to run the HighP5 program versions
+--------------------------------------------------------------------------------------------------------
+running 128-way parallel experiments
+Executable ../executables/mmult-toza-128-way.o
+
+
+Experiment run 1
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+
+Experiment run 2
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+
+Experiment run 3
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+--------------------------------------------------------------------------------------------------------
+running 64-way parallel experiments
+Executable ../executables/mmult-toza-64-way.o
+
+
+Experiment run 1
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+
+Experiment run 2
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+
+Experiment run 3
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+--------------------------------------------------------------------------------------------------------
+running 32-way parallel experiments
+Executable ../executables/mmult-toza-32-way.o
+
+
+Experiment run 1
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+
+Experiment run 2
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+
+Experiment run 3
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+--------------------------------------------------------------------------------------------------------
+running 16-way parallel experiments
+Executable ../executables/mmult-toza-16-way.o
+
+
+Experiment run 1
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+
+Experiment run 2
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+
+Experiment run 3
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+--------------------------------------------------------------------------------------------------------
+running 8-way parallel experiments
+Executable ../executables/mmult-toza-8-way.o
+
+
+Experiment run 1
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+
+Experiment run 2
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+
+Experiment run 3
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+--------------------------------------------------------------------------------------------------------
+running 4-way parallel experiments
+Executable ../executables/mmult-toza-4-way.o
+
+
+Experiment run 1
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+
+Experiment run 2
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+
+Experiment run 3
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+--------------------------------------------------------------------------------------------------------
+running 2-way parallel experiments
+Executable ../executables/mmult-toza-2-way.o
+
+
+Experiment run 1
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+
+Experiment run 2
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+
+Experiment run 3
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+Could not start some PThread
+matrix dimension 1024 by 1024
+
+--------------------------------------------------------------------------------------------------------
+running 1-way parallel experiments
+Executable ../executables/mmult-toza-1-way.o
+
+
+Experiment run 1
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+writing results to output files
+Want to save array "a" in a file?
+Type 'Y' for yes or 'N' for no
+Want to save array "b" in a file?
+Type 'Y' for yes or 'N' for no
+Want to save array "c" in a file?
+Type 'Y' for yes or 'N' for no
+Parallel Execution Time: 1.97298 Seconds
+matrix dimension 1024 by 1024
+
+
+Experiment run 2
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+writing results to output files
+Want to save array "a" in a file?
+Type 'Y' for yes or 'N' for no
+Want to save array "b" in a file?
+Type 'Y' for yes or 'N' for no
+Want to save array "c" in a file?
+Type 'Y' for yes or 'N' for no
+Parallel Execution Time: 1.86031 Seconds
+matrix dimension 1024 by 1024
+
+
+Experiment run 3
+Starting Matrix Multiply Task
+Creating diagnostic log: it-program.log
+initializing environmental links
+Want to read array "a" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "a"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+Want to read array "b" from a file?
+Type 'Y' for yes or 'N' for no
+Enter the dimension lengths for 2D array "b"
+The format is "Dim1-Range * Dim2-Range"
+Here a range has the form "Start-Index:End-Index"
+determining partition parameters
+Enter value for "k"
+Enter value for "l"
+Enter value for "q"
+determining initialization parameters
+Allocating memories
+writing results to output files
+Want to save array "a" in a file?
+Type 'Y' for yes or 'N' for no
+Want to save array "b" in a file?
+Type 'Y' for yes or 'N' for no
+Want to save array "c" in a file?
+Type 'Y' for yes or 'N' for no
+Parallel Execution Time: 1.86656 Seconds
+matrix dimension 1024 by 1024
+
+HighP5 experiment runs are complete
+
+
+
+Going to run the Pthreads program versions
+wrote generated array to output file: ../data/MMult/pthread/m1.txt
+wrote generated array to output file: ../data/MMult/pthread/m2.txt
+--------------------------------------------------------------------------------------------------------
+running pthread 128-way parallel experiments
+Executable ../executables/pthread-mmult.o
+
+
+Experiment run 1
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.594s
+user	0m0.268s
+sys	0m0.119s
+Matrix dimension 1024 by 1024
+128 way parallel pthread version
+
+
+Experiment run 2
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.400s
+user	0m0.333s
+sys	0m0.015s
+Matrix dimension 1024 by 1024
+128 way parallel pthread version
+
+
+Experiment run 3
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.341s
+user	0m0.321s
+sys	0m0.015s
+Matrix dimension 1024 by 1024
+128 way parallel pthread version
+
+--------------------------------------------------------------------------------------------------------
+running pthread 64-way parallel experiments
+Executable ../executables/pthread-mmult.o
+
+
+Experiment run 1
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.334s
+user	0m0.322s
+sys	0m0.006s
+Matrix dimension 1024 by 1024
+64 way parallel pthread version
+
+
+Experiment run 2
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.341s
+user	0m0.327s
+sys	0m0.010s
+Matrix dimension 1024 by 1024
+64 way parallel pthread version
+
+
+Experiment run 3
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.371s
+user	0m0.322s
+sys	0m0.015s
+Matrix dimension 1024 by 1024
+64 way parallel pthread version
+
+--------------------------------------------------------------------------------------------------------
+running pthread 32-way parallel experiments
+Executable ../executables/pthread-mmult.o
+
+
+Experiment run 1
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.312s
+user	0m0.282s
+sys	0m0.023s
+Matrix dimension 1024 by 1024
+32 way parallel pthread version
+
+
+Experiment run 2
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.334s
+user	0m0.304s
+sys	0m0.018s
+Matrix dimension 1024 by 1024
+32 way parallel pthread version
+
+
+Experiment run 3
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.346s
+user	0m0.320s
+sys	0m0.016s
+Matrix dimension 1024 by 1024
+32 way parallel pthread version
+
+--------------------------------------------------------------------------------------------------------
+running pthread 16-way parallel experiments
+Executable ../executables/pthread-mmult.o
+
+
+Experiment run 1
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.328s
+user	0m0.307s
+sys	0m0.016s
+Matrix dimension 1024 by 1024
+16 way parallel pthread version
+
+
+Experiment run 2
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.322s
+user	0m0.306s
+sys	0m0.013s
+Matrix dimension 1024 by 1024
+16 way parallel pthread version
+
+
+Experiment run 3
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.433s
+user	0m0.321s
+sys	0m0.015s
+Matrix dimension 1024 by 1024
+16 way parallel pthread version
+
+--------------------------------------------------------------------------------------------------------
+running pthread 8-way parallel experiments
+Executable ../executables/pthread-mmult.o
+
+
+Experiment run 1
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.494s
+user	0m0.319s
+sys	0m0.017s
+Matrix dimension 1024 by 1024
+8 way parallel pthread version
+
+
+Experiment run 2
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.416s
+user	0m0.313s
+sys	0m0.019s
+Matrix dimension 1024 by 1024
+8 way parallel pthread version
+
+
+Experiment run 3
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.385s
+user	0m0.296s
+sys	0m0.021s
+Matrix dimension 1024 by 1024
+8 way parallel pthread version
+
+--------------------------------------------------------------------------------------------------------
+running pthread 4-way parallel experiments
+Executable ../executables/pthread-mmult.o
+
+
+Experiment run 1
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.363s
+user	0m0.299s
+sys	0m0.022s
+Matrix dimension 1024 by 1024
+4 way parallel pthread version
+
+
+Experiment run 2
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.368s
+user	0m0.317s
+sys	0m0.016s
+Matrix dimension 1024 by 1024
+4 way parallel pthread version
+
+
+Experiment run 3
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.430s
+user	0m0.315s
+sys	0m0.012s
+Matrix dimension 1024 by 1024
+4 way parallel pthread version
+
+--------------------------------------------------------------------------------------------------------
+running pthread 2-way parallel experiments
+Executable ../executables/pthread-mmult.o
+
+
+Experiment run 1
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.577s
+user	0m0.324s
+sys	0m0.013s
+Matrix dimension 1024 by 1024
+2 way parallel pthread version
+
+
+Experiment run 2
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.400s
+user	0m0.332s
+sys	0m0.009s
+Matrix dimension 1024 by 1024
+2 way parallel pthread version
+
+
+Experiment run 3
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+Could not create some pthreads
+
+real	0m0.339s
+user	0m0.312s
+sys	0m0.008s
+Matrix dimension 1024 by 1024
+2 way parallel pthread version
+
+--------------------------------------------------------------------------------------------------------
+running pthread 1-way parallel experiments
+Executable ../executables/pthread-mmult.o
+
+
+Experiment run 1
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+PThreaded Execution Time: 2.28701 Seconds
+
+real	0m3.102s
+user	0m2.008s
+sys	0m0.019s
+Matrix dimension 1024 by 1024
+1 way parallel pthread version
+
+
+Experiment run 2
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+PThreaded Execution Time: 3.24775 Seconds
+
+real	0m3.866s
+user	0m2.025s
+sys	0m0.013s
+Matrix dimension 1024 by 1024
+1 way parallel pthread version
+
+
+Experiment run 3
+Enter the file path containing array "m1"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+Enter the file path containing array "m2"
+The first line should have its dimension lengths in the form: dim1Length * dime2Length ...
+Subsequent lines should have the data in row major order format
+Elements of array should be separated by spaces
+executing for tozammel machine with 128 core model
+PThreaded Execution Time: 4.23041 Seconds
+
+real	0m5.026s
+user	0m2.138s
+sys	0m0.018s
+Matrix dimension 1024 by 1024
+1 way parallel pthread version
+
+Pthread experiment runs are complete

@@ -8,8 +8,8 @@ exe_class=random
 mode=../executables/random-affinity
 
 # parallel run counts and problem size configurations
-parallel_runs=50
-input_size=10240
+parallel_runs=1
+input_size=1024
 iterations=1000
 upper_padding=1
 lower_padding=4
@@ -30,7 +30,7 @@ rm -rf ${root_data_dir}/*
 for version in "${parallelism[@]}"
 do
 	# find the location of the executable file
-	executable=${stencil_dir}/stencil-${exe_class}-${version}-way.o
+	executable=${stencil_dir}/stencil-${exe_class}-updated-${version}-way.o
 	echo "--------------------------------------------------------------------------------------------------------"
 	echo "running $version-way parallel experiments"
 	echo "Executable $executable"
