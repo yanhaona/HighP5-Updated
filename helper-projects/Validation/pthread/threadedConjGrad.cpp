@@ -54,6 +54,10 @@ double alpha_i;
 int threadCount;
 pthread_barrier_t barrier;
 
+// a variable for participating in dot product
+double *partialSums1;
+double *partialSums2;
+
 // --------------------------------------------------------------------------------------- Thread Function
 
 void *computeConjugateGradient(void *arg) {
@@ -91,14 +95,27 @@ void *computeConjugateGradient(void *arg) {
 		// barrier synchronize to ensure all threads completed computing a_r_i
 		pthread_barrier_wait(&barrier);
 
-		// let the first thread compute the vector dot product and the norm of update
+		double partNorm = 0.0;
+		double partDenom = 0.0;
+		for (int i = threadId; i < xDims[0].length; i = i + threadCount) {
+			partNorm += r_i[i] * r_i[i];
+			partDenom += r_i[i] * a_r_i[i];
+		}
+		partialSums1[threadId] = partNorm;
+		partialSums2[threadId] = partDenom;
+		
+		// barrier synchronize to ensure all threads completed computing partial dot products
+		pthread_barrier_wait(&barrier);
+
+		// let the first thread accumulate the partial sums
 		if (threadId == 0) {
+
 			norm = 0;
 			double denominator = 0;
-			for (int i = 0; i < xDims[0].length; i++) {
-				norm += r_i[i] * r_i[i];
-				denominator += r_i[i] * a_r_i[i];
-			}
+			for (int i = 0; i < threadCount; i++) {
+				norm += partialSums1[i];
+				denominator += partialSums2[i];
+			}	
 			alpha_i = norm / denominator;
 		}
 
@@ -125,7 +142,7 @@ void *computeConjugateGradient(void *arg) {
 using namespace threaded_cg;
 using namespace std;
 
-int mainTConjGrad(int argc, const char *argv[]) {
+int main(int argc, const char *argv[]) {
 
 	struct timeval start;
         gettimeofday(&start, NULL);
@@ -161,6 +178,10 @@ int mainTConjGrad(int argc, const char *argv[]) {
 	// declare other variables used in the algorithm
 	r_i = new double[xDims[0].length];
 	a_r_i = new double[xDims[0].length];
+
+	// allocate variables for storing partial dot products
+	partialSums1 = new double[threadCount];
+	partialSums2 = new double[threadCount];
 
 	// -----------------------------------------------------------------------------parallel programming starts
         

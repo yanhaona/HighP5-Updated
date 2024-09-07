@@ -66,7 +66,7 @@ void genCSRMatrix(int sparsity, int rowCount, int colCount, int dataType, bool b
         srand(time(NULL));
 
 	int nonZerosPerColumn = colCount * (100 - sparsity) / 100;
-	int nonZeroEntries = nonZerosPerColumn;
+	int nonZeroEntries = nonZerosPerColumn * rowCount;
 
 	// ------------------------------------------------------------- generate and write the value array
 	Dimension valueDim;
@@ -197,7 +197,7 @@ void genCSRMatrix(int sparsity, int rowCount, int colCount, int dataType, bool b
 	delete rowRangeArray;
 }
 
-int main(int argc, const char* argv[]) {
+int mainSPG(int argc, const char* argv[]) {
 
 	if (argc < 6) {
                 std::cout << "provide the following information\n";

@@ -9,9 +9,9 @@ mode=../executables/thread-pinned
 
 # parallel run counts and problem size configurations
 parallel_runs=1
-matrix_size=1024
+matrix_size=10240
 sparsity=90
-maxIterations=100
+maxIterations=1000
 block_size=64
 precision=0.0001
 
@@ -20,7 +20,7 @@ sparse_matrix_generator=../../../../tools/sparse-matrix-generator
 array_generator=../../../../tools/binary-array-generator
 
 cg_dir=${mode}/ConjGrad
-parallelism=( 20 12 8 6 2 1 )
+parallelism=( 1 )
 
 # make data directory for experiments
 mkdir -p ../data/${exe_class}/ConjGrad
