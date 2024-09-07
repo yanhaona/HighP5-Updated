@@ -17,9 +17,11 @@ void TaskInvocation::generateCode(std::ostringstream &stream, int indentLevel, S
 
 	const char *taskName = getTaskName();
         stream << indent.str() << "{ // scope starts for invoking: " << taskName << "\n";
+	/*
 	stream << indent.str() << "logFile << \"going to execute task: " << taskName;
 	stream << "\\n\"" << stmtSeparator;
 	stream << indent.str() << "logFile.flush()" << stmtSeparator;
+	*/
 
 	std::ostringstream envStream;
 	FieldAccess *envArg = getEnvArgument();

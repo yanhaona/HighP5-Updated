@@ -8,10 +8,10 @@ exe_class=pinned
 mode=../executables/thread-pinned
 
 # parallel run counts and problem size configurations
-parallel_runs=2
+parallel_runs=1
 matrix_size=1024
 sparsity=90
-maxIterations=10
+maxIterations=100
 block_size=64
 precision=0.0001
 

@@ -174,10 +174,12 @@ void generateThreadRunFunction(TaskDef *taskDef, const char *headerFileName,
 	headerFile << "void run(" << defaultArgs.str() << ");\n\n";
 	programFile << "void " << initials << "::run(" << defaultArgs.str() << ") {\n";
 
+	/*
 	// first log affinity information of this thread so that later we can varify that it executed on the PPU
 	// we intended
 	programFile << "\n\t// log thread's affinity information\n";
 	programFile << "\tthreadState->logThreadAffinity();\n";
+	*/
 
 	// set the root LPU for the thread so the computation can start
 	PartitionHierarchy *hierarchy = taskDef->getPartitionHierarchy();
@@ -230,9 +232,11 @@ void generateThreadRunFunction(TaskDef *taskDef, const char *headerFileName,
 	CompositeStage *computation = taskDef->getComputation();
 	computation->generateInvocationCode(programFile, 1, rootLps);
 
+	/*
 	// log iterator usage statistics to check the efficiency of part searching process
 	programFile << "\n\t// logging iterators' efficiency\n";
 	programFile << "\tthreadState->logIteratorStatistics();\n";
+	*/
 
 	// close the thread log file
 	programFile << "\n\t// close thread's log file\n";
