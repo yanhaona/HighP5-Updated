@@ -8,9 +8,9 @@ exe_class=pinned
 mode=../executables/thread-pinned
 
 # parallel run counts and problem size configurations
-parallel_runs=50
-input_size=10240
-iterations=2000
+parallel_runs=1
+input_size=1024
+iterations=1000
 upper_padding=1
 lower_padding=4
 
