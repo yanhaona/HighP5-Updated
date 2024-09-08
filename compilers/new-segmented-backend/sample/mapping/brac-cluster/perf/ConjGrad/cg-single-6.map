@@ -1,0 +1,4 @@
+"Conjugate Gradient" {
+	Space A:	4	// Node
+	Space B:	2	// Core-Pair
+}

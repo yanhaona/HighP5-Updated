@@ -179,6 +179,9 @@ void generateFnsForDistributionTrees(const char *headerFileName,
 			generateDistributionTreeFnForStructure(varName, headerFile, programFile, initials, rootLps);
 		}
 		generateFnForDistributionMap(headerFile, programFile, initials, syncArrays);
+	} else {
+		// generate an empty part distribution map function
+		generateFnForDistributionMap(headerFile, programFile, initials, new List<const char*>);
 	}
 
 	headerFile.close();

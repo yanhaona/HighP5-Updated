@@ -9,7 +9,7 @@ mode=../executables/thread-pinned
 
 # parallel run counts and problem size configurations
 parallel_runs=1
-matrix_size=20480
+matrix_size=10240
 sparsity=90
 maxIterations=1000
 precision=0.0001
@@ -19,7 +19,7 @@ sparse_matrix_generator=../../../../tools/sparse-matrix-generator
 array_generator=../../../../tools/binary-array-generator
 
 cg_dir=${mode}/ConjGrad
-parallelism=( 1 )
+parallelism=( 20 12 8 6 2 1 )
 
 # make data directory for experiments
 mkdir -p ../data/${exe_class}/ConjGrad
@@ -78,7 +78,7 @@ do
 		( time ../executable.o \
 			arg_matrix_cols=../../columns arg_matrix_rows=../../rows \
 			arg_matrix_values=../../values known_vector=../../known \
-			prediction_vector=../../pred b=$version r=$block_size \
+			prediction_vector=../../pred b=$version r=$version \
 			maxIterations=$maxIterations precision=$precision ) > output.txt 2>&1
 		echo "matrix of $matrix_size by $matrix_size" >> output.txt
 		echo "matrix sparsity $sparsity" >> output.txt
