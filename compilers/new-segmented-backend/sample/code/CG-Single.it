@@ -1,0 +1,86 @@
+Program (args) {
+	cgEnv = new TaskEnvironment(name: "Conjugate Gradient")
+        bind_input(cgEnv, "columns", args.arg_matrix_cols)
+        bind_input(cgEnv, "rows", args.arg_matrix_rows)
+        bind_input(cgEnv, "values", args.arg_matrix_values)
+        bind_input(cgEnv, "b", args.known_vector)
+        bind_input(cgEnv, "x_i", args.prediction_vector)
+        execute(task: "Conjugate Gradient"; environment: cgEnv; initialize: args.maxIterations; partition: args.r)
+}
+
+Task "Conjugate Gradient":
+	Define:
+		// components of sparse matrix
+		columns, rows: 1d Array of Integer	
+		values: 1d Array of Real double-precision
+
+		// known and prediction vectors
+		x_i, b: 1d Array of Real double-precision
+
+		// intermediate vectors
+		r_i, a_r_i: 1d Array of Real double-precision
+
+		// iteration controller
+		max_iterations, counter: Integer
+
+		// norm of adjustment
+		alpha: Real double-precision
+
+		// two reduction variables for computing adjustement
+		red1, red2: Real double-precision Reduction
+	Environment:
+		columns, rows, values, x_i, b: link
+		a_r_i, r_i, red1, red2: create
+	Initialize(max_iterations):
+		r_i.dimension = x_i.dimension
+		a_r_i.dimension = x_i.dimension
+		alpha = 1
+	Stages:
+		vectorAdd(w, u, v, alpha, beta) { 
+			do { w[i] = alpha * u[i] + beta * v[i] } for i in u 
+		}
+		vectorDotProduct(result, u, v) { 
+			do { reduce(result, "sum", u[i] * v[i]) } for i in u 
+		}
+		multiplyMatrixVector(w, v, rows, columns, values) {
+			start = rows.local.dimension1.range.min
+			if (start == 0) { start = -1 }
+			do {	if (i > 0) {
+					beginIndex = rows[i - 1] + 1
+				} else {
+					beginIndex = 0
+				}
+				endIndex = rows[i]
+				do {
+					w[i] = w[i] + values[j] * v[columns[j]] 
+				} for j in columns and j >= beginIndex and j <= endIndex
+			} for i in rows and i > start
+		}
+		calculateGradient(gradient, norm, denorm) {
+			gradient = norm / denorm
+		}
+	Computation:
+		Repeat for counter in [1...max_iterations] {
+			Space A {
+				Space B {
+					multiplyMatrixVector(a_r_i, x_i, rows, columns, values)
+					vectorAdd(r_i, b, a_r_i, 1, -1) 
+					vectorDotProduct(Space A: red1, r_i, r_i)
+					multiplyMatrixVector(a_r_i, r_i, rows, columns, values)
+					vectorDotProduct(Space A: red2, r_i, a_r_i)
+				}
+				calculateGradient(alpha, red1, red2)
+				Space B {
+					vectorAdd(x_i, x_i, r_i, 1, alpha) 
+				}
+			}
+		}
+	Partition(r):
+		Space A <un-partitioned> {
+			r_i, a_r_i			
+		}
+		Space B <1d> divides Space A partitions {
+			values, columns: replicated
+			rows: block_count(r) padding(1, 0)
+			r_i, a_r_i, x_i, b: block_count(r)
+		}

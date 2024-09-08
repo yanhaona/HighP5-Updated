@@ -5,6 +5,8 @@ NOTE: Update the last-update-date below each time you make a change in this docu
 Last Update Date: Oct 20, 2016
 
 URGENT: Monte-Carlo-Tuned and Advanced are not working in new-segement-backend
+URGENT: LPU metadata is leaking memory in conjugate gradient and stopping the machine when iteration
+        count is high.
 
 
 1. In some machines, compilation fails for correct IT sample programs showing wierd errors related to

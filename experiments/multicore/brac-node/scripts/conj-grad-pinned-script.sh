@@ -8,11 +8,10 @@ exe_class=pinned
 mode=../executables/thread-pinned
 
 # parallel run counts and problem size configurations
-parallel_runs=2
-matrix_size=1024
+parallel_runs=1
+matrix_size=10240
 sparsity=90
-maxIterations=10
-block_size=64
+maxIterations=1000
 precision=0.0001
 
 # array generator executables
@@ -79,7 +78,7 @@ do
 		( time ../executable.o \
 			arg_matrix_cols=../../columns arg_matrix_rows=../../rows \
 			arg_matrix_values=../../values known_vector=../../known \
-			prediction_vector=../../pred b=$block_size r=$block_size \
+			prediction_vector=../../pred b=$version r=$version \
 			maxIterations=$maxIterations precision=$precision ) > output.txt 2>&1
 		echo "matrix of $matrix_size by $matrix_size" >> output.txt
 		echo "matrix sparsity $sparsity" >> output.txt

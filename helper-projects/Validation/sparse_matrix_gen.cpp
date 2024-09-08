@@ -65,8 +65,8 @@ void genCSRMatrix(int sparsity, int rowCount, int colCount, int dataType, bool b
 
         srand(time(NULL));
 
-	int matrixSize = rowCount * colCount;
-	int nonZeroEntries = matrixSize * (100 - sparsity) / 100;
+	int nonZerosPerColumn = colCount * (100 - sparsity) / 100;
+	int nonZeroEntries = nonZerosPerColumn * rowCount;
 
 	// ------------------------------------------------------------- generate and write the value array
 	Dimension valueDim;
@@ -84,6 +84,7 @@ void genCSRMatrix(int sparsity, int rowCount, int colCount, int dataType, bool b
 		} else {
 			writeArrayToFile<int>("values", valueArray, 1, &valueDim);
 		}	
+		delete valueArray;
 	} else if (dataType == FLOAT_TYPE) {
 		float *valueArray = allocate<float>(1, &valueDim);
 		for (int i = 0; i < nonZeroEntries; i++) {
@@ -95,6 +96,7 @@ void genCSRMatrix(int sparsity, int rowCount, int colCount, int dataType, bool b
 		} else {
 			writeArrayToFile<float>("values", valueArray, 1, &valueDim);
 		}	
+		delete valueArray;
 	} else if (dataType == DOUBLE_TYPE) {
 		double *valueArray = allocate<double>(1, &valueDim);
 		for (int i = 0; i < nonZeroEntries; i++) {
@@ -106,10 +108,10 @@ void genCSRMatrix(int sparsity, int rowCount, int colCount, int dataType, bool b
 		} else {
 			writeArrayToFile<double>("values", valueArray, 1, &valueDim);
 		}	
+		delete valueArray;
 	}
 
 	// --------------------------------------------------------------- Generate the Column Index Array
-	int nonZerosPerColumn = colCount * (100 - sparsity) / 100;
 	int *colIndexArray = allocate<int>(1, &valueDim);
 
 	// initialize a random number generator
@@ -172,6 +174,7 @@ void genCSRMatrix(int sparsity, int rowCount, int colCount, int dataType, bool b
 	} else {
 		writeArrayToFile<int>("colIndexes", colIndexArray, 1, &valueDim);
 	}	
+	delete colIndexArray;
 	
 	// ------------------------------------------------------------------ Generate the Row Range Array
 	
@@ -191,7 +194,7 @@ void genCSRMatrix(int sparsity, int rowCount, int colCount, int dataType, bool b
 	} else {
 		writeArrayToFile<int>("rowRanges", rowRangeArray, 1, &rangeDim);
 	}	
-
+	delete rowRangeArray;
 }
 
 int mainSPG(int argc, const char* argv[]) {
