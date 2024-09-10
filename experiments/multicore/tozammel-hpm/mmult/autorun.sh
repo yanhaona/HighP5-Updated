@@ -8,7 +8,7 @@ cd executables
 chmod a+x *
 cd $curr_dir
 cd tools
-chmod a+x
+chmod a+x *
 cd $curr_dir
 matrix_size=$1
 repeat_count=$2
