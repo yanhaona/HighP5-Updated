@@ -40,6 +40,10 @@ int mainMMonte(int argc, char *argv[]) {
                 std::exit(EXIT_FAILURE);
         }
 
+	if (rank == 0) {
+		std::cout << "running MPI Monte Carlo estimation with " << processCount << " MPI processes\n";
+	}
+
 	// start timer
         struct timeval start;
         gettimeofday(&start, NULL);
@@ -97,6 +101,9 @@ int mainMMonte(int argc, char *argv[]) {
                 double executionTime = ((end.tv_sec + end.tv_usec / 1000000.0)
                                 - (start.tv_sec + start.tv_usec / 1000000.0));
                 std::cout << "Execution time: " << executionTime << " Seconds\n";
+                std::cout << "Grid dimensions: " << grid_dimension << " by " << grid_dimension << "\n";
+                std::cout << "Cell length per grid cell: " << cell_length << "\n";
+                std::cout << "Random samples per cell: " << points_per_cell << "\n";
 		std::cout << "Estimated area under the curve: " << area_estimate << "\n";
         }
 

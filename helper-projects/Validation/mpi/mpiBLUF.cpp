@@ -17,7 +17,7 @@
 #include "../fileUtility.h"
 #include "../stream.h"
 
-using namespace std;
+namespace mpi_bluf {
 
 //-------------------------------------------------------------- Data Dimension Information
 
@@ -43,7 +43,7 @@ int pivot;
 //-------------------------------------------------------------- Partition Config Variables
 
 int blockSize;
-int rank;
+int processId;
 int processCount;
 
 
@@ -61,11 +61,11 @@ int getPartLength(Dimension dimension) {
 	// if extra entries fill up a complete new block in the stride of the current LPU then
         // its number of entries should increase by the size parameter and extra preceeding
         // entries should equal to size * preceeding stride count
-        if (blockCount > rank) {
+        if (blockCount > processId) {
                 myEntries += blockSize;
         // If the extra entries does not fill a complete block for the current one then it should
         // have whatever remains after filling up preceeding blocks
-        } else if (blockCount == rank) {
+        } else if (blockCount == processId) {
                 myEntries += partialStrideElements - blockCount * blockSize;
         }
 
@@ -74,7 +74,7 @@ int getPartLength(Dimension dimension) {
 
 int getStorageIndex(int index) {
 	int stride = blockSize * processCount;
-	int startOfBlock = blockSize * rank;
+	int startOfBlock = blockSize * processId;
 	int relativeIndex = index - startOfBlock;
 	int strideId = relativeIndex / stride;
 	int strideIndex = relativeIndex % blockSize;
@@ -101,7 +101,7 @@ void allocateArrays() {
 	for (int i = 0; i < uLength; i++) l[i] = 0.0;
 	int lBlockLength = lBlockDims[0].length * lBlockDims[1].length;
 	lBlock = new double[lBlockLength];
-	if (rank == 0) {
+	if (processId == 0) {
 		p = new double[pDims[0].length];
 	} else p = NULL;
 	lRow = new double[lDims[1].length];
@@ -125,7 +125,7 @@ void readAFromFile(const char *filePath) {
 
 	stream->open();
         for (int i = 0; i < aDims[0].length; i++) {
-                for (int j = blockSize * rank; j < aDims[1].length; j += blockStride) {
+                for (int j = blockSize * processId; j < aDims[1].length; j += blockStride) {
 			int start = j;
 			int end = start + blockSize - 1;
 			if (end >= aDims[1].length) end = aDims[1].length - 1;
@@ -144,67 +144,23 @@ void readAFromFile(const char *filePath) {
 	delete stream;
 }
 
-void writeAToFile() {
-
-	// wait for your turn
-	if (rank != 0) {
-		int predecessorDone = 0;
-                MPI_Status status;
-                MPI_Recv(&predecessorDone, 1, MPI_INT, rank - 1, 0, MPI_COMM_WORLD, &status);	
-	}
-
-	List<Dimension*> *dimLengths = new List<Dimension*>;
-	dimLengths->Append(&aDims[0]);
-	dimLengths->Append(&aDims[1]);
-	TypedOutputStream<double> *stream = new TypedOutputStream<double>("/home/yan/a-copy.bin", dimLengths, rank == 0);	
-	int storeIndex = 0;
-	List<int> *indexList = new List<int>;
-        int blockStride = blockSize * processCount;
-	
-	stream->open();
-        for (int i = 0; i < aDims[0].length; i++) {
-                int aRow = i * aDims[1].length;
-                for (int j = blockSize * rank; j < aDims[1].length; j += blockStride) {
-			int start = j;
-			int end = start + blockSize - 1;
-			if (end >= aDims[1].length) end = aDims[1].length - 1;
-			for (int c = start; c <= end; c++) {
-				indexList->clear();
-				indexList->Append(i);
-				indexList->Append(c);
-				stream->writeElement(a[storeIndex], indexList);
-				storeIndex++;
-			}
-		}
-	}
-	stream->close();
-	delete indexList;
-	delete stream;
-
-	// notify the next in line
-	if (rank < processCount - 1) {
-                int writingDone = 1;
-                MPI_Send(&writingDone, 1, MPI_INT, rank + 1, 0, MPI_COMM_WORLD);
-	}
-}
-
 void writeUandLToFile() {
 	
 	// wait for your turn
-	if (rank != 0) {
+	if (processId != 0) {
 		int predecessorDone = 0;
                 MPI_Status status;
-                MPI_Recv(&predecessorDone, 1, MPI_INT, rank - 1, 0, MPI_COMM_WORLD, &status);	
+                MPI_Recv(&predecessorDone, 1, MPI_INT, processId - 1, 0, MPI_COMM_WORLD, &status);	
 	}
 	
 	List<Dimension*> *udimLengths = new List<Dimension*>;
 	udimLengths->Append(&uDims[0]);
 	udimLengths->Append(&uDims[1]);
-	TypedOutputStream<double> *ustream = new TypedOutputStream<double>("/home/yan/u.bin", udimLengths, rank == 0);	
+	TypedOutputStream<double> *ustream = new TypedOutputStream<double>("u.bin", udimLengths, processId == 0);	
 	List<Dimension*> *ldimLengths = new List<Dimension*>;
 	ldimLengths->Append(&lDims[0]);
 	ldimLengths->Append(&lDims[1]);
-	TypedOutputStream<double> *lstream = new TypedOutputStream<double>("/home/yan/l.bin", ldimLengths, rank == 0);	
+	TypedOutputStream<double> *lstream = new TypedOutputStream<double>("l.bin", ldimLengths, processId == 0);	
 	
 	List<int> *indexList = new List<int>;
         int blockStride = blockSize * processCount;
@@ -212,7 +168,7 @@ void writeUandLToFile() {
 
 	ustream->open();
 	lstream->open();
-        for (int i = blockSize * rank; i < aDims[0].length; i+= blockStride) {
+        for (int i = blockSize * processId; i < aDims[0].length; i+= blockStride) {
 		int start = i;
 		int end = start + blockSize - 1;
 		if (end >= aDims[0].length) end = aDims[0].length - 1;
@@ -235,16 +191,16 @@ void writeUandLToFile() {
 	delete lstream;
 
 	// notify the next in line
-	if (rank < processCount - 1) {
+	if (processId < processCount - 1) {
                 int writingDone = 1;
-                MPI_Send(&writingDone, 1, MPI_INT, rank + 1, 0, MPI_COMM_WORLD);
+                MPI_Send(&writingDone, 1, MPI_INT, processId + 1, 0, MPI_COMM_WORLD);
 	}
 }
 
 void writePToFile() {
 	List<Dimension*> *dimLengths = new List<Dimension*>;
 	dimLengths->Append(&pDims[0]);
-	TypedOutputStream<int> *stream = new TypedOutputStream<int>("/home/yan/p.bin", dimLengths, true);	
+	TypedOutputStream<int> *stream = new TypedOutputStream<int>("p.bin", dimLengths, true);	
 	stream->open();
 	for (int i = 0; i < pDims[0].length; i++) {
 		stream->writeNextElement(p[i]);
@@ -259,7 +215,7 @@ void prepare() {
         int blockStride = blockSize * processCount;
 	int aColumnCount = getPartLength(aDims[1]); 
 	for (int i = 0; i < aDims[0].length; i++) {
-                for (int j = blockSize * rank; j < aDims[1].length; j += blockStride) {
+                for (int j = blockSize * processId; j < aDims[1].length; j += blockStride) {
                         int start = j;
                         int end = j + blockSize - 1;
                         if (end >= aDims[1].length) end = aDims[1].length - 1;
@@ -270,7 +226,7 @@ void prepare() {
                         }
                 }
         }
-        for (int i = blockSize * rank; i < lDims[0].length; i += blockStride) {
+        for (int i = blockSize * processId; i < lDims[0].length; i += blockStride) {
                 int start = i;
                 int end = i + blockSize - 1;
                 if (end >= lDims[0].length) end = lDims[0].length - 1;
@@ -299,7 +255,7 @@ void interchangeRows(int pivot, int k) {
         int blockStride = blockSize * processCount;
 	int blockNo = k / blockStride;
 	int cols = uDims[1].length;
-	int i = blockNo * blockStride + blockSize * rank;
+	int i = blockNo * blockStride + blockSize * processId;
 	// advance a stride if the process's block ends before reaching k
 	if (i + blockSize - 1 < k) i += blockStride;
 
@@ -318,7 +274,7 @@ void interchangeRows(int pivot, int k) {
 	}
 
 	// update L
-	for (i = blockSize * rank; i < k; i += blockStride) {
+	for (i = blockSize * processId; i < k; i += blockStride) {
 		int start = i;
 		int end = i + blockSize - 1;
 		if (end >= k) end = k - 1;
@@ -346,7 +302,7 @@ void updateURowsBlock(int k, Range range) {
 	// determine the starting index for update for a process
 	int blockStride = blockSize * processCount;
 	int blockNo = k / blockStride;
-	int i = blockNo * blockStride + blockSize * rank;
+	int i = blockNo * blockStride + blockSize * processId;
 	// advance a stride if the process's block ends before reaching k + 1
 	if (i + blockSize - 1 < k + 1) i += blockStride;
 
@@ -379,7 +335,7 @@ void updateUColsBlock(int k, Range range) {
 	// determine the starting index for update for a process
 	int blockStride = blockSize * processCount;
 	int blockNo = (range.max + 1) / blockStride;
-	int i = blockNo * blockStride + blockSize * rank;
+	int i = blockNo * blockStride + blockSize * processId;
 	// advance a stride if the process's block ends before reaching range.max + 1
 	if (i + blockSize < range.max + 1) i += blockStride;
 
@@ -417,7 +373,7 @@ void saxpy(Range range) {
 	// determine the starting stride for the un-updated portion of U for a process
         int blockStride = blockSize * processCount;
 	int blockNo = (range.max + 1) / blockStride;
-	int iB = blockNo * blockStride + blockSize * rank;
+	int iB = blockNo * blockStride + blockSize * processId;
 	// advance a stride if the process's block ends before reaching range.max + 1
 	if (iB + blockSize - 1 < range.max + 1) iB += blockStride;
 	
@@ -453,29 +409,34 @@ void saxpy(Range range) {
 
 }
 
+} // end of namespace
+
+using namespace std;
+using namespace mpi_bluf;
+
+
 //--------------------------------------------------------------------------- Main Function
 
-int mainMBLUF(int argc, char *argv[]) {
+int mainMBluf(int argc, char *argv[]) {
 	
 	// do MPI intialization
 	MPI_Init(&argc, &argv);
-	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+	MPI_Comm_rank(MPI_COMM_WORLD, &processId);
 	MPI_Comm_size(MPI_COMM_WORLD, &processCount);
 
 	if (argc < 4) {
-		if (rank == 0) {
-			cout << "There are two modes for using this program\n";
-			cout << "If you want to read/write data from/to files then pass arguments as follows\n";
+		if (processId == 0) {
+			cout << "Pass arguments as follows\n";
 			cout << "\t1. block size for partitioning\n";
-			cout << "\t2. a 0 indicating file IO mode\n";
-			cout << "\t3. path of the binary input file\n";
-			cout << "If you rather want to check timing on randomly generated data then pass arguments as follows\n";
-			cout << "\t1. block size for partitioning\n";
-			cout << "\t2. a 1 indicating performance testing mode\n";
-			cout << "\t3. The dimension length of the square argument matrix\n";
+			cout << "\t2. path of the binary input file\n";
+			cout << "\t3. a 0 to disable file writing or a 1 to write L, U and P arrays to file\n";
 		}
 		MPI_Finalize();
 		exit(EXIT_FAILURE);		
+	}
+
+	if (processId == 0) {
+		cout << "Running MPI Block LUF experiment with " << processCount << " MPI processes\n";
 	}
 
 	// start timer
@@ -484,30 +445,18 @@ int mainMBLUF(int argc, char *argv[]) {
 
 	// parse command line arguments
 	blockSize = atoi(argv[1]);
-	bool fileIOMode (atoi(argv[2]) == 0);	
-	int dimLength;
-	if (!fileIOMode) {
-		dimLength = atoi(argv[3]);
-		aDims[0].range.min = 0;
-		aDims[0].range.max = dimLength - 1;
-		aDims[0].length = dimLength;
-		aDims[1] = aDims[0];			
-		initializeMetadata();
-		allocateArrays();
-		initializeARandomly();
-	} else {
-		const char *filePath = argv[3];
-		std::ifstream file(filePath);
-        	if (!file.is_open()) {
-                	std::cout << "could not open the specified file\n";
-                	std::exit(EXIT_FAILURE);
-        	}
-		readArrayDimensionInfoFromFile(file, 2, aDims);
-		file.close();
-		initializeMetadata();
-		allocateArrays();
-		readAFromFile(filePath);
-	}
+	bool fileWriteMode (atoi(argv[3]) == 1);	
+	const char *filePath = argv[2];
+	std::ifstream file(filePath);
+        if (!file.is_open()) {
+                std::cout << "could not open the specified file\n";
+                std::exit(EXIT_FAILURE);
+        }
+	readArrayDimensionInfoFromFile(file, 2, aDims);
+	file.close();
+	initializeMetadata();
+	allocateArrays();
+	readAFromFile(filePath);
 
 	//------------------------------------------------------------ Computation Starts 
 
@@ -539,15 +488,15 @@ int mainMBLUF(int argc, char *argv[]) {
                                 int strideIndex = blockIndex / blockSize;
 
 				// do the pivot selection in the selected process
-                                if (strideIndex == rank) {
+                                if (strideIndex == processId) {
 					selectPivot(k);
 				}
 
 				// perform an MPI broadcast of the pivot variable
 				MPI_Bcast(&pivot, 1, MPI_INT, strideIndex, MPI_COMM_WORLD);
 
-				// store the pivot in the pivot array if the process rank is 0
-				if (rank == 0) {
+				// store the pivot in the pivot array if the process processId is 0
+				if (processId == 0) {
 					p[k] = pivot;
 				}
 
@@ -558,7 +507,7 @@ int mainMBLUF(int argc, char *argv[]) {
 
 				// the same thread that did the pivot selection is responsible for the
                                 // recording of next column of L (L is transposed)      
-                                if (strideIndex == rank) {
+                                if (strideIndex == processId) {
 					updateL(k);
                                 }
 
@@ -569,7 +518,7 @@ int mainMBLUF(int argc, char *argv[]) {
 				updateURowsBlock(k, range);
 
 				// generate the pivot column for updating remainder of U
-                                if (strideIndex == rank) {
+                                if (strideIndex == processId) {
 					generatePivotColumn(k, range);
 				}
 
@@ -589,7 +538,7 @@ int mainMBLUF(int argc, char *argv[]) {
 			int strideIndex = blockIndex / blockSize;
 
 			// perform the l-Block part generation step by copying in recently updated part of L
-			if (strideIndex == rank) {
+			if (strideIndex == processId) {
 				copyUpdatedLBlock(range);
 			}
 
@@ -606,9 +555,9 @@ int mainMBLUF(int argc, char *argv[]) {
 	//-------------------------------------------------------------- Computation Ends
 
 	// write outputs to files
-	if (fileIOMode) {
+	if (fileWriteMode) {
 		writeUandLToFile();
-		if (rank == 0) writePToFile();
+		if (processId == 0) writePToFile();
 	}
 
 	MPI_Barrier(MPI_COMM_WORLD);
@@ -616,10 +565,12 @@ int mainMBLUF(int argc, char *argv[]) {
 	// end timer
 	struct timeval end;
         gettimeofday(&end, NULL);
-	if (rank == 0 && !fileIOMode) {
+	if (processId == 0 && !fileWriteMode) {
 		double executionTime = ((end.tv_sec + end.tv_usec / 1000000.0)
 				- (start.tv_sec + start.tv_usec / 1000000.0));
 		cout << "Execution time: " << executionTime << " Seconds\n";
+		cout << "Matrix dimension: " << aDims[0].length << " by " << aDims[1].length << "\n";
+		cout << "Block size for block stride partition: " << blockSize << "\n";
 	}
 
 	// do MPI teardown
