@@ -2,7 +2,7 @@
 "Block LU Factorization" {
 	// syntax LPS ':' PPS
 	Space A: 8	// Node
-	Space B: 1	// Core
-	Space C: 1	// Core
+	Space B: 4	// Added PPS2 
+	Space C: 4	// Added PPS2
 }
 
