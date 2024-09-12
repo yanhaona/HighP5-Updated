@@ -35,6 +35,10 @@ chmod a+x *
 cd $curr_dir
 cd executables
 chmod a+x *
+cd pinned-versions
+chmod a+x *
+cd ../random-versions
+chmod a+x *
 cd $curr_dir
 
 matrix_size=$1
