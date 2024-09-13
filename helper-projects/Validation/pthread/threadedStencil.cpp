@@ -210,7 +210,7 @@ void readPlateFromFile(const char *filePath) {
 
 // ----------------------------------------------------------------------------------------- Main function
 
-int main(int argc, char *argv[]) {
+int mainTStencil(int argc, char *argv[]) {
 
 	struct timeval start;
         gettimeofday(&start, NULL);
