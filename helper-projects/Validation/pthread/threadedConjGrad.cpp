@@ -142,7 +142,7 @@ void *computeConjugateGradient(void *arg) {
 using namespace threaded_cg;
 using namespace std;
 
-int main(int argc, const char *argv[]) {
+int mainTConjGrad(int argc, const char *argv[]) {
 
 	struct timeval start;
         gettimeofday(&start, NULL);

@@ -13,6 +13,7 @@
 #include "../structures.h"
 #include "../fileUtility.h"
 #include "../cpuCores.h"
+#include "../stream.h"
 
 using namespace std;
 
@@ -20,7 +21,7 @@ namespace pthread_stencil {
 
 // ------------------------------------------------------------------------------------ Shared Input Data
 double *plate;
-int plateDimLength;
+Dimension plateDims[2];
 double **plate0Parts;
 double **plate1Parts;
 int iterations;
@@ -38,11 +39,11 @@ void *computeStencil(void *arg) {
         int threadId = *((int*) arg);
 
 	// determine the row index range of plate belonging to the current thread;
-	int rowsPerThread = (plateDimLength + threadCount - 1) / threadCount;
+	int rowsPerThread = (plateDims[0].length + threadCount - 1) / threadCount;
 	int rowStart = rowsPerThread * threadId;
 	int rowEnd = rowStart + rowsPerThread - 1;
-	if (rowEnd >= plateDimLength) {
-		rowEnd = plateDimLength - 1;
+	if (rowEnd >= plateDims[0].length) {
+		rowEnd = plateDims[1].length - 1;
 	}	
 	
 	// determine if there is upper and lower row padding to be synchronized
@@ -55,7 +56,7 @@ void *computeStencil(void *arg) {
 		padRowEnd = rowEnd + padding;
 	}
 	int rowCount = padRowEnd - padRowStart + 1;
-	int partSize = rowCount * plateDimLength;
+	int partSize = rowCount * plateDims[1].length;
 
 	// initialize plate part belonging to the current thread
 	plate0Parts[threadId] = new double[partSize];
@@ -63,10 +64,10 @@ void *computeStencil(void *arg) {
 
 	// copy data from the original plate variable to the two parts of the thread
 	for (int i = padRowStart; i <= padRowEnd; i++) {
-		for (int j = 0; j < plateDimLength; j++) {
-			int plateIndex = i * plateDimLength + j;
+		for (int j = 0; j < plateDims[1].length; j++) {
+			int plateIndex = i * plateDims[1].length + j;
 			double data = plate[plateIndex];
-			int storeIndex = (i - padRowStart) * plateDimLength + j;
+			int storeIndex = (i - padRowStart) * plateDims[1].length + j;
 			plate0Parts[threadId][storeIndex] = data;
 			plate1Parts[threadId][storeIndex] = data;
 		}
@@ -95,11 +96,11 @@ void *computeStencil(void *arg) {
 			// update the output cells based on Jacobi iteration logic
 			for (int y = padRowStart + 1; y <  padRowEnd - 1; y++) {
 
-				int yIndex0 = (y - padRowStart) * plateDimLength;
-				int yIndex1 = yIndex0 - plateDimLength;
-				int yIndex2 = yIndex0 + plateDimLength;
+				int yIndex0 = (y - padRowStart) * plateDims[1].length;
+				int yIndex1 = yIndex0 - plateDims[1].length;
+				int yIndex2 = yIndex0 + plateDims[1].length;
 
-				for (int x = 1; x < plateDimLength - 1; x++) {
+				for (int x = 1; x < plateDims[1].length - 1; x++) {
 
 					int index0 = yIndex0 + x;
 					int index1 = yIndex0 + (x - 1);
@@ -131,16 +132,16 @@ void *computeStencil(void *arg) {
 			if (totalIteration % 2 == 0) {
 				upperThreadsPart = plate1Parts[threadId - 1];
 			}
-			for (int x = 1; x < plateDimLength - 1; x++) {
+			for (int x = 1; x < plateDims[1].length - 1; x++) {
 				for (int p = 1; p <= padding; p++) {
 					int myBoundaryY = padding - 1 + p;
 					int receiverPaddingY = rowsPerThread - 1 + p;
 					if (threadId - 1 > 0) {
 						receiverPaddingY += padding;
 					}
-					int cellIndex = myBoundaryY * plateDimLength + x;
+					int cellIndex = myBoundaryY * plateDims[1].length + x;
 					double data = output[cellIndex];
-					int storeIndex = receiverPaddingY * plateDimLength + x;
+					int storeIndex = receiverPaddingY * plateDims[1].length + x;
 					upperThreadsPart[storeIndex] = data;
 				}
 			}
@@ -152,13 +153,13 @@ void *computeStencil(void *arg) {
 			if (totalIteration % 2 == 0) {
 				lowerThreadsPart = plate1Parts[threadId + 1];
 			}
-			for (int x = 1; x < plateDimLength - 1; x++) {
+			for (int x = 1; x < plateDims[1].length - 1; x++) {
 				for (int p = 1; p <= padding; p++) {
 					int myBoundaryY = padRowEnd - padRowStart + 1 - (p + padding);
 					int receiverPaddingY = padding - p;
-					int cellIndex = myBoundaryY * plateDimLength + x;
+					int cellIndex = myBoundaryY * plateDims[1].length + x;
 					double data = output[cellIndex];
-					int storeIndex = receiverPaddingY * plateDimLength + x;
+					int storeIndex = receiverPaddingY * plateDims[1].length + x;
 					lowerThreadsPart[storeIndex] = data;
 				}
 			}
@@ -175,9 +176,9 @@ void *computeStencil(void *arg) {
 		finalPart = plate1Parts[threadId];
 	}
 	for (int i = rowStart; i <= rowEnd; i++) {
-		for (int j = 0; j < plateDimLength; j++) {
-			int plateIndex = i * plateDimLength + j;
-			int storeIndex = (i - padRowStart) * plateDimLength + j;
+		for (int j = 0; j < plateDims[1].length; j++) {
+			int plateIndex = i * plateDims[1].length + j;
+			int storeIndex = (i - padRowStart) * plateDims[1].length + j;
 			double data = finalPart[storeIndex];
 			plate[plateIndex] = data;
 		}
@@ -191,31 +192,32 @@ void *computeStencil(void *arg) {
 
 using namespace pthread_stencil;
 
-// ------------------------------------------------------------ Helper function to random plate generation
+// ------------------------------------------------------------ Helper function to read plate from file
 
+void readPlateFromFile(const char *filePath) {
 
-void initializePlateRandomly() {
-
-        int elementCount = plateDimLength * plateDimLength;
-        plate = new double[elementCount];
-
-        srand (time(NULL));
-        for (int i = 0; i < elementCount; i++) {
-                plate[i] = ((rand() % 100) / 75.00f);
+        int plateSize = plateDims[0].length * plateDims[1].length;
+        plate = new double[plateSize];
+        TypedInputStream<double> *stream = new TypedInputStream<double>(filePath);
+        int storeIndex = 0;
+        stream->open();
+        for (int i = 0; i < plateSize; i++) {
+                plate[storeIndex] = stream->readNextElement();
         }
+        stream->close();
+        delete stream;
 }
-
 
 // ----------------------------------------------------------------------------------------- Main function
 
-int mainTStencil(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
 
 	struct timeval start;
         gettimeofday(&start, NULL);
 
 	 if (argc < 6) {
                 cout << "Provide the following command line arguments \n";
-                cout << "\t1. A dimension length of the square plate\n";
+                cout << "\t1. The file containing the input plate\n";
                 cout << "\t2. The number of Jaquobi iterations\n";
 		cout << "\t3. The padding row+column among successive threads data\n";
                 cout << "\t4. The number of threads to use\n";
@@ -224,22 +226,28 @@ int mainTStencil(int argc, char *argv[]) {
         }
 
         // parse command line arguments
-        plateDimLength = atoi(argv[1]);
+	const char *filePath= argv[1];
+        std::ifstream file(filePath);
+        if (!file.is_open()) {
+                std::cout << "could not open the specified file\n";
+                std::exit(EXIT_FAILURE);
+        }
+        readArrayDimensionInfoFromFile(file, 2, plateDims);
+        file.close();
+
         iterations = atoi(argv[2]);
         padding = atoi(argv[3]);
         threadCount = atoi(argv[4]);
         char *machine = argv[5];
 
-	// generate a random initial plate
-	initializePlateRandomly();
-
+        // read the plate from input file
+        readPlateFromFile(filePath);
 
 	struct timeval end;
         gettimeofday(&end, NULL);
         double readingTime = ((end.tv_sec + end.tv_usec / 1000000.0)
                         - (start.tv_sec + start.tv_usec / 1000000.0));
         cout << "Data reading/intialization time: " << readingTime << " Seconds\n";
-
 
 	// --------------------------------------------------------parallel programming starts
 	gettimeofday(&start, NULL);
@@ -295,8 +303,8 @@ int mainTStencil(int argc, char *argv[]) {
 	gettimeofday(&end, NULL);
         double computationTime = ((end.tv_sec + end.tv_usec / 1000000.0)
                         - (start.tv_sec + start.tv_usec / 1000000.0));
-        cout << "computation time: " << computationTime << " Seconds\n";
-
+        cout << "Computation Time: " << computationTime << " Seconds\n";
+        cout << "Execution Time: " << (computationTime + readingTime) << " Seconds\n";
 
 	return 0;
 }

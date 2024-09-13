@@ -1,7 +1,0 @@
-Parallel Execution Time: 20.1162 Seconds
-
-real	0m20.590s
-user	0m5.204s
-sys	0m12.053s
-plate dimension is 4096 by 4096
-refinement iterations 100
