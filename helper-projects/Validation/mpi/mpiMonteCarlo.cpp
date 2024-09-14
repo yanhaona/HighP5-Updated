@@ -74,7 +74,7 @@ int mainMMonte(int argc, char *argv[]) {
                         for (int s = 0; s < points_per_cell; s++) {
                                 int x = rand() % cell_length + cell.left;
                                 int y = rand() % cell_length + cell.bottom;
-                                double result = 10 * sin(pow(x, 2)) + 50 * cos(pow(y, 3));
+				double result = 10 * sin(pow(x, 2)) + 50 * cos(pow(y, 3)) + exp(-x) + log(pow(x,y));
                                 if (result <= 0.0) {
                                         points_inside++;
                                 }

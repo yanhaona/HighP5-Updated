@@ -18,7 +18,7 @@ sparse_matrix_generator=../../../../tools/sparse-matrix-generator
 array_generator=../../../../tools/binary-array-generator
 
 cg_dir=${mode}/ConjGrad
-parallelism=( 8 2 )
+parallelism=( 20 12 8 6 2 1 )
 
 # make data directory for experiments
 mkdir -p ../data/${exe_class}/ConjGrad
@@ -43,7 +43,7 @@ $array_generator 3 1 ${root_data_dir}/pred $matrix_size
 for version in "${parallelism[@]}"
 do
 	# find the location of the executable file
-	executable=${cg_dir}/conj-grad-${exe_class}-${version}-way-single.o
+	executable=${cg_dir}/conj-grad-${exe_class}-single-${version}-way.o
 	echo "--------------------------------------------------------------------------------------------------------"
 	echo "running $version-way parallel experiments"
 	echo "Executable $executable"

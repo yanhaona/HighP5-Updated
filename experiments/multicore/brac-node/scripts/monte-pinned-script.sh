@@ -11,8 +11,8 @@ mode=../executables/thread-pinned
 parallel_runs=2
 
 # input parameter configuration
-cell_length=1000
-points_per_cell=100
+cell_length=100
+points_per_cell=1000
 grid_dim=1024
 
 monte_dir=${mode}/Monte
@@ -28,7 +28,7 @@ rm -rf ${root_data_dir}/*
 for version in "${parallelism[@]}"
 do
 	# find the location of the executable file
-	executable=${monte_dir}/monte-${exe_class}-${version}-way.o
+	executable=${monte_dir}/monte-simple-${exe_class}-${version}-way.o
 	echo "--------------------------------------------------------------------------------------------------------"
 	echo "running $version-way parallel experiments"
 	echo "Executable $executable"

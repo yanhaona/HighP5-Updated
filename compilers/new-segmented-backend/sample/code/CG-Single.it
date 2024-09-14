@@ -39,8 +39,9 @@ Task "Conjugate Gradient":
 		vectorAdd(w, u, v, alpha, beta) { 
 			do { w[i] = alpha * u[i] + beta * v[i] } for i in u 
 		}
-		vectorDotProduct(result, u, v) { 
-			do { reduce(result, "sum", u[i] * v[i]) } for i in u 
+		vectorDotProducts(result1, result2, u, v) { 
+			do { reduce(result1, "sum", u[i] * u[i]) } for i in u 
+			do { reduce(result2, "sum", u[i] * v[i]) } for i in u 
 		}
 		multiplyMatrixVector(w, v, rows, columns, values) {
 			start = rows.local.dimension1.range.min
@@ -63,14 +64,17 @@ Task "Conjugate Gradient":
 		Repeat for counter in [1...max_iterations] {
 			Space A {
 				Space B {
-					multiplyMatrixVector(a_r_i, x_i, rows, columns, values)
-					vectorAdd(r_i, b, a_r_i, 1, -1) 
-					vectorDotProduct(Space A: red1, r_i, r_i)
+					multiplyMatrixVector(r_i, x_i, rows, columns, values)
+					vectorAdd(r_i, b, r_i, 1, -1) 
+				}
+				Space C {
 					multiplyMatrixVector(a_r_i, r_i, rows, columns, values)
-					vectorDotProduct(Space A: red2, r_i, a_r_i)
+				}
+				Space B {
+					vectorDotProducts(Space A: red1, Space A: red2, r_i, a_r_i)
 				}
 				calculateGradient(alpha, red1, red2)
-				Space B {
+				Space D {
 					vectorAdd(x_i, x_i, r_i, 1, alpha) 
 				}
 			}
@@ -80,7 +84,15 @@ Task "Conjugate Gradient":
 			r_i, a_r_i			
 		}
 		Space B <1d> divides Space A partitions {
-			values, columns: replicated
+			values, columns, x_i: replicated
 			rows: block_count(r) padding(1, 0)
-			r_i, a_r_i, x_i, b: block_count(r)
+			r_i, a_r_i, b: block_count(r)
+		}
+		Space C <1d> divides Space A partitions {
+			values, columns, r_i: replicated
+			rows: block_count(r) padding(1, 0)
+			a_r_i: block_count(r)
+		}
+		Space D <1d> divides Space A partitions {
+			x_i, r_i: block_count(r)
 		}

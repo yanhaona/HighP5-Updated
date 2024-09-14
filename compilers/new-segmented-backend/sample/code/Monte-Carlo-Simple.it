@@ -30,8 +30,8 @@ Function perform_sampling(cell, seed, trial_count) {
 				int x = rand_r((unsigned int *) &seed) % cell_length + cell.left;
 				int y = rand_r((unsigned int *) &seed) % cell_length + cell.bottom;
 				
-				// tested polynomial is 10 sin x^2 + 50 cos y^3
-				double result = 10 * sin(pow(x, 2)) + 50 * cos(pow(y, 3));
+				// tested polynomial is 10 sin x^2 + 50 cos y^3 + e^-x + log x^y
+				double result = 10 * sin(pow(x, 2)) + 50 * cos(pow(y, 3)) + exp(-x) + log(pow(x,y));
 				if (result <= 0.0) {
 					internal_points++; 
 				}

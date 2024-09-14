@@ -10,12 +10,13 @@ parallelism=( 20 12 8 6 2 1 )
 executable=../executables/pthread-monte-simple.o
 
 # parallel runs count
-parallel_runs=50
+parallel_runs=1
 
 # sampling parameters
-cell_length=1000
-grid_dim=10240
+cell_length=100
+grid_dim=1024
 points_per_cell=1000
+	
 
 # make data directory for experiments
 mkdir -p ../../../$ref_target/data/pthread/Monte
@@ -32,7 +33,7 @@ do
 	echo "--------------------------------------------------------------------------------------------------------"
 	echo "running pthread $version-way parallel experiments"
 	echo "Executable $executable"
-	
+
 	# create a subdirectory for the current degree of parallelism
 	mkdir ${root_data_dir}/version-${version}
 	exper_dir=${root_data_dir}/version-${version}
@@ -54,6 +55,9 @@ do
 
 		# execute the program using the input file piping command line inputs
 		(time ../../pthread_exec.o $cell_length $grid_dim $points_per_cell $version $machine) > output.txt 2>&1
+		echo "cell length: $cell_length" >> output.txt
+		echo "grid dim: $grid_dim by $grid_dim" >> output.txt
+		echo "samples per cell: $points_per_cell" >> output.txt
 		cat output.txt
 
 		# come back to the parent directory

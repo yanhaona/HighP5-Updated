@@ -1,4 +1,6 @@
 "Conjugate Gradient" {
 	Space A:	4	// Node
 	Space B:	2	// Core-Group
+	Space C:	2	// Core-Group
+	Space D:	2	// Core-Group
 }
