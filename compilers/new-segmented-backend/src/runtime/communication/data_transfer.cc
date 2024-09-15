@@ -2,6 +2,7 @@
 #include <vector>
 #include <cstdlib>
 #include <cstring>
+#include <cassert>
 
 #include "data_transfer.h"
 #include "part_config.h"
@@ -53,21 +54,37 @@ int DataPartIndexList::write(char *sourceBuffer, int elementSize) {
 DataPartSwiftIndexList::DataPartSwiftIndexList(DataPart *dataPart) : DataPartIndexList() {
 	this->dataPart = dataPart;
 	partIndexes = new List<long int>;
+	optimizationAttempted = false;
+	indexRanges = NULL;
 } 
 
 DataPartSwiftIndexList::~DataPartSwiftIndexList() {
 	delete partIndexes;
 	delete[] indexArray;
+	delete[] indexRanges;
 }
 
 void DataPartSwiftIndexList::setupIndexArray() {
 
-	totalIndices = partIndexes->NumElements();
+	int indexCount = partIndexes->NumElements();
+       	indexArray = new long int[indexCount];
+       	for (int i = 0; i < indexCount; i++) {
+               indexArray[i] = partIndexes->Nth(i);
+	}
+	sequenceLength = indexCount;
+}
+
+
+void DataPartSwiftIndexList::optimizeIndexArray(int elementSize) {
+
+	assert(indexRanges == NULL);
+
+	totalIndices = sequenceLength;
 	sequenceLength = 0;
-	long int lastIndex = -3; // a negative value to account for the first index being 0
+	long int lastIndex = -30; // a negative value to account for the first index being 0
 	for (int i = 0; i < totalIndices; i++) {
-		long int currIndex = partIndexes->Nth(i);
-		if (currIndex != lastIndex + 1) {
+		long int currIndex = indexArray[i];
+		if (currIndex != lastIndex + elementSize) {
 			sequenceLength++; // if the current index is not the immediate next of the last
 					  // then we have to resume memcopy from this new index again.
 					  // So the length of the indexArray and indexRanges array should
@@ -76,15 +93,15 @@ void DataPartSwiftIndexList::setupIndexArray() {
 		lastIndex = currIndex;
 	}
 
-	indexArray = new long int[sequenceLength];
+	long int *newIndexArray = new long int[sequenceLength];
 	indexRanges = new int[sequenceLength];
 	int indexesInCurrRange = 0;
-	lastIndex = -3; // a negative value to account for the first index being 0
+	lastIndex = -30; // a negative value to account for the first index being 0
 	int count = 0;
 	for (int i = 0; i < totalIndices; i++) {
-		long int currIndex = partIndexes->Nth(i);
-		if (currIndex != lastIndex + 1) {
-			indexArray[count] = currIndex; // new index is a jump starting point
+		long int currIndex = indexArray[i];
+		if (currIndex != lastIndex + elementSize) {
+			newIndexArray[count] = currIndex; // new index is a jump starting point
 			if (count > 0) {
 				// set the range of consecutive indices from the previous jump start
 				indexRanges[count - 1] = indexesInCurrRange;
@@ -98,9 +115,18 @@ void DataPartSwiftIndexList::setupIndexArray() {
 	}
 	// put the last index range value in the index range array
 	indexRanges[count - 1] = indexesInCurrRange;
+
+	// delete the old index array and attach the new one;
+	delete[] indexArray;
+	indexArray = newIndexArray;
 }
 
 int DataPartSwiftIndexList::read(char *destBuffer, int elementSize) {
+
+	if (optimizationAttempted == false) {
+		optimizeIndexArray(elementSize);
+		optimizationAttempted = true;	
+	}
 	
 	void *data = dataPart->getData();
         char *charData = reinterpret_cast<char*>(data);
@@ -117,6 +143,11 @@ int DataPartSwiftIndexList::read(char *destBuffer, int elementSize) {
         
 int DataPartSwiftIndexList::write(char *sourceBuffer, int elementSize) {
 	
+	if (optimizationAttempted == false) {
+		optimizeIndexArray(elementSize);
+		optimizationAttempted = true;	
+	}
+
 	void *data = dataPart->getData();
         char *charData = reinterpret_cast<char*>(data);
 	char *currBufferIndex = sourceBuffer;

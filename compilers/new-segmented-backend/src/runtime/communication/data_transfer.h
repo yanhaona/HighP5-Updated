@@ -97,14 +97,20 @@ class DataPartSwiftIndexList : public DataPartIndexList {
 	int sequenceLength;
 	// the overall count of elements
 	int totalIndices;
+	// the shrinking attempt of plain index array into a smaller jump start point array and range sequence array
+	// can be attempted only after we know the element size. So during the first read or write that optimization
+	// is attempted. This boolean variable tracks if an attempt of doing so have been made
+	bool optimizationAttempted;
   public:
 	DataPartSwiftIndexList(DataPart *dataPart);
 	~DataPartSwiftIndexList();
 	DataPart *getDataPart() { return dataPart; }
 	void addIndex(long int index) { partIndexes->Append(index); }
 	void setupIndexArray();
+	void optimizeIndexArray(int elementSize);
 	int getSequenceLength() { return sequenceLength; }
 	int *getIndexRanges() { return indexRanges; }
+	long int* getIndexArray() {return indexArray; }
 	int read(char *destBuffer, int elementSize);
 	int write(char *sourceBuffer, int elementSize);
 };
