@@ -61,36 +61,74 @@ DataPartSwiftIndexList::~DataPartSwiftIndexList() {
 }
 
 void DataPartSwiftIndexList::setupIndexArray() {
-	int indexCount = partIndexes->NumElements();
-	indexArray = new long int[indexCount];
-	for (int i = 0; i < indexCount; i++) {
-		indexArray[i] = partIndexes->Nth(i);
+
+	totalIndices = partIndexes->NumElements();
+	sequenceLength = 0;
+	long int lastIndex = -3; // a negative value to account for the first index being 0
+	for (int i = 0; i < totalIndices; i++) {
+		long int currIndex = partIndexes->Nth(i);
+		if (currIndex != lastIndex + 1) {
+			sequenceLength++; // if the current index is not the immediate next of the last
+					  // then we have to resume memcopy from this new index again.
+					  // So the length of the indexArray and indexRanges array should
+					  // increase by 1.
+		}
+		lastIndex = currIndex;
 	}
-	sequenceLength = indexCount;
+
+	indexArray = new long int[sequenceLength];
+	indexRanges = new int[sequenceLength];
+	int indexesInCurrRange = 0;
+	lastIndex = -3; // a negative value to account for the first index being 0
+	int count = 0;
+	for (int i = 0; i < totalIndices; i++) {
+		long int currIndex = partIndexes->Nth(i);
+		if (currIndex != lastIndex + 1) {
+			indexArray[count] = currIndex; // new index is a jump starting point
+			if (count > 0) {
+				// set the range of consecutive indices from the previous jump start
+				indexRanges[count - 1] = indexesInCurrRange;
+			}
+			indexesInCurrRange = 1; // reset the consecutive index count
+			count++; // advance the jump start point counters
+		} else {
+			indexesInCurrRange++; // increment the consecutive index range by on
+		}
+		lastIndex = currIndex;
+	}
+	// put the last index range value in the index range array
+	indexRanges[count - 1] = indexesInCurrRange;
 }
 
 int DataPartSwiftIndexList::read(char *destBuffer, int elementSize) {
+	
 	void *data = dataPart->getData();
         char *charData = reinterpret_cast<char*>(data);
 	char *currBufferIndex = destBuffer;
 	for (int i = 0; i < sequenceLength; i++) {
 		char *readLocation = charData + indexArray[i];
-		memcpy(currBufferIndex, readLocation, elementSize);
-		currBufferIndex += elementSize;
+		int consecutiveIndices = indexRanges[i];
+		int copyVolume = elementSize * consecutiveIndices;
+		memcpy(currBufferIndex, readLocation, copyVolume);
+		currBufferIndex += copyVolume;
 	}
-	return sequenceLength;
+	return totalIndices;
 }
         
 int DataPartSwiftIndexList::write(char *sourceBuffer, int elementSize) {
+	
 	void *data = dataPart->getData();
         char *charData = reinterpret_cast<char*>(data);
 	char *currBufferIndex = sourceBuffer;
 	for (int i = 0; i < sequenceLength; i++) {
 		char *writeLocation = charData + indexArray[i];
-		memcpy(writeLocation, currBufferIndex, elementSize);
-		currBufferIndex += elementSize;
+		int consecutiveIndices = indexRanges[i];
+		int copyVolume = elementSize * consecutiveIndices;
+		memcpy(writeLocation, currBufferIndex, copyVolume);
+		currBufferIndex += copyVolume;
 	}
-	return sequenceLength;
+	
+	return totalIndices;
 }
 
 //---------------------------------------------------- Transfer Specification -----------------------------------------------------/

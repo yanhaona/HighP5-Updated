@@ -89,14 +89,22 @@ class DataPartSwiftIndexList : public DataPartIndexList {
   private:
 	DataPart *dataPart;
 	List<long int> *partIndexes;
-	int sequenceLength;
+	// an array of jump starting points within the data part 
 	long int *indexArray;
+	// an array of ranges representing consecutive indexes starting from jump start points 
+	int *indexRanges;
+	// total number of jump start points
+	int sequenceLength;
+	// the overall count of elements
+	int totalIndices;
   public:
 	DataPartSwiftIndexList(DataPart *dataPart);
 	~DataPartSwiftIndexList();
 	DataPart *getDataPart() { return dataPart; }
 	void addIndex(long int index) { partIndexes->Append(index); }
 	void setupIndexArray();
+	int getSequenceLength() { return sequenceLength; }
+	int *getIndexRanges() { return indexRanges; }
 	int read(char *destBuffer, int elementSize);
 	int write(char *sourceBuffer, int elementSize);
 };
