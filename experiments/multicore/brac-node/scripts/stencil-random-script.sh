@@ -9,9 +9,9 @@ mode=../executables/random-affinity
 
 # parallel run counts and problem size configurations
 parallel_runs=1
-plate_rows=4096
+plate_rows=3072
 row_column_ratio=1
-iterations=100
+iterations=1000
 upper_padding=1
 lower_padding=1
 
@@ -76,6 +76,10 @@ do
 		# add some information about the input
 		echo "plate dimension is $updated_rows by $plate_cols" >> output.txt
 		echo "refinement iterations $refinements" >> output.txt
+		echo "Upper blocking $upper_block-by-$upper_block" >> output.txt
+		echo "Lower blocking $lower_block-by-1" >> output.txt
+		echo "Upper padding $upper_padding" >> output.txt
+		echo "Lower padding $lower_padding" >> output.txt
 
 		cat output.txt
 
