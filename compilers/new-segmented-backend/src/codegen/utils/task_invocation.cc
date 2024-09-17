@@ -376,7 +376,7 @@ void generateTaskExecutor(TaskGenerator *taskGenerator) {
         taskGenerator->performSegmentGrouping(programFile, true);
         taskGenerator->initializeSegmentMemory(programFile);
 
-	/*
+
 	// log time spent on memory allocation
 	programFile << std::endl;
 	programFile << indent << "// calculating memory and threads preparation time\n";
@@ -389,7 +389,7 @@ void generateTaskExecutor(TaskGenerator *taskGenerator) {
 	programFile << " << \" Seconds\" << std::endl" << stmtSeparator;
 	programFile << indent << "double timeConsumedSoFar = allocationTime" << stmtSeparator;
 	programFile << indent << "logFile.flush()" << stmtSeparator;
-	*/
+	
 
 	// generate list of communicators that will be used for resolving data dependencies involving communications
 	bool communicatorsGenerated = taskGenerator->generateCommunicators(programFile);
@@ -412,7 +412,7 @@ void generateTaskExecutor(TaskGenerator *taskGenerator) {
 	// start threads and wait for them to finish execution of the task 
         taskGenerator->startThreads(programFile);
 
-	/*
+	
 	// log time spent on task's computation
 	programFile << std::endl;
 	programFile << indent << "// calculating computation time\n";
@@ -424,9 +424,9 @@ void generateTaskExecutor(TaskGenerator *taskGenerator) {
 	programFile << " << \" Seconds\" << std::endl" << stmtSeparator;
 	programFile << indent << "timeConsumedSoFar += computationTime" << stmtSeparator;
 	programFile << indent << "logFile.flush()" << stmtSeparator << std::endl;
-	*/
 	
-	/*
+	
+	
 	// communicator setup time should be included in the actual computation time as for a hand-written code those 
 	// overheads should be insignifant -- the same is not true for file I/0, which should be proportionally costly;
 	// as I/O happens inside the memory allocation process, we subtract allocation-time from the calculation of
@@ -435,11 +435,11 @@ void generateTaskExecutor(TaskGenerator *taskGenerator) {
 	programFile << indent << "logFile << \"Computation + overhead time: \" << compAndOverheadTime";
 	programFile << " << \" Seconds\" << std::endl" << stmtSeparator;
 	programFile << indent << "logFile.flush()" << stmtSeparator << std::endl;
-	*/
+
 	
 	// if the task involves communications then log the detailed runtime of communication related activities
 	if (communicatorsGenerated) {
-		/*
+		
 		programFile << indent << "commStat->logStatistics(2" << paramSeparator << "logFile)" << stmtSeparator;
 		programFile << indent << "logFile.flush()" << stmtSeparator << std::endl;
 		programFile << indent << "double commTime = commStat->getTotalCommunicationTime()" << stmtSeparator;
@@ -449,7 +449,7 @@ void generateTaskExecutor(TaskGenerator *taskGenerator) {
 		programFile << " << computationTime - commTime << \" Seconds\" << std::endl" << stmtSeparator;
 		programFile << indent << "logFile.flush()" << stmtSeparator;
 		programFile << std::endl;
-		*/
+		
 	}
 	
 	// execute all task end environment manipulation instructions and cleanup the non-environmental variables
