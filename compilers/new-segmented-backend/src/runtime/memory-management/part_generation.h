@@ -147,6 +147,11 @@ class DimPartitionConfig {
 	virtual int getOriginalIndex(int partIndex, int position, List<int> *partIdList, 
 			List<int> *partCountList, 
 			List<Dimension*> *partDimensionList);
+
+	// To optimize file I/O of consecutive memory locations reading, we would want to avoid recursive 
+	// original index determination from a part index. This function tells whether an index is reordered
+	// anywhere in the part hierarchy;   
+	virtual bool hasReorderedIndices(int position);
 	
 	// determines the part dimension given a part Id; for reordering partition function it is the part 
 	// dimension after the indexes have been shuffled to have each part occupying a contiguous chunk along 
@@ -256,6 +261,7 @@ class StrideConfig : public DimPartitionConfig {
 	int getOriginalIndex(int partIndex, int position, List<int> *partIdList, 
 			List<int> *partCountList, 
 			List<Dimension*> *partDimensionList);
+	bool hasReorderedIndices(int position) { return true; }
 	PartitionInstr *getPartitionInstr() { 
 		PartitionInstr *instr = new StrideInstr(ppuCount);
 		Assert(instr != NULL);
@@ -279,6 +285,7 @@ class BlockStrideConfig : public DimPartitionConfig {
 	int getOriginalIndex(int partIndex, int position, List<int> *partIdList, 
 			List<int> *partCountList, 
 			List<Dimension*> *partDimensionList);
+	bool hasReorderedIndices(int position) { return true; }
 	PartitionInstr *getPartitionInstr();
 	bool isDegenerativeCase() { return ppuCount == 1; }
 	bool doesReorderIndices() { return true; }

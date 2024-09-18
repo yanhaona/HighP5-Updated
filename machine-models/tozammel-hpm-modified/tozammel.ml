@@ -12,11 +12,11 @@
 //--------------------------------------------------------------------------------------
 //Space #Number : 	$Space-Name	(#PPU-Count)	// Comment
 //--------------------------------------------------------------------------------------
-Space 	8:  		CPU 		(1)		// 251 GB RAM Total			
-Space 	7: 		NUMA-Node 	(2) 		// 60 MB L-3 Cache		
-Space 	6: 		Added-PPS4 	(2)		// 
-Space 	5: 		Added-PPS3 	(2)		//
-Space 	4: 		Added-PPS2 	(2)		//
-Space 	3: 		Added-PPS1 	(2)		//
-Space 	2: 		Core-Pair 	(2)		// 2 MB L-2 Cache (1 floating point unit per core-pair ????????)
-Space 	1<core>:	Core		(2)		// 48 KB L-1 Cache 
+Space 	8<unit><segment>:  	CPU 		(1)		// 251 GB RAM Total			
+Space 	7: 		        NUMA-Node 	(2) 		// 60 MB L-3 Cache		
+Space 	6: 		        Added-PPS4 	(2)		// 
+Space 	5: 		        Added-PPS3 	(2)		//
+Space 	4: 		        Added-PPS2 	(2)		//
+Space 	3: 		        Added-PPS1 	(2)		//
+Space 	2: 		        Core-Pair 	(2)		// 2 MB L-2 Cache (1 floating point unit per core-pair ????????)
+Space 	1<core>:	        Core		(2)		// 48 KB L-1 Cache 

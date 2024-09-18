@@ -153,6 +153,21 @@ List<int> *PartHandler::getDataIndex(List<int> *partIndex) {
 	return currentDataIndex;
 }
 
+int PartHandler::getDataIndexForDim(int dimNo, int dimIndex) {
+	
+	int position = currentPart->getMetadata()->getIdList()->NumElements() - 1;
+	DimPartitionConfig *dimConfig = partConfig->getDimensionConfig(dimNo);
+	if (dimConfig->hasReorderedIndices(position) == false) {
+		return dimIndex;
+	}
+	List<int> *partIdList = currentPartInfo->partIdList->Nth(dimNo);
+	List<int> *partCounts = currentPartInfo->partCounts->Nth(dimNo);
+	List<Dimension*> *partDimensions = currentPartInfo->partDimensions->Nth(dimNo);
+	int originalDimIndex = dimConfig->getOriginalIndex(dimIndex, position, 
+				partIdList, partCounts, partDimensions);
+	return originalDimIndex;
+}
+
 void PartHandler::processParts() {
 	begin();
 	currentPartInfo = new PartInfo();
@@ -204,8 +219,63 @@ void PartHandler::calculateCurrentPartInfo() {
 }
 
 void PartHandler::processPart(Dimension *partDimensions, int currentDimNo, List<int> *partialIndex) {
+	
 	void *partStore = getCurrentPartData();
 	Dimension dimension = partDimensions[currentDimNo];
+	
+	if (currentDimNo < dataDimensionality - 1) {
+		for (int index = dimension.range.min; index <= dimension.range.max; index++) {
+			int dataIndex = getDataIndexForDim(currentDimNo, index);
+			currentDataIndex->Append(dataIndex);
+			partialIndex->Append(index);
+			processPart(partDimensions, currentDimNo + 1, partialIndex);
+			partialIndex->RemoveAt(currentDimNo);
+			currentDataIndex->RemoveAt(currentDimNo);
+		}	
+	} else { 
+
+		DimPartitionConfig *dimConfig = partConfig->getDimensionConfig(currentDimNo);
+		int position = currentPart->getMetadata()->getIdList()->NumElements() - 1;
+
+		if (dimConfig->hasReorderedIndices(position) == true) {
+			for (int index = dimension.range.min; index <= dimension.range.max; index++) {
+				partialIndex->Append(index);
+				long int storeIndex = getStorageIndex(partialIndex, partDimensions);
+				int dataIndex = getDataIndexForDim(currentDimNo, index);
+				currentDataIndex->Append(dataIndex);
+				if (!needToExcludePadding || currentPartInfo->isDataIndexInCorePart(currentDataIndex)) {
+					processElement(currentDataIndex, storeIndex, partStore);
+				}
+				partialIndex->RemoveAt(currentDimNo);
+				currentDataIndex->RemoveAt(currentDimNo);
+			}
+		
+		} else {
+			int startIndex = dimension.range.min;
+			int endIndex = dimension.range.max;
+			partialIndex->Append(startIndex);
+			long int storeIndex = getStorageIndex(partialIndex, partDimensions);
+	       		int elementsToProcess = endIndex - startIndex + 1;
+			int dataIndex = getDataIndexForDim(currentDimNo, startIndex);
+			int count = 0;
+			currentDataIndex->Append(dataIndex);
+			while (count < elementsToProcess) {
+				if (!needToExcludePadding || currentPartInfo->isDataIndexInCorePart(currentDataIndex)) {
+					if (count == 0) {
+						processElement(currentDataIndex, storeIndex, partStore);
+					} else {
+						processNextElement(storeIndex, partStore);
+					}
+				}
+				count++;
+				storeIndex++;
+				dataIndex++;
+			}	
+			currentDataIndex->RemoveAt(currentDimNo);
+			partialIndex->RemoveAt(currentDimNo);
+		}
+	}
+/*
 	for (int index = dimension.range.min; index <= dimension.range.max; index++) {
 		partialIndex->Append(index);
 		if (currentDimNo < dataDimensionality - 1) {
@@ -218,7 +288,7 @@ void PartHandler::processPart(Dimension *partDimensions, int currentDimNo, List<
 			}
 		}
 		partialIndex->RemoveAt(currentDimNo);
-	}
+	}  */
 }
 
 long int PartHandler::getStorageIndex(List<int> *partIndex, Dimension *partDimensions) {

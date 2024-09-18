@@ -4,6 +4,7 @@
 /* this is a library of classes that should be overriden to allow read/write of parts of a data structure of an LPS */
 
 #include "stream.h"
+#include <stdlib.h>
 
 #include "../memory-management/allocation.h"
 #include "../memory-management/part_generation.h"
@@ -89,9 +90,13 @@ class PartHandler {
 	// memory for a particular LPS; a mechanism is needed to reverse transform an element's part index into its 
 	// data index in a file.    
 	virtual List<int> *getDataIndex(List<int> *partIndex) = 0;
+
+	// This function is added to aid passing data index generation during recursive call of part processing
+	int getDataIndexForDim(int dimNo, int dimIndex);
 	
-	// this function is provided so that subclasses can use appropriate type while reading/writing data 
+	// this functions are provided so that subclasses can use appropriate type while reading/writing data 
 	virtual void processElement(List<int> *dataIndex, long int storeIndex, void *partStore) = 0;
+	virtual void processNextElement(long int storeIndex, void *partStore) = 0;	
 
 	// two functions to be used by subclasses to initialize and destroy any resource that may be created for the
 	// reading/writing process, e.g., opening and closing I/O streams.
@@ -102,7 +107,7 @@ class PartHandler {
 	// recently being read/written
 	virtual void postProcessPart(DataPart *dataPart) {}
   private:
-	// a recursive helper routine to aid the processParts() function
+	// a recursive helper routines to aid the processParts() function
 	void processPart(Dimension *partDimensions, int currentDimNo, List<int> *partialIndex);
 };
 
@@ -116,7 +121,12 @@ class PartReader : public PartHandler {
 	void processElement(List<int> *dataIndex, long int storeIndex, void *partStore) {
 		readElement(dataIndex, storeIndex, partStore);
 	}
+	// similarly to the above, task specific subclasses should implement the readNextElement() function
+	void processNextElement(long int storeIndex, void *partStore) {
+		readNextElement(storeIndex, partStore);
+	}	
 	virtual void readElement(List<int> *dataIndex, long int storeIndex, void *partStore) = 0;	
+	virtual void readNextElement(long int storeIndex, void *partStore) = 0;	
 };
 
 /* base class to be extended for the writing process */
@@ -147,7 +157,12 @@ class PartWriter : public PartHandler {
 	void processElement(List<int> *dataIndex, long int storeIndex, void *partStore) {
 		writeElement(dataIndex, storeIndex, partStore);
 	}
+	// similarly to the above, task specific subclasses should implement the writeNextElement() function
+	void processNextElement(long int storeIndex, void *partStore) {
+		writeNextElement(storeIndex, partStore);
+	}	
 	virtual void writeElement(List<int> *dataIndex, long int storeIndex, void *partStore) = 0;	
+	virtual void writeNextElement(long int storeIndex, void *partStore) = 0;
 };
 
 #endif

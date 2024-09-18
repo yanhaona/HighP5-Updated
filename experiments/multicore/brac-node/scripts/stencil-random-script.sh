@@ -9,7 +9,7 @@ mode=../executables/random-affinity
 
 # parallel run counts and problem size configurations
 parallel_runs=1
-plate_rows=3072
+plate_rows=10240
 row_column_ratio=1
 iterations=1000
 upper_padding=1

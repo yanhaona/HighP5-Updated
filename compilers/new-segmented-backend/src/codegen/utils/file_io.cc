@@ -40,7 +40,7 @@ void generatePartReaderForStructure(std::ofstream &headerFile, ArrayDataStructur
 	headerFile << doubleIndent << "this->stream = NULL" << stmtSeparator;
 	headerFile << indent << "}\n"; 
 
-	// write implementations for the three functions needed to do structure specific reading
+	// write implementations for the functions needed to do structure specific reading
 	headerFile << indent << "void begin() {\n";
 	headerFile << doubleIndent << "stream = new TypedInputStream<" << elementType->getCType() << ">";
 	headerFile << "(fileName)" << stmtSeparator;
@@ -61,6 +61,11 @@ void generatePartReaderForStructure(std::ofstream &headerFile, ArrayDataStructur
 	headerFile << doubleIndent << elementType->getCType();
 	headerFile << " *dataStore = (" << elementType->getCType() << "*) partStore" << stmtSeparator;
 	headerFile << doubleIndent << "dataStore[storeIndex] = stream->readElement(dataIndex)" << stmtSeparator;
+	headerFile << indent <<  "}\n";
+	headerFile << indent << "void readNextElement(long int storeIndex, void *partStore) {\n";
+	headerFile << doubleIndent << elementType->getCType();
+	headerFile << " *dataStore = (" << elementType->getCType() << "*) partStore" << stmtSeparator;
+	headerFile << doubleIndent << "dataStore[storeIndex] = stream->readNextElement()" << stmtSeparator;
 	headerFile << indent <<  "}\n";
 
 	// if the data item is multi-versioned then we need to implement another function to ensure that all versions
@@ -104,7 +109,7 @@ void generatePartWriterForStructure(std::ofstream &headerFile, ArrayDataStructur
 	}
 	headerFile << indent << "}\n"; 
 
-	// write implementations for the four functions needed to do structure specific writing
+	// write implementations for the functions needed to do structure specific writing
 	headerFile << indent << "void begin() {\n";
 	headerFile << doubleIndent << "stream = new TypedOutputStream<" << elementType->getCType() << ">";
 	headerFile << "(fileName" << paramSeparator << "getDimensionList()" << paramSeparator;
@@ -127,6 +132,11 @@ void generatePartWriterForStructure(std::ofstream &headerFile, ArrayDataStructur
 	headerFile << " *dataStore = (" << elementType->getCType() << "*) partStore" << stmtSeparator;
 	headerFile << doubleIndent << "stream->writeElement(dataStore[storeIndex]" <<  paramSeparator;
 	headerFile << "dataIndex)" << stmtSeparator;
+	headerFile << indent <<  "}\n";
+	headerFile << indent << "void writeNextElement(long int storeIndex, void *partStore) {\n";
+	headerFile << doubleIndent << elementType->getCType();
+	headerFile << " *dataStore = (" << elementType->getCType() << "*) partStore" << stmtSeparator;
+	headerFile << doubleIndent << "stream->writeNextElement(dataStore[storeIndex])" << stmtSeparator;
 	headerFile << indent <<  "}\n";
 
 	headerFile << "}" << stmtSeparator;

@@ -9,10 +9,10 @@ mode=../executables/thread-pinned
 
 # parallel run counts and problem size configurations
 parallel_runs=1
-input_size=1024
+input_size=5120
 iterations=1000
 upper_padding=1
-lower_padding=4
+lower_padding=1
 
 # array generator executable
 array_generator=../../../../tools/binary-array-generator
@@ -65,7 +65,7 @@ do
 		
 		# execute the program with proper command line input
 		(time ../executable.o input_file=../plate \
-			k=$upper_block l=$upper_block m=$lower_block n=$lower_block \
+			k=$upper_block l=$upper_block m=$lower_block n=1 \
 			p1=$upper_padding p2=$lower_padding \
 			iterations=$iterations) > output.txt 2>&1
 

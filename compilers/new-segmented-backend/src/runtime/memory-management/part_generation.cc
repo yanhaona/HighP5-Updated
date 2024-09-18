@@ -144,6 +144,12 @@ int DimPartitionConfig::getOriginalIndex(int partIndex, int position,
 	} else return partIndex;
 }
 
+bool DimPartitionConfig::hasReorderedIndices(int position) {
+	if (position > 0) {
+		return parentConfig->hasReorderedIndices(position - 1);
+	} else return false;
+}
+
 List<PartIntervalPattern*> *DimPartitionConfig::getPartIntervalPatterns(Dimension origDimension) {
 	List<PartIntervalPattern*> *list = new List<PartIntervalPattern*>;
 	PartIntervalPattern *pattern = new PartIntervalPattern;
