@@ -478,9 +478,9 @@ bool Space::isReplicatedInCurrentSpace(const char *dataStructureName) {
 	for (int i = 1; i <= dimensions; i++) {
 		Coordinate *coordinateDim = coordSys->getCoordinate(i);
 		Token *token = coordinateDim->getTokenForDataStructure(dataStructureName);
-		if (token->isWildcard()) return true;
+		if (!token->isWildcard()) return false;
 	}
-	return false;		
+	return true;		
 }
 
 bool Space::isReplicated(const char *dataStructureName) {

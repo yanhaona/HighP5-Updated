@@ -1,0 +1,5 @@
+"Five Points Stencil" {
+	// syntax LPS ':' PPS
+	Space A: 8	// Node
+	Space B: 3	// Added-PPS1
+}

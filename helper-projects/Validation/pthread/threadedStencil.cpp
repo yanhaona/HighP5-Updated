@@ -132,19 +132,15 @@ void *computeStencil(void *arg) {
 			if (totalIteration % 2 == 0) {
 				upperThreadsPart = plate1Parts[threadId - 1];
 			}
-			for (int x = 1; x < plateDims[1].length - 1; x++) {
-				for (int p = 1; p <= padding; p++) {
-					int myBoundaryY = padding - 1 + p;
-					int receiverPaddingY = rowsPerThread - 1 + p;
-					if (threadId - 1 > 0) {
-						receiverPaddingY += padding;
-					}
-					int cellIndex = myBoundaryY * plateDims[1].length + x;
-					double data = output[cellIndex];
-					int storeIndex = receiverPaddingY * plateDims[1].length + x;
-					upperThreadsPart[storeIndex] = data;
-				}
+			int myBoundaryY = padding;
+			double *sendIndex =output + (myBoundaryY * plateDims[1].length);
+			int copiedItems = padding * plateDims[1].length;
+			int receiverPaddingY = rowsPerThread;
+			if (threadId - 1 > 0) {
+				receiverPaddingY += padding;
 			}
+			double *receiveIndex = upperThreadsPart + (receiverPaddingY * plateDims[1].length);
+			memcpy(receiveIndex, sendIndex, copiedItems * sizeof(double));
 		}
 
 		// copy from current thread's part to next thread's padding region
@@ -153,16 +149,10 @@ void *computeStencil(void *arg) {
 			if (totalIteration % 2 == 0) {
 				lowerThreadsPart = plate1Parts[threadId + 1];
 			}
-			for (int x = 1; x < plateDims[1].length - 1; x++) {
-				for (int p = 1; p <= padding; p++) {
-					int myBoundaryY = padRowEnd - padRowStart + 1 - (p + padding);
-					int receiverPaddingY = padding - p;
-					int cellIndex = myBoundaryY * plateDims[1].length + x;
-					double data = output[cellIndex];
-					int storeIndex = receiverPaddingY * plateDims[1].length + x;
-					lowerThreadsPart[storeIndex] = data;
-				}
-			}
+			int myBoundaryY = padRowEnd - (2 * padding) + 1 - padRowStart;
+			double *transferIndex = output + (myBoundaryY * plateDims[1].length);
+			int copiedItems = padding * plateDims[1].length;
+			memcpy(lowerThreadsPart, transferIndex, copiedItems * sizeof(double));
 		}
 		
 
