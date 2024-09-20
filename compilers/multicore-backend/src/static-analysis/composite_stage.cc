@@ -16,6 +16,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <string.h>
 
 //------------------------------------------------ Composite Stage -------------------------------------------------------/
 
@@ -422,7 +423,8 @@ void CompositeStage::generateInvocationCode(std::ofstream &stream, int indentati
 	// consequence of generating LPU only one time for all stages of a group then execute all of them before
 	// proceed to the next LPU 
 	List<List<FlowStage*>*> *stageGroups = getConsecutiveNonLPSCrossingStages();
-	
+
+	Space *lastWaitingLps = NULL;	
 	for (int i = 0; i < stageGroups->NumElements(); i++) {
 		
 		List<FlowStage*> *currentGroup = stageGroups->Nth(i);
@@ -451,7 +453,18 @@ void CompositeStage::generateInvocationCode(std::ofstream &stream, int indentati
 		//-------------------------------------------------------------------------------------------------
 		// If there is any reactivating condition that need be checked before we let the flow of control 
 		// enter the nested stages then we wait for those condition clearance.
-		genSimplifiedWaitingForReactivationCode(stream, nextIndentation, syncSignals);
+		//
+		// if the last group of stages of the current composite stage issue a sync signal for an LPS
+		// that the first group of stages operate in then we can ignore a backward reactivation barrier
+		// before the first group of stages as a special condition.
+		if (i == 0) {
+			std::ostringstream tempStream;
+			List<FlowStage*> *lastGroup = stageGroups->Nth(stageGroups->NumElements() - 1);
+			List<SyncRequirement*> *lastSyncSignals = getSyncSignalsOfGroup(lastGroup);
+			lastSyncSignals = SyncRequirement::sortList(lastSyncSignals);
+			lastWaitingLps = genSimplifiedSignalsForGroupTransitionsCode(tempStream, 0, lastSyncSignals);
+		}
+		genSimplifiedWaitingForReactivationCode(stream, nextIndentation, syncSignals, lastWaitingLps);
 		//-------------------------------------------------------------------------------------------------
 
 		// Sync stages -- not synchronization dependencies -- that dictate additional data movement 
@@ -509,7 +522,7 @@ void CompositeStage::generateInvocationCode(std::ofstream &stream, int indentati
 		//-------------------------------------------------------------------------------------------------
 		// generate code for signaling updates and waiting on those updates for any shared variable change
 		// made by stages within current group  
-		genSimplifiedSignalsForGroupTransitionsCode(stream, nextIndentation, syncSignals);
+		lastWaitingLps = genSimplifiedSignalsForGroupTransitionsCode(stream, nextIndentation, syncSignals);
 		//-------------------------------------------------------------------------------------------------
 
 		// commented out this code as the barrier based priliminary implementation does not need this
@@ -938,21 +951,53 @@ void CompositeStage::generateCodeForReactivatingDataModifiers(std::ofstream &str
 	}			
 }
 
-void CompositeStage::genSimplifiedWaitingForReactivationCode(std::ofstream &stream, int indentation,
-		List<SyncRequirement*> *syncRequirements) {
+void CompositeStage::genSimplifiedWaitingForReactivationCode(std::ostream &stream, int indentation,
+		List<SyncRequirement*> *syncRequirements, 
+		Space *lastWaitingLps) {
 
 	std::string stmtSeparator = ";\n";	
 	std::ostringstream indent;
 	for (int i = 0; i < indentation; i++) indent << '\t';
+
+
+	// Find the lowest LPS in the sync requirements that should wait on a barrier. If we make all the PPUs
+	// handling code from that LPS waiting once then it will, by the sake of the hierarchy, synchronize all
+	// parent PPUs also.
+	Space *lowestWaitingLps = NULL;
+	for (int i = 0; i < syncRequirements->NumElements(); i++) {
+		SyncRequirement *sync = syncRequirements->Nth(i);
+		Space *syncSpanLps = sync->getSyncSpan();
+		if (lowestWaitingLps == NULL) {
+			if (lastWaitingLps == NULL 
+					|| strcmp(lastWaitingLps->getName(), syncSpanLps->getName()) != 0) {
+				lowestWaitingLps = syncSpanLps;
+			}
+		} else if (syncSpanLps->isParentSpace(lowestWaitingLps)) {
+			lowestWaitingLps = syncSpanLps;
+		}
+	}
+
+	if (lowestWaitingLps == NULL) return;
 
 	if (syncRequirements->NumElements() > 0) {
 		stream << std::endl << indent.str();
 		stream << "// barriers to ensure all readers have finished reading last update\n";
 	}
 
+	// even after finding a lowest waiting LPS, we may need to put more than one sync barrier as there may
+	// be cross LPS syncing requirements. That is, PPUs of two unrelated LPSes need to wait.
+	bool syncBeingPut = false;
 	for (int i = 0; i < syncRequirements->NumElements(); i++) {
 		SyncRequirement *sync = syncRequirements->Nth(i);
 		Space *syncSpanLps = sync->getSyncSpan();
+		if (lowestWaitingLps->isParentSpace(syncSpanLps)) continue;
+		else if (strcmp(lowestWaitingLps->getName(), syncSpanLps->getName()) == 0) {
+			if (syncBeingPut == false) {
+				syncBeingPut = true;
+			} else {
+				continue;
+			}
+		}
 		stream << indent.str() << "if (threadState->isValidPpu(Space_";
 		stream << syncSpanLps->getName();
 		stream << ")) {\n";	
@@ -963,7 +1008,7 @@ void CompositeStage::genSimplifiedWaitingForReactivationCode(std::ofstream &stre
 	}
 }
 
-void CompositeStage::genSimplifiedSignalsForGroupTransitionsCode(std::ofstream &stream, int indentation,
+Space *CompositeStage::genSimplifiedSignalsForGroupTransitionsCode(std::ostream &stream, int indentation,
 		List<SyncRequirement*> *syncRequirements) {
 
 	std::string stmtSeparator = ";\n";
@@ -976,16 +1021,35 @@ void CompositeStage::genSimplifiedSignalsForGroupTransitionsCode(std::ofstream &
 	}
 
 	// iterate over all the synchronization signals and then issue signals and waits in a lock-step fasion
+	Space *lastSignalingLps = NULL;
+	Space *lastWaitingLps = NULL;
 	for (int i = 0; i < syncRequirements->NumElements(); i++) {
 		
+		// Within the shared memory environment, keeping PPUs at a space waiting for a certain data is 
+		// sufficient to synchronize them about other data also as long as the PPU doing signaling operates
+		// at the same or a descendent level. Therefore, this checking is added to skip some redundant 
+		// synchronizations. 
 		SyncRequirement *currentSync = syncRequirements->Nth(i);
+		FlowStage *sourceStage = currentSync->getDependencyArc()->getSource();
+		Space *syncSpanLps = currentSync->getSyncSpan();
+		Space *signalingLps = sourceStage->getSpace();
+		if (lastWaitingLps != NULL 
+				&& strcmp(syncSpanLps->getName(), lastWaitingLps->getName()) == 0
+				&& (
+					(strcmp(lastSignalingLps->getName(), signalingLps->getName()) == 0) 
+					 || lastWaitingLps->isParentSpace(signalingLps)	 
+					 || lastSignalingLps->isParentSpace(signalingLps)
+				)) {
+			continue;
+		} 
+		lastWaitingLps = syncSpanLps;
+		lastSignalingLps = signalingLps;
+
 		const char *counterVarName = currentSync->getDependencyArc()->getArcName();
 		
 		// check if the concerned update did take place
 		stream << indent.str() << "if (" << counterVarName << " > 0 && ";
 		// also check if the current PPU is a valid candidate for signaling update
-		FlowStage *sourceStage = currentSync->getDependencyArc()->getSource();
-		Space *signalingLps = sourceStage->getSpace();
 		stream << "threadState->isValidPpu(Space_" << signalingLps->getName();
 		stream << ")) {\n";
 		// then signal synchronization
@@ -1003,7 +1067,6 @@ void CompositeStage::genSimplifiedSignalsForGroupTransitionsCode(std::ofstream &
 		// of synchronization primitives does not support the PPU (or PPUs) in the signaling block to also be
 		// among the list of waiting PPUs.  
 		stream << indent.str() << "} else if (";
-		Space *syncSpanLps = currentSync->getSyncSpan();
 		FlowStage *waitingStage = currentSync->getWaitingComputation();
 		stream << "threadState->isValidPpu(Space_" << syncSpanLps->getName();
 		stream << ")) {\n";
@@ -1015,6 +1078,8 @@ void CompositeStage::genSimplifiedSignalsForGroupTransitionsCode(std::ofstream &
 		stream << ")" << stmtSeparator;
 		stream << indent.str() << "}\n";
 	}
+
+	return lastWaitingLps;
 }
 
 //------------------------------------------------- Repeat Cycle ------------------------------------------------------/

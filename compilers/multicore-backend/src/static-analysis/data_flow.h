@@ -322,9 +322,10 @@ class CompositeStage : public FlowStage {
 	// computation and communication overlap boils down to lock-step bulk synchronous mode of execution. In that
 	// case we do not need all four signals rather updaters should just waitForRead signals from readers to know
 	// that last change is no longer needed then execute its code and signalUpdate.
-	void genSimplifiedWaitingForReactivationCode(std::ofstream &stream, int indentation, 
-			List<SyncRequirement*> *syncRequirements);
-	void genSimplifiedSignalsForGroupTransitionsCode(std::ofstream &stream, int indentation,
+	void genSimplifiedWaitingForReactivationCode(std::ostream &stream, int indentation, 
+			List<SyncRequirement*> *syncRequirements,
+			Space *lastWaitingLps);
+	Space *genSimplifiedSignalsForGroupTransitionsCode(std::ostream &stream, int indentation,
 			List<SyncRequirement*> *syncRequirements);
 	
 };
