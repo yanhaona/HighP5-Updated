@@ -61,12 +61,16 @@ void readPlateFromFile(const char *filePath) {
 	stream->open();
 	List<int> *indexList = new List<int>();
         for (int i = rowStart; i <= rowEnd; i++) {
-                for (int j = 0; j < plateDims[1].length; j++) {
-			indexList->clear();
-			indexList->Append(i);
-			indexList->Append(j);
-			plate[0][storeIndex] = stream->readElement(indexList);
+		indexList->clear();
+		indexList->Append(i);
+		indexList->Append(0);
+		plate[0][storeIndex] = stream->readElement(indexList);
+		storeIndex++;
+		int count = 1;
+                while (count < plateDims[1].length) {
+			plate[0][storeIndex] = stream->readNextElement();
 			plate[1][storeIndex] = plate[0][storeIndex];
+			count++;
 			storeIndex++;
 		}
 	}
@@ -145,7 +149,9 @@ void refinePlate() {
         }
         if (processId < processCount - 1) {
                 padRowEnd = rowEnd + padding;
-        }
+        } if (padRowEnd >= plateDims[0].length) {
+		padRowEnd = plateDims[0].length - 1;
+	}
 
 	// run Jacobi iterations
         int totalIteration = 0;
@@ -197,7 +203,8 @@ void refinePlate() {
 			// do an MPI send of current process's boundary rows to be copied in the padded rows of the next process
 			int sendToNextIndexStart = rowEnd - padding + 1;
 			int sendBufferIndex = (sendToNextIndexStart - padRowStart) * plateDims[1].length;
-			double *bufferToSend = output + sendBufferIndex;
+			//double *bufferToSend = output + sendBufferIndex;
+			double *bufferToSend = output;
 			int messageLength = padding * plateDims[1].length;	
         		MPI_Isend(bufferToSend, messageLength, MPI_DOUBLE, processId + 1, 0, MPI_COMM_WORLD, &sendNextReq);
 			
@@ -208,13 +215,13 @@ void refinePlate() {
         		MPI_Irecv(bufferToReceive, messageLength, MPI_DOUBLE, processId + 1, 0, MPI_COMM_WORLD, &recvNextReq);
 		}
 		if (processId > 0) {
+			int messageLength = padding * plateDims[1].length;	
 			// do an MPI send of current process's boundary rows to be copied in the padded rows of the previous process
 			int sendToPrevIndexStart = rowStart;
 			int sendBufferIndex = (sendToPrevIndexStart - padRowStart) * plateDims[1].length;
 			double *bufferToSend = output + sendBufferIndex;
-			int messageLength = padding * plateDims[1].length;	
         		MPI_Isend(bufferToSend, messageLength, MPI_DOUBLE, processId - 1, 0, MPI_COMM_WORLD, &sendPrevReq);
-		
+	
 			// do an MPI receive of the boundary rows from the previous process to current process's padding region 
 			double *bufferToReceive = output;
         		MPI_Irecv(bufferToReceive, messageLength, MPI_DOUBLE, processId - 1, 0, MPI_COMM_WORLD, &recvPrevReq);
@@ -225,10 +232,10 @@ void refinePlate() {
         	MPI_Status statusRNext, statusRPrev;
 		if (processId < processCount - 1) {
         		MPI_Wait(&sendNextReq, &statusSNext);
-        		MPI_Wait(&recvNextReq, &statusRNext);
+        		//MPI_Wait(&recvNextReq, &statusRNext);
 		}
 		if (processId > 0) {
-        		MPI_Wait(&sendPrevReq, &statusSPrev);
+        		//MPI_Wait(&sendPrevReq, &statusSPrev);
         		MPI_Wait(&recvPrevReq, &statusRPrev);
 		}
 	}
@@ -284,6 +291,9 @@ int mainMStencil(int argc, char *argv[]) {
 
 	// read input matrices
 	readPlateFromFile(filePath);
+	
+	struct timeval memEnd;
+        gettimeofday(&memEnd, NULL);
 
 	//------------------------------------------------------------ Computation Starts 
 
@@ -298,8 +308,11 @@ int mainMStencil(int argc, char *argv[]) {
 	struct timeval end;
         gettimeofday(&end, NULL);
 	if (processId == 0) {
+		double dataReadingTime = ((memEnd.tv_sec + memEnd.tv_usec / 1000000.0)
+				- (start.tv_sec + start.tv_usec / 1000000.0));
 		double executionTime = ((end.tv_sec + end.tv_usec / 1000000.0)
 				- (start.tv_sec + start.tv_usec / 1000000.0));
+		std::cout << "Memory initialization time: " << dataReadingTime << " Seconds\n";
 		std::cout << "Execution time: " << executionTime << " Seconds\n";
 		std::cout << "Plate dimension: " << plateDims[0].length << " by " << plateDims[1].length << "\n";
 		std::cout << "Padding rows: " << padding << "\n";

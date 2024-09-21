@@ -64,12 +64,16 @@ void readAFromFile(const char *filePath) {
 	stream->open();
 	List<int> *indexList = new List<int>();
         for (int i = rowStart; i <= rowEnd; i++) {
-                for (int j = 0; j < aDims[1].length; j++) {
-			indexList->clear();
-			indexList->Append(i);
-			indexList->Append(j);
-			a[storeIndex] = stream->readElement(indexList);
+		indexList->clear();
+		indexList->Append(i);
+		indexList->Append(0);
+		a[storeIndex] = stream->readElement(indexList);
+		storeIndex++;
+		int count = 1;
+                while (count < aDims[1].length) {
+			a[storeIndex] = stream->readNextElement();
 			storeIndex++;
+			count++;
 		}
 	}
 	stream->close();
@@ -154,7 +158,7 @@ void multiplyMatrices() {
         for (int iB = rowStart; iB <= rowEnd; iB += blockSize) {
                 int rStart = iB;
                 int rEnd = rStart + blockSize - 1;
-                if (rEnd >= aDims[0].length) rEnd = aDims[0].length - 1;
+                if (rEnd >= rowEnd) rEnd = rowEnd;
                 for (int jB = 0; jB < bDims[1].length; jB += blockSize) {
                         int cStart = jB;
                         int cEnd = cStart + blockSize - 1;
@@ -243,12 +247,14 @@ int mainMMMult(int argc, char *argv[]) {
 	readAFromFile(filePathA);
 	readBFromFile(filePathB);
 
+	struct timeval memEnd;
+        gettimeofday(&memEnd, NULL);
+
 	//------------------------------------------------------------ Computation Starts 
 
 	multiplyMatrices();
 
 	//-------------------------------------------------------------- Computation Ends
-
 
 	MPI_Barrier(MPI_COMM_WORLD);
 	
@@ -256,8 +262,11 @@ int mainMMMult(int argc, char *argv[]) {
 	struct timeval end;
         gettimeofday(&end, NULL);
 	if (processId == 0) {
+		double dataReadingTime = ((memEnd.tv_sec + memEnd.tv_usec / 1000000.0)
+				- (start.tv_sec + start.tv_usec / 1000000.0));
 		double executionTime = ((end.tv_sec + end.tv_usec / 1000000.0)
 				- (start.tv_sec + start.tv_usec / 1000000.0));
+		std::cout << "Memory initialization time: " << dataReadingTime << " Seconds\n";
 		std::cout << "Execution time: " << executionTime << " Seconds\n";
 		std::cout << "Matrix dimension M1: " << aDims[0].length << " by " << aDims[1].length << "\n";
 		std::cout << "Matrix dimension M2: " << bDims[0].length << " by " << bDims[1].length << "\n";

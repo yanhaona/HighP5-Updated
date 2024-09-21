@@ -457,6 +457,9 @@ int mainMBluf(int argc, char *argv[]) {
 	initializeMetadata();
 	allocateArrays();
 	readAFromFile(filePath);
+	
+	struct timeval memEnd;
+        gettimeofday(&memEnd, NULL);
 
 	//------------------------------------------------------------ Computation Starts 
 
@@ -566,8 +569,11 @@ int mainMBluf(int argc, char *argv[]) {
 	struct timeval end;
         gettimeofday(&end, NULL);
 	if (processId == 0 && !fileWriteMode) {
+		double dataReadingTime = ((memEnd.tv_sec + memEnd.tv_usec / 1000000.0)
+				- (start.tv_sec + start.tv_usec / 1000000.0));
 		double executionTime = ((end.tv_sec + end.tv_usec / 1000000.0)
 				- (start.tv_sec + start.tv_usec / 1000000.0));
+		cout << "Memory initialization time: " << dataReadingTime << " Seconds\n";
 		cout << "Execution time: " << executionTime << " Seconds\n";
 		cout << "Matrix dimension: " << aDims[0].length << " by " << aDims[1].length << "\n";
 		cout << "Block size for block stride partition: " << blockSize << "\n";

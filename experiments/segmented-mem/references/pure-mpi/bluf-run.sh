@@ -1,11 +1,11 @@
 #!/bin/bash
 
-matrix_dim=5120
+matrix_dim=$1
+process_per_machine=$2
 block_size=64
 write_output=0
 input_file=a.bin
 array_generator=../../../../tools/binary-array-generator
-process_per_machine=12
 
 # generate input matrix
 $array_generator 3 2 $input_file $matrix_dim $matrix_dim
