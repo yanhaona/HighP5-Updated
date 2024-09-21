@@ -522,7 +522,15 @@ void CompositeStage::generateInvocationCode(std::ofstream &stream, int indentati
 		//-------------------------------------------------------------------------------------------------
 		// generate code for signaling updates and waiting on those updates for any shared variable change
 		// made by stages within current group  
-		lastWaitingLps = genSimplifiedSignalsForGroupTransitionsCode(stream, nextIndentation, syncSignals);
+		Space *waitingLps = genSimplifiedSignalsForGroupTransitionsCode(stream, nextIndentation, syncSignals);
+		if (lastWaitingLps == NULL) {
+			lastWaitingLps = waitingLps;
+		} else if (waitingLps != NULL) {
+			if (waitingLps->isParentSpace(lastWaitingLps)) {
+				lastWaitingLps = waitingLps;
+			}
+		}
+
 		//-------------------------------------------------------------------------------------------------
 
 		// commented out this code as the barrier based priliminary implementation does not need this

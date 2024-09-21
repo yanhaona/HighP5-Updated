@@ -6,15 +6,15 @@ curr_dir=`pwd`
 # adjust these two variables based on the mode of the experiment
 ref_target=brac-node
 machine=brac
-parallelism=( 20 12 8 6 2 1 )
+parallelism=( 1 )
 executable=../executables/pthread-stencil.o
 
 # parallel runs count
-parallel_runs=2
+parallel_runs=1
 
 # sampling parameters
-plate_rows=2048
-plate_cols=512
+plate_rows=5120
+plate_cols=5120
 iterations=1000
 padding=1
 
