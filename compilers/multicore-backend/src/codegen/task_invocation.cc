@@ -494,6 +494,12 @@ void generateTaskExecutor(TaskGenerator *taskGenerator) {
 
 	// open function definition
 	programFile << " {\n\n";
+	
+	// start initialization time monitoring timer
+        programFile << indent << "// starting memory preparation timer clock\n";
+        programFile << indent << "struct timeval initStart" << stmtSeparator;
+        programFile << indent << "gettimeofday(&initStart, NULL)" << stmtSeparator;
+	programFile << std::endl;
 
 	// create an instance of the environment-links object from the environment reference
 	programFile << indent << "// initializing environment-links object\n";
@@ -549,6 +555,17 @@ void generateTaskExecutor(TaskGenerator *taskGenerator) {
         programFile << indent << indent;
 	programFile << "threadStateList[i]->setRootLpu(rootLpu)" << stmtSeparator;
         programFile << indent << "}\n";
+	
+	// calculate initialization time
+	programFile << std::endl;
+        programFile << indent << "// calculating task initialization time\n";
+        programFile << indent << "struct timeval initEnd" << stmtSeparator;
+        programFile << indent << "gettimeofday(&initEnd, NULL)" << stmtSeparator;
+        programFile << indent << "double initTime = ((initEnd.tv_sec + initEnd.tv_usec / 1000000.0)";
+        programFile << std::endl << indent << indent << indent;
+        programFile << "- (initStart.tv_sec + initStart.tv_usec / 1000000.0))" << stmtSeparator;
+        programFile << indent << "logFile << \"Memory Preparation Time: \" << initTime << \" Seconds\" << std::endl";
+        programFile << stmtSeparator << std::endl;
 
 	// start threads and wait for them to finish execution of the task 
         taskGenerator->startThreads(programFile);

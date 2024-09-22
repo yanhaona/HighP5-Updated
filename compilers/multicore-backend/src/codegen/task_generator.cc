@@ -210,6 +210,11 @@ void TaskGenerator::generateTaskMain() {
 	stream << indent << "std::cout << \"Creating diagnostic log: it-program.log\\n\"" << stmtSeparator;
 	stream << indent << "std::ofstream logFile" << stmtSeparator;
 	stream << indent << "logFile.open(\"it-program.log\")" << stmtSeparator << std::endl;
+	
+	// start initialization time monitoring timer
+	stream << std::endl << indent << "// starting initialization timer clock\n";
+	stream << indent << "struct timeval startInit" << stmtSeparator;
+	stream << indent << "gettimeofday(&startInit, NULL)" << stmtSeparator;
 
 	// generate prompts to read metadata of arrays and values of other structures in environment links
 	List<const char*> *externalEnvLinks = initiateEnvLinks(stream);
@@ -243,6 +248,16 @@ void TaskGenerator::generateTaskMain() {
 
 	// generate thread-state objects for the intended number of threads and initialize their root LPUs
 	initiateThreadStates(stream);
+	
+	// calculate initialization time
+	stream << indent << "// calculating task initialization time\n";
+	stream << indent << "struct timeval endInit" << stmtSeparator;
+	stream << indent << "gettimeofday(&endInit, NULL)" << stmtSeparator;
+	stream << indent << "double initTime = ((endInit.tv_sec + endInit.tv_usec / 1000000.0)";
+	stream << std::endl << indent << indent << indent;
+	stream << "- (startInit.tv_sec + startInit.tv_usec / 1000000.0))" << stmtSeparator;
+	stream << indent << "logFile << \"Initialization Time: \" << initTime << \" Seconds\" << std::endl";
+	stream << stmtSeparator << std::endl;
 
 	// start execution time monitoring timer
 	stream << std::endl << indent << "// starting execution timer clock\n";

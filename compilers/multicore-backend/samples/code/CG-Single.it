@@ -1,0 +1,128 @@
+Program (args) {
+	
+	// creating environment objects for Conjugate Gradient Task
+	cgEnv = new TaskEnvironment(name: "Conjugate Gradient")
+	
+	// load the argument sparse matrix stored in compressed row format from file
+	load_array(cgEnv.columns, args.arg_matrix_cols)
+	load_array(cgEnv.rows, args.arg_matrix_rows)
+	load_array(cgEnv.values, args.arg_matrix_values)
+	load_array(cgEnv.x_i, args.prediction_vector)
+	load_array(cgEnv.b, args.known_vector)
+	
+	// invoke the task with proper parameters	
+	execute("Conjugate Gradient"; cgEnv; Initialize: args.iterations; Partition: args.r)
+
+	// store the result of conjugate gradient calculation
+	//store_array(x_i, args.solution_vector)
+}
+
+Task "Conjugate Gradient":
+        Define:
+                // components of sparse matrix
+                columns, rows: 1D Array of Integer
+                values: 1D Array of Real double-precision
+
+                // known and prediction vectors
+                x_i, b: 1D Array of Real double-precision
+
+                // intermediate vectors
+                r_i, a_r_i, w_1, w_2: 1D Array of Real double-precision
+
+                // iteration controller
+                iteration_range: Range
+
+                // norm of adjustment
+                alpha: Real double-precision
+
+                // two reduction variables for computing adjustement
+                red_1, red_2: Real double-precision
+		k: Integer
+        Environment:
+                columns, rows, values, x_i, b: link
+                a_r_i, r_i, w_1, w_2, red_1, red_2: create
+        Initialize(max_iterations):
+                r_i.dimension = x_i.dimension
+                a_r_i.dimension = x_i.dimension
+                alpha = 1
+		iteration_range.min = 1
+		iteration_range.max = max_iterations
+		w_1.dimension1.range.min = 0
+		w_1.dimension1.range.max = r - 1
+		w_2.dimension1.range.min = 0
+		w_2.dimension1.range.max = r - 1
+	Compute:
+		"Compute A Mult x_i" (Space B) {
+			start = rows.local.dimension1.range.min
+			if (start == 0) { start = -1 }
+			do {	if (i > 0) {
+					beginIndex = rows[i - 1] + 1
+				} else {
+					beginIndex = 0
+				}
+				endIndex = rows[i]
+				do {
+					r_i[i] = r_i[i] + values[j] * x_i[columns[j]] 
+				} for j in columns and j >= beginIndex and j <= endIndex
+			} for i in rows and i > start
+		}
+		"Compute r_i as b Minus A Mult x_i" (Space B) { 
+			do { 
+				r_i[i] = b[i] - r_i[i] 
+			} for i in b
+		}
+		"Compute A Mult r_i" (Space C) {
+			start = rows.local.dimension1.range.min
+			if (start == 0) { start = -1 }
+			do {	if (i > 0) {
+					beginIndex = rows[i - 1] + 1
+				} else {
+					beginIndex = 0
+				}
+				endIndex = rows[i]
+				do {
+					a_r_i[i] = a_r_i[i] + values[j] * r_i[columns[j]] 
+				} for j in columns and j >= beginIndex and j <= endIndex
+			} for i in rows and i > start
+		}
+		"Generate Partial DOT Products" (Space B) {
+			do { 
+				w_1[w_1.local.dimension1.range.min] = reduce("sum", r_i[i] * r_i[i]) 
+			} for i in r_i
+			do { 
+				w_2[w_2.local.dimension1.range.min] = reduce("sum", r_i[i] * a_r_i[i]) 
+			} for i in r_i
+		}
+		"Calculate Alpha" (Space A) { 
+			do { 
+				red_1 = reduce("sum", w_1[i]) 
+			} for i in w_1
+			do { 
+				red_2 = reduce("sum", w_2[i]) 
+			} for i in w_2 
+			alpha = red_1 / red_2
+		}
+		"Compute x_i as x_i Plus alpha Mult r_i" (Space D) { 
+			do { 
+				x_i[i] = x_i[i] + alpha * r_i[i] 
+			} for i in x_i 
+		}
+		
+		Repeat: from "Compute A Mult x_i" for k in iteration_range
+	Partition(r):
+                Space A <un-partitioned> {
+                        r_i, a_r_i, w_1, w_2                      
+                }
+                Space B <1D> divides Space A partitions {
+                        values, columns, x_i: replicated
+                        rows: block_count(r) padding(1, 0)
+                        r_i, a_r_i, b, w_1, w_2: block_count(r)
+                }
+                Space C <1D> divides Space A partitions {
+                        values, columns, r_i: replicated
+                        rows: block_count(r) padding(1, 0)
+                        a_r_i: block_count(r)
+                }
+                Space D <1D> divides Space A partitions {
+                        x_i, r_i: block_count(r)
+                }

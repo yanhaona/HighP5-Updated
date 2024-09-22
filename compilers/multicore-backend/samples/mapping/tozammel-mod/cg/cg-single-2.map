@@ -1,0 +1,6 @@
+"Conjugate Gradient" {
+	Space A:	8	// Node
+	Space B:	7	// NUMA Node
+	Space C:	7	// NUMA Node
+	Space D:	7	// NUMA Node
+}

@@ -1,0 +1,6 @@
+"Conjugate Gradient" {
+	Space A:	8	// Node
+	Space B:	6	// Added PPS4
+	Space C:	6	// Added PPS4
+	Space D:	6	// Added PPS4
+}
