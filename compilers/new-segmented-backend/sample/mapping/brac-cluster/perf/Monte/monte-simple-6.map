@@ -1,5 +1,5 @@
 "Monte Carlo Area Estimation" {
 	// syntax LPS ':' PPS
-	Space A: 4	// Cluster
+	Space A: 5	// Cluster
 	Space B: 2 	// Core-Pair
 }

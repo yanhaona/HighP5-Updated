@@ -11,7 +11,7 @@ Program (args) {
         execute(task: "Block Matrix-Matrix Multiply"; environment: mmEnv; partition: args.k, args.l, args.q)
         
 	// specify where the output should be written to
-	bind_output(mmEnv, "c", args.output_file)
+	//bind_output(mmEnv, "c", args.output_file)
 }
 
 Task "Block Matrix-Matrix Multiply":
