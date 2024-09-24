@@ -50,6 +50,11 @@ class SyncRequirement {
 	// counter associated with this requirement.
         int index;
 
+	// When two different LPSes related via some ancestor-descendent relationship need to wait on the same
+	// data to be communicated, we can do an optimization of sending data only once and receiving data for
+	// the descendent LPS. This variable tracks whether this optimization is possible for this sync requirement
+	SyncRequirement *expandedSync;
+
   public:
 	SyncRequirement(const char *syncTypeName);
 	virtual ~SyncRequirement() {}
@@ -71,6 +76,9 @@ class SyncRequirement {
 	const char *getSyncName();
 	virtual void print(int indent);
 	void writeDescriptiveComment(std::ofstream &stream, bool forDependent);
+	SyncRequirement *getExpandedSync() { return expandedSync; }
+	bool isSynchingExpanded() { return expandedSync != NULL; }
+	void expandSynchingTo(SyncRequirement *sync) {expandedSync = sync; }
 
 	//------------------------------------------------------------- Common helper functions for Code Generation
 

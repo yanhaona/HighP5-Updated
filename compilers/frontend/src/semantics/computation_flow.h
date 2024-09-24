@@ -540,8 +540,9 @@ class CompositeStage : public FlowStage {
 			List<SyncRequirement*> *commDependencies);
 	void genSimplifiedWaitingForReactivationCode(std::ofstream &stream, 
 			int indentation,
-                        List<SyncRequirement*> *syncRequirements);
-        void genSimplifiedSignalsForGroupTransitionsCode(std::ofstream &stream, 
+                        List<SyncRequirement*> *syncRequirements,
+			Space *lastWaitingLps);
+        Space *genSimplifiedSignalsForGroupTransitionsCode(std::ostream &stream, 
 			int indentation,
                         List<SyncRequirement*> *syncRequirements);
 	void generateDataSendsForGroup(std::ofstream &stream, int indentation,

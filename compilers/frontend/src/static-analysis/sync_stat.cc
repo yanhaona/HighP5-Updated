@@ -25,6 +25,7 @@ SyncRequirement::SyncRequirement(const char *syncTypeName) {
 	this->counterRequirement = true;
         this->replacementSync = NULL;
 	this->index = -1;
+	this->expandedSync = NULL;
 }
 
 const char *SyncRequirement::getSyncName() {

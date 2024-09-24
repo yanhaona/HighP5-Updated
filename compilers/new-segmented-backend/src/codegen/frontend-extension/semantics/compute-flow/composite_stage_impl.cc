@@ -75,6 +75,18 @@ void CompositeStage::generateDataReceivesForGroup(std::ofstream &stream, int ind
 	for (int i = 0; i < commDependencies->NumElements(); i++) {
 		SyncRequirement *comm = commDependencies->Nth(i);
 		if (!comm->isActive()) continue;
+
+		// if the current sync requirement has been expanded to be replaced by a subsequent sync that goes even
+		// deeper in the LPS hierarchy then do a waiting for the expanded sync requirement and deactivate the
+		// expanded sync to avoid a subsequent receive on the same communication
+		//
+		// NOTE: this logic should be covered by the comm-replacement sync but it is not working. We should 
+		// check if signal expansion and communication replacement can be combined.
+		if (comm->isSynchingExpanded()) {
+			comm = comm->getExpandedSync();
+			comm->getDependencyArc()->deactivate();
+		}
+
 		DependencyArc *arc = comm->getDependencyArc();
 		FlowStage *source = arc->getSource();
 		FlowStage *destination = arc->getDestination();
@@ -171,11 +183,30 @@ void CompositeStage::generateDataReceivesForGroup(std::ofstream &stream, int ind
 }
 
 void CompositeStage::genSimplifiedWaitingForReactivationCode(std::ofstream &stream, int indentation,
-		List<SyncRequirement*> *syncRequirements) {
+		List<SyncRequirement*> *syncRequirements, Space *lastWaitingLps) {
 
 	std::ostringstream indentStream;
 	for (int i = 0; i < indentation; i++) indentStream << indent;
 	std::string indentStr = indentStream.str();
+
+	// Find the lowest LPS in the sync requirements that should wait on a barrier. If we make all the PPUs
+        // handling code from that LPS waiting once then it will, by the sake of the hierarchy, synchronize all
+        // parent PPUs also.
+        Space *lowestWaitingLps = NULL;
+        for (int i = 0; i < syncRequirements->NumElements(); i++) {
+                SyncRequirement *sync = syncRequirements->Nth(i);
+                Space *syncSpanLps = sync->getSyncSpan();
+                if (lowestWaitingLps == NULL) {
+                        if (lastWaitingLps == NULL
+                                        || strcmp(lastWaitingLps->getName(), syncSpanLps->getName()) != 0) {
+                                lowestWaitingLps = syncSpanLps;
+                        }
+                } else if (syncSpanLps->isParentSpace(lowestWaitingLps)) {
+                        lowestWaitingLps = syncSpanLps;
+                }
+        }
+
+        if (lowestWaitingLps == NULL) return;
 
 	if (syncRequirements->NumElements() > 0) {
 		stream << std::endl << indentStr;
@@ -195,7 +226,7 @@ void CompositeStage::genSimplifiedWaitingForReactivationCode(std::ofstream &stre
 	}
 }
 
-void CompositeStage::genSimplifiedSignalsForGroupTransitionsCode(std::ofstream &stream, int indentation,
+Space *CompositeStage::genSimplifiedSignalsForGroupTransitionsCode(std::ostream &stream, int indentation,
 		List<SyncRequirement*> *syncRequirements) {
 
 	std::ostringstream indentStream;
@@ -207,9 +238,30 @@ void CompositeStage::genSimplifiedSignalsForGroupTransitionsCode(std::ofstream &
 	}
 
 	// iterate over all the synchronization signals and then issue signals and waits in a lock-step fasion
+	Space *lastSignalingLps = NULL;
+        Space *lastWaitingLps = NULL;
 	for (int i = 0; i < syncRequirements->NumElements(); i++) {
 		
-		SyncRequirement *currentSync = syncRequirements->Nth(i);
+		// Within the shared memory environment, keeping PPUs at a space waiting for a certain data is
+                // sufficient to synchronize them about other data also as long as the PPU doing signaling operates
+                // at the same or a descendent level. Therefore, this checking is added to skip some redundant
+                // synchronizations.
+                SyncRequirement *currentSync = syncRequirements->Nth(i);
+                FlowStage *sourceStage = currentSync->getDependencyArc()->getSource();
+                Space *syncSpanLps = currentSync->getSyncSpan();
+                Space *signalingLps = sourceStage->getSpace();
+                if (lastWaitingLps != NULL
+                                && strcmp(syncSpanLps->getName(), lastWaitingLps->getName()) == 0
+                                && (
+                                        (strcmp(lastSignalingLps->getName(), signalingLps->getName()) == 0)
+                                         || lastWaitingLps->isParentSpace(signalingLps)
+                                         || lastSignalingLps->isParentSpace(signalingLps)
+                                )) {
+                        continue;
+                }
+                lastWaitingLps = syncSpanLps;
+                lastSignalingLps = signalingLps;
+
 		const char *counterVarName = currentSync->getDependencyArc()->getArcName();
 	
 		// Check if the current synchronization is conditional, i.e., it only gets signaled by threads that
@@ -224,8 +276,6 @@ void CompositeStage::genSimplifiedSignalsForGroupTransitionsCode(std::ofstream &
 			stream << counterVarName << " > 0 && ";
 		}
 		// also check if the current PPU is a valid candidate for signaling update
-		FlowStage *sourceStage = currentSync->getDependencyArc()->getSource();
-		Space *signalingLps = sourceStage->getSpace();
 		stream << "threadState->isValidPpu(Space_" << signalingLps->getName();
 		stream << ")) {\n";
 		// then signal synchronization
@@ -245,7 +295,6 @@ void CompositeStage::genSimplifiedSignalsForGroupTransitionsCode(std::ofstream &
 		// of synchronization primitives does not support the PPU (or PPUs) in the signaling block to also be
 		// among the list of waiting PPUs.  
 		stream << indentStr << "} else if (";
-		Space *syncSpanLps = currentSync->getSyncSpan();
 		FlowStage *waitingStage = currentSync->getWaitingComputation();
 		stream << "threadState->isValidPpu(Space_" << syncSpanLps->getName();
 		stream << ")) {\n";
@@ -257,6 +306,8 @@ void CompositeStage::genSimplifiedSignalsForGroupTransitionsCode(std::ofstream &
 		stream << ")" << stmtSeparator;
 		stream << indentStr << "}\n";
 	}
+
+	return lastWaitingLps;
 }
 
 void CompositeStage::generateDataSendsForGroup(std::ofstream &stream, int indentation, 
@@ -273,8 +324,34 @@ void CompositeStage::generateDataSendsForGroup(std::ofstream &stream, int indent
 	for (int i = 0; i < commRequirements->NumElements(); i++) {
 		
 		SyncRequirement *currentComm = commRequirements->Nth(i);
-		int commIndex = currentComm->getIndex();
+		if (!currentComm->isActive()) continue;
+
 		const char *counterVarName = currentComm->getDependencyArc()->getArcName();
+		
+		// Check if there are other communication requests to the same data receiver LPS for the same data item.
+		// If there are such requests are redundant and deactivate them.
+		const char *varName = currentComm->getDependencyArc()->getVarName();
+		Space *syncSpanLps = currentComm->getSyncSpan();
+		for (int j = i + 1; j < commRequirements->NumElements(); j++) {
+			SyncRequirement *nextComm = commRequirements->Nth(j);
+			if (nextComm->isActive() && strcmp(varName, nextComm->getDependencyArc()->getVarName()) == 0) {
+                		Space *nextSyncSpanLps = nextComm->getSyncSpan();
+				if (strcmp(syncSpanLps->getName(), nextSyncSpanLps->getName()) == 0) {
+					const char *nextCounterVarName = currentComm->getDependencyArc()->getArcName();
+					nextComm->getDependencyArc()->deactivate();
+				} else if (nextSyncSpanLps->isParentSpace(syncSpanLps)) {
+
+					// on the other hand, if the subsequent  communication request on the same variable
+					// has a deeper receiving LPS than the current one then we should rather deactive
+					// the current communication signal and setup information to move the reception
+					// on the next communication request forward.
+					currentComm->expandSynchingTo(nextComm);	
+				}
+			}
+		}
+		if (currentComm->isSynchingExpanded()) continue;
+
+		int commIndex = currentComm->getIndex();
 		
 		// check if the current PPU is a valid candidate for signaling update
 		Space *signalingLps = currentComm->getDependencyArc()->getSource()->getSpace();
@@ -332,6 +409,7 @@ void CompositeStage::generateInvocationCode(std::ofstream &stream, int indentati
         // consequence of generating LPU only one time for all stages of a group then execute all of them before
         // proceed to the next LPU 
         List<List<FlowStage*>*> *stageGroups = getConsecutiveNonLPSCrossingStages();
+	Space *lastWaitingLps = NULL;
         for (int i = 0; i < stageGroups->NumElements(); i++) {
 		
 		List<FlowStage*> *currentGroup = stageGroups->Nth(i);
@@ -374,7 +452,23 @@ void CompositeStage::generateInvocationCode(std::ofstream &stream, int indentati
 
 		// If there is any reactivating condition that need be checked before we let the flow of control 
                 // enter the nested stages then we wait for those condition clearance.
-                genSimplifiedWaitingForReactivationCode(stream, indentation, updateSignals);
+		// 
+		// If the last group of stages of the current composite stage issue a sync signal for an LPS
+                // that the first group of stages operate in then we can ignore a backward reactivation barrier
+                // before the first group of stages as a special condition.
+                if (i == 0) {
+                        std::ostringstream tempStream;
+                        List<FlowStage*> *lastGroup = stageGroups->Nth(stageGroups->NumElements() - 1);
+                        List<SyncRequirement*> *lastUpdateSignals = getUpdateSignalsOfGroup(lastGroup);
+                        lastUpdateSignals = SyncRequirement::sortList(lastUpdateSignals);
+                	List<SyncRequirement*> *lastCommSignals = new List<SyncRequirement*>;
+                	List<SyncRequirement*> *lastSyncSignals = new List<SyncRequirement*>;
+                	SyncRequirement::separateCommunicationFromSynchronizations(segmentedPPS,
+                                	lastUpdateSignals, lastCommSignals, lastSyncSignals);
+                        lastWaitingLps = genSimplifiedSignalsForGroupTransitionsCode(tempStream, 0, lastSyncSignals);
+                }
+
+                genSimplifiedWaitingForReactivationCode(stream, indentation, syncSignals, lastWaitingLps);
 
 		//------------------------------------------------------------------ Write After Read Activation Ends
 
@@ -404,7 +498,14 @@ void CompositeStage::generateInvocationCode(std::ofstream &stream, int indentati
 
 		//--------------------------------------------------------------------- Update Signal Handling Starts
 
-		genSimplifiedSignalsForGroupTransitionsCode(stream, indentation, syncSignals);
+		Space *waitingLps = genSimplifiedSignalsForGroupTransitionsCode(stream, indentation, syncSignals);
+		if (lastWaitingLps == NULL) {
+                        lastWaitingLps = waitingLps;
+                } else if (waitingLps != NULL) {
+                        if (waitingLps->isParentSpace(lastWaitingLps)) {
+                                lastWaitingLps = waitingLps;
+                        }
+                }
                 generateDataSendsForGroup(stream, indentation, commSignals);	
 
 		//----------------------------------------------------------------------- Update Signal Handling Ends
