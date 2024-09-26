@@ -36,8 +36,8 @@ Task "Conjugate Gradient":
 		a_r_i.dimension = x_i.dimension
 		alpha = 1
 	Stages:
-		vectorAdd(w, u, v, alpha, beta) { 
-			do { w[i] = alpha * u[i] + beta * v[i] } for i in u 
+		vectorAdd(w, u, v, uMult, vMult) { 
+			do { w[i] = uMult * u[i] + vMult * v[i] } for i in u 
 		}
 		vectorDotProducts(result1, result2, u, v) { 
 			do { reduce(result1, "sum", u[i] * u[i]) } for i in u 
@@ -57,8 +57,8 @@ Task "Conjugate Gradient":
 				} for j in columns and j >= beginIndex and j <= endIndex
 			} for i in rows and i > start
 		}
-		calculateGradient(gradient, norm, denorm) {
-			gradient = norm / denorm
+		calculateGradient(alpha, norm, denorm) {
+			alpha = norm / denorm
 		}
 	Computation:
 		Repeat for counter in [1...max_iterations] {

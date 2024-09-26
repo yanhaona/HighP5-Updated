@@ -7,6 +7,13 @@ Last Update Date: Oct 20, 2016
 URGENT: Monte-Carlo-Tuned and Advanced are not working in new-segement-backend
 URGENT: LPU metadata is leaking memory in conjugate gradient and stopping the machine when iteration
         count is high.
+URGENT: In the segmented memory compiler, if a communication request is to be issued by collaborative
+        effort of multiple threads then communication is not happening. Probably there is some 
+	synchronization barrier in the communicators that are not updated properly.
+URGENT: If a scalar variable is passed as an argument in a stage in the segmented memory compiler, then
+        its update is not detected if the stage function has a different name for it. On the other hand
+        if a stage has a local variable with the same name as the global scalar variable then an 
+        incorrect association is established and unnecessary communications ensue.
 
 
 1. In some machines, compilation fails for correct IT sample programs showing wierd errors related to
@@ -56,4 +63,6 @@ URGENT: LPU metadata is leaking memory in conjugate gradient and stopping the ma
    LPS being mapped inside GPU is mapped to warps -- not to SMs. This leads to compilation error of
    kernel. Fixing this issue should be very easy. We discovered the problem when we are in the middle
    of solving many other issues. So we left the issue for the future.     
-    	   
+13.In conjugate gradient, aka multi-task program, if an un-partitioned top level LPS is mapped to the
+   segment level then environment instructions do not execute properly. A list index assertion fails
+   and program terminates.    	   
