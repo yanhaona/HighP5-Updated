@@ -7,15 +7,16 @@ curr_dir=`pwd`
 input_size=$1
 parallel_runs=$2
 type=$3
+threads=$4
 cache_block=64
-threads=6
 
 # then check whether proper number of parameters have been provided
-if [[ $# < 3 ]]; then
+if [[ $# < 4 ]]; then
         echo "You have to provide three cmd arguments to run the experiments:"
         echo "  First, the dimension length of the square input matrices"
         echo "  Second, the number of times each program version should run"
         echo "  Third, type of threads in MPI processes 'random' or 'pinned'"
+        echo "  Foruthm, number of threads per MPI process: options are 1 and 6"
         exit -1
 fi
 
