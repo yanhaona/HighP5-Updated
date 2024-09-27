@@ -265,6 +265,7 @@ class CoordinateSystem {
 class Space {
   protected:
 	const char *id;
+	int mappedPpsId;
 	int dimensions;
 	bool dynamic;
 	bool subpartitionSpace;
@@ -278,6 +279,8 @@ class Space {
 	Space(const char *name, int dimensions, bool dynamic, bool subpartitionSpace);
 	void setStructureList(Hashtable<DataStructure*> *dataStructureList);
 	void initEmptyStructureList();
+	int getMappedPpsId() { return mappedPpsId; }
+	void setMappedPpsId(int ppsId) { mappedPpsId = ppsId; }
 	void addDataStructure(DataStructure *structure);
 	DataStructure *getStructure(const char *name);
 	bool isInSpace(const char *structName);

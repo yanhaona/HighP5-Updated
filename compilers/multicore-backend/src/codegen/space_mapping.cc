@@ -162,10 +162,12 @@ MappingNode *parseMappingConfiguration(const char *taskName,
 		MapEntry *entry = new MapEntry();
 		entry->LPS = lps;
 		entry->PPS = pps;
+		lps->setMappedPpsId(ppsId);
 		MappingNode *node = new MappingNode();
 		node->parent = NULL;
 		node->mappingConfig = entry;
 		node->children = new List<MappingNode*>;
+		std::cout << "\tLps Space " << lps->getName() << " is mapped to PPS " << ppsId << "\n";
 		mappingTable->Enter(lps->getName(), node, true);
 		i++;
 	
@@ -173,6 +175,7 @@ MappingNode *parseMappingConfiguration(const char *taskName,
 		if (lps->getSubpartition() != NULL) {
 			MapEntry *subEntry = new MapEntry();
 			subEntry->LPS = lps->getSubpartition();
+			subEntry->LPS->setMappedPpsId(ppsId);
 			subEntry->PPS = pps;
 			MappingNode *subNode = new MappingNode();
 			subNode->parent = node;

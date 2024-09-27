@@ -16,6 +16,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <cassert>
 #include <string.h>
 
 //------------------------------------------------ Composite Stage -------------------------------------------------------/
@@ -424,7 +425,8 @@ void CompositeStage::generateInvocationCode(std::ofstream &stream, int indentati
 	// proceed to the next LPU 
 	List<List<FlowStage*>*> *stageGroups = getConsecutiveNonLPSCrossingStages();
 
-	Space *lastWaitingLps = NULL;	
+	Space *lastWaitingLps = NULL;
+	List<Space*> *growingWaitingList = new List<Space*>;	
 	for (int i = 0; i < stageGroups->NumElements(); i++) {
 		
 		List<FlowStage*> *currentGroup = stageGroups->Nth(i);
@@ -464,7 +466,11 @@ void CompositeStage::generateInvocationCode(std::ofstream &stream, int indentati
 			lastSyncSignals = SyncRequirement::sortList(lastSyncSignals);
 			lastWaitingLps = genSimplifiedSignalsForGroupTransitionsCode(tempStream, 0, lastSyncSignals);
 		}
-		genSimplifiedWaitingForReactivationCode(stream, nextIndentation, syncSignals, lastWaitingLps);
+		List<Space*> *followingWaitList = getWaitingLpsInFollowingStages(i, stageGroups);
+		followingWaitList->AppendAll(growingWaitingList);
+		List<Space*> *lpsesWaited = genSimplifiedWaitingForReactivationCode(stream, nextIndentation, 
+				syncSignals, lastWaitingLps, followingWaitList);
+		growingWaitingList->AppendAll(lpsesWaited);
 		//-------------------------------------------------------------------------------------------------
 
 		// Sync stages -- not synchronization dependencies -- that dictate additional data movement 
@@ -959,13 +965,43 @@ void CompositeStage::generateCodeForReactivatingDataModifiers(std::ofstream &str
 	}			
 }
 
-void CompositeStage::genSimplifiedWaitingForReactivationCode(std::ostream &stream, int indentation,
+List<Space*> *CompositeStage::getWaitingLpsInFollowingStages(int currentIndex, List<List<FlowStage*>*> *stageGroups) {
+	
+	List<Space*> *waitingLpsList = new List<Space*>;
+	int totalGroups = stageGroups->NumElements();
+	int groupIndex = (currentIndex + 1) % totalGroups;
+	while (groupIndex != currentIndex) {
+		List<FlowStage*> *currentGroup = stageGroups->Nth(groupIndex);
+		List<SyncRequirement*> *syncSignals = getSyncSignalsOfGroup(currentGroup);
+		for (int i = 0; i < syncSignals->NumElements(); i++) {
+			SyncRequirement *sync = syncSignals->Nth(i);
+			Space *syncSpanLps = sync->getSyncSpan();
+			bool lpsIncluded = false;
+			for (int j = 0; j < waitingLpsList->NumElements(); j++) {
+				Space *waitingLps = waitingLpsList->Nth(j);
+				if (strcmp(syncSpanLps->getName(), waitingLps->getName()) == 0) {
+					lpsIncluded = true;
+					break;
+				}
+			}
+			if (lpsIncluded == false) {
+				waitingLpsList->Append(syncSpanLps);
+			}
+		}
+		groupIndex = (groupIndex + 1) % totalGroups;
+	}
+	return waitingLpsList;
+}
+
+List<Space*> *CompositeStage::genSimplifiedWaitingForReactivationCode(std::ostream &stream, int indentation,
 		List<SyncRequirement*> *syncRequirements, 
-		Space *lastWaitingLps) {
+		Space *lastWaitingLps, List<Space*> *allWaitingLpses) {
 
 	std::string stmtSeparator = ";\n";	
 	std::ostringstream indent;
 	for (int i = 0; i < indentation; i++) indent << '\t';
+
+	List<Space*> *newWaitingLpses = new List<Space*>;
 
 
 	// Find the lowest LPS in the sync requirements that should wait on a barrier. If we make all the PPUs
@@ -985,7 +1021,7 @@ void CompositeStage::genSimplifiedWaitingForReactivationCode(std::ostream &strea
 		}
 	}
 
-	if (lowestWaitingLps == NULL) return;
+	if (lowestWaitingLps == NULL) return newWaitingLpses;
 
 	if (syncRequirements->NumElements() > 0) {
 		stream << std::endl << indent.str();
@@ -996,9 +1032,20 @@ void CompositeStage::genSimplifiedWaitingForReactivationCode(std::ostream &strea
 	// be cross LPS syncing requirements. That is, PPUs of two unrelated LPSes need to wait.
 	bool syncBeingPut = false;
 	for (int i = 0; i < syncRequirements->NumElements(); i++) {
+
 		SyncRequirement *sync = syncRequirements->Nth(i);
 		Space *syncSpanLps = sync->getSyncSpan();
 		if (lowestWaitingLps->isParentSpace(syncSpanLps)) continue;
+		bool redundentWait = false;
+		for (int j = 0; j < allWaitingLpses->NumElements(); j++) {
+			Space *waitingLps = allWaitingLpses->Nth(j);
+			if (strcmp(syncSpanLps->getName(), waitingLps->getName()) == 0 
+					||  syncSpanLps->getMappedPpsId() == waitingLps->getMappedPpsId()) {
+				redundentWait = true;
+				break;
+			}
+		}
+		if (redundentWait == true) continue;
 		else if (strcmp(lowestWaitingLps->getName(), syncSpanLps->getName()) == 0) {
 			if (syncBeingPut == false) {
 				syncBeingPut = true;
@@ -1006,6 +1053,16 @@ void CompositeStage::genSimplifiedWaitingForReactivationCode(std::ostream &strea
 				continue;
 			}
 		}
+		
+		FlowStage *sourceStage = sync->getDependencyArc()->getSource();
+		Space *signalingLps = sourceStage->getSpace();
+		if (syncSpanLps->isParentSpace(signalingLps) 
+				&& syncSpanLps->getMappedPpsId() == signalingLps->getMappedPpsId()) {
+			continue;
+		}
+
+		newWaitingLpses->Append(syncSpanLps);
+
 		stream << indent.str() << "if (threadState->isValidPpu(Space_";
 		stream << syncSpanLps->getName();
 		stream << ")) {\n";	
@@ -1014,6 +1071,8 @@ void CompositeStage::genSimplifiedWaitingForReactivationCode(std::ostream &strea
 		stream << stmtSeparator;
 		stream << indent.str() << "}\n";
 	}
+
+	return newWaitingLpses;
 }
 
 Space *CompositeStage::genSimplifiedSignalsForGroupTransitionsCode(std::ostream &stream, int indentation,
@@ -1050,6 +1109,14 @@ Space *CompositeStage::genSimplifiedSignalsForGroupTransitionsCode(std::ostream 
 				)) {
 			continue;
 		} 
+		
+		Assert(syncSpanLps->getMappedPpsId() > -1 && signalingLps->getMappedPpsId() > -1);
+		if (syncSpanLps->isParentSpace(signalingLps) 
+				&& syncSpanLps->getMappedPpsId() == signalingLps->getMappedPpsId()) {
+			currentSync->getDependencyArc()->deactivate();
+			continue;
+		}
+
 		lastWaitingLps = syncSpanLps;
 		lastSignalingLps = signalingLps;
 

@@ -381,6 +381,7 @@ Space::Space(const char *name, int dimensions, bool dynamic, bool subpartitionSp
 	this->parent = NULL;
 	this->dataStructureList = new Hashtable<DataStructure*>;
 	this->subpartition = NULL;
+	this->mappedPpsId = -1;
 }
 
 void Space::setStructureList(Hashtable<DataStructure*> *dataStructureList) {

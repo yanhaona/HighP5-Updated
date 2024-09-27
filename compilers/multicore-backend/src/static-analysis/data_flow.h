@@ -316,15 +316,17 @@ class CompositeStage : public FlowStage {
 			List<SyncRequirement*> *syncDependencies);	
 	void setReactivatorFlagsForSyncReqs();
 
+	List<Space*> *getWaitingLpsInFollowingStages(int currentIndex, List<List<FlowStage*>*> *stageGroups);
+
 	// These two are synchronization simplification functions for our initial barrier based implementation of
 	// sync primitives. When we use barrier then our detail method for 
 	// signalUpdate-waitForUpdate-signalRead-waitForRead sync cycles that offers the utmost flexibility for
 	// computation and communication overlap boils down to lock-step bulk synchronous mode of execution. In that
 	// case we do not need all four signals rather updaters should just waitForRead signals from readers to know
 	// that last change is no longer needed then execute its code and signalUpdate.
-	void genSimplifiedWaitingForReactivationCode(std::ostream &stream, int indentation, 
+	List<Space*> *genSimplifiedWaitingForReactivationCode(std::ostream &stream, int indentation, 
 			List<SyncRequirement*> *syncRequirements,
-			Space *lastWaitingLps);
+			Space *lastWaitingLps, List<Space*> *allWaitingLpses);
 	Space *genSimplifiedSignalsForGroupTransitionsCode(std::ostream &stream, int indentation,
 			List<SyncRequirement*> *syncRequirements);
 	
