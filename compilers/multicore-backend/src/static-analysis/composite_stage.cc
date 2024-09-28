@@ -1087,6 +1087,8 @@ Space *CompositeStage::genSimplifiedSignalsForGroupTransitionsCode(std::ostream 
 		stream << std::endl << indent.str() << "// resolving synchronization dependencies\n";
 	}
 
+	List<int> *signaledPPSes = new List<int>;
+
 	// iterate over all the synchronization signals and then issue signals and waits in a lock-step fasion
 	Space *lastSignalingLps = NULL;
 	Space *lastWaitingLps = NULL;
@@ -1116,9 +1118,20 @@ Space *CompositeStage::genSimplifiedSignalsForGroupTransitionsCode(std::ostream 
 			currentSync->getDependencyArc()->deactivate();
 			continue;
 		}
-
+		
 		lastWaitingLps = syncSpanLps;
 		lastSignalingLps = signalingLps;
+
+		int waitingPps = syncSpanLps->getMappedPpsId();
+		bool ppsSignaled = false;
+		for (int j = 0; j < signaledPPSes->NumElements(); j++) {
+			if (waitingPps == signaledPPSes->Nth(j)) {
+				ppsSignaled = true;
+				break;
+			}
+		}
+		if (ppsSignaled == true) continue;
+		signaledPPSes->Append(waitingPps);
 
 		const char *counterVarName = currentSync->getDependencyArc()->getArcName();
 		

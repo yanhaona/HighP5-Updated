@@ -5,3 +5,10 @@ compilers/**/*.o
 compilers/new-segmented-backend/build/**/*.cc
 compilers/new-segmented-backend/build/**/*.o
 compilers/new-segmented-backend/build/**/*.h
+
+# ignore compilation related executables
+compilers/frontend/lex.yy.c
+compilers/frontend/y.tab.c
+compilers/frontend/y.tab.h
+micc
+smicc
