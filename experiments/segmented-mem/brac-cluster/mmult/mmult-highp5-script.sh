@@ -19,7 +19,7 @@ if [[ $# < 3 ]]; then
         exit -1
 fi
 
-parallelism=( 4 3 2 1 )
+parallelism=( 8 7 6 5 4 3 2 1 )
 
 # make data directory for experiments
 mkdir -p ./data/MMult/highP5
