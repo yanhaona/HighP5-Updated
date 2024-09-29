@@ -11,6 +11,7 @@
 #include <time.h>
 #include <pthread.h>
 #include <mpi.h>
+#include <cassert>
 
 #include "../utils.h"
 #include "../structures.h"
@@ -39,7 +40,9 @@ int processCount;
 
 void readPlateFromFile(const char *filePath) {
 
-	int rowsPerProcess = (plateDims[0].length + processCount - 1) / processCount;
+	Assert(plateDims[0].length > 0);
+	Assert(plateDims[1].length > 0);
+	int rowsPerProcess = (plateDims[0].length) / processCount;
 	int rowStart = processId * rowsPerProcess;
 	int rowEnd = rowStart + rowsPerProcess - 1;
 	if (processId > 0) {
@@ -48,11 +51,13 @@ void readPlateFromFile(const char *filePath) {
 	if (processId < processCount - 1) {
 		rowEnd = rowEnd + padding;
 	}
-	if (rowEnd >= plateDims[0].length) {
+	if (rowEnd >= plateDims[0].length || processId == processCount - 1) {
 		rowEnd = plateDims[0].length - 1;
 	}
+	Assert(rowEnd >= rowStart);
 	int rowCount = rowEnd - rowStart + 1;
 	int localEntries = rowCount * plateDims[1].length;
+	Assert(localEntries > 0);
 	plate[0] = new double[localEntries];
 	plate[1] = new double[localEntries];
 
@@ -134,10 +139,10 @@ void writePlateToFile() {
 void refinePlate() {
 	
 	// determine the row index range of plate belonging to the current thread;
-        int rowsPerProcess = (plateDims[0].length + processCount - 1) / processCount;
+        int rowsPerProcess = plateDims[0].length / processCount;
         int rowStart = rowsPerProcess * processId;
         int rowEnd = rowStart + rowsPerProcess - 1;
-        if (rowEnd >= plateDims[0].length) {
+        if (rowEnd >= plateDims[0].length || processId == processCount - 1) {
                 rowEnd = plateDims[0].length - 1;
         }
 
@@ -193,7 +198,7 @@ void refinePlate() {
                         // update total iteration counter
                         totalIteration++;
 		}
-
+		
 		MPI_Request sendNextReq, sendPrevReq;
         	MPI_Request recvNextReq, recvPrevReq;
 
@@ -238,6 +243,7 @@ void refinePlate() {
         		//MPI_Wait(&sendPrevReq, &statusSPrev);
         		MPI_Wait(&recvPrevReq, &statusRPrev);
 		}
+		
 	}
 
 }
@@ -288,7 +294,7 @@ int mainMStencil(int argc, char *argv[]) {
         }
 	readArrayDimensionInfoFromFile(file, 2, plateDims);
 	file.close();
-
+	
 	// read input matrices
 	readPlateFromFile(filePath);
 	
