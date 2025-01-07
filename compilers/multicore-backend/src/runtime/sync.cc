@@ -16,14 +16,19 @@ Copyright 2015 by Andrew Grimshaw
 
 
 Barrier::Barrier(int size) {
+	pthread_barrier_init(&pbarrier, NULL, size);
+	/*
         _size=size;
         _count=size;
         sem_init(&mutex,0,1);   // init to 1
         sem_init(&throttle,0,0);        // init to 0
         sem_init(&waitq,0,0);   // init to 0
+	*/
 }
 
 void Barrier::wait(){
+	pthread_barrier_wait(&pbarrier);
+	/*
 	sem_wait(&mutex);	// Make sure only one in at a  time
 	_count--;
 	if (_count==0 ) {
@@ -41,10 +46,12 @@ void Barrier::wait(){
 		sem_wait(&waitq);	// Sleep
 		sem_post(&throttle);	// wake up the releaser
 	}
+	*/
 }
 
 
 RS::RS(int size): b(size) {
+	/*
 	_size=size;
 	_count=0;
 	_gappers=0;
@@ -53,6 +60,7 @@ RS::RS(int size): b(size) {
 	sem_init(&throttle,0,0);	// init to 0
 	sem_init(&throttle2,0,0);	// init to 0
 	sem_init(&waitq,0,0);	// init to 0
+	*/
 }
 
 
