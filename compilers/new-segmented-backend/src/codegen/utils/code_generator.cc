@@ -482,8 +482,8 @@ void generateFnForThreadIdsAdjustment(const char *headerFileName,
 
 	// declare two local variables to keep track of the thread index ranges of current thread's group as the flow of
 	// control moves downward from upper to lower LPSes
-	functionBody << indent << "int groupBegin = 0" << stmtSeparator;
-	functionBody << indent << "int groupEnd = Total_Threads - 1" << stmtSeparator;
+	functionBody << indent << "int groupBeginRoot = 0" << stmtSeparator;
+	functionBody << indent << "int groupEndRoot = Total_Threads - 1" << stmtSeparator;
 	functionBody << '\n';
 
 	// declare some other local variables to temporarily hold group Ids and counts
@@ -512,10 +512,21 @@ void generateFnForThreadIdsAdjustment(const char *headerFileName,
 		varNameStr << namePrefix << lps->getName() << "]";
 		std::string varName = varNameStr.str();
 
+		// create a suffix variable for future reference of the parent space's group begin and ending
+		Space *parentLps = lps->getParent();
+		std::ostringstream parentSuffixStr;
+		if (parentLps == NULL) {
+			parentSuffixStr << "Root";
+		} else {
+			parentSuffixStr << parentLps->getName();
+		}
+		std::string parentLpsName = parentSuffixStr.str();
+
 		// if the LPS is a subpartition space then the PPU count is default 1 and we can assign the group size
 		// of its parent to its group size
 		if (lps->isSubpartitionSpace()) {
-			functionBody << indent << varName << ".groupSize = groupEnd - groupBegin + 1";
+			functionBody << indent << varName << ".groupSize = groupEnd" << parentLpsName 
+				<< " - " << "groupBegin" << parentLpsName << " + 1";
 			functionBody << stmtSeparator << '\n';
 			continue;
 		}
@@ -526,17 +537,20 @@ void generateFnForThreadIdsAdjustment(const char *headerFileName,
 		functionBody << indent << "groupSize = " << varName << ".groupSize" << stmtSeparator;
 
 		// determine the PPU count at the current level
-		functionBody << indent << "ppuCount = ((groupEnd - groupBegin + 1) + (groupSize - 1)) / groupSize";
+		functionBody << indent << "ppuCount = ((groupEnd" << parentLpsName 
+			<< " - groupBegin" << parentLpsName << " + 1) + (groupSize - 1)) / groupSize";
 		functionBody << stmtSeparator;
 		functionBody << indent << varName << ".ppuCount = ppuCount" << stmtSeparator;
 
 		// determine the thread Id range to be partitioned by next level
-		functionBody << indent << "groupBegin = groupId * groupSize" << stmtSeparator;
-		functionBody << indent << "groupEnd = min(groupBegin + groupSize - 1" << paramSeparator;
-		functionBody << "groupEnd)" << stmtSeparator;
+		functionBody << indent << "int groupBegin" << lpsName << " = groupId * groupSize" << stmtSeparator;
+		functionBody << indent << "int groupEnd" << lpsName 
+			<< " = min(groupBegin" << lpsName << " + groupSize - 1" << paramSeparator;
+		functionBody << "groupEnd" << parentLpsName << ")" << stmtSeparator;
 
 		// determine the group size as the number of IDs within the updated range
-		functionBody << indent << varName << ".groupSize = groupEnd - groupBegin + 1" << stmtSeparator;
+		functionBody << indent << varName << ".groupSize = groupEnd" << lpsName 
+			<< " - groupBegin" << lpsName << " + 1" << stmtSeparator;
 
 		functionBody << '\n';
 	}

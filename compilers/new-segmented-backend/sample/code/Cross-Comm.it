@@ -1,0 +1,50 @@
+Program (args) {
+	cEnv = new TaskEnvironment(name: "MPI Cross-Comm Experiment")
+	execute(task: "MPI Cross-Comm Experiment"; environment: cEnv; initialize: args.s; partition: args.p, args.q)
+	bind_output(cEnv, "v2" , args.output_file)
+}
+
+Task "MPI Cross-Comm Experiment":
+	Define:
+		v1, v2: 1d Array of Integer
+	Environment:
+		v1, v2: create
+	Initialize(size):
+		v1.dimension1.range.min = 0
+		v1.dimension1.range.max = size - 1
+		v2.dimension = v1.dimension
+	Stages:
+		init_vector(v) {
+			do {
+				v[i] = i
+			} for i in v
+		}
+		add_const(v, c) {
+			do {
+				v[i] = v[i] + c
+			} for i in v
+		}
+		merge_vectors(u, v) {
+			do {
+				u[i] = v[i] + u[i]
+			} for i in v
+		}
+	Computation:
+		Space B {
+			init_vector(v1)
+			add_const(v1, 10)
+		}
+		Space C {
+			init_vector(v2)
+			add_const(v2,90)
+			merge_vectors(v2, v1)
+		}
+	Partition(p, q):
+		Space A <un-partitioned> { v1, v2 }
+		Space B <1d> divides Space A partitions {
+			v1<dim1>: block_count(p)
+		}
+		Space C <1d> divides Space A partitions {
+			v1<dim1>: block_stride(q)
+			v2<dim1>: block_stride(q)
+		}

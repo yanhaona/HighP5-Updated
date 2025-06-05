@@ -1,0 +1,6 @@
+"MPI Cross-Comm Experiment" {
+	// syntax LPS ':' PPS
+	Space A: 4	// Cluster
+	Space B: 3	// CPU
+	Space C: 2	// Core
+}
