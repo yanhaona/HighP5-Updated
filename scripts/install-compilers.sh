@@ -5,8 +5,7 @@ installer_dir=`pwd`
 
 # list of compiler directories
 multicore_compiler_dir=compilers/multicore-backend  
-#segmented_memory_compiler_dir=compilers/segmented-memory-backend
-segmented_memory_compiler_dir=compilers/new-segmented-backend
+segmented_memory_compiler_dir=compilers/segmented-backend
 
 # check if multicore-backend IT compiler should installed
 multicore_enabled=`cat config/compiler.properties | grep 'multicore.backend.enabled' | cut -d '=' -f2`

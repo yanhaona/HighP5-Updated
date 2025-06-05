@@ -1,27 +1,13 @@
 NOTE: Update the last-update-date below each time you make a change in this document so that we know
       when the errors were relevant. Further, if you know that a problem has been fixed already but has
-      still been listed here, remove the problem from the list.
+      still been listed here, remove the problem from the list or move them to list of problem fixes
+      section at the end.
 
-Last Update Date: Jan 07, 2025
+Last Update Date: June 5, 2025
 
-URGENT: Monte-Carlo-Tuned and Advanced are not working in new-segement-backend
-	FIX: it seems there is no problem with the computation parts. The issue was with understanding
-	     the code. In these two codes, the LPU ranges in stage functions only cover one index in
-             each dimension. The iterations of the LPUs cover all the grid cells from the main run 
-             function. This was not the case for the simple version for Monte-Carlo. Furthermore there
-             is a precision threshold that is stopping the code for the simple example curve included
-             in the code.
 
 URGENT: LPU metadata is leaking memory in conjugate gradient and stopping the machine when iteration
         count is high.
-
-URGENT: In the segmented memory compiler, if a communication request is to be issued by collaborative
-        effort of multiple threads then communication is not happening. Probably there is some 
-	synchronization barrier in the communicators that are not updated properly.
-	FIX: there was an issue with PPU group adjustment code. The way code was generated previously,
-	     proper PPU group beginings and endings were assigned only when there is a single logical
-	     LPS hierarchy. So for cros sync comms, where there are branching in the LPS hierarchy, the
-	     logic was failing. The update corrected this mistake.
 
 URGENT: If a scalar variable is passed as an argument in a stage in the segmented memory compiler, then
         its update is not detected if the stage function has a different name for it. On the other hand
@@ -78,4 +64,23 @@ URGENT: If a scalar variable is passed as an argument in a stage in the segmente
    of solving many other issues. So we left the issue for the future.     
 13.In conjugate gradient, aka multi-task program, if an un-partitioned top level LPS is mapped to the
    segment level then environment instructions do not execute properly. A list index assertion fails
-   and program terminates.    	   
+   and program terminates.
+
+List of Problem Fixes -----------------------------------------------------------------------------------    	   
+
+URGENT: Monte-Carlo-Tuned and Advanced are not working in new-segement-backend
+	FIX: it seems there is no problem with the computation parts. The issue was with understanding
+	     the code. In these two codes, the LPU ranges in stage functions only cover one index in
+             each dimension. The iterations of the LPUs cover all the grid cells from the main run 
+             function. This was not the case for the simple version for Monte-Carlo. Furthermore there
+             is a precision threshold that is stopping the code for the simple example curve included
+             in the code.
+
+URGENT: In the segmented memory compiler, if a communication request is to be issued by collaborative
+        effort of multiple threads then communication is not happening. Probably there is some 
+	synchronization barrier in the communicators that are not updated properly.
+	FIX: there was an issue with PPU group adjustment code. The way code was generated previously,
+	     proper PPU group beginings and endings were assigned only when there is a single logical
+	     LPS hierarchy. So for cros sync comms, where there are branching in the LPS hierarchy, the
+	     logic was failing. The update corrected this mistake.
+

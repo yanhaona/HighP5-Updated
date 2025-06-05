@@ -11,7 +11,7 @@ installer_dir=.
 config_dir=$installer_dir/config
 
 # segmented memory compiler directory and executable
-segmented_memory_compiler_dir=$installer_dir/compilers/new-segmented-backend/
+segmented_memory_compiler_dir=$installer_dir/compilers/segmented-backend/
 segmented_memory_compiler=./sicc
 
 # assign command line parameters to different properties

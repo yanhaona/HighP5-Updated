@@ -5,7 +5,7 @@ installer_dir=`pwd`
 
 # list of compiler directories
 multicore_compiler_dir=compilers/multicore-backend  
-segmented_memory_compiler_dir=compilers/segmented-memory-backend
+segmented_memory_compiler_dir=compilers/segmented-backend
 
 # enter the multicore compiler directory and clean it
 echo "cleaning up the IT multicore backend compiler"
