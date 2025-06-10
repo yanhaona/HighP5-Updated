@@ -102,6 +102,20 @@ void StageInstanciation::translateCode(std::ofstream &stream) {
 		stream << localVars.str();
 	}
 
+	
+	// if the computation stage executes in a partitioned LPS then there should be a local variable for the
+	// LPU ID. Populate the LPU ID properties
+	if (space != NULL && space->getDimensionCount() > 0) {
+               	stream << std::endl;
+                for (int i = 0; i < space->getDimensionCount(); i++) {
+                        stream << indent;
+                        stream << "lpuId[" << i << "] = ";
+                        stream << "lpu->lpuId[" << i << "]";
+                        stream << stmtSeparator;
+                }
+        }
+	
+
 	// ensure that local variables of the compute stage do not conflict with some task global array during
 	// name transformation
 	List<const char*> *localVarList = new List<const char*>;

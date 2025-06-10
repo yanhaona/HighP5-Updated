@@ -1,6 +1,7 @@
 "MPI Scatter Experiment" {
-	// syntax LPS ':' PPS
-	Space A: 4	// Cluster
-	Space B: 3	// Node
-	Space C: 1	// Hyperthread
+       // syntax LPS ':' PPS
+       Space A: 4      // Cluster
+       Space B: 3      // Node
+       Space C: 1      // Hyperthread
 }
+
