@@ -1,10 +1,10 @@
 Program (args) { 
 	luEnv = new TaskEnvironment(name: "Block LU Factorization")
-	bind_input(luEnv, "a", args.input_matrix_file)
+	bind_input(luEnv, "a", args.input)
 	execute(task: "Block LU Factorization"; environment: luEnv; partition: args.block_size)
-	//bind_output(luEnv, "u", args.upper_matrix_file)
-	//bind_output(luEnv, "l", args.lower_matrix_file)
-	//bind_output(luEnv, "p", args.pivot_matrix_file)
+	bind_output(luEnv, "u", args.upper)
+	bind_output(luEnv, "l", args.lower)
+	bind_output(luEnv, "p", args.pivot)
 }
 
 Task "Block LU Factorization":
@@ -35,7 +35,7 @@ Task "Block LU Factorization":
 			do { u[j][i] = a[i][j] } for i, j in a
 			do { l[i][i] = 1 } for i in l
 		}
-		calculateRowRange(a, row_range, block_size) {
+		calculateRowRange(a, r, row_range, block_size) {
 			last_row = r + block_size - 1
 			if (last_row > a.dimension1.range.max) { 
 				last_row = a.dimension1.range.max 
@@ -59,7 +59,7 @@ Task "Block LU Factorization":
 				l[i][pivot] = pivot_entry
 			} for i in l and i < k
 		}
-		updateL(l, k, l_row) {
+		updateL(u, l, k, l_row) {
 			do {    l[k][j] = u[k][j] / u[k][k]
 				u[k][j] = 0
 				l_row[j] = l[k][j]
@@ -105,7 +105,7 @@ Task "Block LU Factorization":
 				prepareLU(a, u, l)
 			}
 			Repeat for r in a.dimension1.range step block_size {
-				calculateRowRange(a, row_range, block_size)
+				calculateRowRange(a, r, row_range, block_size)
 				Repeat for k in row_range {
 					Space B {
 						Where k in u.local.dimension1.range { selectPivot(Space A: pivot, u, k) }
@@ -113,7 +113,7 @@ Task "Block LU Factorization":
 					storePivot(p, k, pivot)
 					Space B {
 						If k != pivot { interchangeRows(pivot, k, u, l) }
-						Where k in l.local.dimension1.range  { updateL(l, k, l_row) }
+						Where k in l.local.dimension1.range  { updateL(u, l, k, l_row) }
 						updateURowsBlock(u, l_row, k, row_range)	
 						collectLColParts(l_column, l, k, row_range)
 					}	

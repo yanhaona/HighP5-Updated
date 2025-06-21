@@ -29,7 +29,7 @@ StageInstanciation::StageInstanciation(Space *space) : FlowStage(space) {
 }
 
 void StageInstanciation::performDataAccessChecking(Scope *taskScope) {
-	accessMap = validateDataAccess(taskScope, NULL, code);
+	accessMap = validateDataAccess(globalParamScope, NULL, code);
 }
 
 void StageInstanciation::print(int indentLevel) {

@@ -283,8 +283,12 @@ class FlowStage {
 class StageInstanciation : public FlowStage {
   protected:
 	Stmt *code;
-	Scope *scope;
 	const char *name;
+
+	// This scope retains all the local parameters of the computation stage
+	Scope *scope;
+	// This scope lists the task global variables that are bound to computation stage
+	Scope *globalParamScope;
 
 	// this holds metadata about all reduction statements found within this compute stage instance
         List<ReductionMetadata*> *nestedReductions;
@@ -303,6 +307,8 @@ class StageInstanciation : public FlowStage {
 	void setScope(Scope *scope) { this->scope = scope; }
 	void setName(const char *name) { this->name = name; }
 	Scope *getScope() { return scope; }
+	void setGlobalParamScope(Scope *paramScope) { this->globalParamScope = paramScope; }
+	Scope *getGlobalParamScope() { return globalParamScope; }
 	void print(int indent);
 	void performDataAccessChecking(Scope *taskScope);
 	

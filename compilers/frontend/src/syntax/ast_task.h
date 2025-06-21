@@ -164,12 +164,19 @@ class StageInvocation : public FlowPart {
 	// This function investigates the argument expressions and the parameters of the compute
 	// stage being invoked and determines the best way to convert any use of a parameter in the
 	// stage definition body with that of the corresponding argument during the polymorphic type
-	// resolution process.
-	List<ParamReplacementConfig*> *generateParamReplacementConfigs(); 
+	// resolution process. In addition it generates a restricted scope using the task global
+	// variables used in the invocation of the underlying computation stage.
+	List<ParamReplacementConfig*> *generateParamReplacementConfigsAndParamScope(Scope *invokeScope); 
 
 	// Some arguments may need to be evaluated into local variables before the execution of the 
 	// actual code of the compute-stage. This function generates statements for this operation.
 	List<Stmt*> *produceParamGeneratorCode(Scope *stageScope,
+			List<ParamReplacementConfig*> *paramReplConfigList);	
+	
+	// If some task global scalar variables are passed as parameters to a stage invocation then
+	// at the end of the original code for the stage, we must have some copy back of values from
+	// local variables to those task global scalars.
+	List<Stmt*> *produceScalerParamValueCopyCode(Stmt *code, Scope *stageScope,
 			List<ParamReplacementConfig*> *paramReplConfigList);	
 	 
 	//------------------------------------------------------------- Common helper functions for Code Generation

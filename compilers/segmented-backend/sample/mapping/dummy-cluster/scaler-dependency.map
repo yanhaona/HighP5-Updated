@@ -1,0 +1,5 @@
+"Scaler Var Dependency Test" {
+	// syntax LPS ':' PPS
+	Space A: 4	// Cluster
+	Space B: 3	// Node
+}

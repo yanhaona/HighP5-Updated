@@ -1,0 +1,73 @@
+Program (args) {
+	sEnv = new TaskEnvironment(name: "Scaler Var Dependency Test")
+	execute(task: "Scaler Var Dependency Test"; environment: sEnv; initialize: args.a, args.b, args.s; partition: args.p)
+	bind_output(sEnv, "vector" , args.output_file)
+}
+
+Task "Scaler Var Dependency Test":
+	Define:
+		a, b, c: Integer
+		vector: 1d Array of Integer
+		matrix: 2d Array of Integer
+	Environment:
+		vector, matrix, a, b, c: create
+	Initialize(arg1, arg2, size):
+		a = arg1
+		b = arg2
+		vector.dimension1.range.min = 0
+		vector.dimension1.range.max = size - 1
+		matrix.dimension1 = vector.dimension1
+		matrix.dimension2 = vector.dimension1
+	Stages:
+		init_vector(v, m) {
+			do {
+				v[i] = i
+			} for i in v
+			do {
+				m[i][j] = i + j
+
+			} for i,j in m
+		}
+		getSum(x, v) {
+			sum = 0
+			do {
+				sum = v[i] + sum
+			} for i in v
+			x = sum
+		}
+		getMax(x, v) {
+			b = 0
+			do {
+				if (b < v[i]) {	
+					b = v[i]
+				}
+			} for i in v
+			x = b
+		}
+		addThreshold(v, t) {
+			do {
+				v[i] = v[i] + t
+			} for i in v
+		}
+	Computation:
+		Space B {
+			init_vector(vector, matrix)
+		}
+		Space A {
+			getSum(a, vector)
+		}
+		Space B {
+			addThreshold(vector, a)
+		}
+		Space A {
+			getMax(c, vector)
+		}
+		Space B {
+			addThreshold(vector, b)
+		}
+	Partition(p):
+		Space A <un-partitioned> { vector, matrix }
+		Space B <1d> divides Space A partitions {
+			vector<dim1>: block_count(p)
+			matrix<dim1>: block_count(p)
+		}

@@ -12,6 +12,7 @@
 #include "../../semantics/scope.h"
 #include "../../semantics/symbol.h"
 #include "../../semantics/helper.h"
+#include "../../semantics/data_access.h"
 #include "../../semantics/computation_flow.h"
 #include "../../semantics/array_acc_transfrom.h"
 #include "../../../../common-libs/utils/list.h"
@@ -114,11 +115,25 @@ void StageInvocation::constructComputeFlow(CompositeStage *currCompStage, FlowSt
 	Stmt *codeBody = stageDef->getCode();
 	Stmt *code = (Stmt*) codeBody->clone();
 
-	// get metadata for parameter replacement
-	List<ParamReplacementConfig*> *paramReplConfs = generateParamReplacementConfigs();
+	// get metadata for parameter replacement and populate the parameter scope of the stage with the task
+	// global variables being used to invoke the computation stage
+	Scope *paramScope = stageScope->enter_scope(new Scope(TaskScope));
+	List<ParamReplacementConfig*> *paramReplConfs = generateParamReplacementConfigsAndParamScope(paramScope);
+
+	// after populating the parameter scope properly, we should detach the stage body scope from the overall
+	// task scope and rather attach it with the parameter scope before analysis of the code inside the stage.
+	// Notice that, here we need to keep the program scope connected with the stage invocation scope through
+	// the parameter scope as program scope contains all user defined type definitions.
+	Scope *programScope = stageScope->get_nearest_scope(ProgramScope);
+	stageScope->detach_from_parent();
+	paramScope = programScope->enter_scope(paramScope);
+	stageScope = paramScope->enter_scope(stageScope);
 	
 	// produce code for parameters that should be generated from the argument
 	List<Stmt*> *paramGeneratorCode = produceParamGeneratorCode(stageScope, paramReplConfs);
+
+	// produce code for scalar parameter value copies from stage code to the global arguments
+	List<Stmt*> *scalarParamValueCopyCode = produceScalerParamValueCopyCode(code, stageScope, paramReplConfs);
 	
 	// create a map of parameter to replacement config for field accesses needing only name change in the code 
 	Hashtable<ParamReplacementConfig*> *nameAdjustmentInstrMap = new Hashtable<ParamReplacementConfig*>;
@@ -161,10 +176,14 @@ void StageInvocation::constructComputeFlow(CompositeStage *currCompStage, FlowSt
 		std::exit(EXIT_FAILURE);
 	}
 
-	// generate the final code by combining a1ny param generator statements with the resolved original code
+	// generate the final code by combining any param generator and value copy statements with the resolved 
+	// original code
 	Stmt *finalCode = NULL;
 	if (paramGeneratorCode->NumElements() != 0) {
 		paramGeneratorCode->Append(code);
+		if (scalarParamValueCopyCode->NumElements() != 0) {
+			paramGeneratorCode->AppendAll(scalarParamValueCopyCode);
+		}
 		finalCode = new StmtBlock(paramGeneratorCode);
 	} else {
 		finalCode = code;
@@ -184,6 +203,7 @@ void StageInvocation::constructComputeFlow(CompositeStage *currCompStage, FlowSt
 	stageInstance->setCode(finalCode);
 	stageScope->detach_from_parent();
 	stageInstance->setScope(stageScope);
+	stageInstance->setGlobalParamScope(paramScope);
 	std::ostringstream nameStream;
 	nameStream << nameOfStage << "_stage_" << index;
 	stageInstance->setName(strdup(nameStream.str().c_str())); 
@@ -199,8 +219,13 @@ void StageInvocation::constructComputeFlow(CompositeStage *currCompStage, FlowSt
         currCompStage->addStageAtEnd(stageInstance);
 }
 
-List<ParamReplacementConfig*> *StageInvocation::generateParamReplacementConfigs() {
+
+List<ParamReplacementConfig*> *StageInvocation::generateParamReplacementConfigsAndParamScope(Scope *invokeScope) {
 	
+	Scope *paramScope = invokeScope;
+	Scope *stageScope = paramScope->exit_scope();
+	paramScope->detach_from_parent();
+
 	List<ParamReplacementConfig*> *replacementList = new List<ParamReplacementConfig*>;	
 	const char *nameOfStage = stageName->getName();
 	StageDefinition *stageDef = TaskDef::currentTask->getStagesSection()->retrieveStage(nameOfStage);
@@ -240,9 +265,17 @@ List<ParamReplacementConfig*> *StageInvocation::generateParamReplacementConfigs(
 			continue;
 		}
 
+		// *** If we reach this point in the iteration then the current argument is related to a task global
+		// variable and the variable should be entered to the parameter scope
+
 		// if the argument is a terminal field whose name matches that of the parameter then no replacement
 		// is needed
 		if (isTerminalField) {
+
+			Symbol *symbol = stageScope->lookup(fieldAcc->getBaseVarName());
+			Assert(symbol != NULL);
+			paramScope->copy_symbol(symbol);
+
 			const char *argName = fieldAcc->getField()->getName();
 			if (strcmp(argName, paramName) == 0) {
 				config = new ParamReplacementConfig(param, argument, No_Replacement);
@@ -266,10 +299,20 @@ List<ParamReplacementConfig*> *StageInvocation::generateParamReplacementConfigs(
 		// a reduction variable as an argument will always demand a change of name from parameter access to
 		// access to the argument variable
 		if (isReductionVar) {
+
+			ReductionVar *result = dynamic_cast<ReductionVar*>(argument);
+			Symbol *symbol = stageScope->lookup(result->getBaseVarName());
+			Assert(symbol != NULL);
+			paramScope->copy_symbol(symbol);
+
 			config = new ParamReplacementConfig(param, argument, Change_Name);
 			replacementList->Append(config);
 			continue;
 		}
+		
+		Symbol *symbol = stageScope->lookup(arrayAcc->getBaseVarName());
+		Assert(symbol != NULL);
+		paramScope->copy_symbol(symbol);
   
 		// the last remaing case is that the argument is a part of an array; this is the most complicated 
 		// case; we need to update expressions that use the corresponding parameter in many ways to produce
@@ -306,6 +349,76 @@ List<Stmt*> *StageInvocation::produceParamGeneratorCode(Scope *stageScope,
 		AssignmentExpr *assignment = new AssignmentExpr(left, argument, *GetLocation());
 		stmtList->Append(assignment);
 	}
+	return stmtList;
+}
+
+List<Stmt*> *StageInvocation::produceScalerParamValueCopyCode(Stmt *code, Scope *stageScope,
+		List<ParamReplacementConfig*> *paramReplConfigList) {
+	
+	Scope *scalarParamScope = new Scope(TaskScope);
+	TaskGlobalReferences *references = new TaskGlobalReferences(scalarParamScope);
+
+
+	// first, populate task global references that refer to some scalar variable argument
+	for (int i = 0; i < paramReplConfigList->NumElements(); i++) {
+		
+		ParamReplacementConfig *config = paramReplConfigList->Nth(i);
+		if (config->getReplacementType() != Evaluate_Before) continue;
+
+		Identifier *param = config->getParameter();
+		Expr *argument = config->getInvokingArg();
+		Type *type = argument->getType();
+		
+		FieldAccess *fieldAcc = dynamic_cast<FieldAccess*>(argument);
+		if (fieldAcc == NULL || !fieldAcc->isTerminalField()) continue;
+		
+		ArrayType *array = dynamic_cast<ArrayType*>(type);
+		if (array != NULL) continue;
+
+		VariableSymbol *varSym = (VariableSymbol *) stageScope->lookup(fieldAcc->getBaseVarName());
+		VariableSymbol *paramSym = new VariableSymbol(param->getName(), varSym->getType());
+		
+		scalarParamScope->insert_symbol(paramSym);
+	}
+
+	// do a variable access analysis of the code
+	Hashtable<VariableAccess*> *accessMap = code->getAccessedGlobalVariables(references);
+
+	// finally, generate assignment to parameter to argument for those scalar parameters
+	// that have been modified inside the code
+	List<Stmt*> *stmtList = new List<Stmt*>;
+	for (int i = 0; i < paramReplConfigList->NumElements(); i++) {
+
+		ParamReplacementConfig *config = paramReplConfigList->Nth(i);
+		if (config->getReplacementType() != Evaluate_Before) continue;
+
+		Identifier *param = config->getParameter();
+		Expr *argument = config->getInvokingArg();
+		Type *type = argument->getType();
+		
+		FieldAccess *fieldAcc = dynamic_cast<FieldAccess*>(argument);
+		if (fieldAcc == NULL || !fieldAcc->isTerminalField()) continue;
+		
+		ArrayType *array = dynamic_cast<ArrayType*>(type);
+		if (array != NULL) continue;
+
+		Iterator<VariableAccess*> iter = accessMap->GetIterator();
+        	VariableAccess *accessLog;
+        	while ((accessLog = iter.GetNextValue()) != NULL) {
+                	const char *name = accessLog->getName();
+			if (strcmp(name, param->getName()) == 0) {
+				if (accessLog->isModified()) {
+					FieldAccess *right 
+						= new FieldAccess(NULL, param, *argument->GetLocation());
+					AssignmentExpr *assignment 
+						= new AssignmentExpr(argument, right, *GetLocation());
+					stmtList->Append(assignment);
+				}
+				break;
+			} 
+        	}
+	}
+
 	return stmtList;
 }
 
