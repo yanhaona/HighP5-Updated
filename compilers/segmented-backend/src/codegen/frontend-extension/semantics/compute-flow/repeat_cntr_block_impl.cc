@@ -86,7 +86,7 @@ void RepeatControlBlock::generateInvocationCode(std::ofstream &stream, int inden
 		// filter out the backward dependencies from a later stage of the repeat to an earlier stage
         	for (int i = 0; i < commDependencies->NumElements(); i++) {
                 	SyncRequirement *comm = commDependencies->Nth(i);
-                	if (!comm->isActive()) continue;
+                	if (!comm->isActive() || comm->isDeactivationScheduled()) continue;
                 	DependencyArc *arc = comm->getDependencyArc();
                 	FlowStage *source = arc->getSource();
                 	FlowStage *destination = arc->getDestination();

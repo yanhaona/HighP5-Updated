@@ -73,8 +73,9 @@ void CompositeStage::generateDataReceivesForGroup(std::ofstream &stream, int ind
 	List<SyncRequirement*> *backwardDependencies = new List<SyncRequirement*>;
 
 	for (int i = 0; i < commDependencies->NumElements(); i++) {
+		
 		SyncRequirement *comm = commDependencies->Nth(i);
-		if (!comm->isActive()) continue;
+		if (!comm->isActive() || comm->isDeactivationScheduled()) continue;
 
 		// if the current sync requirement has been expanded to be replaced by a subsequent sync that goes even
 		// deeper in the LPS hierarchy then do a waiting for the expanded sync requirement and deactivate the
@@ -141,8 +142,10 @@ void CompositeStage::generateDataReceivesForGroup(std::ofstream &stream, int ind
 	if (backwardDependencies->NumElements() > 0) {
 		stream << indentStr.str() << "if (repeatIteration > 0) {\n";
 		for (int i = 0; i < backwardDependencies->NumElements(); i++) {
-			
+
 			SyncRequirement *comm = backwardDependencies->Nth(i);
+
+			std::cout << "generating receive for backword dependency " << comm->getSyncName() << "\n";
 			
 			SyncRequirement *commReplacement = comm->getReplacementSync();
 			bool signalReplaced = false;
@@ -175,10 +178,17 @@ void CompositeStage::generateDataReceivesForGroup(std::ofstream &stream, int ind
 		stream << indentStr.str() << "}\n";
 	}
 
-	// finally deactive all sync dependencies as they are already been taken care of here	
-	for (int i = 0; i < commDependencies->NumElements(); i++) {
-		SyncRequirement *comm = commDependencies->Nth(i);
+	// deactive all forward sync dependencies as they are already been taken care of here	
+	for (int i = 0; i < forwardDependencies->NumElements(); i++) {
+		SyncRequirement *comm = forwardDependencies->Nth(i);
 		comm->deactivate();
+		std::cout << "deactivating dependency after receive " << comm->getSyncName() << "\n";
+	}
+	// schedule all backward sync dependencies for deactivation after send
+	for (int i = 0; i < backwardDependencies->NumElements(); i++) {
+		SyncRequirement *comm = backwardDependencies->Nth(i);
+		comm->scheduleForDeactivation();
+		std::cout << "scheduling dependency for deactivation " << comm->getSyncName() << "\n";
 	}
 }
 
@@ -324,7 +334,10 @@ void CompositeStage::generateDataSendsForGroup(std::ofstream &stream, int indent
 	for (int i = 0; i < commRequirements->NumElements(); i++) {
 		
 		SyncRequirement *currentComm = commRequirements->Nth(i);
-		if (!currentComm->isActive()) continue;
+		if (!currentComm->isActive()) {
+			std::cout << "skipping send as the dependency is inactive " << currentComm->getSyncName() << "\n";
+			continue;
+		}
 
 		const char *counterVarName = currentComm->getDependencyArc()->getArcName();
 		
@@ -394,6 +407,12 @@ void CompositeStage::generateDataSendsForGroup(std::ofstream &stream, int indent
 			stream << indentStr.str() << indent << counterVarName << " = 0" << stmtSeparator;
 		}
 		stream << indentStr.str() << "}\n";
+
+		// If the sync requirement is scheduled for deactivation then the data receive has already been issued
+		// in some earlier stage. So we are going to deactivate the sync after the send.
+		if (currentComm->isDeactivationScheduled()) {
+			currentComm->deactivate();
+		}
 	}
 }
 

@@ -1,10 +1,15 @@
 # ignore all object files inside the compiler directories
 compilers/**/*.o
 
+# ignores all generated files inside the multicore compiler
+compilers/multicore-backend/build/**/*.cc
+compilers/multicore-backend/build/**/*.o
+compilers/multicore-backend/build/**/*.h
+
 # ignore all generated files inside segmented memory compiler
-compilers/new-segmented-backend/build/**/*.cc
-compilers/new-segmented-backend/build/**/*.o
-compilers/new-segmented-backend/build/**/*.h
+compilers/segmented-backend/build/**/*.cc
+compilers/segmented-backend/build/**/*.o
+compilers/segmented-backend/build/**/*.h
 
 # ignore compilation related executables
 compilers/frontend/lex.yy.c

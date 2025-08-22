@@ -152,6 +152,9 @@ class DownSyncCommunicator : public Communicator {
 // communicator class for the scenario where LPUs of two different LPSes that are not hierarchically related needs to be
 // synchronized after an update done on one LPS	 
 class CrossSyncCommunicator : public Communicator {
+  protected:
+  	List<CommBuffer*> *getRemoteBuffers();
+	List<CommBuffer*> *filterRemoteRecvBuffers(List<CommBuffer*> *remoteBuffers);
   public:
 	CrossSyncCommunicator(int localSegmentTag,
                 const char *dependencyName,
@@ -180,6 +183,41 @@ class CrossSyncCommunicator : public Communicator {
 	
 	// due to the asynchronous receive setup; if send is invoked no subsequent receive is needed for the same iteration
 	void afterSend() { iterationNo++; }
+};
+
+// This version of communicator is a replacement of the previous one that substitutes MPI group communication with the async
+// send-receive pair communications used by the earlier one.
+class UpdatedCrossSyncCommunicator : public CrossSyncCommunicator {
+   protected:	
+	// three variables to be used for scatter_v communication to send data to various receivers all at once 
+	char *scatterBuffer;
+	int *sendCounts;
+	int *displacements;
+   public:	   
+	UpdatedCrossSyncCommunicator(int localSegmentTag,
+                const char *dependencyName,
+                int localSenderPpus, 
+		int localReceiverPpus, List<CommBuffer*> *bufferList) : CrossSyncCommunicator(localSegmentTag,
+                dependencyName, localSenderPpus, localReceiverPpus, bufferList) {
+	
+		this->scatterBuffer = NULL;
+		this->sendCounts = NULL;
+		this->displacements = NULL;	
+	}
+	~UpdatedCrossSyncCommunicator();
+	
+	// communicator setup needs to be extended to create the scatter buffer for MPI iscatterv communication
+	void setupCommunicator(bool includeNonInteractingSegments);
+	
+	// function for creating the scatter buffer on the sender side
+	void allocateAndLinkScatterBuffer();
+	
+	// This overrides the parent method to support reception of data using the scatterv communication, instead of regular
+	// send-receive.
+	MPI_Request *issueAsyncReceives(List<CommBuffer*> *remoteReceiveBuffers);
+
+	// This overrides the sending process from a sequence of MPI_Send to a single MPI_Scatter	
+	void sendData();
 };
 
 #endif

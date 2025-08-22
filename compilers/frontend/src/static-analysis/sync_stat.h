@@ -55,6 +55,13 @@ class SyncRequirement {
 	// the descendent LPS. This variable tracks whether this optimization is possible for this sync requirement
 	SyncRequirement *expandedSync;
 
+	// When a communication sync requirement is from a later flow stage to an earlier stage, the code generation 
+	// for reception precedes the code generation for send. If we deactivate the sync after receive code
+	// generation, as we do in a regular case, then the send is then never issued for this kind of depedencies.
+	// So a different flag is needed here to avoid multiple receive code generation then the active/inactive
+	// flag of the dependency here.
+	bool deactivationScheduled;
+
   public:
 	SyncRequirement(const char *syncTypeName);
 	virtual ~SyncRequirement() {}
@@ -69,6 +76,8 @@ class SyncRequirement {
 	void signal() { arc->signal(); }
 	bool isActive() { return arc->isActive(); }
         void deactivate() { arc->deactivate(); }
+	bool isDeactivationScheduled() { return deactivationScheduled; }
+	void scheduleForDeactivation() { deactivationScheduled = true; }
 	void setReplacementSync(SyncRequirement *other) { replacementSync = other; }
 	SyncRequirement *getReplacementSync() { return replacementSync; }
 	void setCounterRequirement(bool requirement) { this->counterRequirement = requirement; }

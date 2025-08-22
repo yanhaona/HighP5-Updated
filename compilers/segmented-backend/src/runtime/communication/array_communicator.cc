@@ -745,22 +745,19 @@ void CrossSyncCommunicator::setupCommunicator(bool includeNonInteractingSegments
 	*logFile << "\tNo MPI resource setup was needed for Cross-Sync Communicator for " << dependencyName << "\n";
 	logFile->flush();
 }
- 
-void CrossSyncCommunicator::sendData() {
 
-	//*logFile << "\tCross-sync communicator is sending (and receiving) data for " << dependencyName << "\n";
-	//logFile->flush();
+
+List<CommBuffer*> *CrossSyncCommunicator::getRemoteBuffers() {
 	
-	List<CommBuffer*> *localBuffers = new List<CommBuffer*>;
-	List<CommBuffer*> *remoteBuffers = new List<CommBuffer*>;
+	List<CommBuffer*> *localList = new List<CommBuffer*>;
+	List<CommBuffer*> *remoteList = new List<CommBuffer*>;
+	seperateLocalAndRemoteBuffers(localSegmentTag, localList, remoteList);
+	delete localList;
+	return remoteList;
+}
 
-	seperateLocalAndRemoteBuffers(localSegmentTag, localBuffers, remoteBuffers);
+List<CommBuffer*> *CrossSyncCommunicator::filterRemoteRecvBuffers(List<CommBuffer*> *remoteBuffers) {
 	
-	// local buffers' content will be written into the operating memory during the post processing operation
-	delete localBuffers;
-
-	// issue asynchronous receives first, when applicable
-	MPI_Request *receiveRequests = NULL;
 	// Note that in some receiver buffers, the current segment may be listed as sender among the group of possible senders. This 
 	// happens when the sender side of the cross-sync has replication somewhere in the partition hierarchy. Therefore, the current
 	// segment may be sending data to itself or receiving updates from some other segment for a replicated data part. If the send
@@ -775,6 +772,20 @@ void CrossSyncCommunicator::sendData() {
 			remoteReceives->Append(buffer);
 		}
 	}
+	delete activeReceives;
+	return remoteReceives;
+}
+
+void CrossSyncCommunicator::sendData() {
+
+	*logFile << "\tCross-sync communicator is sending (and receiving) data for " << dependencyName << "\n";
+	logFile->flush();
+	
+	List<CommBuffer*> *remoteBuffers = getRemoteBuffers();
+
+	// issue asynchronous receives first, when applicable
+	MPI_Request *receiveRequests = NULL;
+	List<CommBuffer*> *remoteReceives = filterRemoteRecvBuffers(remoteBuffers);
 	int receiveCount = remoteReceives->NumElements();
 	if (receiveCount > 0) {
 		receiveRequests = issueAsyncReceives(remoteReceives);		
@@ -840,19 +851,18 @@ void CrossSyncCommunicator::sendData() {
 
 	delete remoteBuffers;
 	delete remoteSends;
-	delete activeReceives;
 	delete remoteReceives;
 	if (receiveCount > 0) delete[] receiveRequests;
 	delete[] sendRequests;
 	
-	//*logFile << "\tCross-sync communicator sent (and received) data for " << dependencyName << "\n";
-	//logFile->flush();
+	*logFile << "\tCross-sync communicator sent (and received) data for " << dependencyName << "\n";
+	logFile->flush();
 }
 
 void CrossSyncCommunicator::receiveData() {
 
-	//*logFile << "\tCross-sync communicator is waiting for data for " << dependencyName << "\n";
-	//logFile->flush();
+	*logFile << "\tCross-sync communicator is waiting for data for " << dependencyName << "\n";
+	logFile->flush();
 	
 	List<CommBuffer*> *localBuffers = new List<CommBuffer*>;
 	List<CommBuffer*> *remoteBuffers = new List<CommBuffer*>;
@@ -882,8 +892,8 @@ void CrossSyncCommunicator::receiveData() {
 	delete remoteReceives;
 	if (receiveCount > 0) delete[] receiveRequests;
 	
-	//*logFile << "\tCross-sync communicator received data for " << dependencyName << "\n";
-	//logFile->flush();
+	*logFile << "\tCross-sync communicator received data for " << dependencyName << "\n";
+	logFile->flush();
 }
 
 MPI_Request *CrossSyncCommunicator::issueAsyncReceives(List<CommBuffer*> *remoteReceiveBuffers) {
@@ -907,3 +917,175 @@ MPI_Request *CrossSyncCommunicator::issueAsyncReceives(List<CommBuffer*> *remote
 	return receiveRequests;
 }
 
+//---------------------------------------------------- Updated Cross Sync Communicator --------------------------------------------------------/
+
+UpdatedCrossSyncCommunicator::~UpdatedCrossSyncCommunicator() {
+	if (scatterBuffer != NULL) {
+		delete[] scatterBuffer;
+		delete[] sendCounts;
+		delete[] displacements;
+	}
+}
+
+void UpdatedCrossSyncCommunicator::setupCommunicator(bool includeNonInteractingSegments) {
+	
+	Communicator::setupCommunicator(includeNonInteractingSegments);
+	
+	*logFile << "\tsetting up the  updated cross-sync communicator for " << dependencyName << "\n";
+	logFile->flush();
+	
+	struct timeval start;
+        gettimeofday(&start, NULL);
+	
+	allocateAndLinkScatterBuffer();
+	
+	struct timeval end;
+        gettimeofday(&end, NULL);
+        commStat->addCommResourcesSetupTime(dependencyName, start, end);
+		
+	
+	*logFile << "\tsetup done for updated cross-sync communicator for " << dependencyName << "\n";
+	logFile->flush();
+}
+
+void UpdatedCrossSyncCommunicator::allocateAndLinkScatterBuffer() {
+
+	List<CommBuffer*> *remoteBuffers = getRemoteBuffers();
+	List<CommBuffer*> *remoteSends = getSortedList(false, remoteBuffers);
+	List<CommBuffer*> *remoteReceives = filterRemoteRecvBuffers(remoteBuffers);
+	
+	long int scatterBufferSize = 0;
+	for (int i = 0; i < remoteSends->NumElements(); i++) {
+		CommBuffer *buffer = remoteSends->Nth(i);
+		Participant *sender = buffer->getExchange()->getSender();
+		int firstTag = sender->getSegmentTags()[0];
+		// if the sender side of the data has replication then the first segment having a replicated content
+		// will do the sending.
+		if (firstTag == localSegmentTag) {
+			scatterBufferSize += buffer->getBufferSize();
+		}
+	}
+
+	if (scatterBufferSize > 0) {
+	
+		scatterBuffer = new char[scatterBufferSize];
+		int participants = segmentGroup->getParticipantsCount();
+		displacements = new int[participants];
+		sendCounts = new int[participants];
+
+		// both displacements and receiveCount vectors must have entries for everyone in the segment group
+		for (int i = 0; i < participants; i++) {
+			displacements[i] = 0;
+			sendCounts[i] = 0;
+		}
+	
+		long int currentIndex = 0;
+		for (int i = 0; i < remoteSends->NumElements(); i++) {
+			CommBuffer *buffer = remoteSends->Nth(i);
+			Participant *sender = buffer->getExchange()->getSender();
+			int firstTag = sender->getSegmentTags()[0];
+			// link the scatter buffer to the current comm buffer only if the local segement is the first sender
+			if (firstTag != localSegmentTag) {
+				continue;
+			}
+			buffer->setData(scatterBuffer + currentIndex);
+			long int bufferSize = buffer->getBufferSize();
+		
+			// in the replicated mode a single buffer may be shared by multiple receiver segments; such 
+			// segments should have the same displacement index
+			vector<int> receiverTags = buffer->getExchange()->getReceiver()->getSegmentTags();
+			for (int j = 0; j < receiverTags.size(); j++) { 
+				int receiver = receiverTags[j];
+				if (receiver == localSegmentTag) continue;
+				int receiverRank = segmentGroup->getRank(receiver);
+				displacements[receiverRank] = currentIndex;
+				sendCounts[receiverRank] = bufferSize;
+			}
+
+			currentIndex += bufferSize;
+		}
+	}
+
+	delete remoteBuffers;
+	delete remoteSends;
+	delete remoteReceives;
+}
+
+void UpdatedCrossSyncCommunicator::sendData() {
+	
+	List<CommBuffer*> *remoteBuffers = getRemoteBuffers();
+	List<CommBuffer*> *remoteReceives = filterRemoteRecvBuffers(remoteBuffers);
+
+	// issue the asyncrhonous receives requests first
+	int receiveCount = remoteReceives->NumElements();
+	MPI_Request *receiveRequests = NULL;
+	if (receiveCount > 0) {
+		receiveRequests = issueAsyncReceives(remoteReceives);		
+	}
+
+	// then do the sending
+	MPI_Request *sendReq = new MPI_Request();
+	if (scatterBuffer != NULL) {
+		char dummyReceive = 0;
+		int myRank = segmentGroup->getRank(localSegmentTag);
+		MPI_Comm mpiComm = segmentGroup->getCommunicator();
+		int status = MPI_Iscatterv(scatterBuffer, sendCounts, displacements, MPI_CHAR, 
+				&dummyReceive, 0, MPI_CHAR, myRank, mpiComm, sendReq);
+		if (status != MPI_SUCCESS) {
+			cout << "Segment "<< localSegmentTag << ": asyncrhonous scatterv could not be issued\n";
+			exit(EXIT_FAILURE);
+		}
+		
+	}
+
+	// ensure all send and receives are successful
+	if (receiveCount > 0) {
+		int status = MPI_Waitall(receiveCount, receiveRequests, MPI_STATUSES_IGNORE);
+		if (status != MPI_SUCCESS) {
+			cout << "Segment "<< localSegmentTag << ": some asynchronous scatterv receives failed\n";
+			exit(EXIT_FAILURE);
+		}
+		delete[] receiveRequests;
+
+	} 
+	if (scatterBuffer != NULL) {
+		int status = MPI_Wait(sendReq, MPI_STATUSES_IGNORE);
+		if (status != MPI_SUCCESS) {
+			cout << "Segment "<< localSegmentTag << ": asyncrhonous scatterv send operation failed\n";
+			exit(EXIT_FAILURE);
+		}
+		delete sendReq;
+	
+	}
+
+	delete sendReq;
+	delete remoteReceives;
+	delete remoteBuffers;
+}
+
+
+MPI_Request *UpdatedCrossSyncCommunicator::issueAsyncReceives(List<CommBuffer*> *remoteReceiveBuffers) {
+
+	MPI_Comm mpiComm = segmentGroup->getCommunicator();
+	int receiveCount = remoteReceiveBuffers->NumElements();
+	MPI_Request *receiveRequests = new MPI_Request[receiveCount];
+
+	for (int i = 0; i < remoteReceiveBuffers->NumElements(); i++) {
+		
+		CommBuffer *buffer = remoteReceiveBuffers->Nth(i);
+		Participant *sender = buffer->getExchange()->getSender();
+		int firstTag = sender->getSegmentTags()[0];
+        	int scatterRank = segmentGroup->getRank(firstTag);
+		long int bufferSize = buffer->getBufferSize();
+		char *data = buffer->getData();
+
+		int status = MPI_Iscatterv(NULL, NULL, NULL, MPI_CHAR, 
+				data, bufferSize, MPI_CHAR, scatterRank, mpiComm, &receiveRequests[i]);
+                if (status != MPI_SUCCESS) {
+                	cout << "Segment " << localSegmentTag << ": could not issue asynchronous receive for scatterv\n";
+			exit(EXIT_FAILURE);
+		}
+		
+	}
+	return receiveRequests;
+}
