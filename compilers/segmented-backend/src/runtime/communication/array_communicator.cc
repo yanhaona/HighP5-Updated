@@ -778,8 +778,8 @@ List<CommBuffer*> *CrossSyncCommunicator::filterRemoteRecvBuffers(List<CommBuffe
 
 void CrossSyncCommunicator::sendData() {
 
-	*logFile << "\tCross-sync communicator is sending (and receiving) data for " << dependencyName << "\n";
-	logFile->flush();
+	//*logFile << "\tCross-sync communicator is sending (and receiving) data for " << dependencyName << "\n";
+	//logFile->flush();
 	
 	List<CommBuffer*> *remoteBuffers = getRemoteBuffers();
 
@@ -855,14 +855,14 @@ void CrossSyncCommunicator::sendData() {
 	if (receiveCount > 0) delete[] receiveRequests;
 	delete[] sendRequests;
 	
-	*logFile << "\tCross-sync communicator sent (and received) data for " << dependencyName << "\n";
-	logFile->flush();
+	//*logFile << "\tCross-sync communicator sent (and received) data for " << dependencyName << "\n";
+	//logFile->flush();
 }
 
 void CrossSyncCommunicator::receiveData() {
 
-	*logFile << "\tCross-sync communicator is waiting for data for " << dependencyName << "\n";
-	logFile->flush();
+	//*logFile << "\tCross-sync communicator is waiting for data for " << dependencyName << "\n";
+	//logFile->flush();
 	
 	List<CommBuffer*> *localBuffers = new List<CommBuffer*>;
 	List<CommBuffer*> *remoteBuffers = new List<CommBuffer*>;
@@ -892,8 +892,8 @@ void CrossSyncCommunicator::receiveData() {
 	delete remoteReceives;
 	if (receiveCount > 0) delete[] receiveRequests;
 	
-	*logFile << "\tCross-sync communicator received data for " << dependencyName << "\n";
-	logFile->flush();
+	//*logFile << "\tCross-sync communicator received data for " << dependencyName << "\n";
+	//logFile->flush();
 }
 
 MPI_Request *CrossSyncCommunicator::issueAsyncReceives(List<CommBuffer*> *remoteReceiveBuffers) {
