@@ -28,8 +28,8 @@ JUNK =  *.o */*.o *.core core $(COMPILER).purify purify.log
 BUILD_LOGS = ./bin/*.log 
 
 # Define the tools we are going to use
-CC= mpic++
-LD = mpic++
+CC= mpiFCCpx
+LD = mpiFCCpx
 
 # Set up the necessary flags for the tools
 
