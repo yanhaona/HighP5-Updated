@@ -49,8 +49,8 @@ if [ "$segmented_enabled" == "true" ]; then
 	# go inside the compiler directory
 	cd $segmented_memory_compiler_dir
 	# copy deployment configuration properties inside the compiler's configuration directory
-	grep -v '^#' $installer_dir/config/compiler.properties | grep -v '^$' > config/deployment.properties
-	grep -v '^#' $installer_dir/config/executable.properties | grep -v '^$' >> config/deployment.properties
+	grep --line-buffered -v '^#' $installer_dir/config/compiler.properties | grep -v '^$' > config/deployment.properties
+	grep --line-buffered -v '^#' $installer_dir/config/executable.properties | grep -v '^$' >> config/deployment.properties
 	# make the compiler executable
 	echo "generating the IT compiler for segmented-memory back-end"
 	make -f MakeFile-Compiler clean 
