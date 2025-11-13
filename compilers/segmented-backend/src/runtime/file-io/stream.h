@@ -28,7 +28,7 @@ template <class Type> class TypedInputStream {
 	List<int> *dimMultiplier;
 	int dataBegins;
 	int seekStepSize;
-	ifstream stream;
+	ifstream *stream;
   public:
 	TypedInputStream(const char *fileName) {
 		this->fileName = fileName;
@@ -47,29 +47,29 @@ template <class Type> class TypedInputStream {
 	}
 
 	void open() {
-		stream.open(fileName, ios_base::binary);
-		if (!stream.is_open()) {
+		stream->open(fileName, ios_base::binary);
+		if (!stream->is_open()) {
 			cout << "could not open input file: " << fileName << "\n";
 			exit(EXIT_FAILURE);
 		}
-		stream.seekg(dataBegins, ios_base::beg);
+		stream->seekg(dataBegins, ios_base::beg);
 	}
-	void close() { stream.close(); }
+	void close() { stream->close(); }
 	List<Dimension*> *getDimensionList() { return dimLengths; }
 
 	// read an element at a specific index of the array 
 	Type readElement(List<int> *index) {
 		long int seekPosition = getSeekPosition(index);
-		stream.seekg(seekPosition, ios_base::beg);
+		stream->seekg(seekPosition, ios_base::beg);
 		Type element;
-		stream.read(reinterpret_cast<char*>(&element), seekStepSize);
+		stream->read(reinterpret_cast<char*>(&element), seekStepSize);
 		return element;
 	}
 
 	// read the element from current file read pointer location; use this with care 
 	Type readNextElement() {
 		Type element;
-		stream.read(reinterpret_cast<char*>(&element), seekStepSize);
+		stream->read(reinterpret_cast<char*>(&element), seekStepSize);
 		return element;
 	}
 
@@ -80,17 +80,18 @@ template <class Type> class TypedInputStream {
 	}
 
 	void copyDimensionInfo(PartDimension *partDims) {
-		for (int i = 0; i < dimLengths->NumElements(); i++) {
-			partDims[i].partition = *(dimLengths->Nth(i));
-		}
-	}
+                for (int i = 0; i < dimLengths->NumElements(); i++) {
+                        partDims[i].partition = *(dimLengths->Nth(i));
+                }
+        }
 
   private:
 	void initialize() {
 
 		// try to open the file and if failed exit with an error
-		stream.open(fileName, ifstream::binary);
-		if (!stream.is_open()) {
+		//stream.open(fileName, ifstream::binary);
+		stream = new ifstream(fileName, ifstream::binary);
+		if (!stream->is_open()) {
 			cout << "could not open input file: " << fileName << "\n";
 			exit(EXIT_FAILURE);
 		}
@@ -99,7 +100,7 @@ template <class Type> class TypedInputStream {
 		List<char> *dimInfo = new List<char>;
 		char *ch = new char[8];
 		do {
-			stream.read(ch, sizeof(char));
+			stream->read(ch, sizeof(char));
 			dimInfo->Append(*ch);
 		} while (*ch != '\n');
 		char *dimInfoBuffer = new char[dimInfo->NumElements()];
@@ -123,14 +124,14 @@ template <class Type> class TypedInputStream {
 			Dimension *dim = new Dimension;
 			dim->range.min = 0;
 			dim->range.max = dimensionLength - 1;
-			dim->setLength();
+			dim->length = dimensionLength;
 			dimLengths->Append(dim);
 		}
 		delete[] dimInfoBuffer;
 		delete tokenList;
 
 		// set the beginning of data section pointer appropriately to be used later when reading elements
-		dataBegins = stream.tellg();
+		dataBegins = stream->tellg();
 
 		// initialize the dim-multiplier-list for random access
 		dimMultiplier = new List<int>;
@@ -140,7 +141,7 @@ template <class Type> class TypedInputStream {
 			currentMultiplier *= dimLengths->Nth(i)->length;
 		}
 
-		stream.close();
+		stream->close();
 		delete[] ch;
 	}
 
@@ -160,7 +161,7 @@ template <class Type> class TypedOutputStream {
 	List<int> *dimMultiplier;
 	int dataBegins;
 	int seekStepSize;
-	ofstream stream;
+	ofstream *stream;
 
   public:
 	TypedOutputStream(const char *fileName, List<Dimension*> *dimLengths, bool initFile) {
@@ -177,32 +178,32 @@ template <class Type> class TypedOutputStream {
 
 	void open() {
 		// note that the file has to be opened in read-write mode; otherwise overwriting cannot be done on specific points
-		stream.open(fileName, ios_base::binary | ios_base::in | ios_base::out);
-		if (!stream.is_open()) {
+		stream->open(fileName, ios_base::binary | ios_base::in | ios_base::out);
+		if (!stream->is_open()) {
 			cout << "could not open output file: " << fileName << "\n";
 			exit(EXIT_FAILURE);
 		}
-		stream.seekp(dataBegins, ios_base::beg);
+		stream->seekp(dataBegins, ios_base::beg);
 	}
-	void close() { stream.close(); }
+	void close() { stream->close(); }
 
 	void writeElement(Type element, List<int> *index) {
 		long int seekPosition = getSeekPosition(index);
-		stream.seekp(seekPosition, ios_base::beg);
-		stream.write(reinterpret_cast<char*>(&element), seekStepSize);
+		stream->seekp(seekPosition, ios_base::beg);
+		stream->write(reinterpret_cast<char*>(&element), seekStepSize);
 	}
 
 	// write elements at the current location of the seek pointer; use this with care
 	void writeNextElement(Type element) {
-		stream.write(reinterpret_cast<char*>(&element), seekStepSize);
+		stream->write(reinterpret_cast<char*>(&element), seekStepSize);
 	}
 
   private:
 	void initializeFile() {
 
 		// try to open the file and exit the program if failed
-		stream.open(fileName, ios_base::binary);
-		if (!stream.is_open()) {
+		stream->open(fileName, ios_base::binary);
+		if (!stream->is_open()) {
 			cout << "could not open output file: " << fileName << "\n";
 			exit(EXIT_FAILURE);
 		}
@@ -216,18 +217,18 @@ template <class Type> class TypedOutputStream {
 			str << dimLength;
 			totalElements *= dimLength;
 			int strLength = str.str().length();
-			stream.write(str.str().c_str(), sizeof(char) * strLength);
-			stream.flush();
+			stream->write(str.str().c_str(), sizeof(char) * strLength);
+			stream->flush();
 		}
 		char lineEnd = '\n';
-		stream.write(&lineEnd, sizeof(char));
+		stream->write(&lineEnd, sizeof(char));
 
 		// zero fill the file to facilitate later update without facing the problem of crossing the end-of-file marker
 		Type zero = 0;
 		for (int i = 0; i < totalElements; i++) {
-			stream.write(reinterpret_cast<char*>(&zero), seekStepSize);
+			stream->write(reinterpret_cast<char*>(&zero), seekStepSize);
 		}
-		stream.close();
+		stream->close();
 	}
 
 	void initialize() {
