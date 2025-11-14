@@ -43,6 +43,8 @@ segmented_enabled=`cat config/compiler.properties | grep 'segmented.memory.backe
 
 # install the segmented-memory-backend compiler if the user wants it
 if [ "$segmented_enabled" == "true" ]; then
+	# load intel oneapi mpi module
+	module load mpi/latest
 	# select the back-end c++ compiler from the configuration file
 	segmented_memory_c=`cat config/compiler.properties | grep 'segmented.memory.backend.c.compiler' | cut -d '=' -f2`
 	echo "underlying C++ compiler for the segmented-memory back-end: $segmented_memory_c"
@@ -57,6 +59,8 @@ if [ "$segmented_enabled" == "true" ]; then
 	make -f MakeFile-Compiler C_COMPILER=$segmented_memory_c
 	# remove intermediate object files that the compiler uses to avoid later architecture issues with executable generation
 	make -f MakeFile-Compiler clean-objs
+	# unload intel oneapi mpi module
+	module unload mpi/latest
 fi
 
 # come back to the installer directory
