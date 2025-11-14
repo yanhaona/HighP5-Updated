@@ -88,11 +88,18 @@ c_opt_flags=`cat ${config_dir}/executable.properties | grep 'c.optimization.flag
 # generate intermediate C++ source codes
 echo "generating intermediate code"
 cd $segmented_memory_compiler_dir
+# load intel oneapi MPI version needed for HighP5 compiler to work
+module load mpi/latest
 ${segmented_memory_compiler} $src $pcubes $cores $mapping $build_dir > /dev/null
+# unload the intel MPI module
+module unload mpi/latest
 
 # generate the binary from the intermediate source code and delete the intermediate source code
+
 echo "generating an executable from the intermediate code"
-make -f MakeFile-Executable C_COMPILER=$mpi_c EXECUTABLE=$executable BUILD_SUBDIR=$build_dir C_OPT_FLAGS="$c_opt_flags" > /dev/null
+# loading the compute node ARM architecture environment's cross compiler libraries
+. /vol0004/apps/oss/gcc-arm-11.2.1/setup-env.sh
+make -f MakeFile-Executable C_COMPILER=$mpi_c EXECUTABLE=$executable BUILD_SUBDIR=$build_dir C_OPT_FLAGS="$c_opt_flags"
 echo "cleaning up intermediate files/directories"
 make -f MakeFile-Executable BUILD_SUBDIR=$build_dir clean > /dev/null
 

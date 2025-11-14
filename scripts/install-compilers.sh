@@ -55,6 +55,8 @@ if [ "$segmented_enabled" == "true" ]; then
 	echo "generating the IT compiler for segmented-memory back-end"
 	make -f MakeFile-Compiler clean 
 	make -f MakeFile-Compiler C_COMPILER=$segmented_memory_c
+	# remove intermediate object files that the compiler uses to avoid later architecture issues with executable generation
+	make -f MakeFile-Compiler clean-objs
 fi
 
 # come back to the installer directory
