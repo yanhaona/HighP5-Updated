@@ -80,7 +80,7 @@ echo "Core numbering file: $cores"
 echo "Mapping file: $mapping"
 
 # determine what backend C++ compiler has been used to install the IT segmented-memory compiler
-multicore_c=`cat ${config_dir}/compiler.properties | grep 'segmented.memory.backend.c.compiler' | cut -d '=' -f2`
+mpi_c=`cat ${config_dir}/executable.properties | grep 'segmented.memory.executable.c.compiler' | cut -d '=' -f2`
 
 # determine what compiler optimization flags are enabled for the backend C++ compiler
 c_opt_flags=`cat ${config_dir}/executable.properties | grep 'c.optimization.flags' | cut -d '=' -f2`
@@ -92,7 +92,7 @@ ${segmented_memory_compiler} $src $pcubes $cores $mapping $build_dir > /dev/null
 
 # generate the binary from the intermediate source code and delete the intermediate source code
 echo "generating an executable from the intermediate code"
-make -f MakeFile-Executable C_COMPILER=$multicore_c EXECUTABLE=$executable BUILD_SUBDIR=$build_dir C_OPT_FLAGS="$c_opt_flags" > /dev/null
+make -f MakeFile-Executable C_COMPILER=$mpi_c EXECUTABLE=$executable BUILD_SUBDIR=$build_dir C_OPT_FLAGS="$c_opt_flags" > /dev/null
 echo "cleaning up intermediate files/directories"
 make -f MakeFile-Executable BUILD_SUBDIR=$build_dir clean > /dev/null
 

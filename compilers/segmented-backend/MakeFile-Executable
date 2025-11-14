@@ -1,6 +1,6 @@
 .PHONY: clean 
 
-# These properties should be passed to the make file to tailer the output based on current
+# These properties should be passed to the make file to tailor the output based on current
 # need
 C_COMPILER = mpic++
 BUILD_SUBDIR = tmp
