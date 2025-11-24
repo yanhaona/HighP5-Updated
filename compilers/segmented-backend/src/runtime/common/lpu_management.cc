@@ -480,12 +480,14 @@ bool ThreadState::isValidPpu(int lpsId) {
 }
 
 void ThreadState::initiateLogFile(const char *fileNamePrefix) {
-	std::ostringstream fileName;
-	fileName << fileNamePrefix;
-	fileName << "_" << threadIds->threadNo << ".log";
-	threadLog.open(fileName.str().c_str(), std::ofstream::out | std::ofstream::app);
-	if (!threadLog.is_open()) {
-		std::cout << "Could not open log file for Thread-" << threadIds->threadNo << "\n";
+	if (loggingEnabled) {
+		std::ostringstream fileName;
+		fileName << fileNamePrefix;
+		fileName << "_" << threadIds->threadNo << ".log";
+		threadLog.open(fileName.str().c_str(), std::ofstream::out | std::ofstream::app);
+		if (!threadLog.is_open()) {
+			std::cout << "Could not open log file for Thread-" << threadIds->threadNo << "\n";
+		}
 	}
 }
 
@@ -509,7 +511,9 @@ LPU *ThreadState::getCurrentLpu(int lpsId, bool allowInvalid) {
 }
 
 void ThreadState::closeLogFile() {
-	if (threadLog.is_open()) threadLog.close();
+	if (loggingEnabled) {
+		if (threadLog.is_open()) threadLog.close();
+	}
 }
 
 void ThreadState::logIteratorStatistics() {
