@@ -276,6 +276,9 @@ void generateCodeForDataReduction(std::ofstream &programFile, ReductionOperator 
 	programFile << indent << "if (status != MPI_SUCCESS) {\n";
 	programFile << doubleIndent << "std::cout << \"Reduction operation failed\\n\"" << stmtSeparator;
 	programFile << doubleIndent << "std::exit(EXIT_FAILURE)" << stmtSeparator;
+	//programFile << indent << "} ";
+	//programFile << "else {\n";
+	//programFile << doubleIndent << "*logFile << \"performed an MPI reduction.\\n\"" << stmtSeparator;
 	programFile << indent << "}\n";
 }
 
