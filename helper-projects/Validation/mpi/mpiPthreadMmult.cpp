@@ -17,19 +17,75 @@
 #include "../structures.h"
 #include "../fileUtility.h"
 #include "../cpuCores.h"
+#include "../stream.h"
 
+
+// ------------------------------------------------------------------------------------- MPI Information
+int processId;
+int processCount;
 
 // ---------------------------------------------------------------------------------- Matrix Information
-double *m1;
-double *m2;
+double *a;
+double *b;
 double *c;
-Dimension a_Dims[2];
-Dimension c_Dims[2];
-Dimension b_Dims[2];
+Dimension aDims[2];
+Dimension cDims[2];
+Dimension bDims[2];
 
 //------------------------------------------------------------------------------ Thread Interaction Data
 int threadCountMMM;
 int blockSizeMMM;
+
+//------------------------------------------------------------------------------ Input Files Reader Code
+void readAFromFile(const char *filePath) {
+
+	int rowsPerProcess = (aDims[0].length + processCount - 1) / processCount;
+	int rowStart = processId * rowsPerProcess;
+	int rowEnd = rowStart + rowsPerProcess - 1;
+	if (rowEnd >= aDims[0].length) {
+		rowEnd = aDims[0].length - 1;
+	}
+	int rowCount = rowEnd - rowStart + 1;
+	int localEntries = rowCount * aDims[1].length;
+	a = new double[localEntries];
+
+	TypedInputStream<double> *stream = new TypedInputStream<double>(filePath);
+	int storeIndex = 0;
+	stream->open();
+	List<int> *indexList = new List<int>();
+        for (int i = rowStart; i <= rowEnd; i++) {
+		indexList->clear();
+		indexList->Append(i);
+		indexList->Append(0);
+		a[storeIndex] = stream->readElement(indexList);
+		storeIndex++;
+		int count = 1;
+                while (count < aDims[1].length) {
+			a[storeIndex] = stream->readNextElement();
+			storeIndex++;
+			count++;
+		}
+	}
+	stream->close();
+
+	delete indexList;
+	delete stream;
+}
+
+void readBFromFile(const char *filePath) {
+
+	int bSize = bDims[0].length * bDims[1].length;
+	b = new double[bSize];
+	TypedInputStream<double> *stream = new TypedInputStream<double>(filePath);
+	int storeIndex = 0;
+	stream->open();
+	for (int i = 0; i < bSize; i++) {
+		b[storeIndex] = stream->readNextElement();
+	}
+	stream->close();
+	delete stream;
+}
+
 
 //-------------------------------------------------------------------------------------- Thread Function
 
@@ -38,7 +94,7 @@ void *computeBMMM(void *arg) {
         int threadId = *((int*) arg);
 
 	// different threads get different chunks of rows from the result matrix to process
-	int totalRows = c_Dims[0].length;
+	int totalRows = cDims[0].length;
 	int rowsPerThread = (totalRows + threadCountMMM - 1) / threadCountMMM;
 	int rowStart = rowsPerThread * threadId;
 	int rowEnd = rowStart + rowsPerThread - 1;
@@ -50,22 +106,22 @@ void *computeBMMM(void *arg) {
 	for (int iB = rowStart; iB <= rowEnd; iB += blockSizeMMM) {
 		int rStart = iB;
 		int rEnd = rStart + blockSizeMMM - 1;
-		if (rEnd >= a_Dims[0].length) rEnd = a_Dims[0].length - 1;
-		for (int jB = 0; jB < b_Dims[1].length; jB += blockSizeMMM) {
+		if (rEnd >= aDims[0].length) rEnd = aDims[0].length - 1;
+		for (int jB = 0; jB < bDims[1].length; jB += blockSizeMMM) {
 			int cStart = jB;
 			int cEnd = cStart + blockSizeMMM - 1;
-			if (cEnd >= b_Dims[1].length) cEnd = b_Dims[1].length - 1;
-			for (int kB = 0; kB < a_Dims[1].length; kB += blockSizeMMM) {
+			if (cEnd >= bDims[1].length) cEnd = bDims[1].length - 1;
+			for (int kB = 0; kB < aDims[1].length; kB += blockSizeMMM) {
 				int startIndex = kB;
 				int endIndex = startIndex + blockSizeMMM - 1;
-				if (endIndex >= a_Dims[1].length) endIndex = a_Dims[1].length - 1;
+				if (endIndex >= aDims[1].length) endIndex = aDims[1].length - 1;
 				for (int i = rStart; i <= rEnd; i++) {
-					int aRowIndex = i * a_Dims[1].length;
-					int cRowIndex = i * c_Dims[1].length;
+					int aRowIndex = i * aDims[1].length;
+					int cRowIndex = i * cDims[1].length;
 					for (int j = cStart; j <= cEnd; j++) {
 						for (int k = startIndex; k <= endIndex; k++) {
-							int bRowIndex = k * b_Dims[1].length;
-							c[cRowIndex + j] += m1[aRowIndex + k] * m2[bRowIndex + j];
+							int bRowIndex = k * bDims[1].length;
+							c[cRowIndex + j] += a[aRowIndex + k] * b[bRowIndex + j];
 						}
 					}
 				}
@@ -80,11 +136,9 @@ void *computeBMMM(void *arg) {
 //----------------------------------------------------------------------------------------------- main function
 int main(int argc, char *argv[]) {
 
-	// this code only works for a single MPI process. So checking if that restriction is met
-	// do MPI intialization
-	int processId;
-	int processCount;
         MPI_Init(&argc, &argv);
+	
+	// this code only works for a single MPI process. So checking if that restriction is met
         MPI_Comm_rank(MPI_COMM_WORLD, &processId);
         MPI_Comm_size(MPI_COMM_WORLD, &processCount);
 	if (processCount > 1) {
@@ -98,25 +152,43 @@ int main(int argc, char *argv[]) {
                 std::cout << "then specify the number of threads to be used \n";
                 std::exit(EXIT_FAILURE);
         }
-
-        // interpret command line parameters
-        const char* matrix1File = argv[1];
-        const char* matrix2File= argv[2];
-        blockSizeMMM = atoi(argv[3]);
-        threadCountMMM = atoi(argv[4]);
-
-
-	// load original inputs and output from generated files
-	m1 = readArrayFromFile <double> (matrix1File, 2, a_Dims);
-	m2 = readArrayFromFile <double> (matrix2File, 2, b_Dims);
-
+	
 	// starting execution timer clock
 	struct timeval start;
 	gettimeofday(&start, NULL);
 
+	// read input matrices
+	const char *filePathA = argv[1];
+	std::ifstream fileA(filePathA);
+        if (!fileA.is_open()) {
+                std::cout << "could not open the specified file\n";
+                std::exit(EXIT_FAILURE);
+        }
+	readArrayDimensionInfoFromFile(fileA, 2, aDims);
+	fileA.close();
+	const char *filePathB = argv[2];
+	std::ifstream fileB(filePathB);
+        if (!fileB.is_open()) {
+                std::cout << "could not open the specified file\n";
+                std::exit(EXIT_FAILURE);
+        }
+	readArrayDimensionInfoFromFile(fileB, 2, bDims);
+	fileB.close();
+
+	readAFromFile(filePathA);
+	readBFromFile(filePathB);
+
+	struct timeval memEnd;
+        gettimeofday(&memEnd, NULL);
+
+        // interpret command line parameters
+        blockSizeMMM = atoi(argv[3]);
+        threadCountMMM = atoi(argv[4]);
+
+
 	// declare and initialize c for current computation
-	c_Dims[0] = a_Dims[0]; c_Dims[1] = b_Dims[1];
-	int cSize = a_Dims[0].length * b_Dims[1].length;
+	cDims[0] = aDims[0]; cDims[1] = bDims[1];
+	int cSize = aDims[0].length * bDims[1].length;
 	c = new double[cSize];
 	for (int i = 0; i < cSize; i++) c[i] = 0;
 
@@ -152,6 +224,3 @@ int main(int argc, char *argv[]) {
 	MPI_Finalize();
 	return 0;
 }
-
-
-
