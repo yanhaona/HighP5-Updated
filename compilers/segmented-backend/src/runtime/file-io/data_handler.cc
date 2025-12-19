@@ -11,6 +11,7 @@
 #include "../../../../common-libs/domain-obj/structure.h"
 
 #include <mpi.h>
+#include <pthread.h>
 
 //--------------------------------------------------------------- Part Info --------------------------------------------------------------/
 
@@ -302,6 +303,65 @@ long int PartHandler::getStorageIndex(List<int> *partIndex, Dimension *partDimen
 	}
 	return storeIndex;
 }
+
+//-------------------------------------------------------------- Part Reader -------------------------------------------------------------/
+
+void PartReader::processParts() {
+
+	// no need to create threads to do concurrent reading
+	if (concurrency == 1) {
+		PartHandler::processParts();
+
+	// this is the root PartReader that should create new worker reader
+	} else if (workerIndex == -1) {
+	
+		pthread_t threads[concurrency];
+
+
+		for (int i = 0; i < concurrency; i++) {
+
+			PartReader *worker = createClone(concurrency, i);
+
+                	int state = pthread_create(&threads[i], NULL, PartReader::runWorker, (void *) worker);
+                	if (state) {
+                        	std::cout << "Could not start some PThread for concurrent reading" << std::endl;
+                        	std::exit(EXIT_FAILURE);
+                	}
+                }
+
+		// wait for the worker reader threads to finish reading
+		for (int i = 0; i < concurrency; i++) {
+                	pthread_join(threads[i], NULL);
+        	}
+
+		//TODO: need to add cleanup code for deleting the worker objects
+
+
+	// code for worker PartReaders	
+	} else {
+		begin();
+		currentPartInfo = new PartInfo();
+		for (int i = workerIndex; i < dataParts->NumElements(); i = i + concurrency) {
+		
+			DataPart *dataPart = dataParts->Nth(i);
+			this->currentPart = dataPart;
+			calculateCurrentPartInfo();
+		
+			if (needToExcludePadding && currentPartInfo->contentDescription == NULL) continue;
+	
+			PartMetadata *metadata = dataPart->getMetadata();
+			Dimension *partDimensions = metadata->getBoundary();
+			List<int> *partIndexList = new List<int>;
+			processPart(partDimensions, 0, partIndexList);
+			delete partIndexList;
+			postProcessPart(dataPart);
+		}
+		delete currentPartInfo;
+		terminate();
+	}
+
+}
+
 
 //-------------------------------------------------------------- Part Writer -------------------------------------------------------------/
 

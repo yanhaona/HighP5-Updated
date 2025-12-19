@@ -106,15 +106,42 @@ class PartHandler {
 	// a post processing routine to be implemented by any handler to further manipulate the content of the data part
 	// recently being read/written
 	virtual void postProcessPart(DataPart *dataPart) {}
-  private:
+  protected:
 	// a recursive helper routines to aid the processParts() function
 	void processPart(Dimension *partDimensions, int currentDimNo, List<int> *partialIndex);
 };
 
 /* base class to be extended for the reading process */
 class PartReader : public PartHandler {
+  protected:
+	// the degree of parallelism supported in the local machine
+	int concurrency;
+        // concurrent reading will be done by cloning the reader. In that regard, each reader should have a cloning
+	// index to determine which part it should process
+	int workerIndex;
   public:
-	PartReader(DataPartsList *partsList, DataPartitionConfig *partConfig) : PartHandler(partsList, partConfig) {}
+	PartReader(DataPartsList *partsList, 
+			DataPartitionConfig *partConfig, 
+			int parallelism) : PartHandler(partsList, partConfig) {
+		this->concurrency = parallelism;
+		this->workerIndex = -1;
+	}
+
+	void setWorkerIndex(int index) { this->workerIndex = index; }
+	void setConcurrency(int count) { this->concurrency = count; }
+
+	// function needed for concurrent reading; this is the pthread function that a worker will be launched wih
+	static void *runWorker(void *arg) {
+		PartReader *workerReader = (PartReader *) arg;
+		workerReader->processParts();
+		return NULL;
+	}
+	
+	// The reader overrides the base class's function to support concurrent part reading  
+	void processParts();
+
+	// The actual reader implementations of HighP5 tasks will provide implementation for cloning function
+	virtual PartReader *createClone(int concurrency, int index) = 0;
 
 	// the process element method just call the virtual read element function; this conversion is done to make it
 	// explicit the reading process. Task specific subclasses should implement the readElement() function
