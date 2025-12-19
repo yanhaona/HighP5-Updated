@@ -26,19 +26,33 @@ void generatePartReaderForStructure(std::ofstream &headerFile, ArrayDataStructur
 	headerFile << std::endl << "class " << varName << "InSpace" << lpsName << "Reader ";
 	headerFile << ": public PartReader {\n";
 	
-	// a part writer class needs a typed stream to read its data
+	// a part reader class needs a typed stream to read its data
 	headerFile << "  protected:\n";
 	headerFile << indent << "TypedInputStream<" << elementType->getCType() << "> *stream" << stmtSeparator;
+	headerFile << indent << "DataPartsList *partsList" << stmtSeparator;
 
 	// write the constructor for the class
 	headerFile << "  public:\n";
 	headerFile << indent << varName << "InSpace" << lpsName << "Reader(";
 	headerFile << "DataPartitionConfig *partConfig" << paramSeparator << "DataPartsList *partsList)\n" ;
 	headerFile << indent << doubleIndent << ": PartReader(";
-	headerFile << "partsList" << paramSeparator << "partConfig) {\n";
+	headerFile << "partsList" << paramSeparator << "partConfig" 
+		<< paramSeparator << "Threads_Per_Segment) {\n";
 	headerFile << doubleIndent << "this->partConfig = partConfig" << stmtSeparator;
+	headerFile << doubleIndent << "this->partsList = partsList" << stmtSeparator;
 	headerFile << doubleIndent << "this->stream = NULL" << stmtSeparator;
 	headerFile << indent << "}\n"; 
+
+	// write the implementation of the cloning function
+	headerFile << indent << "PartReader *createClone(int concurrency" << paramSeparator << "int index) {\n";
+	headerFile << doubleIndent << "PartReader *reader = new " << varName << "InSpace" << lpsName << "Reader(";
+	headerFile << "partConfig" << paramSeparator << "partsList" << ")" << stmtSeparator;
+	headerFile << doubleIndent << "reader->setWorkerIndex(index)" << stmtSeparator;
+	headerFile << doubleIndent << "reader->setConcurrency(concurrency)" << stmtSeparator;
+	headerFile << doubleIndent << "reader->setFileName(this->fileName)" << stmtSeparator;
+	headerFile << doubleIndent << "reader->setNeedToExcludePadding(this->needToExcludePadding)" << stmtSeparator;
+	headerFile << doubleIndent << "return reader" << stmtSeparator;
+	headerFile << indent << "}\n";
 
 	// write implementations for the functions needed to do structure specific reading
 	headerFile << indent << "void begin() {\n";
