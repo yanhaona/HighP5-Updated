@@ -2,9 +2,9 @@ Program (args) {
 	luEnv = new TaskEnvironment(name: "Block LU Factorization")
 	bind_input(luEnv, "a", args.input)
 	execute(task: "Block LU Factorization"; environment: luEnv; partition: args.block_size)
-	bind_output(luEnv, "u", args.upper)
-	bind_output(luEnv, "l", args.lower)
-	bind_output(luEnv, "p", args.pivot)
+	//bind_output(luEnv, "u", args.upper)
+	//bind_output(luEnv, "l", args.lower)
+	//bind_output(luEnv, "p", args.pivot)
 }
 
 Task "Block LU Factorization":
