@@ -126,6 +126,8 @@ PartHandler::PartHandler(DataPartsList *partsList, DataPartitionConfig *partConf
 	this->dataDimensionality = metadata->getDimensions();
 	this->dataDimensions = metadata->getBoundary();
 	this->needToExcludePadding = false;
+	this->handlerIndex = 0;
+	this->stride = 1;
 }
 
 List<Dimension*> *PartHandler::getDimensionList() {
@@ -225,13 +227,26 @@ void PartHandler::processPart(Dimension *partDimensions, int currentDimNo, List<
 	Dimension dimension = partDimensions[currentDimNo];
 	
 	if (currentDimNo < dataDimensionality - 1) {
-		for (int index = dimension.range.min; index <= dimension.range.max; index++) {
-			int dataIndex = getDataIndexForDim(currentDimNo, index);
-			currentDataIndex->Append(dataIndex);
-			partialIndex->Append(index);
-			processPart(partDimensions, currentDimNo + 1, partialIndex);
-			partialIndex->RemoveAt(currentDimNo);
-			currentDataIndex->RemoveAt(currentDimNo);
+		if (currentDimNo == 0 && stride > 1) {
+			for (int index = dimension.range.min + handlerIndex; 
+					index <= dimension.range.max; index = index + stride) {
+				int dataIndex = getDataIndexForDim(currentDimNo, index);
+				currentDataIndex->Append(dataIndex);
+				partialIndex->Append(index);
+				processPart(partDimensions, currentDimNo + 1, partialIndex);
+				partialIndex->RemoveAt(currentDimNo);
+				currentDataIndex->RemoveAt(currentDimNo);
+			}
+		
+		} else {
+			for (int index = dimension.range.min; index <= dimension.range.max; index++) {
+				int dataIndex = getDataIndexForDim(currentDimNo, index);
+				currentDataIndex->Append(dataIndex);
+				partialIndex->Append(index);
+				processPart(partDimensions, currentDimNo + 1, partialIndex);
+				partialIndex->RemoveAt(currentDimNo);
+				currentDataIndex->RemoveAt(currentDimNo);
+			}
 		}	
 	} else { 
 
@@ -317,10 +332,26 @@ void PartReader::processParts() {
 	
 		pthread_t threads[concurrency];
 
+		// If the number of parts is at least larger than the number of concurrent threads we can use then we
+		// assign different threads to process different parts. Otherwise, we let threads to process differt
+		// locations of a single part
+		int partsCount = dataParts->NumElements();
+		int partConcurrency = partsCount >= concurrency ? concurrency : 1;
+
 
 		for (int i = 0; i < concurrency; i++) {
 
-			PartReader *worker = createClone(concurrency, i);
+			PartReader *worker = NULL;
+			// let different worker takes different parts
+			if (partConcurrency > 1) {
+				worker = createClone(concurrency, i);
+
+			// let workers collaborate on processing a single part
+			} else {
+				worker = createClone(1, 0);
+				worker->setHandlerIndex(i);
+				worker->setStride(concurrency);
+			}
 
                 	int state = pthread_create(&threads[i], NULL, PartReader::runWorker, (void *) worker);
                 	if (state) {

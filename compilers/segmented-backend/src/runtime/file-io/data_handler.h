@@ -66,11 +66,18 @@ class PartHandler {
 	// it adds some validation overhead when processing each cell of a data part, we have this boolen flag field
 	// to indicate when padding exclusion should be bothered with.
 	bool needToExcludePadding;
+
+	// some specific part handler may enable parallel processing of parts using multiple threads. Then the following
+	// two parameters will be set to non-default value to allow parallel processing
+	int handlerIndex;
+	int stride;
   public:
 	PartHandler(DataPartsList *partsList, DataPartitionConfig *partConfig);
 	void setFileName(const char *fileName) { this->fileName = fileName; }
 	void setNeedToExcludePadding(bool stat) { needToExcludePadding = stat; }
 	bool doesNeedToExcludePadding() { return needToExcludePadding; }
+	void setHandlerIndex(int index) { this->handlerIndex = index; }
+	void setStride(int participants) { this->stride = participants; }
 	
 	// this routine iterates the data section of all parts one-by-one for reading/writing   
 	virtual void processParts();
