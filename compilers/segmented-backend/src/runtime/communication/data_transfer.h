@@ -113,6 +113,13 @@ class DataPartSwiftIndexList : public DataPartIndexList {
 	long int* getIndexArray() {return indexArray; }
 	int read(char *destBuffer, int elementSize);
 	int write(char *sourceBuffer, int elementSize);
+
+	// in case of a local transfer between a sender part and a receiver part, it may be possible to short-circuit
+	// read-writes between two swift mapped index list to avoid an extra memcopy overhead using an intermediate
+	// buffers. The following two methods check for possiblity of such direct transfer and assumed possible, does
+	// the direct transfer.
+	bool isCompatiableForDirectTransfer(DataPartSwiftIndexList *other, int elementSize);
+	void performDirectTransfer(DataPartSwiftIndexList *destination, int elementSize);
 };
 
 /* class holding all instructions regarding a single data-point transfer between the communication buffer and the
