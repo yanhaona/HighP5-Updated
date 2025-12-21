@@ -587,6 +587,7 @@ SwiftIndexMappedVirtualCommBuffer::SwiftIndexMappedVirtualCommBuffer(
 	}
 
 	generateSwiftIndexMappings();
+	directXferSupported = evaluateDirectTransferPossibility();
 }
 
 SwiftIndexMappedVirtualCommBuffer::~SwiftIndexMappedVirtualCommBuffer() {
@@ -610,19 +611,55 @@ SwiftIndexMappedVirtualCommBuffer::~SwiftIndexMappedVirtualCommBuffer() {
 
 void SwiftIndexMappedVirtualCommBuffer::readData(bool loggingEnabled, std::ostream &logFile) {
 
-	long int index = 0;
-        for (int i = 0; i < senderSwiftIndexMapping->NumElements(); i++) {
-                DataPartIndexList *partIndexList = senderSwiftIndexMapping->Nth(i);
-                char *bufferIndex = data + index * elementSize;
-                index += partIndexList->read(bufferIndex, elementSize);
-        }
+	if (directXferSupported) {
+        	for (int i = 0; i < senderSwiftIndexMapping->NumElements(); i++) {
+                	
+			DataPartIndexList *sendIndexList = senderSwiftIndexMapping->Nth(i);
+                	DataPartIndexList *recvIndexList = receiverSwiftIndexMapping->Nth(i);
+			DataPartSwiftIndexList *sendSwift = (DataPartSwiftIndexList *) sendIndexList;
+			DataPartSwiftIndexList *recvSwift = (DataPartSwiftIndexList *) recvIndexList;
+			sendSwift->performDirectTransfer(recvSwift, elementSize);
+		}
+	
+	} else {
 
-	index = 0;
-        for (int i = 0; i < receiverSwiftIndexMapping->NumElements(); i++) {
-                DataPartIndexList *partIndexList = receiverSwiftIndexMapping->Nth(i);
-                char *bufferIndex = data + index * elementSize;
-                index += partIndexList->write(bufferIndex, elementSize);
-        }
+		long int index = 0;
+        	for (int i = 0; i < senderSwiftIndexMapping->NumElements(); i++) {
+                	DataPartIndexList *partIndexList = senderSwiftIndexMapping->Nth(i);
+                	char *bufferIndex = data + index * elementSize;
+                	index += partIndexList->read(bufferIndex, elementSize);
+        	}
+
+		index = 0;
+        	for (int i = 0; i < receiverSwiftIndexMapping->NumElements(); i++) {
+                	DataPartIndexList *partIndexList = receiverSwiftIndexMapping->Nth(i);
+                	char *bufferIndex = data + index * elementSize;
+                	index += partIndexList->write(bufferIndex, elementSize);
+        	}
+	}
+}
+
+bool SwiftIndexMappedVirtualCommBuffer::evaluateDirectTransferPossibility() {
+
+	int sendMappings = senderSwiftIndexMapping->NumElements();
+	int recvMappings = receiverSwiftIndexMapping->NumElements();
+	if (sendMappings != recvMappings) {
+		return false;		
+	}
+
+	for (int i = 0; i < sendMappings; i++) {
+		
+		DataPartSwiftIndexList *sendConf 
+			= (DataPartSwiftIndexList *) senderSwiftIndexMapping->Nth(i);
+		DataPartSwiftIndexList *recvConf 
+			= (DataPartSwiftIndexList *) receiverSwiftIndexMapping->Nth(i);
+		
+		if (sendConf->isCompatiableForDirectTransfer(recvConf, elementSize) == false) {
+			return false;
+		}
+	}
+
+	return true;
 }
 
 void SwiftIndexMappedVirtualCommBuffer::generateSwiftIndexMappings() {

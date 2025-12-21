@@ -162,6 +162,45 @@ int DataPartSwiftIndexList::write(char *sourceBuffer, int elementSize) {
 	return totalIndices;
 }
 
+bool DataPartSwiftIndexList::isCompatiableForDirectTransfer(DataPartSwiftIndexList *other, int elementSize) {
+
+	if (this->optimizationAttempted == false) {
+                this->optimizeIndexArray(elementSize);
+                this->optimizationAttempted = true;
+        }
+	if (other->optimizationAttempted == false) {
+		other->optimizeIndexArray(elementSize);
+		other->optimizationAttempted = true;
+	}
+
+
+	// the two parts list has different number of jump start points; so there is no hope for direct transfer
+	if (this->sequenceLength != other->sequenceLength) return false;
+
+	for (int i = 0; i < sequenceLength; i++) {
+		// the consecutive read/write amount at a jump start point differes; so there is no hope for a
+		// direct transfer
+		if (this->indexRanges[i] != other->indexRanges[i]) return false;
+	}
+
+	return true;
+}
+
+void DataPartSwiftIndexList::performDirectTransfer(DataPartSwiftIndexList *destination, int elementSize) {
+	
+	void *sendData = this->dataPart->getData();
+        char *charSendData = reinterpret_cast<char*>(sendData);
+	void *recvData = destination->dataPart->getData();
+        char *charRecvData = reinterpret_cast<char*>(recvData);
+        for (int i = 0; i < sequenceLength; i++) {
+		char *readLocation = charSendData + this->indexArray[i];
+                int consecutiveIndices = this->indexRanges[i];
+                int copyVolume = elementSize * consecutiveIndices;
+		char *writeLocation = charRecvData + destination->indexArray[i];
+                memcpy(writeLocation, readLocation, copyVolume);
+	}
+}
+
 //---------------------------------------------------- Transfer Specification -----------------------------------------------------/
 
 TransferSpec::TransferSpec(TransferDirection direction, int elementSize) {

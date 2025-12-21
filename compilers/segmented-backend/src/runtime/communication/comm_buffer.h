@@ -311,14 +311,21 @@ class SwiftIndexMappedVirtualCommBuffer : public IndexMappedVirtualCommBuffer {
 	// unlike all other virtual communication buffer; we maintain an intermediate data buffer for this class. This
 	// is to simplify the transfer logic between the sender and receiver sides    
 	char *data;
+
+	// When the sender and receiver index mappings mirror each other then it is possible to optimize data transfer
+	// by directly transferring between two parts as opposed to using the intermediate data buffer. THe following
+	// variable is for tracking such possibilities
+	bool directXferSupported;
 	
 	List<DataPartIndexList*> *senderSwiftIndexMapping;
 	List<DataPartIndexList*> *receiverSwiftIndexMapping;
+
   public:
 	SwiftIndexMappedVirtualCommBuffer(DataExchange *exchange, SyncConfig *syncConfig);
 	~SwiftIndexMappedVirtualCommBuffer();
 	void readData(bool loggingEnabled, std::ostream &logFile);
 	virtual bool intraSegmentBufferType() { return true; }
+	bool evaluateDirectTransferPossibility();
   private:
 	void generateSwiftIndexMappings();  
 };
