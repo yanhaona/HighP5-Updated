@@ -40,7 +40,7 @@ void ParallelCommBarrier::wait(SignalType signal, int callerIterationNo) {
 
         _signalList->Append(signal);                            	// register the signal type
 
-	if (_count == 0) {
+	if (_count == 0) { // this is the leader thread scenario; the thread registered for a communication last
 
                 // Count the number of active signals
                 _activeSignals = 0;
@@ -53,44 +53,65 @@ void ParallelCommBarrier::wait(SignalType signal, int callerIterationNo) {
 
 		// join the barrier to let all participants determine if a transfer should take place 
 		pthread_barrier_wait(&_barrier);
-		if (shouldPerformTransfer(_activeSignals, callerIterationNo)) {
+		if (shouldPerformTransfer(_activeSignals, callerIterationNo)) { // communication is actually needed
+
+			if (supportSingleStepTransfer()) { // single-step parallel transfer mechanism
+				
+				struct timeval start;
+				gettimeofday(&start, NULL);
+				doSingleStepTransfer(order, _size);		// do the single step parallel data transfer
+
+				reset();                                        // Reset the barrier
+				pthread_barrier_wait(&_barrier);		// release others by joining the barrier
 			
-			// kick off the before-transfer parallel processing
-			struct timeval start;
-			gettimeofday(&start, NULL);
-			beforeTransfer(order, _size);
+				struct timeval end;
+				gettimeofday(&end, NULL);
+				recordTimingLog(TRANSFER_TIMING, start, end);
+				sem_post(&_mutex);                              // Release the mutex
+			
+			} else { // regular multi-step transfer mechanism involving a parallel before transfer operation,
+				 // then single threaded transfer function, finally a parallel after transfer operation
+			
+				// kick off the before-transfer parallel processing
+				struct timeval start;
+				gettimeofday(&start, NULL);
+				beforeTransfer(order, _size);
 
-			// wait on the barrier for all threads to finish before-transfer processing
-			pthread_barrier_wait(&_barrier);
-			struct timeval end;
-			gettimeofday(&end, NULL);
-			recordTimingLog(BEFORE_TRANSFER_TIMING, start, end);
+				// wait on the barrier for all threads to finish before-transfer processing
+				pthread_barrier_wait(&_barrier);
+				struct timeval end;
+				gettimeofday(&end, NULL);
+				recordTimingLog(BEFORE_TRANSFER_TIMING, start, end);
 
-			// perform data transfer
-			gettimeofday(&start, NULL);
-			transferFunction();
-			gettimeofday(&end, NULL);
-			recordTimingLog(TRANSFER_TIMING, start, end);
+				// perform data transfer
+				gettimeofday(&start, NULL);
+				transferFunction();
+				gettimeofday(&end, NULL);
+				recordTimingLog(TRANSFER_TIMING, start, end);
 									 
-			// join the barrier again and kick of after-transfer parallel processing
-			gettimeofday(&start, NULL);
-			pthread_barrier_wait(&_barrier);
-			afterTransfer(order, _size);
+				// join the barrier again and kick of after-transfer parallel processing
+				gettimeofday(&start, NULL);
+				pthread_barrier_wait(&_barrier);
+				afterTransfer(order, _size);
 
-			reset();                                        // Reset the barrier
-			pthread_barrier_wait(&_barrier);		// release others by joining the barrier
+				reset();                                        // Reset the barrier
+				pthread_barrier_wait(&_barrier);		// release others by joining the barrier
 			
-			gettimeofday(&end, NULL);
-			recordTimingLog(AFTER_TRANSFER_TIMING, start, end);
-			sem_post(&_mutex);                              // Release the mutex
-		} else {
+				gettimeofday(&end, NULL);
+				recordTimingLog(AFTER_TRANSFER_TIMING, start, end);
+				sem_post(&_mutex);                              // Release the mutex
+			}
+		} else { // Some previous operation has taken care of the communication indirectly
+
 			// reset the barrier for subsequent iterations
 			reset();                                        // Reset the barrier
 			pthread_barrier_wait(&_barrier);		// release others by joining the barrier
 			sem_post(&_mutex);                              // Release the mutex
 		}
     
-	} else {
+	
+	} else { // case for the threads that came to the communication barrier before the last thread
+
                 sem_post(&_mutex);				// release the mutex first
 
 		// wait on the barrier for the last thread to count active signals to check the need of a 
@@ -98,21 +119,31 @@ void ParallelCommBarrier::wait(SignalType signal, int callerIterationNo) {
 		pthread_barrier_wait(&_barrier);
 		if (shouldPerformTransfer(_activeSignals, callerIterationNo)) {
 
-			// participate in the parallel before-transfer processing activity
-			beforeTransfer(order, _size);
+			if (supportSingleStepTransfer()) { // single-step parallel transfer mechanism
 
-			// wait on the barrier again to indicate that processing is done for the current thread
-			pthread_barrier_wait(&_barrier);
+				doSingleStepTransfer(order, _size);	// do the single step parallel data transfer
+				pthread_barrier_wait(&_barrier);	// release others by joining the barrier
+			
+			} else { // regular multi-step data transfer operation that makes the last thread do the actual
+				 // data transfer while all threads help in buffer pre and post-processing.
 
-			// wait again on the barrier for the last thread to complete data transfer so that 
-			// after-transfer processing can be started
-			pthread_barrier_wait(&_barrier);
+				// participate in the parallel before-transfer processing activity
+				beforeTransfer(order, _size);
 
-			// participate in the parralel after-transfer processing activity
-			afterTransfer(order, _size);
+				// wait on the barrier again to indicate that processing is done for the current thread
+				pthread_barrier_wait(&_barrier);
 
-			// lock ownself by waiting on the barrier one last time
-			pthread_barrier_wait(&_barrier);
+				// wait again on the barrier for the last thread to complete data transfer so that 
+				// after-transfer processing can be started
+				pthread_barrier_wait(&_barrier);
+
+				// participate in the parralel after-transfer processing activity
+				afterTransfer(order, _size);
+
+				// lock ownself by waiting on the barrier one last time
+				pthread_barrier_wait(&_barrier);
+			}
+
 		} else {
 			// wait for the barrier reset before leaving
 			pthread_barrier_wait(&_barrier);

@@ -133,10 +133,23 @@ GhostRegionSyncCommunicator::GhostRegionSyncCommunicator(int localSegmentTag,
 }
 
 void GhostRegionSyncCommunicator::setupCommunicator(bool includeNonInteractingSegments) {
-	intraSegmentCommunicator = false;
+
+	// initiate segment group info
 	std::vector<int> *participants = getParticipantsTags();
         segmentGroup = new SegmentGroup(*participants);
         delete participants;
+	
+	// determine if the communicator is an intra segement communicator
+	intraSegmentCommunicator = false;
+	List<CommBuffer*> *localBufferList = new List<CommBuffer*>;
+	List<CommBuffer*> *remoteBufferList = new List<CommBuffer*>;
+	seperateLocalAndRemoteBuffers(localSegmentTag, localBufferList, remoteBufferList);
+	if (remoteBufferList->NumElements() == 0) {
+		intraSegmentCommunicator = true;
+        }
+	delete localBufferList;
+        delete remoteBufferList;
+
 	*logFile << "\tNo MPI resource setup was needed for Ghost-region Sync Communicator for ";
 	*logFile << dependencyName << "\n";
 	logFile->flush();
@@ -232,7 +245,17 @@ void GhostRegionSyncCommunicator::performTransfer() {
 	
 	//*logFile << "\tGhost-sync communicator sent-received data for " << dependencyName << "\n";
 	//logFile->flush();
-}	
+}
+
+bool GhostRegionSyncCommunicator::directCommunicationPossible() {
+	
+	return intraSegmentCommunicator && (localSenderPpus == localReceiverPpus);
+}
+        
+void GhostRegionSyncCommunicator::performDirectSend(int currentPpuOrder, int participantsCount) {
+
+	Communicator::performSendPreprocessing(currentPpuOrder, participantsCount);
+}
 
 //----------------------------------------------------------- Up Sync Communicator ------------------------------------------------------------/
 
