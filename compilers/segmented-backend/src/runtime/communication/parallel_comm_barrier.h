@@ -30,6 +30,7 @@ class ParallelCommBarrier {
 	int _activeSignals;		// How many of the received signals requesting a communication
         int _iterationNo;               // How many times the barrier has been reset/reused so far
 	pthread_barrier_t _barrier;	// Internal barrier needed for stepping through different phases
+					// This flag tells if one-step parallel data transfer is possible
   public:	
 	ParallelCommBarrier(int size);
         virtual ~ParallelCommBarrier();
@@ -60,6 +61,15 @@ class ParallelCommBarrier {
 
 	// function to be extended by subclasses to distribute any parallelizable post processing step
 	virtual void afterTransfer(int order, int participants);
+
+	// this function tells if it is possible to avoid multi-barrier wait before-transfer, transfer-func,
+	// after-transfer cycle for a sub-class that can do all three in a single step. Then the number of
+	// waiting on the barrier will be reduced.
+	virtual bool supportSingleStepTransfer() { return false; }
+
+	// in case, single step transfer is supported, this is the function that the subclass should override
+	// to provide specific of that single step transfer.
+	virtual void doSingleStepTransfer(int order, int participants) {}
 
 	// logging function to be utilized by subclasses to record communication performance
 	virtual void recordTimingLog(TimingLogType logType, struct timeval &start, struct timeval &end);

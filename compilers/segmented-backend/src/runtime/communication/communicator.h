@@ -42,6 +42,8 @@ class SendBarrier : public ParallelCommBarrier {
 	void beforeTransfer(int order, int participants);
         void transferFunction();
         void afterTransfer(int order, int participants);
+	bool supportSingleStepTransfer();
+	void doSingleStepTransfer(int order, int participants);
 	void recordTimingLog(TimingLogType logType, struct timeval &start, struct timeval &end);
 
 	// @depricated old send barrier function when communication activities were not divided into sequential and parallel parts	
@@ -62,6 +64,8 @@ class ReceiveBarrier : public ParallelCommBarrier {
         void beforeTransfer(int order, int participants);
         void transferFunction();
         void afterTransfer(int order, int participants);	
+	bool supportSingleStepTransfer();
+	void doSingleStepTransfer(int order, int participants);
 	void recordTimingLog(TimingLogType logType, struct timeval &start, struct timeval &end);
 
 	// @depricated old recv barrier function when communication activities were not divided into sequential and parallel parts	
@@ -76,6 +80,9 @@ class Communicator : public CommBufferManager {
   protected:
 	// identifier for the current segment to be used for local and remote disambiguation
 	int localSegmentTag;
+	// counter variables tracking the number of PPUs involved in send and receive operations in a segment
+	int localSenderPpus;
+	int localReceiverPpus;
 	// keep track of the number of times this communicator has been used
 	int iterationNo;
 	// two barriers to pause/resume PPU controllers participating in communication
@@ -169,6 +176,13 @@ class Communicator : public CommBufferManager {
 	// function.
 	static void excludeOwnselfFromCommunication(const char *dependencyName, 
 		int localSegmentTag, std::ofstream &logFile);
+
+
+	//----------------------------------------------------------------- functions to be overriden by subclasses supporting all 
+	//----------------------------------------------------------------- activities of communications to be done in single step 
+	virtual bool directCommunicationPossible() { return false; }
+	virtual void performDirectSend(int currentPpuOrder, int participantsCount);
+	virtual void performDirectReceive(int currentPpuOrder, int participantsCount);
 };
 
 

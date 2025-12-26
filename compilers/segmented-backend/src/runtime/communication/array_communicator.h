@@ -62,6 +62,13 @@ class GhostRegionSyncCommunicator : public Communicator {
 	// within a single function and let the later receive call to be non-halting 
 	void afterSend() { iterationNo++; }
 	void performTransfer();
+
+	// The ghost sync communicator can do direct data transfer when it is an intra-segment communicator and local sender
+	// and receiver PPU counts are the same. In that case, a faster implementation of send, requiring less synchronization
+	// overhead can be used. Regaring the receive, there is nothing to do as send copy data in receive-side data parts.  
+	bool directCommunicationPossible();
+        void performDirectSend(int currentPpuOrder, int participantsCount);
+        void performDirectReceive(int currentPpuOrder, int participantsCount) {}
 };
 
 // communictor class for the scenario of propagating update to a data from LPUs of a lower level LPS to the LPU of a higher 

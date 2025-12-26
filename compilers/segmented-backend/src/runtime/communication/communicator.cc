@@ -39,6 +39,21 @@ void SendBarrier::afterTransfer(int order, int participants) {
 	communicator->performSendPostprocessing(order, participants);
 }
 
+bool SendBarrier::supportSingleStepTransfer() {
+	return communicator->directCommunicationPossible();
+}
+
+void SendBarrier::doSingleStepTransfer(int order, int participants) {
+
+	// let all participants join in the parallel send operation
+	communicator->performDirectSend(order, participants);
+	if (order == 0) {
+		// let the PPU with lowest ID to do any after send reconfiguration of the communicator
+		communicator->afterSend();
+	}
+}
+
+
 void SendBarrier::recordTimingLog(TimingLogType logType, struct timeval &start, struct timeval &end) {
 	CommStatistics *commStat = communicator->getCommStat();
 	if (logType == BEFORE_TRANSFER_TIMING) {
@@ -90,6 +105,20 @@ void ReceiveBarrier::afterTransfer(int order, int participants) {
 	communicator->perfromRecvPostprocessing(order, participants);
 }
 
+bool ReceiveBarrier::supportSingleStepTransfer() {
+	return communicator->directCommunicationPossible();
+}
+
+void ReceiveBarrier::doSingleStepTransfer(int order, int participants) {
+	
+	// let all participants join in the parallel receive operation
+	communicator->performDirectReceive(order, participants);
+	if (order == 0) {
+		// let the PPU with smallest ID to do any after receive processing of the communicator
+		communicator->afterReceive();
+	}
+}
+
 void ReceiveBarrier::recordTimingLog(TimingLogType logType, struct timeval &start, struct timeval &end) {
 	CommStatistics *commStat = communicator->getCommStat();
 	if (logType == BEFORE_TRANSFER_TIMING) {
@@ -134,6 +163,8 @@ Communicator::Communicator(int localSegmentTag,
 	iterationNo = 0;
 	communicatorId = 0;
 	commStat = NULL;
+	this->localSenderPpus = localSenderPpus;
+	this->localReceiverPpus = localReceiverPpus;
 }
 
 void Communicator::describe(int indentation) {
@@ -224,3 +255,12 @@ void Communicator::excludeOwnselfFromCommunication(const char *dependencyName,
 	logFile.flush();
 }
 
+void Communicator::performDirectSend(int currentPpuOrder, int participantsCount) {
+	std::cout << "Direct send is not supported\n";
+	std::exit(EXIT_FAILURE);
+}
+
+void Communicator::performDirectReceive(int currentPpuOrder, int participantsCount) {
+	std::cout << "Direct receive is not supported\n";
+	std::exit(EXIT_FAILURE);
+}
