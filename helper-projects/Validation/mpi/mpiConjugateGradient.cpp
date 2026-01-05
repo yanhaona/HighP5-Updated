@@ -229,7 +229,7 @@ using namespace mpi_cg;
 
 //--------------------------------------------------------------------------- Main Function
 
-int mainMConjGrad(int argc, char *argv[]) {
+int mainMpiConj(int argc, char *argv[]) {
 	
 	// do MPI intialization
 	MPI_Init(&argc, &argv);
@@ -252,7 +252,7 @@ int mainMConjGrad(int argc, char *argv[]) {
 	}
 
 	if (processId == 0) {
-		std::cout << "Running MPI Stencil experiment with " << processCount << " MPI processes\n";
+		std::cout << "Running MPI Conjugate Gradient experiment with " << processCount << " MPI processes\n";
 	}
 
 	// start timer

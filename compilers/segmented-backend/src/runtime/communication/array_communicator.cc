@@ -762,10 +762,31 @@ CrossSyncCommunicator::CrossSyncCommunicator(int localSegmentTag,
 }
 
 void CrossSyncCommunicator::setupCommunicator(bool includeNonInteractingSegments) {
+
 	std::vector<int> *participants = getParticipantsTags();
         segmentGroup = new SegmentGroup(*participants);
         delete participants;
-	*logFile << "\tNo MPI resource setup was needed for Cross-Sync Communicator for " << dependencyName << "\n";
+	
+	List<CommBuffer*> *remoteBuffers = getRemoteBuffers();
+        this->remoteReceives = filterRemoteRecvBuffers(remoteBuffers);
+
+
+        // calculate the number of MPI requests that should be issued
+        this->remoteSends = getSortedList(false, remoteBuffers);
+        int sendCount = 0;
+        for (int i = 0; i < remoteSends->NumElements(); i++) {
+                CommBuffer *buffer = remoteSends->Nth(i);
+                Participant *participant = buffer->getExchange()->getReceiver();
+                sendCount += participant->getSegmentTags().size();
+                if (participant->hasSegmentTag(localSegmentTag)) {
+                        sendCount--;
+                }
+        }
+	this->sendCount = sendCount;
+
+	delete remoteBuffers;
+
+	*logFile << "\tCross-Sync Communicator Setup is Done for " << dependencyName << "\n";
 	logFile->flush();
 }
 
@@ -804,28 +825,14 @@ void CrossSyncCommunicator::sendData() {
 	//*logFile << "\tCross-sync communicator is sending (and receiving) data for " << dependencyName << "\n";
 	//logFile->flush();
 	
-	List<CommBuffer*> *remoteBuffers = getRemoteBuffers();
 
 	// issue asynchronous receives first, when applicable
 	MPI_Request *receiveRequests = NULL;
-	List<CommBuffer*> *remoteReceives = filterRemoteRecvBuffers(remoteBuffers);
 	int receiveCount = remoteReceives->NumElements();
 	if (receiveCount > 0) {
 		receiveRequests = issueAsyncReceives(remoteReceives);		
 	}
 	
-	// calculate the number of MPI requests that should be issued
-	List<CommBuffer*> *remoteSends = getSortedList(false, remoteBuffers);
-	int sendCount = 0;
-	for (int i = 0; i < remoteSends->NumElements(); i++) {
-		CommBuffer *buffer = remoteSends->Nth(i);
-		Participant *participant = buffer->getExchange()->getReceiver();
-		sendCount += participant->getSegmentTags().size();
-		if (participant->hasSegmentTag(localSegmentTag)) {
-			sendCount--;
-		}		
-	}
-
 	// issue the sends
 	MPI_Comm mpiComm = segmentGroup->getCommunicator();
 	MPI_Request *sendRequests = new MPI_Request[sendCount];
@@ -872,9 +879,6 @@ void CrossSyncCommunicator::sendData() {
 		exit(EXIT_FAILURE);
 	}
 
-	delete remoteBuffers;
-	delete remoteSends;
-	delete remoteReceives;
 	if (receiveCount > 0) delete[] receiveRequests;
 	delete[] sendRequests;
 	
