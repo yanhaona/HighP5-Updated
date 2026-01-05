@@ -160,6 +160,11 @@ class DownSyncCommunicator : public Communicator {
 // synchronized after an update done on one LPS	 
 class CrossSyncCommunicator : public Communicator {
   protected:
+	// this variables are retained to avoid some repetitive computation during send and receive operations  
+	int sendCount;
+	List<CommBuffer*> *remoteReceives;
+	List<CommBuffer*> *remoteSends;
+
   	List<CommBuffer*> *getRemoteBuffers();
 	List<CommBuffer*> *filterRemoteRecvBuffers(List<CommBuffer*> *remoteBuffers);
   public:
