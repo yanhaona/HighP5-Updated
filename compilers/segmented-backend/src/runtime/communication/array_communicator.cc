@@ -762,6 +762,8 @@ CrossSyncCommunicator::CrossSyncCommunicator(int localSegmentTag,
 }
 
 void CrossSyncCommunicator::setupCommunicator(bool includeNonInteractingSegments) {
+	
+	Communicator::setupCommunicator(includeNonInteractingSegments);
 
 	std::vector<int> *participants = getParticipantsTags();
         segmentGroup = new SegmentGroup(*participants);
@@ -891,16 +893,9 @@ void CrossSyncCommunicator::receiveData() {
 	//*logFile << "\tCross-sync communicator is waiting for data for " << dependencyName << "\n";
 	//logFile->flush();
 	
-	List<CommBuffer*> *localBuffers = new List<CommBuffer*>;
-	List<CommBuffer*> *remoteBuffers = new List<CommBuffer*>;
-	seperateLocalAndRemoteBuffers(localSegmentTag,localBuffers, remoteBuffers);
-	
-	// local buffers has been taken care of in the sendData() function
-	delete localBuffers;
 	
 	// issue asynchronous receives
 	MPI_Request *receiveRequests = NULL;
-	List<CommBuffer*> *remoteReceives = getSortedList(true, remoteBuffers);
 	int receiveCount = remoteReceives->NumElements();
 	if (receiveCount > 0) {
 		receiveRequests = issueAsyncReceives(remoteReceives);		
@@ -915,8 +910,6 @@ void CrossSyncCommunicator::receiveData() {
 		}
 	}
 
-	delete remoteBuffers;
-	delete remoteReceives;
 	if (receiveCount > 0) delete[] receiveRequests;
 	
 	//*logFile << "\tCross-sync communicator received data for " << dependencyName << "\n";
@@ -944,9 +937,18 @@ MPI_Request *CrossSyncCommunicator::issueAsyncReceives(List<CommBuffer*> *remote
 	return receiveRequests;
 }
 
+CrossSyncCommunicator::~CrossSyncCommunicator() {
+	delete remoteReceives;
+	delete remoteSends;
+}
+
 //---------------------------------------------------- Updated Cross Sync Communicator --------------------------------------------------------/
 
 UpdatedCrossSyncCommunicator::~UpdatedCrossSyncCommunicator() {
+	
+	delete remoteReceives;
+	delete remoteSends;
+	
 	if (scatterBuffer != NULL) {
 		delete[] scatterBuffer;
 		delete[] sendCounts;
@@ -956,7 +958,7 @@ UpdatedCrossSyncCommunicator::~UpdatedCrossSyncCommunicator() {
 
 void UpdatedCrossSyncCommunicator::setupCommunicator(bool includeNonInteractingSegments) {
 	
-	Communicator::setupCommunicator(includeNonInteractingSegments);
+	CrossSyncCommunicator::setupCommunicator(includeNonInteractingSegments);
 	
 	*logFile << "\tsetting up the  updated cross-sync communicator for " << dependencyName << "\n";
 	logFile->flush();

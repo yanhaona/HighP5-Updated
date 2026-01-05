@@ -171,6 +171,7 @@ class CrossSyncCommunicator : public Communicator {
 	CrossSyncCommunicator(int localSegmentTag,
                 const char *dependencyName,
                 int localSenderPpus, int localReceiverPpus, List<CommBuffer*> *bufferList);
+	~CrossSyncCommunicator();
 
 	// like ghost region sync, cross-sync does not need a new MPI communicator; so this override uses the default MPI
 	// communicator
