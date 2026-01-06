@@ -326,7 +326,12 @@ void FlowStage::analyzeSynchronizationNeeds() {
                         } else if (destLps->isParentSpace(space)) {
                                 syncReq = new DownPropagationSync();
                         } else {
-                                syncReq = new CrossPropagationSync();
+				// sometimes, it is possible to optimize cross sync LPS-LPS communication if the destination LPS's
+				// LPUs have replicated copy of the parts of the source LPS. So, here we are setting a flag to
+				// enable optimized communicator generation in a back-end compiler.
+				Space *closestAncestorSpace = space->getClosestCommonAncestor(destLps);
+				bool isFullyReplicated = destLps->isFullyReplicatedInHierarchy(closestAncestorSpace, varName);
+                                syncReq = new CrossPropagationSync(isFullyReplicated);
                         }
                         syncReq->setVariableName(varName);
                         syncReq->setDependentLps(destLps);

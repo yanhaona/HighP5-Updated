@@ -174,8 +174,15 @@ class DownPropagationSync : public SyncRequirement {
 // LPS depends on what on the other LPS. Presence of dynamic LPSes complicate this calculation and we may have 
 // to extend this class further in the future.
 class CrossPropagationSync : public SyncRequirement {
+  protected:
+	// a flag that can be used to optimize communication for cross sync data dependencies when the receiver
+	// LPUs gets replicated data from sender LPUs
+  	bool destReplicated;	  
   public:
-	CrossPropagationSync() : SyncRequirement("CSync") {}
+	CrossPropagationSync(bool destReplicated) : SyncRequirement("CSync") {
+		this->destReplicated = destReplicated;
+	}
+	bool isDestReplicated() { return destReplicated; }
 	void print(int indent);		
 };
 

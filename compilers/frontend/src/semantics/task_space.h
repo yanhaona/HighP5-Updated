@@ -369,12 +369,14 @@ class Space {
 	void storeToken(int coordinate, Token *token);
 	bool isValidCoordinateSystem() { return (coordSys == NULL || coordSys->isBalanced()); }	
 	bool isParentSpace(Space *suspectedParent);
+	Space *getClosestCommonAncestor(Space *otherSpace);
 	Space *getClosestSubpartitionRoot();
 	bool isDynamic() { return dynamic; }
 	List<const char*> *getLocallyUsedArrayNames();
 	List<const char*> *getLocalDataStructureNames();
 	bool isReplicatedInCurrentSpace(const char *dataStructureName);
 	bool isReplicated(const char *dataStructureName);
+	bool isFullyReplicatedInHierarchy(Space *ancestorSpace, const char *dataStructureName);
 	bool isSubpartitionSpace() { return subpartitionSpace; }
 	static List<Space*> *getConnetingSpaceSequenceForSpacePair(Space *first, Space *last);
 	List<const char*> *getLocalDataStructuresWithOverlappedPartitions();

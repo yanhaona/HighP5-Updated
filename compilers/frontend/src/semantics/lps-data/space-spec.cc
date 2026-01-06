@@ -134,6 +134,17 @@ bool Space::isParentSpace(Space *suspectedParent) {
 	return this->parent->isParentSpace(suspectedParent);
 }
 
+Space *Space::getClosestCommonAncestor(Space *otherSpace) {
+	if (isParentSpace(otherSpace)) return otherSpace;
+	if (otherSpace->isParentSpace(this)) return this;
+	Space *candidate = this->parent;
+	while (candidate != NULL) {
+		if (otherSpace->isParentSpace(candidate)) return candidate;
+		candidate = candidate->parent;
+	}
+	return candidate;
+}
+
 Space *Space::getClosestSubpartitionRoot() {
 	if (subpartitionSpace) return this;
 	if (parent == NULL) return NULL;
@@ -193,6 +204,34 @@ bool Space::isReplicated(const char *dataStructureName) {
 	if (isReplicatedInCurrentSpace(dataStructureName)) return true;
 	if (parent == NULL) return false;
 	return parent->isReplicatedInCurrentSpace(dataStructureName);
+}
+
+bool Space::isFullyReplicatedInHierarchy(Space *ancestorSpace, const char *dataStructureName) {
+
+	Space *candidate = this;
+	while (candidate != ancestorSpace) {
+	
+		// If the space is un-partitioned then by default any data structure is replicated.
+		if (candidate->dimensions == 0) return true;
+		// If the space does not have the data structure then processing ended in the lower level space. So we
+		// assume the structure is fully replicated.
+		DataStructure *structure = candidate->dataStructureList->Lookup(dataStructureName);
+		if (structure == NULL) return true;
+		// Any non-array data structure is fully replicated in every LPSes it is being used.
+		ArrayDataStructure *array = dynamic_cast<ArrayDataStructure*>(structure);
+		if (array == NULL) return true;
+	
+		// if even a single dimension has the data structure partitioned then it is not fully replicated in the space
+		for (int i = 1; i <= candidate->dimensions; i++) {
+			Coordinate *coordinateDim = candidate->coordSys->getCoordinate(i);
+			Token *token = coordinateDim->getTokenForDataStructure(dataStructureName);
+			if (!token->isWildcard()) return false;
+		}
+
+		// move one LPS up
+		candidate = candidate->parent;
+	}
+	return true;
 }
 
 List<Space*> *Space::getConnetingSpaceSequenceForSpacePair(Space *first, Space *last) {

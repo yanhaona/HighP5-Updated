@@ -229,7 +229,7 @@ void DownPropagationSync::print(int indent) {
 
 void CrossPropagationSync::print(int indent) {
 	for (int i = 0; i < indent; i++) std::cout << '\t';
-	std::cout << "Type: " << "cross propagation sync" << std::endl;
+	std::cout << "Type: " << "cross propagation sync (replicated dest: " << destReplicated << ")" << std::endl;
 	SyncRequirement::print(indent);
 }
 

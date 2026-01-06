@@ -710,7 +710,14 @@ void generateArrayCommmunicatorFn(std::ofstream &headerFile,
 	} else if (dynamic_cast<GhostRegionSync*>(syncRequirement) != NULL) {
 		fnBody << indent << "communicator = new GhostRegionSyncCommunicator(localSegmentTag";
 	} else if (dynamic_cast<CrossPropagationSync*>(syncRequirement) != NULL) {
-		fnBody << indent << "communicator = new CrossSyncCommunicator(localSegmentTag";
+		// in case the destination LPS's LPUs use replicated data send from the LPS's LPUs then we can generate an 
+		// optimized cross sync communicator that use less communication. Otherwise, we generate the regular communicator
+		CrossPropagationSync* crossSync = dynamic_cast<CrossPropagationSync*>(syncRequirement);
+		if (crossSync->isDestReplicated()) {
+			fnBody << indent << "communicator = new UpdatedCrossSyncCommunicator(localSegmentTag";
+		} else {
+			fnBody << indent << "communicator = new CrossSyncCommunicator(localSegmentTag";
+		}
 	} else if (dynamic_cast<UpPropagationSync*>(syncRequirement) != NULL) {
 		fnBody << indent << "communicator = new UpSyncCommunicator(localSegmentTag";
 	} else {
