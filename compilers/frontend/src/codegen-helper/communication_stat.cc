@@ -44,6 +44,8 @@ bool CommunicationCharacteristics::shouldAllocateGroupResources() {
 	// that it will be communicating with. So it is not possible to divide the segments into smaller groups
 	// where communications are restricted to happen within individual groups. The remaining dependency types 
 	// may be benefited from having a group communication resource set.
+	//
+	// TODO: need to rethink what should happen when the destination of cross sync is replicated
 	GhostRegionSync *ghostSync = dynamic_cast<GhostRegionSync*>(syncRequirement);
 	CrossPropagationSync *crossSync = dynamic_cast<CrossPropagationSync*>(syncRequirement);
 	return (ghostSync == NULL && crossSync == NULL); 	

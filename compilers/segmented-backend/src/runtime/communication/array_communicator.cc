@@ -946,175 +946,114 @@ CrossSyncCommunicator::~CrossSyncCommunicator() {
 
 UpdatedCrossSyncCommunicator::~UpdatedCrossSyncCommunicator() {
 	
+	// for base class
 	delete remoteReceives;
 	delete remoteSends;
-	
-	if (scatterBuffer != NULL) {
-		delete[] scatterBuffer;
-		delete[] sendCounts;
-		delete[] displacements;
-	}
+
+	// for this class
+	delete remoteBuffers;
+	delete[] sendBuffer;
+	delete[] gatherBuffer;
 }
 
 void UpdatedCrossSyncCommunicator::setupCommunicator(bool includeNonInteractingSegments) {
 	
-	CrossSyncCommunicator::setupCommunicator(includeNonInteractingSegments);
-	
 	*logFile << "\tsetting up the  updated cross-sync communicator for " << dependencyName << "\n";
 	logFile->flush();
 	
+	CrossSyncCommunicator::setupCommunicator(includeNonInteractingSegments);
+	
 	struct timeval start;
         gettimeofday(&start, NULL);
+
+	// all inter-segment communication buffers are needed for doing a successful gather operation
+	remoteBuffers = CrossSyncCommunicator::getRemoteBuffers();
+
+	// determine the maximum amount of data each participants will send
+	// Notice that, since there is complete replication on the receiver side for this communicator; there can only be a single
+	// send buffer to be communicated with other participants -- or no data to be sent.
+	long int currSegData = 0;
+	for (int i = 0; i < remoteSends->NumElements(); i++) {
+		CommBuffer *buffer = remoteSends->Nth(i);
+		currSegData += buffer->getBufferSize();
+	}
+
+	// share the curr segment data amount with all other participants to determine the maximum length buffer sender
+	MPI_Comm mpiComm = segmentGroup->getCommunicator();
+	int myRank = segmentGroup->getRank(localSegmentTag);
+	int participants = segmentGroup->getParticipantsCount();
+	int* sendAmounts = new int[participants];
+	int status = MPI_Allgather(&currSegData, 1, MPI_INT, sendAmounts, 1, MPI_INT, mpiComm);
+        if (status != MPI_SUCCESS) {
+                *logFile << "\t\tCould not gather how much data which segment going to send.\n";
+                logFile->flush();
+                exit(EXIT_FAILURE);
+        }
+
+	// determine the maximum send amount and allocate the send and gather buffer accordingly
+	maxPerSegmentData = 0;
+	for (int i = 0; i < participants; i++) {
+		if (sendAmounts[i] > maxPerSegmentData) {
+			maxPerSegmentData = sendAmounts[i];
+		}
+	}
+	gatherBuffer = new char[maxPerSegmentData * participants];
+	sendBuffer = new char[maxPerSegmentData];
+                
+	//*logFile << "\t\tLocal Segment Sends " << currSegData << " characters, maximum transfer size " << maxPerSegmentData << ".\n";
+        //logFile->flush();
 	
-	allocateAndLinkScatterBuffer();
+	delete[] sendAmounts;
 	
 	struct timeval end;
         gettimeofday(&end, NULL);
         commStat->addCommResourcesSetupTime(dependencyName, start, end);
 		
-	
 	*logFile << "\tsetup done for updated cross-sync communicator for " << dependencyName << "\n";
 	logFile->flush();
 }
 
-void UpdatedCrossSyncCommunicator::allocateAndLinkScatterBuffer() {
+void UpdatedCrossSyncCommunicator::sendData() {
 
-	List<CommBuffer*> *remoteBuffers = getRemoteBuffers();
-	List<CommBuffer*> *remoteSends = getSortedList(false, remoteBuffers);
-	List<CommBuffer*> *remoteReceives = filterRemoteRecvBuffers(remoteBuffers);
-	
-	long int scatterBufferSize = 0;
+	// first copy comm buffer contents into the send buffer of the communicator;
+	int index = 0;
 	for (int i = 0; i < remoteSends->NumElements(); i++) {
 		CommBuffer *buffer = remoteSends->Nth(i);
-		Participant *sender = buffer->getExchange()->getSender();
-		int firstTag = sender->getSegmentTags()[0];
-		// if the sender side of the data has replication then the first segment having a replicated content
-		// will do the sending.
-		if (firstTag == localSegmentTag) {
-			scatterBufferSize += buffer->getBufferSize();
-		}
+		int bufferSize = buffer->getBufferSize();
+		char *bufferData = buffer->getData();
+		memcpy(sendBuffer + index, bufferData, bufferSize);
+		index += bufferSize;
 	}
 
-	if (scatterBufferSize > 0) {
-	
-		scatterBuffer = new char[scatterBufferSize];
-		int participants = segmentGroup->getParticipantsCount();
-		displacements = new int[participants];
-		sendCounts = new int[participants];
-
-		// both displacements and receiveCount vectors must have entries for everyone in the segment group
-		for (int i = 0; i < participants; i++) {
-			displacements[i] = 0;
-			sendCounts[i] = 0;
-		}
-	
-		long int currentIndex = 0;
-		for (int i = 0; i < remoteSends->NumElements(); i++) {
-			CommBuffer *buffer = remoteSends->Nth(i);
-			Participant *sender = buffer->getExchange()->getSender();
-			int firstTag = sender->getSegmentTags()[0];
-			// link the scatter buffer to the current comm buffer only if the local segement is the first sender
-			if (firstTag != localSegmentTag) {
-				continue;
-			}
-			buffer->setData(scatterBuffer + currentIndex);
-			long int bufferSize = buffer->getBufferSize();
-		
-			// in the replicated mode a single buffer may be shared by multiple receiver segments; such 
-			// segments should have the same displacement index
-			vector<int> receiverTags = buffer->getExchange()->getReceiver()->getSegmentTags();
-			for (int j = 0; j < receiverTags.size(); j++) { 
-				int receiver = receiverTags[j];
-				if (receiver == localSegmentTag) continue;
-				int receiverRank = segmentGroup->getRank(receiver);
-				displacements[receiverRank] = currentIndex;
-				sendCounts[receiverRank] = bufferSize;
-			}
-
-			currentIndex += bufferSize;
-		}
-	}
-
-	delete remoteBuffers;
-	delete remoteSends;
-	delete remoteReceives;
-}
-
-void UpdatedCrossSyncCommunicator::sendData() {
-	
-	List<CommBuffer*> *remoteBuffers = getRemoteBuffers();
-	List<CommBuffer*> *remoteReceives = filterRemoteRecvBuffers(remoteBuffers);
-
-	// issue the asyncrhonous receives requests first
-	int receiveCount = remoteReceives->NumElements();
-	MPI_Request *receiveRequests = NULL;
-	if (receiveCount > 0) {
-		receiveRequests = issueAsyncReceives(remoteReceives);		
-	}
-
-	// then do the sending
-	MPI_Request *sendReq = new MPI_Request();
-	if (scatterBuffer != NULL) {
-		char dummyReceive = 0;
-		int myRank = segmentGroup->getRank(localSegmentTag);
-		MPI_Comm mpiComm = segmentGroup->getCommunicator();
-		int status = MPI_Iscatterv(scatterBuffer, sendCounts, displacements, MPI_CHAR, 
-				&dummyReceive, 0, MPI_CHAR, myRank, mpiComm, sendReq);
-		if (status != MPI_SUCCESS) {
-			cout << "Segment "<< localSegmentTag << ": asyncrhonous scatterv could not be issued\n";
-			exit(EXIT_FAILURE);
-		}
-		
-	}
-
-	// ensure all send and receives are successful
-	if (receiveCount > 0) {
-		int status = MPI_Waitall(receiveCount, receiveRequests, MPI_STATUSES_IGNORE);
-		if (status != MPI_SUCCESS) {
-			cout << "Segment "<< localSegmentTag << ": some asynchronous scatterv receives failed\n";
-			exit(EXIT_FAILURE);
-		}
-		delete[] receiveRequests;
-
-	} 
-	if (scatterBuffer != NULL) {
-		int status = MPI_Wait(sendReq, MPI_STATUSES_IGNORE);
-		if (status != MPI_SUCCESS) {
-			cout << "Segment "<< localSegmentTag << ": asyncrhonous scatterv send operation failed\n";
-			exit(EXIT_FAILURE);
-		}
-		delete sendReq;
-	
-	}
-
-	delete sendReq;
-	delete remoteReceives;
-	delete remoteBuffers;
-}
-
-
-MPI_Request *UpdatedCrossSyncCommunicator::issueAsyncReceives(List<CommBuffer*> *remoteReceiveBuffers) {
-
+	// then invoke the MPI allgather communication
 	MPI_Comm mpiComm = segmentGroup->getCommunicator();
-	int receiveCount = remoteReceiveBuffers->NumElements();
-	MPI_Request *receiveRequests = new MPI_Request[receiveCount];
+	int status = MPI_Allgather(sendBuffer, maxPerSegmentData, MPI_CHAR, gatherBuffer, maxPerSegmentData, MPI_CHAR, mpiComm);
+        if (status != MPI_SUCCESS) {
+                *logFile << "\tcould not perform MPI Allgather on " << dependencyName << " communicator\n";
+                logFile->flush();
+                exit(EXIT_FAILURE);
+        }
 
-	for (int i = 0; i < remoteReceiveBuffers->NumElements(); i++) {
+	// iterate over the remote communication buffers and copy data from gather buffer to the comm buffers. Again, only
+	// one communication buffer may receive data from a particular segements due to full replication on the receiver side.
+	// TODO: we have to later validate that there is no calculation error in the data retrieval process.
+	for (int i = 0; i < remoteBuffers->NumElements(); i++) {
 		
-		CommBuffer *buffer = remoteReceiveBuffers->Nth(i);
-		Participant *sender = buffer->getExchange()->getSender();
-		int firstTag = sender->getSegmentTags()[0];
-        	int scatterRank = segmentGroup->getRank(firstTag);
+		// find the sender 
+		CommBuffer *buffer = remoteBuffers->Nth(i);
 		long int bufferSize = buffer->getBufferSize();
-		char *data = buffer->getData();
+		int senderTag = buffer->getExchange()->getSender()->getSegmentTags().at(0);
 
-		int status = MPI_Iscatterv(NULL, NULL, NULL, MPI_CHAR, 
-				data, bufferSize, MPI_CHAR, scatterRank, mpiComm, &receiveRequests[i]);
-                if (status != MPI_SUCCESS) {
-                	cout << "Segment " << localSegmentTag << ": could not issue asynchronous receive for scatterv\n";
-			exit(EXIT_FAILURE);
+		// if the sender is the current segement then directly update the buffer from local content
+		if (senderTag == localSegmentTag) {
+			buffer->writeData(false, *logFile);
+			continue;
 		}
-		
+
+		// otherwise, find the index of the sender's data and point the comm buffer to the beginning of sender's data
+		// later, send post-process will copy the data from buffer to actual LPU data parts
+		int senderRank = segmentGroup->getRank(senderTag);
+		char *dataStart = gatherBuffer + senderRank * maxPerSegmentData;
+		buffer->setData(dataStart);	
 	}
-	return receiveRequests;
 }
