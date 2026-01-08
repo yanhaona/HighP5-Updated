@@ -304,21 +304,124 @@ PreprocessedPhysicalCommBuffer::PreprocessedPhysicalCommBuffer(DataExchange *exc
 	for (long int i = 0; i < bufferSize; i++) {
 		data[i] = 0;
 	}
+        
+	sendLocationArray = NULL;
+        recvLocationArray = NULL;
+        sendRanges = NULL;
+        recvRanges = NULL;
+        sendJumpStartPoints = 0;
+        recvJumpStartPoints = 0;
 }
 
+PreprocessedPhysicalCommBuffer::~PreprocessedPhysicalCommBuffer() { 
+	
+	delete[] data; 
+	
+	if (sendJumpStartPoints != 0) {
+		delete[] sendLocationArray;
+		delete[] sendRanges;
+	}
+
+	if (recvJumpStartPoints != 0) {
+		delete[] recvLocationArray;
+		delete[] recvRanges;
+	}
+}
+
+
 void PreprocessedPhysicalCommBuffer::readData(bool loggingEnabled, std::ostream &logFile) {
-	for (long int i = 0; i < elementCount; i++) {
-		char *readLocation = senderTransferMapping[i];
-		char *writeLocation = data + i * elementSize;
-		memcpy(writeLocation, readLocation, elementSize);
+
+	int currDataIndex = 0;
+	for (long int i = 0; i < sendJumpStartPoints; i++) {
+		char *readLocation = sendLocationArray[i];
+		int copyRange = sendRanges[i];
+		char *writeLocation = data + currDataIndex * elementSize;
+		memcpy(writeLocation, readLocation, copyRange * elementSize);
+		currDataIndex += copyRange;
 	}
 }
 
 void PreprocessedPhysicalCommBuffer::writeData(bool loggingEnabled, std::ostream &logFile) {
-	for (long int i = 0; i < elementCount; i++) {
-		char *readLocation = data + i * elementSize;
-		char *writeLocation = receiverTransferMapping[i];
-		memcpy(writeLocation, readLocation, elementSize);
+
+	int currDataIndex = 0;
+	for (long int i = 0; i < recvJumpStartPoints; i++) {
+		char *readLocation = data + currDataIndex * elementSize;
+		char *writeLocation = recvLocationArray[i];
+		int copyRange = recvRanges[i];
+		memcpy(writeLocation, readLocation, copyRange * elementSize);
+		currDataIndex += copyRange;
+	}
+}
+
+void PreprocessedPhysicalCommBuffer::setupMappingBuffer(char **buffer, 
+		DataPartsList *dataPartList, PartIdContainer *partContainerTree, DataItemConfig *dataConfig) {
+
+	// setup the transfer mappings for sender and receiver using the super class method
+	PreprocessedCommBuffer::setupMappingBuffer(buffer, dataPartList, partContainerTree, dataConfig);
+
+	// check for optimization opportunities in the sender and receiver sides
+	if (senderTransferMapping != NULL) {
+		optimizeMappingBuffer(true);
+	}
+	if (receiverTransferMapping != NULL) {
+		optimizeMappingBuffer(false);
+	}
+}
+
+void PreprocessedPhysicalCommBuffer::optimizeMappingBuffer(bool senderSide) {
+
+	char** transferMapping = senderSide ? senderTransferMapping : receiverTransferMapping;
+	
+	// first determine the number of memory locations from where a range of data items can be directly transferred using
+	// a single memcpy
+	int jumpStartPoints = 1;
+	char *lastLocation = transferMapping[0];
+	for (long int i = 1; i < elementCount; i++) {
+		char *currLocation = transferMapping[i];
+		if (lastLocation + elementSize != currLocation) {
+			jumpStartPoints++;
+		}
+		lastLocation = currLocation;
+	}
+
+	// allocate arrays to store the jump start points the ranges of consecutive locations from those points
+	char **locationArray = new char*[jumpStartPoints];
+	int *ranges = new int[jumpStartPoints];
+
+	// now store the starting points for consecutive copies and amount of consecutive copies from each points in the 
+	// allocated arrays
+	lastLocation = transferMapping[0];
+	locationArray[0] = transferMapping[0];
+	int currRange = 1;
+	int currJumpStart = 0;
+	for (long int i = 1; i < elementCount; i++) {
+		char *currLocation = transferMapping[i];
+		if (lastLocation + elementSize != currLocation) {
+			// store the range
+			ranges[currJumpStart] = currRange;
+			// reset for a new jump start point
+			currRange = 1;
+			currJumpStart++;
+			locationArray[currJumpStart] = currLocation;	
+		} else {
+			// increase the range
+			currRange++;
+		}
+		lastLocation = currLocation;
+	}
+	// store the last range that is not stored in the for loop iteration
+	ranges[currJumpStart] = currRange;
+
+	// setup the proper class variables depending on the flag value in the function parameter
+	if (senderSide) {
+		sendLocationArray = locationArray;
+        	sendRanges = ranges;
+        	sendJumpStartPoints = jumpStartPoints;
+	} else {
+        	recvLocationArray = locationArray;
+		recvRanges = ranges;
+        	recvJumpStartPoints = jumpStartPoints;
+	
 	}
 }
 

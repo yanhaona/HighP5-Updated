@@ -970,8 +970,6 @@ void UpdatedCrossSyncCommunicator::setupCommunicator(bool includeNonInteractingS
 	remoteBuffers = CrossSyncCommunicator::getRemoteBuffers();
 
 	// determine the maximum amount of data each participants will send
-	// Notice that, since there is complete replication on the receiver side for this communicator; there can only be a single
-	// send buffer to be communicated with other participants -- or no data to be sent.
 	long int currSegData = 0;
 	for (int i = 0; i < remoteSends->NumElements(); i++) {
 		CommBuffer *buffer = remoteSends->Nth(i);
