@@ -135,19 +135,19 @@ class PreprocessedCommBuffer : public CommBuffer {
   protected:
 	char **senderTransferMapping;
 	char **receiverTransferMapping;
+	
+	// a helper function to traverse a part container tree and get all memory locations for data items that are part
+	// of the data-exchange a communication-buffer has been created for
+	virtual void setupMappingBuffer(char **buffer,
+			DataPartsList *dataPartList,
+			PartIdContainer *partContainerTree,
+			DataItemConfig *dataConfig);
   public:
 	PreprocessedCommBuffer(DataExchange *exchange, SyncConfig *syncConfig);
 	~PreprocessedCommBuffer();
 
 	virtual void readData(bool loggingEnabled, std::ostream &logFile) = 0;
 	virtual void writeData(bool loggingEnabled, std::ostream &logFile) = 0;
-  private:
-	// a helper function to traverse a part container tree and get all memory locations for data items that are part
-	// of the data-exchange a communication-buffer has been created for
-	void setupMappingBuffer(char **buffer,
-			DataPartsList *dataPartList,
-			PartIdContainer *partContainerTree,
-			DataItemConfig *dataConfig);
 };
 
 /* This extension is similar to the Preprocessed-Comm-Buffer extension with one critical difference that it keeps track
@@ -166,7 +166,7 @@ class IndexMappedCommBuffer : public CommBuffer {
 
   	virtual void readData(bool loggingEnabled, std::ostream &logFile) = 0;
   	virtual void writeData(bool loggingEnabled, std::ostream &logFile) = 0;
-  private:
+  private:	
 	void setupMappingBuffer(DataPartIndexList *indexMappingBuffer,
                         DataPartsList *dataPartList,
                         PartIdContainer *partContainerTree,
@@ -220,14 +220,40 @@ class PhysicalCommBuffer : public CommBuffer {
 class PreprocessedPhysicalCommBuffer : public PreprocessedCommBuffer {
   protected:
 	char *data;
+
+	// These variables are further added to enable faster data transfer between communication buffer and data parts
+	// using fewer memcpy operations when the transfer mapping indices are consecutive. In that case, instead of
+	// doing memcpy at the element-by-element case; a bunch of consecutive data points can be transferred all at once.
+	
+	// TODO: this optimization is done in DataPartSwiftIndexMapping also. In the future, we should consider merging
+	// the implementations in two places.
+	
+	// an array of jump starting points within the data part for sender and receiver 
+        char **sendLocationArray;
+        char **recvLocationArray;
+        // an array of ranges representing consecutive indexes starting from jump start points for sender and receiver
+        int *sendRanges;
+        int *recvRanges;
+        // total number of jump start points for sender and receiver
+        int sendJumpStartPoints;
+	int recvJumpStartPoints;
   public:
 	PreprocessedPhysicalCommBuffer(DataExchange *exchange, SyncConfig *syncConfig);
-	~PreprocessedPhysicalCommBuffer() { delete[] data; }
+	~PreprocessedPhysicalCommBuffer();
 	void readData(bool loggingEnabled, std::ostream &logFile);
 	void writeData(bool loggingEnabled, std::ostream &logFile);
 	void setData(char *data) { this->data = data; }
 	char *getData() { return data; }
 	virtual bool intraSegmentBufferType() { return false; }
+	
+	// this override is used to determine data transfer optimization possibilities
+	void setupMappingBuffer(char **buffer, DataPartsList *dataPartList,
+		PartIdContainer *partContainerTree,
+		DataItemConfig *dataConfig);
+
+	// the optimization process is the same for both sender and receiver sides of the communication buffer. So single
+	// method is used with flag to decide which side to process now. 
+	void optimizeMappingBuffer(bool senderSide);
 };
 
 /* The extension of physical communication buffer to be used with index-mapping enabled
