@@ -28,35 +28,41 @@ int getElementCount(List<Dimension*> *dimList) {
 	return length;
 }
 
-void saveIntArrayInFile(const char* fileName, List<Dimension*> *dimList, int *data) {
+void saveIntArrayInFile(const char* fileName, List<Dimension*> *dimList) {
 	
+        srand(time(NULL));
 	TypedOutputStream<int> stream = TypedOutputStream<int>(fileName, dimList, true);
 	stream.open();
 	int elementCount = getElementCount(dimList);
 	for (int i = 0; i < elementCount; i++) {
-		stream.writeNextElement(data[i]);
+		int item = rand() * 11 % 1000;	
+		stream.writeNextElement(item);
 	}
 	stream.close();
 }
 
-void saveFloatArrayInFile(const char* fileName, List<Dimension*> *dimList, float *data) {
+void saveFloatArrayInFile(const char* fileName, List<Dimension*> *dimList) {
 	
+        srand(time(NULL));
 	TypedOutputStream<float> stream = TypedOutputStream<float>(fileName, dimList, true);
 	stream.open();
 	int elementCount = getElementCount(dimList);
 	for (int i = 0; i < elementCount; i++) {
-		stream.writeNextElement(data[i]);
+		float item = (rand() % 100 * 1.0) / (rand() % 100 + 1.0);	
+		stream.writeNextElement(item);
 	}
 	stream.close();
 }
 
-void saveDoubleArrayInFile(const char* fileName, List<Dimension*> *dimList, double *data) {
+void saveDoubleArrayInFile(const char* fileName, List<Dimension*> *dimList) {
 	
+        srand(time(NULL));
 	TypedOutputStream<double> stream = TypedOutputStream<double>(fileName, dimList, true);
 	stream.open();
 	int elementCount = getElementCount(dimList);
 	for (int i = 0; i < elementCount; i++) {
-		stream.writeNextElement(data[i]);
+		double item = (rand() % 100 * 1.0) / (rand() % 100 + 1.0);	
+		stream.writeNextElement(item);
 	}
 	stream.close();
 }
@@ -68,33 +74,20 @@ using namespace bin_array_gen;
 
 void generateArray(int dataType, List<Dimension*> *dimList, const char* fileName) {
 
-        srand(time(NULL));
 	int elementCount = getElementCount(dimList);
 	Dimension total = Dimension();
 	total.length = elementCount;
 
 	if (dataType == 1) {
-		int *data = allocate<int>(1, &total);
-		for (int i = 0; i < elementCount; i++) {
-			data[i] = rand() * 11 % 1000;	
-		}
-		saveIntArrayInFile(fileName, dimList, data);
+		saveIntArrayInFile(fileName, dimList);
 	} else if (dataType == 2) {
-		float *data = allocate<float>(1, &total);
-		for (int i = 0; i < elementCount; i++) {
-			data[i] = (rand() % 100 * 1.0) / (rand() % 100 + 1.0);	
-		}
-		saveFloatArrayInFile(fileName, dimList, data);
+		saveFloatArrayInFile(fileName, dimList);
 	} else if (dataType == 3) {
-		double *data = allocate<double>(1, &total);
-		for (int i = 0; i < elementCount; i++) {
-			data[i] = (rand() % 100 * 1.0) / (rand() % 100 + 1.0);	
-		}
-		saveDoubleArrayInFile(fileName, dimList, data);
+		saveDoubleArrayInFile(fileName, dimList);
 	}
 }
 
-int mainBAGen(int argc, const char* argv[]) {
+int mainBGen(int argc, const char* argv[]) {
 
 	if (argc < 4) {
                 std::cout << "provide the following information\n";
