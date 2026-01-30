@@ -77,7 +77,7 @@ Task "Monte Carlo Area Estimation":
 				grid[i][j].top = cell_length * ( j + 1) - 1
 			} for i, j in grid
 		}
-		estimateSubarea(cell_length, grid, sub_area_estimates, points_per_cell) {
+		estimateSubarea(cell_length, grid, sub_area_estimates, points_per_cell, cell_size) {
 			
 			// iterate parallely over the grid cells
 			do {
@@ -108,7 +108,7 @@ Task "Monte Carlo Area Estimation":
 				
 				// estimate the sub-area under the polynomial within each grid cell by a fixed number of
 				// random samples   
-				estimateSubarea(cell_length, grid, sub_area_estimates, points_per_cell)
+				estimateSubarea(cell_length, grid, sub_area_estimates, points_per_cell, cell_size)
 
 				// reduce the sub-area estimates into a single final result in Space A
 				estimateTotalArea(Space A:area, sub_area_estimates)
