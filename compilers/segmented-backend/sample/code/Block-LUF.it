@@ -1,7 +1,7 @@
 Program (args) { 
 	luEnv = new TaskEnvironment(name: "Block LU Factorization")
 	bind_input(luEnv, "a", args.input)
-	execute(task: "Block LU Factorization"; environment: luEnv; partition: args.block_size)
+	execute(task: "Block LU Factorization"; environment: luEnv; partition: args.block_size, args.part_size)
 	//bind_output(luEnv, "u", args.upper)
 	//bind_output(luEnv, "l", args.lower)
 	//bind_output(luEnv, "p", args.pivot)
@@ -133,7 +133,7 @@ Task "Block LU Factorization":
 				}
 			}
 		}
-	Partition(b):
+	Partition(b, p):
 		Space A <un-partitioned> { 
 			a, p, l_column, l_row, p_column, l_block, u_block 
 		}
@@ -146,6 +146,6 @@ Task "Block LU Factorization":
 			u_block: block_size(b), replicated
 			l_block: replicated, block_size(b)	
 			Sub-partition <1d> <unordered> {
-				u_block<dim2>, l_block<dim1>: block_size(b)
+				u_block<dim2>, l_block<dim1>: block_size(p)
 			}
 		} 
