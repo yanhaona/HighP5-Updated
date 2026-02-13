@@ -150,6 +150,18 @@ bool DimPartitionConfig::hasReorderedIndices(int position) {
 	} else return false;
 }
 
+int DimPartitionConfig::getMinConseqIndexLength(int position, List<Dimension*> *dimLengthList) {
+
+	Dimension *dimAtCurrPosition = dimLengthList->Nth(position);
+	int currDimLength = dimAtCurrPosition->range.max - dimAtCurrPosition->range.min + 1;
+	if (position == 0) {
+		return currDimLength;
+	} else {
+		int parentsConsIndexLength = parentConfig->getMinConseqIndexLength(position - 1, dimLengthList);
+		return currDimLength % parentsConsIndexLength;
+	}
+}
+
 List<PartIntervalPattern*> *DimPartitionConfig::getPartIntervalPatterns(Dimension origDimension) {
 	List<PartIntervalPattern*> *list = new List<PartIntervalPattern*>;
 	PartIntervalPattern *pattern = new PartIntervalPattern;
@@ -611,6 +623,28 @@ List<PartIntervalPattern*> *BlockStrideConfig::getPartIntervalPatterns(Dimension
 	} 
 
 	return patternList;
+}
+
+int BlockStrideConfig::getMinConseqIndexLength(int position, List<Dimension*> *dimLengthList) {
+
+	Dimension *dimAtCurrPosition = dimLengthList->Nth(position);	
+	int currDimLength = dimAtCurrPosition->range.max - dimAtCurrPosition->range.min + 1;
+	int blockSize = partitionArgs[0];
+	if (position == 0) {
+		return blockSize;
+	} else {
+		if (parentConfig->hasReorderedIndices(position - 1)) {
+			int parentsConsIndexLength = parentConfig->getMinConseqIndexLength(position - 1, dimLengthList);
+			if (parentsConsIndexLength < blockSize) {
+				if (blockSize % parentsConsIndexLength == 0) return parentsConsIndexLength;
+				else return 1;
+			}
+			else if (parentsConsIndexLength % blockSize == 0) return blockSize;
+			else return 1;
+		} else {
+			return blockSize;
+		}
+	}
 }
 
 //---------------------------------------------------------- Data Partition Config --------------------------------------------------------/
