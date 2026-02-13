@@ -152,6 +152,13 @@ class DimPartitionConfig {
 	// original index determination from a part index. This function tells whether an index is reordered
 	// anywhere in the part hierarchy;   
 	virtual bool hasReorderedIndices(int position);
+
+	// This is again to optimize I/O operation in the face of dimension index reordering. Instead of doing
+	// index transformation via complex operation, we want to do transformation calculation only at the 
+	// points where consecutive transformated index ranges begin. The defualt implementation, handle the
+	// case for non-index-reordering partition configuration. The method must be overrided by partition 
+	// configurations that reorder the indices.
+	virtual int getMinConseqIndexLength(int position, List<Dimension*> *dimLengthList);
 	
 	// determines the part dimension given a part Id; for reordering partition function it is the part 
 	// dimension after the indexes have been shuffled to have each part occupying a contiguous chunk along 
@@ -271,6 +278,7 @@ class StrideConfig : public DimPartitionConfig {
 	bool doesReorderIndices() { return true; }
 	bool isEqual(DimPartitionConfig *otherConfig);
 	List<PartIntervalPattern*> *getPartIntervalPatterns(Dimension origDimension);
+	int getMinConseqIndexLength(int position, List<Dimension*> *dimLengthList) { return 1; }
 };
 
 /* configuration subclass for 'block_stride' partition function that takes a 'block_size' parameter */
@@ -291,6 +299,7 @@ class BlockStrideConfig : public DimPartitionConfig {
 	bool doesReorderIndices() { return true; }
 	bool isEqual(DimPartitionConfig *otherConfig);
 	List<PartIntervalPattern*> *getPartIntervalPatterns(Dimension origDimension);
+	int getMinConseqIndexLength(int position, List<Dimension*> *dimLengthList);
 };
 
 /* This is the class that holds the partition configuration for different dimensions of a single data structure 

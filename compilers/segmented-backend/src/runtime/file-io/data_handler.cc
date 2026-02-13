@@ -254,17 +254,43 @@ void PartHandler::processPart(Dimension *partDimensions, int currentDimNo, List<
 		int position = currentPart->getMetadata()->getIdList()->NumElements() - 1;
 
 		if (dimConfig->hasReorderedIndices(position) == true) {
-			for (int index = dimension.range.min; index <= dimension.range.max; index++) {
-				partialIndex->Append(index);
-				long int storeIndex = getStorageIndex(partialIndex, partDimensions);
+			
+			// TODO: need to check later if this optimization of calculating the storage index only once has any
+			// erroneous consequence for this case. Currently, it seems, it is the proper optimization
+			partialIndex->Append(dimension.range.min);
+			long int storeIndex = getStorageIndex(partialIndex, partDimensions);
+	
+			// determine how frequently we have to re-calculate index reordering starting points
+			List<int> *partIdList = currentPartInfo->partIdList->Nth(currentDimNo);
+			List<int> *partCounts = currentPartInfo->partCounts->Nth(currentDimNo);
+			List<Dimension*> *partDimensions = currentPartInfo->partDimensions->Nth(currentDimNo);
+			int conseqIndexRangeLength = dimConfig->getMinConseqIndexLength(position, partDimensions);
+			
+			for (int index = dimension.range.min; index <= dimension.range.max; index += conseqIndexRangeLength) {
+
+				// TODO: I have to recheck this logic altogether for mathematical accuracy if the BLOCK LUF result
+				// does not match the reference.
 				int dataIndex = getDataIndexForDim(currentDimNo, index);
 				currentDataIndex->Append(dataIndex);
-				if (!needToExcludePadding || currentPartInfo->isDataIndexInCorePart(currentDataIndex)) {
-					processElement(currentDataIndex, storeIndex, partStore);
+
+				int count = 0;
+				while (count < conseqIndexRangeLength) {
+
+					if (!needToExcludePadding || currentPartInfo->isDataIndexInCorePart(currentDataIndex)) {
+						if (count == 0) {
+							processElement(currentDataIndex, storeIndex, partStore);
+						} else {
+							processNextElement(storeIndex, partStore);
+						}
+					}
+					count++;
+					storeIndex++;
+					dataIndex++;
 				}
-				partialIndex->RemoveAt(currentDimNo);
+
 				currentDataIndex->RemoveAt(currentDimNo);
 			}
+			partialIndex->RemoveAt(currentDimNo);
 		
 		} else {
 			int startIndex = dimension.range.min;
