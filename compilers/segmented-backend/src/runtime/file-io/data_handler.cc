@@ -227,7 +227,13 @@ void PartHandler::processPart(Dimension *partDimensions, int currentDimNo, List<
 	Dimension dimension = partDimensions[currentDimNo];
 	
 	if (currentDimNo < dataDimensionality - 1) {
-		if (currentDimNo == 0 && stride > 1) {
+		
+		DimPartitionConfig *lastDimConfig = partConfig->getDimensionConfig(dataDimensionality - 1);
+		int lastPosition = currentPart->getMetadata()->getIdList()->NumElements() - 1;
+
+		if (currentDimNo == 0 && stride > 1 
+				&& lastDimConfig->hasReorderedIndices(lastPosition) == false) {
+
 			for (int index = dimension.range.min + handlerIndex; 
 					index <= dimension.range.max; index = index + stride) {
 				int dataIndex = getDataIndexForDim(currentDimNo, index);
@@ -266,29 +272,27 @@ void PartHandler::processPart(Dimension *partDimensions, int currentDimNo, List<
 			List<Dimension*> *partDimensions = currentPartInfo->partDimensions->Nth(currentDimNo);
 			int conseqIndexRangeLength = dimConfig->getMinConseqIndexLength(position, partDimensions);
 			
-			for (int index = dimension.range.min; index <= dimension.range.max; index += conseqIndexRangeLength) {
+			for (int index = dimension.range.min + handlerIndex; 
+					index <= dimension.range.max; index += conseqIndexRangeLength) {
 
 				// TODO: I have to recheck this logic altogether for mathematical accuracy if the BLOCK LUF result
 				// does not match the reference.
 				int dataIndex = getDataIndexForDim(currentDimNo, index);
-				currentDataIndex->Append(dataIndex);
 
 				int count = 0;
 				while (count < conseqIndexRangeLength) {
+					
+					currentDataIndex->Append(dataIndex);
 
 					if (!needToExcludePadding || currentPartInfo->isDataIndexInCorePart(currentDataIndex)) {
-						if (count == 0) {
-							processElement(currentDataIndex, storeIndex, partStore);
-						} else {
-							processNextElement(storeIndex, partStore);
-						}
+						processElement(currentDataIndex, storeIndex, partStore);
 					}
-					count++;
-					storeIndex++;
-					dataIndex++;
+					count += stride;
+					storeIndex += stride;
+					dataIndex += stride;
+					
+					currentDataIndex->RemoveAt(currentDimNo);
 				}
-
-				currentDataIndex->RemoveAt(currentDimNo);
 			}
 			partialIndex->RemoveAt(currentDimNo);
 		
