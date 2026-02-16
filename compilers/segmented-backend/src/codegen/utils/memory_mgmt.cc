@@ -275,7 +275,8 @@ void genRoutinesForTaskPartitionConfigs(const char *headerFileName,
 	
 void genRoutineForLpsContent(std::ofstream &headerFile, std::ofstream &programFile, const char *initials,
 		List<const char*> *envArrayList,  
-		Space *lps, Space *rootLps) {
+		Space *lps, Space *rootLps,
+		Hashtable<List<Space*>*> *allocationMap) {  
 	
 	std::ostringstream functionHeader;
 	functionHeader << "genSpace" << lps->getName() << "Content(";
@@ -286,7 +287,9 @@ void genRoutineForLpsContent(std::ofstream &headerFile, std::ofstream &programFi
 	functionHeader << '\n' << doubleIndent;
 	functionHeader << initials << "Partition partition" << paramSeparator;
 	functionHeader << '\n' << doubleIndent;
-	functionHeader << "Hashtable<DataPartitionConfig*> *partConfigMap)";
+	functionHeader << "Hashtable<DataPartitionConfig*> *partConfigMap" << paramSeparator;
+	functionHeader << '\n' << doubleIndent;
+	functionHeader << "TaskData *taskData)";
 
 	headerFile << "LpsContent *" << functionHeader.str() << stmtSeparator;
 	programFile << "LpsContent *" << string_utils::toLower(initials) << "::";
@@ -415,13 +418,57 @@ void genRoutineForLpsContent(std::ofstream &headerFile, std::ofstream &programFi
 		ArrayDataStructure *array = dynamic_cast<ArrayDataStructure*>(structure);
 		if (array == NULL) continue;
 
+		List<Space*> *allocatorLpsesForArray = allocationMap->Lookup(varName);
+		if (allocatorLpsesForArray == NULL) {
+			allocatorLpsesForArray = new List<Space*>;
+			allocationMap->Enter(varName, allocatorLpsesForArray);
+		}
+
+		programFile << "\n";
+
+		// if there are previous LPSes that allocated the current array of interest and current LPS and the 
+		// previous LPSes access the array as read only, then enable dynamic checking of possible allocation
+		// sharing of data parts between LPSes
+		if (allocatorLpsesForArray->NumElements() != 0) {
+			programFile << indent << "List<DataPartitionConfig*> *" << varName 
+				<<"AltAllocsConf = new List<DataPartitionConfig*>" << stmtSeparator;
+			programFile << indent << "List<DataPartsList*> *" << varName 
+				<< "AltAllocations = new List<DataPartsList*>" << stmtSeparator;
+			for (int i = 0 ; i < allocatorLpsesForArray->NumElements(); i++) {
+				Space *otherLps = allocatorLpsesForArray->Nth(i);
+				const char *otherLpsName = otherLps->getName();
+				programFile << indent << varName << "AltAllocsConf->Append(";
+				programFile << "partConfigMap->Lookup(\""<< varName << "Space"; 
+				programFile << otherLpsName << "Config\"))" << stmtSeparator;
+				programFile << indent << "DataPartsList *" << varName << "Space" << otherLpsName << "Parts";
+		        	programFile << " = taskData->getDataItemsOfLps(\"" << otherLpsName << "\"";
+				programFile << paramSeparator << "\"" << varName <<  "\")->getPartsList()" << stmtSeparator;
+				programFile << indent << varName << "AltAllocations->Append(";
+				programFile << varName << "Space" << otherLpsName << "Parts)" << stmtSeparator;
+			}
+		
+		} else {
+			programFile << indent << "List<DataPartitionConfig*> *" << varName 
+				<<"AltAllocsConf = NULL" << stmtSeparator;
+			programFile << indent << "List<DataPartsList*> *" << varName 
+				<< "AltAllocations = NULL" << stmtSeparator;
+		}
+
 		Type *type = structure->getType();
 		ArrayType *arrayType = reinterpret_cast<ArrayType*>(type);
 		const char *cType =  arrayType->getTerminalElementType()->getCType();
-		programFile << '\n' << indent << varName << "Parts->initializePartsList(";
+		programFile << indent << varName << "Parts->initializePartsList(";
 		programFile << varName << "Config" << paramSeparator;
 		programFile << varName << "Container" << paramSeparator;
-		programFile << "sizeof(" << cType << "))" << stmtSeparator;
+		programFile << "sizeof(" << cType << ")" << paramSeparator;
+		programFile << varName << "AltAllocsConf" << paramSeparator;
+		programFile << varName << "AltAllocations)" << stmtSeparator;
+
+		// we attempt data part sharing only when the allocation is previously done on an LPS that access the
+		// array as read-only.
+		if (structure->getUsageStat()->isModified() == false) {
+			allocatorLpsesForArray->Append(lps);
+		}
 
 		// if the data structure is not part of the task environment then allocate memory for its data parts
 		if (!string_utils::contains(envArrayList, varName)) {
@@ -583,7 +630,12 @@ void genTaskMemoryConfigRoutine(TaskDef *taskDef,
 	// data items
 	functionBody << indent << "preconfigureLpsAllocationsInEnv(environment" << paramSeparator;
 	functionBody << "metadata" << paramSeparator << "configMap)" << stmtSeparator; 
-	
+
+	// We want to share read only data parts between LPSes when the data parts' for a single task global
+	// arrays are equal in multiple LPSes. However, we can only have hints during compile time regarding
+	// data parts equivalence.
+	Hashtable<List<Space*>*> *allocationMap = new Hashtable<List<Space*>*>;  
+
 	// iterate all LPSes and create LPS Content instance in each that has any data structure to allocate 
 	functionBody << '\n' << indent << "// prepare LPS contents map\n";
 	std::deque<Space*> lpsQueue;
@@ -605,7 +657,7 @@ void genTaskMemoryConfigRoutine(TaskDef *taskDef,
 		
 		// generate the routine for the current LPS
 		programFile << std::endl;
-		genRoutineForLpsContent(headerFile, programFile, initials, envArrays, lps, root);
+		genRoutineForLpsContent(headerFile, programFile, initials, envArrays, lps, root, allocationMap);
 
 		// include an invocation of the generated routine in the task data preparation function
 		const char *lpsName = lps->getName();
@@ -614,7 +666,7 @@ void genTaskMemoryConfigRoutine(TaskDef *taskDef,
 		functionBody << "metadata" << paramSeparator;
 		functionBody << '\n' << tripleIndent;
 		functionBody << "environment" << paramSeparator << "partition" << paramSeparator;
-		functionBody << "configMap)" << stmtSeparator;
+		functionBody << "configMap" << paramSeparator << "taskData" << ")" << stmtSeparator;
 		functionBody << indent << "taskData->addLpsContent(\"" << lpsName << '"';
 		functionBody << paramSeparator << "space" << lpsName << "Content)" << stmtSeparator;
 	}

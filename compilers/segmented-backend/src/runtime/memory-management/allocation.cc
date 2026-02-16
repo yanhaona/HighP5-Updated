@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <cstring>
+#include <iostream>
 
 //---------------------------------------------------------------- Part Metadata ---------------------------------------------------------------/
 
@@ -84,6 +85,7 @@ DataPart::DataPart(PartMetadata *metadata, int epochCount, int elementSize) {
 	dataVersions->reserve(epochCount);
 	this->epochHead = 0;
 	this->elementSize = elementSize;
+	this->currAllocThreshold = 0;
 }
 
 DataPart::~DataPart() {
@@ -100,6 +102,11 @@ void DataPart::allocate(int versionThreshold) {
 	long int size = metadata->getSize();
 	long int allocationSize = elementSize * size;
 
+	if (currAllocThreshold == epochCount) {
+		std::cout << "Skipping duplicate parts allocation for shared data parts\n";
+		return;
+	}
+
 	for (int i = versionThreshold; i < epochCount; i++) {
 		void *allocation = malloc(sizeof(char) * allocationSize);
 		Assert(allocation != NULL);
@@ -108,6 +115,7 @@ void DataPart::allocate(int versionThreshold) {
 			data[j] = 0;
 		}
 		dataVersions->push_back(allocation);
+		currAllocThreshold++;
 	}
 }
 
@@ -179,7 +187,20 @@ DataPartsList::~DataPartsList() {
 
 void DataPartsList::initializePartsList(DataPartitionConfig *partConfig, 
 		PartIdContainer *partContainer, 
-		int partElementSize) {
+		int partElementSize, 
+		List<DataPartitionConfig*> *alternativeAllocationsConf, 
+		List<DataPartsList*> *alternativeAllocations) {
+
+	List <DataPart*> *equivPartsList = NULL;
+	if (alternativeAllocationsConf != NULL) {
+		for (int i = 0; i < alternativeAllocationsConf->NumElements(); i++) {
+			DataPartitionConfig *other = alternativeAllocationsConf->Nth(i);
+			if (partConfig->isEquivalent(other)) {
+				equivPartsList = alternativeAllocations->Nth(i)->getPartList();
+				break;		
+			}
+		}
+	}
 
 	this->partContainer = partContainer;
         int partCount = partContainer->getPartCount();
@@ -197,9 +218,14 @@ void DataPartsList::initializePartsList(DataPartitionConfig *partConfig,
 			PartLocator *partLocator = new PartLocator(partId, dimensions, listIndex);
 			Assert(partLocator != NULL);
 			iterator->replaceCurrentPart(partLocator);
-			DataPart *dataPart = new DataPart(partConfig->generatePartMetadata(partId),
+			DataPart *dataPart = NULL;
+			if (equivPartsList == NULL) {
+				dataPart = new DataPart(partConfig->generatePartMetadata(partId),
 					epochCount, partElementSize);
-			Assert(dataPart != NULL);
+				Assert(dataPart != NULL);
+			} else {
+				dataPart = equivPartsList->Nth(listIndex);
+			}
 			partList->Append(dataPart);
 			listIndex++;
 			iterator->advance();

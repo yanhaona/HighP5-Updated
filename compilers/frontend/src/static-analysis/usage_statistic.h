@@ -21,12 +21,15 @@ class LPSVarUsageStat {
 	// this is a variable to aid in code generation that indicates memory has been allocated for
 	// this variable in the space under concern
 	bool allocated;
+	// this variable is added to enable sharing of read-only data-parts in multiple LPUs	
+	bool modified;
   public:
 	LPSVarUsageStat() {
 		reduced = false;
 		accessCount = 0;
 		maxUninterruptedAccesses = 0;
 		allocated = false;
+		modified = false;
 	}
 	void flagReduced() { reduced = true; }
 	bool isReduced() { return reduced; }
@@ -44,7 +47,9 @@ class LPSVarUsageStat {
 		return accessCount > 1 || maxUninterruptedAccesses > 1;
 	}
 	void flagAllocated() { allocated = true; }
-	bool isAllocated() { return allocated; }		
+	bool isAllocated() { return allocated; }
+	void flagModified() { modified = true; }
+	bool isModified() { return modified; }	
 };
 
 #endif

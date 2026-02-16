@@ -168,6 +168,9 @@ void FlowStage::calculateLPSUsageStatistics() {
                 LPSVarUsageStat *usageStat = structure->getUsageStat();
                 if (accessFlags->isRead() || accessFlags->isWritten()) {
                         usageStat->addAccess();
+			if (accessFlags->isWritten()) {
+				usageStat->flagModified();
+			}
                 }
                 if (accessFlags->isReduced()) {
                         usageStat->flagReduced();
