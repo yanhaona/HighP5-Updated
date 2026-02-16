@@ -84,6 +84,10 @@ class DataPart {
 	std::vector<void*> *dataVersions;
 	// size of each element of the data part in terms of the number of characters
 	int elementSize;
+	// as we want the same read-only data part to be shared across multiple LPS's whenever possible; multiple
+	// LPS content generators may try to allocate the same data part, resulting in memory leak. So we have an
+	// allocation counter variable to make redundant allocation request a NOOP operation.
+	int currAllocThreshold;
   public:
 	DataPart(PartMetadata *metadata, int epochCount, int elementSize);
 	~DataPart();
@@ -160,7 +164,9 @@ class DataPartsList {
 	
 	void initializePartsList(DataPartitionConfig *partConfig, 
 			PartIdContainer *partContainer, 
-			int partElementSize);
+			int partElementSize, 
+			List<DataPartitionConfig*> *alternativeAllocationsConf, 
+			List<DataPartsList*> *alternativeAllocations);
 	void allocateParts();
 	inline ListMetadata *getMetadata() { return metadata; }
 	inline PartIdContainer *getPartContainer() { return partContainer; }
