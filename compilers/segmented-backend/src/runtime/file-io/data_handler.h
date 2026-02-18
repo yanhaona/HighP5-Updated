@@ -126,12 +126,17 @@ class PartReader : public PartHandler {
         // concurrent reading will be done by cloning the reader. In that regard, each reader should have a cloning
 	// index to determine which part it should process
 	int workerIndex;
+	// In case the part list whose content to be read from a file is a secondary version of a part list handled by
+	// another LPS, there will be no need for an additional IO. The PartReader for the other LPS will populate the
+	// shared data parts. Then the reader will be disabled.
+	bool disabled;
   public:
 	PartReader(DataPartsList *partsList, 
 			DataPartitionConfig *partConfig, 
 			int parallelism) : PartHandler(partsList, partConfig) {
 		this->concurrency = parallelism;
 		this->workerIndex = -1;
+		this->disabled = partsList->isSecondaryCopy();
 	}
 
 	void setWorkerIndex(int index) { this->workerIndex = index; }

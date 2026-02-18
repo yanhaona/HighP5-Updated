@@ -353,6 +353,13 @@ long int PartHandler::getStorageIndex(List<int> *partIndex, Dimension *partDimen
 
 void PartReader::processParts() {
 
+	// if the part reader is disabled then do nothing
+	if (disabled) {
+		std::cout << "Skipping parts reading for secondary copy shared data parts from file: " << fileName << std::endl;
+	} else if (workerIndex == -1) {
+		std::cout << "Reading data parts from file: " << fileName << std::endl;
+	}
+
 	// no need to create threads to do concurrent reading
 	if (concurrency == 1) {
 		PartHandler::processParts();

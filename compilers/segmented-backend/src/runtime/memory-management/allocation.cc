@@ -172,6 +172,7 @@ DataPartsList::DataPartsList(ListMetadata *metadata, int epochCount) {
 	this->epochCount = epochCount;
 	this->partList = NULL;
 	this->invalid = false;
+	this->secondaryCopy = false;
 }
 
 DataPartsList::~DataPartsList() {
@@ -197,6 +198,7 @@ void DataPartsList::initializePartsList(DataPartitionConfig *partConfig,
 			DataPartitionConfig *other = alternativeAllocationsConf->Nth(i);
 			if (partConfig->isEquivalent(other)) {
 				equivPartsList = alternativeAllocations->Nth(i)->getPartList();
+				this->secondaryCopy = true;
 				break;		
 			}
 		}
