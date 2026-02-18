@@ -158,6 +158,9 @@ class DataPartsList {
 	int epochCount;
 	// a flag to indicate that this part list is empty and acting as a placeholder only
 	bool invalid;
+	// This flag indicates whether the actual data parts for this parts list come from some other LPS allocation.
+	// Then I/O operations through this list will be redundant.
+	bool secondaryCopy;
   public:
 	DataPartsList(ListMetadata *metadata, int epochCount);
 	~DataPartsList();
@@ -173,6 +176,7 @@ class DataPartsList {
 	inline int getEpochCount() { return epochCount; }
 	inline List<DataPart*> *getPartList() { return partList; }
 	inline bool isInvalid() { return invalid; }
+	inline bool isSecondaryCopy() { return secondaryCopy; }
 	DataPart *getPart(List<int*> *partId, PartIterator *iterator);
 
 	// each PPU-controller within a segment should get an iterator for each data part list that to be used later 
