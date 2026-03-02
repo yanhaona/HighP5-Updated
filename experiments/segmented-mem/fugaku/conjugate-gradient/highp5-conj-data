@@ -1,0 +1,280 @@
+51200 by 51200 matrix that is 95% sparse
+Iteration count 51200
+Used 8 cores per node
+All cores ran MPI processes
+
+--------------------------------------------------------------------64 Nodes
+Memory preparation time: 36.4701 Seconds
+Total communication time: 255.09 Seconds
+Computation without communication time: 171.923 Seconds
+Execution Time: 463.631 Seconds
+
+Memory preparation time: 36.8094 Seconds
+Total communication time: 224.681 Seconds
+Computation without communication time: 173.323 Seconds
+Execution Time: 435.012 Seconds
+
+Memory preparation time: 37.3919 Seconds
+Total communication time: 175.376 Seconds
+Computation without communication time: 173.229 Seconds
+Execution Time: 386.144 Seconds
+
+Memory preparation time: 36.328 Seconds
+Total communication time: 183.97 Seconds
+Computation without communication time: 174.097 Seconds
+Execution Time: 394.617 Seconds
+
+Memory preparation time: 36.0591 Seconds
+Total communication time: 188.7 Seconds
+Computation without communication time: 173.518 Seconds
+Execution Time: 398.563 Seconds
+
+Memory preparation time: 36.37 Seconds
+Total communication time: 164.65 Seconds
+Computation without communication time: 171.393 Seconds
+Execution Time: 372.607 Seconds
+
+Memory preparation time: 36.4084 Seconds
+Total communication time: 178.082 Seconds
+Computation without communication time: 173.33 Seconds
+Execution Time: 387.944 Seconds
+
+Memory preparation time: 36.1823 Seconds
+Total communication time: 176.44 Seconds
+Computation without communication time: 173.583 Seconds
+Execution Time: 386.357 Seconds
+
+Total communication time: 246.921 Seconds
+Computation without communication time: 200.558 Seconds
+Execution Time: 483.748 Seconds
+Memory preparation time: 36.0763 Seconds
+
+Memory preparation time: 36.0359 Seconds
+Total communication time: 176.921 Seconds
+Computation without communication time: 173.967 Seconds
+Execution Time: 387.076 Seconds
+
+Memory preparation time: 36.2875 Seconds
+Total communication time: 167.422 Seconds
+Computation without communication time: 172.881 Seconds
+Execution Time: 376.735 Seconds
+
+Memory preparation time: 36.3484 Seconds
+Total communication time: 183.729 Seconds
+Computation without communication time: 175.093 Seconds
+Execution Time: 395.381 Seconds
+
+Memory preparation time: 36.5636 Seconds
+Total communication time: 200.77 Seconds
+Computation without communication time: 172.557 Seconds
+Execution Time: 410.026 Seconds
+
+Memory preparation time: 36.1195 Seconds
+Total communication time: 167.34 Seconds
+Computation without communication time: 172.269 Seconds
+Execution Time: 375.888 Seconds
+
+Computation time: 352.001 Seconds
+Total communication time: 179.063 Seconds
+Computation without communication time: 172.937 Seconds
+Execution Time: 388.345 Seconds
+
+
+-------------------------------------------------------------------------32 Nodes
+Memory preparation time: 36.3623 Seconds
+Total communication time: 97.384 Seconds
+Computation without communication time: 269.955 Seconds
+Execution Time: 403.832 Seconds
+
+Memory preparation time: 36.0556 Seconds
+Total communication time: 104.396 Seconds
+Computation without communication time: 270.265 Seconds
+Execution Time: 410.854 Seconds
+
+Memory preparation time: 35.804 Seconds
+Total communication time: 78.7223 Seconds
+Computation without communication time: 270.189 Seconds
+Execution Time: 384.868 Seconds
+
+Memory preparation time: 35.836 Seconds
+Total communication time: 105.091 Seconds
+Computation without communication time: 271.103 Seconds
+Execution Time: 412.195 Seconds
+
+Memory preparation time: 36.9257 Seconds
+Total communication time: 78.0525 Seconds
+Computation without communication time: 270.169 Seconds
+Execution Time: 385.316 Seconds
+
+Memory preparation time: 35.9355 Seconds
+Total communication time: 78.4759 Seconds
+Computation without communication time: 271.581 Seconds
+Execution Time: 386.116 Seconds
+
+Memory preparation time: 36.5082 Seconds
+Total communication time: 94.6208 Seconds
+Computation without communication time: 269.7 Seconds
+Execution Time: 400.986 Seconds
+
+Memory preparation time: 37.6424 Seconds
+Total communication time: 78.939 Seconds
+Computation without communication time: 269.989 Seconds
+Execution Time: 386.71 Seconds
+
+Memory preparation time: 36.9063 Seconds
+Total communication time: 87.262 Seconds
+Computation without communication time: 267.564 Seconds
+Execution Time: 391.902 Seconds
+
+Memory preparation time: 37.3309 Seconds
+Total communication time: 102.741 Seconds
+Computation without communication time: 269.855 Seconds
+Execution Time: 410.125 Seconds
+
+
+
+--------------------------------------------------------------------16 Nodes
+Memory preparation time: 42.751 Seconds
+Total communication time: 50.2076 Seconds
+Computation without communication time: 510.979 Seconds
+Execution Time: 604.139 Seconds
+
+Memory preparation time: 37.9754 Seconds
+Total communication time: 49.3373 Seconds
+Computation without communication time: 509.064 Seconds
+Execution Time: 596.491 Seconds
+
+Memory preparation time: 37.1948 Seconds
+Total communication time: 48.1241 Seconds
+Computation without communication time: 512.795 Seconds
+Execution Time: 598.25 Seconds
+
+Memory preparation time: 36.9869 Seconds
+Total communication time: 52.2366 Seconds
+Computation without communication time: 508.441 Seconds
+Execution Time: 597.765 Seconds
+
+Memory preparation time: 35.9231 Seconds
+Total communication time: 49.2391 Seconds
+Computation without communication time: 513.462 Seconds
+Execution Time: 598.802 Seconds
+
+Memory preparation time: 36.3375 Seconds
+Total communication time: 57.5508 Seconds
+Computation without communication time: 508.994 Seconds
+Execution Time: 603 Seconds
+
+Memory preparation time: 37.0106 Seconds
+Total communication time: 67.1245 Seconds
+Computation without communication time: 512.992 Seconds
+Execution Time: 617.248 Seconds
+
+Memory preparation time: 35.6927 Seconds
+Total communication time: 83.8207 Seconds
+Computation without communication time: 512.866 Seconds
+Execution Time: 632.519 Seconds
+
+Memory preparation time: 36.9691 Seconds
+Total communication time: 49.6464 Seconds
+Computation without communication time: 508.694 Seconds
+Execution Time: 595.432 Seconds
+
+Memory preparation time: 47.8726 Seconds
+Total communication time: 51.5514 Seconds
+Computation without communication time: 510.674 Seconds
+Execution Time: 610.449 Seconds
+
+
+
+--------------------------------------------------------------------8 Nodes
+Memory preparation time: 36.5615 Seconds
+Total communication time: 256.178 Seconds
+Computation without communication time: 1005.41 Seconds
+Execution Time: 1298.36 Seconds
+
+Memory preparation time: 37.4996 Seconds
+Total communication time: 37.551 Seconds
+Computation without communication time: 1003.95 Seconds
+Execution Time: 1079.1 Seconds
+
+Memory preparation time: 41.4935 Seconds
+Total communication time: 38.3487 Seconds
+Computation without communication time: 1000.72 Seconds
+Execution Time: 1080.66 Seconds
+
+Memory preparation time: 37.5199 Seconds
+Total communication time: 36.6569 Seconds
+Computation without communication time: 1005.46 Seconds
+Execution Time: 1079.75 Seconds
+
+Memory preparation time: 36.0942 Seconds
+Total communication time: 60.519 Seconds
+Computation without communication time: 1006.55 Seconds
+Execution Time: 1103.29 Seconds
+
+Memory preparation time: 36.991 Seconds
+Total communication time: 37.8491 Seconds
+Computation without communication time: 1005.94 Seconds
+Execution Time: 1080.89 Seconds
+
+Memory preparation time: 43.3776 Seconds
+Total communication time: 36.5858 Seconds
+Computation without communication time: 1003.06 Seconds
+Execution Time: 1083.12 Seconds
+
+Parallel Execution Time: 1115.53 Seconds
+Parallel Execution Time: 1081.5 Seconds
+Parallel Execution Time: 1112.37 Seconds
+
+
+---------------------------------------------------------------------- 4 Nodes
+Parallel Execution Time: 2076 Seconds
+Parallel Execution Time: 2061.86 Seconds
+Parallel Execution Time: 2061.93 Seconds
+Parallel Execution Time: 2068.48 Seconds
+Parallel Execution Time: 2065.6 Seconds
+Parallel Execution Time: 2095.47 Seconds
+Parallel Execution Time: 2069.08 Seconds
+Parallel Execution Time: 2065.22 Seconds
+Parallel Execution Time: 2078.48 Seconds
+Parallel Execution Time: 2067 Seconds
+Memory preparation time: 36.7179 Seconds
+Total communication time: 38.9103 Seconds
+Computation without communication time: 1989.38 Seconds
+Execution Time: 2065.22 Seconds
+
+----------------------------------------------------------------------- 2 Nodes
+Parallel Execution Time: 4066.27 Seconds
+Parallel Execution Time: 4130.96 Seconds
+Parallel Execution Time: 4064.25 Seconds
+Parallel Execution Time: 4067.48 Seconds
+Parallel Execution Time: 4067.54 Seconds
+Parallel Execution Time: 4068.23 Seconds
+Parallel Execution Time: 4067.57 Seconds
+Parallel Execution Time: 4065.23 Seconds
+Parallel Execution Time: 4074.78 Seconds
+Parallel Execution Time: 4103.06 Seconds
+Memory preparation time: 35.4315 Seconds
+Total communication time: 45.2498 Seconds
+Computation without communication time: 3985.5 Seconds
+Execution Time: 4066.27 Seconds
+
+
+------------------------------------------------------------------------ 1 Node
+Parallel Execution Time: 8059.34 Seconds
+Parallel Execution Time: 8059.52 Seconds
+Parallel Execution Time: 8061.3 Seconds
+Parallel Execution Time: 8055.56 Seconds
+Parallel Execution Time: 8062.26 Seconds
+Parallel Execution Time: 8052.41 Seconds
+Parallel Execution Time: 8057.71 Seconds
+Parallel Execution Time: 8070.5 Seconds
+Parallel Execution Time: 8050.09 Seconds
+Parallel Execution Time: 8051.03 Seconds
+Memory preparation time: 48.4541 Seconds
+Total communication time: 62.6923 Seconds
+Computation without communication time: 7959.31 Seconds
+Execution Time: 8070.5 Seconds
+
+
+
