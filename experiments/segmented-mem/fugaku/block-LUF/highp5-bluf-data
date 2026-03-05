@@ -1,0 +1,98 @@
+Matrix size is 30720 by 30720
+The block partitioning configuration is 64 rows block-stride in upper LPS and then
+256 columns in the lower LPS
+
+------------------------------------------------------------------------- 64 Nodes
+Parallel Execution Time: 500.427 Seconds
+Parallel Execution Time: 493.719 Seconds
+Parallel Execution Time: 494.234 Seconds
+Parallel Execution Time: 489.568 Seconds
+Parallel Execution Time: 486.705 Second
+Parallel Execution Time: 484.548 Seconds
+Parallel Execution Time: 510.669 Seconds
+Parallel Execution Time: 503.533 Seconds
+Parallel Execution Time: 492.804 Seconds
+Parallel Execution Time: 518.263 Seconds
+Memory preparation time: 39.1812 Seconds
+Total communication time: 139.152 Seconds
+Computation without communication time: 339.86 Seconds
+Execution Time: 518.263 Seconds
+
+
+------------------------------------------------------------------------- 32 Nodes
+Parallel Execution Time: 601.425 Seconds
+Parallel Execution Time: 591.844 Seconds
+Parallel Execution Time: 656.802 Seconds
+Parallel Execution Time: 596.336 Seconds
+Parallel Execution Time: 595.74 Seconds
+Parallel Execution Time: 593.13 Seconds
+Parallel Execution Time: 596.572 Seconds
+Parallel Execution Time: 599.075 Seconds
+Parallel Execution Time: 596.055 Seconds
+Parallel Execution Time: 650.182 Seconds
+Memory preparation time: 45.647 Seconds
+Total communication time: 69.7201 Seconds
+Computation without communication time: 481.168 Seconds
+Execution Time: 596.572 Seconds
+
+
+------------------------------------------------------------------------- 16 Nodes
+Parallel Execution Time: 813.372 Seconds
+Parallel Execution Time: 813.482 Seconds
+Parallel Execution Time: 818.959 Seconds
+Parallel Execution Time: 822.436 Seconds
+Parallel Execution Time: 808.339 Seconds
+Parallel Execution Time: 819.017 Seconds
+Parallel Execution Time: 808.225 Seconds
+Parallel Execution Time: 801.287 Seconds
+Parallel Execution Time: 839.303 Seconds
+Parallel Execution Time: 811.792 Seconds
+Memory preparation time: 69.9997 Seconds
+Total communication time: 82.2806 Seconds
+Computation without communication time: 666.647 Seconds
+Execution Time: 818.959 Seconds
+
+------------------------------------------------------------------------- 8 Nodes
+Parallel Execution Time: 1564.57 Seconds
+Parallel Execution Time: 1562.2 Seconds
+Parallel Execution Time: 1555.29 Seconds
+Parallel Execution Time: 1573.74 Seconds
+Parallel Execution Time: 1561.63 Seconds
+Parallel Execution Time: 1572.59 Seconds
+Parallel Execution Time: 1555.25 Seconds
+Parallel Execution Time: 1576.59 Seconds
+Parallel Execution Time: 1579.61 Seconds
+Parallel Execution Time: 1548.67 Seconds
+Memory preparation time: 112.052 Seconds
+Total communication time: 91.8942 Seconds
+Computation without communication time: 1368.62 Seconds
+Execution Time: 1572.59 Seconds
+
+------------------------------------------------------------------------- 4 Nodes
+Parallel Execution Time: 2977.07 Seconds
+Parallel Execution Time: 2985.11 Seconds
+Parallel Execution Time: 2991.57 Seconds
+Parallel Execution Time: 2983.13 Seconds
+Parallel Execution Time: 2970.02 Seconds
+Parallel Execution Time: 2964.66 Seconds
+Parallel Execution Time: 2985.35 Seconds
+Parallel Execution Time: 2989.5 Seconds
+Parallel Execution Time: 2988.83 Seconds
+Parallel Execution Time: 2950.25 Seconds
+Parallel Execution Time: 2911.86 Seconds
+
+
+------------------------------------------------------------------------- 2 Nodes
+Parallel Execution Time: 5623.47 Seconds
+Parallel Execution Time: 5708.21 Seconds
+Parallel Execution Time: 5513.7 Seconds
+Parallel Execution Time: 5693.91 Seconds
+Parallel Execution Time: 5679.26 Seconds
+Parallel Execution Time: 5660.56 Seconds
+Parallel Execution Time: 5687.09 Seconds
+Parallel Execution Time: 5601.25 Seconds
+Parallel Execution Time: 5655.14 Seconds
+Parallel Execution Time: 5604.37 Seconds
+
+
+------------------------------------------------------------------------- 1 Nodes
