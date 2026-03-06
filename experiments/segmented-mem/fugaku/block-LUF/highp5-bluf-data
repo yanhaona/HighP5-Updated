@@ -96,3 +96,17 @@ Parallel Execution Time: 5604.37 Seconds
 
 
 ------------------------------------------------------------------------- 1 Nodes
+Parallel Execution Time: 6940.58 Seconds
+Parallel Execution Time: 6941.18 Seconds
+Parallel Execution Time: 6913.27 Seconds
+Parallel Execution Time: 6994.99 Seconds
+Parallel Execution Time: 7019.42 Seconds
+Parallel Execution Time: 6994.26 Seconds
+Parallel Execution Time: 6969.58 Seconds
+Parallel Execution Time: 6937.98 Seconds
+Parallel Execution Time: 7014.68 Seconds
+Parallel Execution Time: 6767.35 Seconds
+Memory preparation time: 477.455 Seconds
+Total communication time: 33.4448 Seconds
+Computation without communication time: 6503.76 Seconds
+Execution Time: 7014.68 Seconds

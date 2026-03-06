@@ -49,9 +49,30 @@ Memory initialization time: 538.313 Seconds
 Execution time: 673.199 Seconds
 Matrix dimension: 30720 by 30720
 Block size for block stride partition: 15
+Running MPI Block LUF experiment with 2048 MPI processes
+Memory initialization time: 681.575 Seconds
+Execution time: 810.979 Seconds
+Matrix dimension: 30720 by 30720
+Block size for block stride partition: 15
+login4$ cat output.4733744*/0/1/stdout.1.0 
+Running MPI Block LUF experiment with 2048 MPI processes
+Memory initialization time: 681.575 Seconds
+Execution time: 810.979 Seconds
+Matrix dimension: 30720 by 30720
+Block size for block stride partition: 15
+Running MPI Block LUF experiment with 2048 MPI processes
+Memory initialization time: 681.546 Seconds
+Execution time: 807.499 Seconds
+Matrix dimension: 30720 by 30720
+Block size for block stride partition: 15
+Running MPI Block LUF experiment with 2048 MPI processes
+Memory initialization time: 432.458 Seconds
+Execution time: 557.512 Seconds
+Matrix dimension: 30720 by 30720
+Block size for block stride partition: 15
 
 
-
+32 Nodes -----------------------------------------------
 Running MPI Block LUF experiment with 1024 MPI processes
 Memory initialization time: 232.097 Seconds
 Execution time: 428.287 Seconds
@@ -104,7 +125,7 @@ Matrix dimension: 30720 by 30720
 Block size for block stride partition: 30
 
 
-
+16 Nodes ----------------------------------------------
 Running MPI Block LUF experiment with 512 MPI processes
 Memory initialization time: 283.74 Seconds
 Execution time: 611.645 Seconds
@@ -157,7 +178,7 @@ Matrix dimension: 30720 by 30720
 Block size for block stride partition: 60
 
 
-
+8 Nodes -----------------------------------------------
 Running MPI Block LUF experiment with 256 MPI processes
 Memory initialization time: 308.841 Seconds
 Execution time: 1083.24 Seconds
@@ -210,6 +231,8 @@ Matrix dimension: 30720 by 30720
 Block size for block stride partition: 120
 
 
+
+4 Nodes -----------------------------------------------
 Running MPI Block LUF experiment with 128 MPI processes
 Memory initialization time: 233.585 Seconds
 Execution time: 1552.88 Seconds
@@ -263,6 +286,7 @@ Block size for block stride partition: 128
 
 
 
+2 Nodes ----------------------------------------------
 Running MPI Block LUF experiment with 64 MPI processes
 Memory initialization time: 450.845 Seconds
 Execution time: 2509.51 Seconds
@@ -316,6 +340,7 @@ Block size for block stride partition: 128
 
 
 
+1 Nodes ----------------------------------------------
 Running MPI Block LUF experiment with 32 MPI processes
 Memory initialization time: 1560.25 Seconds
 Execution time: 4807.49 Seconds
