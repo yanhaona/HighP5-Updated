@@ -1,0 +1,449 @@
+64 Nodes ---------------------------------------------
+Running MPI Stencil experiment with 2048 MPI processes
+Memory initialization time: 2.27786 Seconds
+Execution time: 455.468 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 2048 MPI processes
+Memory initialization time: 0.170115 Seconds
+Execution time: 453.143 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 2048 MPI processes
+Memory initialization time: 1.04883 Seconds
+Execution time: 453.541 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 2048 MPI processes
+Memory initialization time: 0.81719 Seconds
+Execution time: 455.223 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 2048 MPI processes
+Memory initialization time: 0.964568 Seconds
+Execution time: 455.005 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 2048 MPI processes
+Memory initialization time: 1.18006 Seconds
+Execution time: 457.201 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 2048 MPI processes
+Memory initialization time: 0.378244 Seconds
+Execution time: 457.612 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 2048 MPI processes
+Memory initialization time: 1.34056 Seconds
+Execution time: 455.996 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 2048 MPI processes
+Memory initialization time: 0.689785 Seconds
+Execution time: 459.306 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 2048 MPI processes
+Memory initialization time: 0.428616 Seconds
+Execution time: 457.815 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+
+
+32 Nodes ---------------------------------------------
+Running MPI Stencil experiment with 1024 MPI processes
+Memory initialization time: 1.025 Seconds
+Execution time: 889.114 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 1024 MPI processes
+Memory initialization time: 1.805 Seconds
+Execution time: 888.554 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 1024 MPI processes
+Memory initialization time: 0.361791 Seconds
+Execution time: 886.173 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 1024 MPI processes
+Memory initialization time: 0.43254 Seconds
+Execution time: 886.486 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 1024 MPI processes
+Memory initialization time: 0.299417 Seconds
+Execution time: 885.607 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 1024 MPI processes
+Memory initialization time: 0.506808 Seconds
+Execution time: 886.371 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 1024 MPI processes
+Memory initialization time: 0.103616 Seconds
+Execution time: 885.764 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 1024 MPI processes
+Memory initialization time: 0.299798 Seconds
+Execution time: 884.473 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 1024 MPI processes
+Memory initialization time: 0.184193 Seconds
+Execution time: 885.046 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 1024 MPI processes
+Memory initialization time: 2.9996 Seconds
+Execution time: 886.388 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+
+
+16  Nodes --------------------------------------------
+Running MPI Stencil experiment with 512 MPI processes
+Memory initialization time: 0.298249 Seconds
+Execution time: 1749.83 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 512 MPI processes
+Memory initialization time: 8.9818 Seconds
+Execution time: 1752.52 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 512 MPI processes
+Memory initialization time: 0.637762 Seconds
+Execution time: 1749.83 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 512 MPI processes
+Memory initialization time: 0.161977 Seconds
+Execution time: 1746.11 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 512 MPI processes
+Memory initialization time: 1.67947 Seconds
+Execution time: 1746.84 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 512 MPI processes
+Memory initialization time: 0.237443 Seconds
+Execution time: 1745.64 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 512 MPI processes
+Memory initialization time: 0.711134 Seconds
+Execution time: 1748.78 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 512 MPI processes
+Memory initialization time: 0.318044 Seconds
+Execution time: 1745.93 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 512 MPI processes
+Memory initialization time: 0.394564 Seconds
+Execution time: 1746.73 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 512 MPI processes
+Memory initialization time: 0.748352 Seconds
+Execution time: 1748.18 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+
+
+
+8 Nodes ----------------------------------------------
+Running MPI Stencil experiment with 256 MPI processes
+Memory initialization time: 40.4703 Seconds
+Execution time: 3513.85 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 256 MPI processes
+Memory initialization time: 9.3258 Seconds
+Execution time: 3472.77 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 256 MPI processes
+Memory initialization time: 18.1222 Seconds
+Execution time: 3479.82 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 256 MPI processes
+Memory initialization time: 9.97251 Seconds
+Execution time: 3474.67 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 256 MPI processes
+Memory initialization time: 16.0898 Seconds
+Execution time: 3478.78 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 256 MPI processes
+Memory initialization time: 25.5655 Seconds
+Execution time: 3494.06 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 256 MPI processes
+Memory initialization time: 9.94723 Seconds
+Execution time: 3473.74 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 256 MPI processes
+Memory initialization time: 2.05144 Seconds
+Execution time: 3469.95 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 256 MPI processes
+Memory initialization time: 24.504 Seconds
+Execution time: 3485.67 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 256 MPI processes
+Memory initialization time: 4.52825 Seconds
+Execution time: 3471.2 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+
+
+4 Nodes ----------------------------------------------
+Running MPI Stencil experiment with 128 MPI processes
+Memory initialization time: 35.0625 Seconds
+Execution time: 6934.3 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 128 MPI processes
+Memory initialization time: 17.8133 Seconds
+Execution time: 6916.31 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 128 MPI processes
+Memory initialization time: 18.9212 Seconds
+Execution time: 6930.1 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 128 MPI processes
+Memory initialization time: 22.4517 Seconds
+Execution time: 6930.21 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 128 MPI processes
+Memory initialization time: 33.684 Seconds
+Execution time: 6936.14 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 128 MPI processes
+Memory initialization time: 39.3798 Seconds
+Execution time: 6939 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 128 MPI processes
+Memory initialization time: 38.1869 Seconds
+Execution time: 6941.94 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 128 MPI processes
+Memory initialization time: 42.9884 Seconds
+Execution time: 6941.32 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 128 MPI processes
+Memory initialization time: 42.8898 Seconds
+Execution time: 6939.47 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 128 MPI processes
+Memory initialization time: 23.4244 Seconds
+Execution time: 6923.94 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 128 MPI processes
+Memory initialization time: 20.1939 Seconds
+Execution time: 6923.4 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+
+
+2 Nodes ----------------------------------------------
+Running MPI Stencil experiment with 64 MPI processes
+Memory initialization time: 21.6426 Seconds
+Execution time: 13792.4 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 64 MPI processes
+Memory initialization time: 46.9562 Seconds
+Execution time: 13825.4 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 64 MPI processes
+Memory initialization time: 47.6939 Seconds
+Execution time: 13817.2 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 64 MPI processes
+Memory initialization time: 38.1867 Seconds
+Execution time: 13810.9 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 64 MPI processes
+Memory initialization time: 44.6178 Seconds
+Execution time: 13813.5 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 64 MPI processes
+Memory initialization time: 48.3221 Seconds
+Execution time: 13814.2 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 64 MPI processes
+Memory initialization time: 46.6485 Seconds
+Execution time: 13815.6 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 64 MPI processes
+Memory initialization time: 38.7881 Seconds
+Execution time: 13819.9 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 64 MPI processes
+Memory initialization time: 22.9204 Seconds
+Execution time: 13789.5 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 64 MPI processes
+Memory initialization time: 17.7686 Seconds
+Execution time: 13787.7 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+
+
+
+1 Node ---------------------------------------------
+
+
+Running MPI Stencil experiment with 32 MPI processes
+Memory initialization time: 91.1884 Seconds
+Execution time: 27634 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 32 MPI processes
+Memory initialization time: 77.7668 Seconds
+Execution time: 27604.4 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 32 MPI processes
+Memory initialization time: 79.9845 Seconds
+Execution time: 27596.1 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 32 MPI processes
+Memory initialization time: 98.226 Seconds
+Execution time: 27630.5 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 32 MPI processes
+Memory initialization time: 69.9527 Seconds
+Execution time: 27598.3 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 32 MPI processes
+Memory initialization time: 215.233 Seconds
+Execution time: 27650.8 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 32 MPI processes
+Memory initialization time: 218.176 Seconds
+Execution time: 27659.7 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 32 MPI processes
+Memory initialization time: 64.1744 Seconds
+Execution time: 27585.9 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 32 MPI processes
+Memory initialization time: 208.54 Seconds
+Execution time: 27731.2 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 32 MPI processes
+Memory initialization time: 215.851 Seconds
+Execution time: 27751.7 Seconds
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000

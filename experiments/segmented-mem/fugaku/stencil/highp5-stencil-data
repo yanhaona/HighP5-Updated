@@ -1,0 +1,120 @@
+Plate dimension: 204800 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+
+
+64 Nodes
+Parallel Execution Time: 535.692 Seconds
+Parallel Execution Time: 533.636 Seconds
+Parallel Execution Time: 532.522 Seconds
+Parallel Execution Time: 531.899 Seconds
+Parallel Execution Time: 540.752 Seconds
+Parallel Execution Time: 545.671 Seconds
+Parallel Execution Time: 536.275 Seconds
+Parallel Execution Time: 540.361 Seconds
+Parallel Execution Time: 534.29 Seconds
+Parallel Execution Time: 539.395 Seconds
+Parallel Execution Time: 531.37 Seconds
+Memory preparation time: 11.3625 Seconds
+Total communication time: 153.317 Seconds
+Computation without communication time: 374.67 Seconds
+Execution Time: 539.395 Seconds
+
+
+32 Nodes
+Parallel Execution Time: 638.2 Seconds
+Parallel Execution Time: 636.918 Seconds
+Parallel Execution Time: 640.898 Seconds
+Parallel Execution Time: 635.503 Seconds
+Parallel Execution Time: 638.033 Seconds
+Parallel Execution Time: 632.294 Seconds
+Parallel Execution Time: 640.938 Seconds
+Parallel Execution Time: 634.8 Seconds
+Parallel Execution Time: 636.089 Seconds
+Parallel Execution Time: 635.65 Seconds
+Memory preparation time: 5.86581 Seconds
+Total communication time: 161.105 Seconds
+Computation without communication time: 473.924 Seconds
+Execution Time: 640.938 Seconds
+
+16 Nodes
+Parallel Execution Time: 879.302 Seconds
+Parallel Execution Time: 868.474 Seconds
+Parallel Execution Time: 865.788 Seconds
+Parallel Execution Time: 848.914 Seconds
+Parallel Execution Time: 847.248 Seconds
+Parallel Execution Time: 857.226 Seconds
+Parallel Execution Time: 858.808 Seconds
+Parallel Execution Time: 839.964 Seconds
+Parallel Execution Time: 872.535 Seconds
+Parallel Execution Time: 883.429 Seconds
+Memory preparation time: 27.457 Seconds
+Total communication time: 181.827 Seconds
+Computation without communication time: 674.117 Seconds
+Execution Time: 883.429 Seconds
+
+8 Nodes
+Parallel Execution Time: 1355.47 Seconds
+Parallel Execution Time: 1309.45 Seconds
+Parallel Execution Time: 1310.27 Seconds
+Parallel Execution Time: 1293.33 Seconds
+Parallel Execution Time: 1295.78 Seconds
+Parallel Execution Time: 1286.09 Seconds
+Parallel Execution Time: 1300.56 Seconds
+Parallel Execution Time: 1322.65 Seconds
+Parallel Execution Time: 1295.19 Seconds
+Parallel Execution Time: 1319.49 Seconds
+Memory preparation time: 11.3145 Seconds
+Total communication time: 228.158 Seconds
+Computation without communication time: 1079.97 Seconds
+Execution Time: 1319.49 Seconds
+
+4 Nodes
+Parallel Execution Time: 2172.57 Seconds
+Parallel Execution Time: 2163.24 Seconds
+Parallel Execution Time: 2155.74 Seconds
+Parallel Execution Time: 2207.32 Seconds
+Parallel Execution Time: 2260.25 Seconds
+Parallel Execution Time: 2218.23 Seconds
+Parallel Execution Time: 2228.46 Seconds
+Parallel Execution Time: 2171.22 Seconds
+Parallel Execution Time: 2170.18 Seconds
+Parallel Execution Time: 2049.66 Seconds
+Memory preparation time: 126.676 Seconds
+Total communication time: 239.878 Seconds
+Computation without communication time: 1893.66 Seconds
+Execution Time: 2260.25 Seconds
+
+
+2 Nodes
+Parallel Execution Time: 3781.88 Seconds
+Parallel Execution Time: 3724.04 Seconds
+Parallel Execution Time: 3618.13 Seconds
+Parallel Execution Time: 4170.84 Seconds
+Parallel Execution Time: 3763.89 Seconds
+Parallel Execution Time: 3867.71 Seconds
+Parallel Execution Time: 3745.4 Seconds
+Parallel Execution Time: 3844.55 Seconds
+Parallel Execution Time: 4065.66 Seconds
+Parallel Execution Time: 3849.6 Seconds
+Memory preparation time: 53.5862 Seconds
+Total communication time: 139.419 Seconds
+Computation without communication time: 3977.81 Seconds
+Execution Time: 4170.84 Seconds
+
+
+1 Node
+Parallel Execution Time: 6406.52 Seconds
+Parallel Execution Time: 6681.33 Seconds
+Parallel Execution Time: 6807.91 Seconds
+Parallel Execution Time: 6317 Seconds
+Parallel Execution Time: 6820.81 Seconds
+Parallel Execution Time: 6858 Seconds
+Parallel Execution Time: 6529.23 Seconds
+Parallel Execution Time: 6797.94 Seconds
+Parallel Execution Time: 6344.05 Seconds
+Parallel Execution Time: 6854.04 Seconds
+Memory preparation time: 82.9208 Seconds
+Total communication time: 136.677 Seconds
+Computation without communication time: 6638.38 Seconds
+Execution Time: 6858 Seconds
