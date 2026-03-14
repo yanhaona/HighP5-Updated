@@ -246,11 +246,6 @@ class PreprocessedPhysicalCommBuffer : public PreprocessedCommBuffer {
 	char *getData() { return data; }
 	virtual bool intraSegmentBufferType() { return false; }
 	
-	// this override is used to determine data transfer optimization possibilities
-	void setupMappingBuffer(char **buffer, DataPartsList *dataPartList,
-		PartIdContainer *partContainerTree,
-		DataItemConfig *dataConfig);
-
 	// the optimization process is the same for both sender and receiver sides of the communication buffer. So single
 	// method is used with flag to decide which side to process now. 
 	void optimizeMappingBuffer(bool senderSide);

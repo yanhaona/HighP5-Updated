@@ -311,6 +311,14 @@ PreprocessedPhysicalCommBuffer::PreprocessedPhysicalCommBuffer(DataExchange *exc
         recvRanges = NULL;
         sendJumpStartPoints = 0;
         recvJumpStartPoints = 0;
+	
+	// check for optimization opportunities in the sender and receiver sides' buffer management
+	if (senderTransferMapping != NULL) {
+		optimizeMappingBuffer(true);
+	}
+	if (receiverTransferMapping != NULL) {
+		optimizeMappingBuffer(false);
+	}
 }
 
 PreprocessedPhysicalCommBuffer::~PreprocessedPhysicalCommBuffer() { 
@@ -350,21 +358,6 @@ void PreprocessedPhysicalCommBuffer::writeData(bool loggingEnabled, std::ostream
 		int copyRange = recvRanges[i];
 		memcpy(writeLocation, readLocation, copyRange * elementSize);
 		currDataIndex += copyRange;
-	}
-}
-
-void PreprocessedPhysicalCommBuffer::setupMappingBuffer(char **buffer, 
-		DataPartsList *dataPartList, PartIdContainer *partContainerTree, DataItemConfig *dataConfig) {
-
-	// setup the transfer mappings for sender and receiver using the super class method
-	PreprocessedCommBuffer::setupMappingBuffer(buffer, dataPartList, partContainerTree, dataConfig);
-
-	// check for optimization opportunities in the sender and receiver sides
-	if (senderTransferMapping != NULL) {
-		optimizeMappingBuffer(true);
-	}
-	if (receiverTransferMapping != NULL) {
-		optimizeMappingBuffer(false);
 	}
 }
 
