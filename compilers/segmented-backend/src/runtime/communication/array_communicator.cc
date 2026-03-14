@@ -954,6 +954,7 @@ UpdatedCrossSyncCommunicator::~UpdatedCrossSyncCommunicator() {
 	delete remoteBuffers;
 	delete[] sendBuffer;
 	delete[] gatherBuffer;
+	delete[] gatherBufferIndicesForRecv;
 }
 
 void UpdatedCrossSyncCommunicator::setupCommunicator(bool includeNonInteractingSegments) {
@@ -1013,15 +1014,29 @@ void UpdatedCrossSyncCommunicator::setupCommunicator(bool includeNonInteractingS
 
 void UpdatedCrossSyncCommunicator::sendData() {
 
+	// call the optimized sendData method for repeated use
+	if (settingsCollected == true) {
+		sendDataWithCachedSettings();
+		return;
+	}
+
+	// for the first time, do regular buffer computations during MPI gather based communication and also collect settings
+	// information of the communicator 
+	settingsCollected = true;
+
 	// first copy comm buffer contents into the send buffer of the communicator;
 	int index = 0;
+	int sendBufferCount = 0;
 	for (int i = 0; i < remoteSends->NumElements(); i++) {
 		CommBuffer *buffer = remoteSends->Nth(i);
 		int bufferSize = buffer->getBufferSize();
 		char *bufferData = buffer->getData();
 		memcpy(sendBuffer + index, bufferData, bufferSize);
 		index += bufferSize;
+		sendBufferCount++;
 	}
+	singleSenderBuffer = sendBufferCount == 1;
+	
 
 	// then invoke the MPI allgather communication
 	MPI_Comm mpiComm = segmentGroup->getCommunicator();
@@ -1035,7 +1050,9 @@ void UpdatedCrossSyncCommunicator::sendData() {
 	// iterate over the remote communication buffers and copy data from gather buffer to the comm buffers. Again, only
 	// one communication buffer may receive data from a particular segements due to full replication on the receiver side.
 	// TODO: we have to later validate that there is no calculation error in the data retrieval process.
-	for (int i = 0; i < remoteBuffers->NumElements(); i++) {
+	remoteBufferCount = remoteBuffers->NumElements();
+	gatherBufferIndicesForRecv = new char*[remoteBufferCount];
+	for (int i = 0; i < remoteBufferCount; i++) {
 		
 		// find the sender 
 		CommBuffer *buffer = remoteBuffers->Nth(i);
@@ -1045,6 +1062,8 @@ void UpdatedCrossSyncCommunicator::sendData() {
 		// if the sender is the current segement then directly update the buffer from local content
 		if (senderTag == localSegmentTag) {
 			buffer->writeData(false, *logFile);
+			// we track whether a buffer is intra-segment, i.e., local, by setting its receive index to NULL
+			gatherBufferIndicesForRecv[i] = NULL;
 			continue;
 		}
 
@@ -1052,6 +1071,54 @@ void UpdatedCrossSyncCommunicator::sendData() {
 		// later, send post-process will copy the data from buffer to actual LPU data parts
 		int senderRank = segmentGroup->getRank(senderTag);
 		char *dataStart = gatherBuffer + senderRank * maxPerSegmentData;
-		buffer->setData(dataStart);	
+		buffer->setData(dataStart);
+		// for remote receives remember the locations in the MPI gather buffer from where data should be copied to comm
+		// buffers that interface data parts
+		gatherBufferIndicesForRecv[i] = dataStart;	
 	}
+}
+
+void UpdatedCrossSyncCommunicator::sendDataWithCachedSettings() {
+
+	char *cachedSendBuffer = NULL;
+	if (singleSenderBuffer == true) {
+		// if there is only one buffer in the sender side then avoid memcpy to the intermediate buffer
+		CommBuffer *buffer = remoteSends->Nth(0);
+                cachedSendBuffer = buffer->getData();
+	} else {
+		int index = 0;
+		for (int i = 0; i < remoteSends->NumElements(); i++) {
+                	CommBuffer *buffer = remoteSends->Nth(i);
+                	int bufferSize = buffer->getBufferSize();
+                	char *bufferData = buffer->getData();
+                	memcpy(sendBuffer + index, bufferData, bufferSize);
+                	index += bufferSize;
+		}
+		cachedSendBuffer = sendBuffer;
+	}
+
+
+	// then invoke the MPI allgather communication
+        MPI_Comm mpiComm = segmentGroup->getCommunicator();
+        int status = MPI_Allgather(cachedSendBuffer, maxPerSegmentData, MPI_CHAR, gatherBuffer, maxPerSegmentData, MPI_CHAR, mpiComm);
+        if (status != MPI_SUCCESS) {
+                *logFile << "\tcould not perform MPI Allgather on " << dependencyName << " communicator\n";
+                logFile->flush();
+                exit(EXIT_FAILURE);
+        }
+
+
+	// do the fast receive operation using cached settings
+	for (int i = 0; i < remoteBufferCount; i++) {
+                CommBuffer *buffer = remoteBuffers->Nth(i);
+		if (gatherBufferIndicesForRecv[i] == NULL) {
+			// case for the local buffer
+			buffer->writeData(false, *logFile);
+		} else {
+			// may be the repeated set data call is not needed as we are setting pointers from where to copy data to
+			// data parts later; however, at this moment, we are doing this for safety.
+			buffer->setData(gatherBufferIndicesForRecv[i]);
+		}
+	}
+
 }

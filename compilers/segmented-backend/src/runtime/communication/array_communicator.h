@@ -207,6 +207,15 @@ class UpdatedCrossSyncCommunicator : public CrossSyncCommunicator {
 	char *gatherBuffer;
 	char *sendBuffer;
 	int maxPerSegmentData;
+
+   // these private variables are created to avoid recomputation of buffer related features when the cross sync communicator
+   // is used repeatedly. 	
+   private:
+	bool settingsCollected;
+	bool singleSenderBuffer;
+	int remoteBufferCount;
+	char** gatherBufferIndicesForRecv;		
+
    public:	   
 	UpdatedCrossSyncCommunicator(int localSegmentTag,
                 const char *dependencyName,
@@ -216,8 +225,14 @@ class UpdatedCrossSyncCommunicator : public CrossSyncCommunicator {
 	
 		this->gatherBuffer = NULL;
 		this->sendBuffer = NULL;
-		this->maxPerSegmentData = 0;	
+		this->maxPerSegmentData = 0;
+
+		this->settingsCollected = false;
+        	this->singleSenderBuffer = false;
+        	this->remoteBufferCount = 0;
+        	this->gatherBufferIndicesForRecv = NULL;	
 	}
+
 	~UpdatedCrossSyncCommunicator();
 	
 	// communicator setup needs to be extended to create the scatter buffer for MPI iscatterv communication
@@ -225,6 +240,10 @@ class UpdatedCrossSyncCommunicator : public CrossSyncCommunicator {
 	
 	// This overrides the sending process from a sequence of MPI_Send to a single MPI_AllGather	
 	void sendData();
+
+	// This method is provided as an alternative to regular sendData() to avoid recomputation of buffer related features
+	// in every send/receive iteration.
+	void sendDataWithCachedSettings();
 };
 
 #endif
