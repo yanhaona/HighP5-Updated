@@ -26,6 +26,10 @@ bool SendBarrier::shouldPerformTransfer(int activeSignalsCount, int callerIterat
 	return communicator->shouldSend(activeSignalsCount);
 }
 
+void SendBarrier::configureCache() {
+	communicator->cacheSendBuffers();
+}
+
 void SendBarrier::beforeTransfer(int order, int participants) {
 	communicator->performSendPreprocessing(order, participants);
 }
@@ -90,6 +94,10 @@ bool ReceiveBarrier::shouldWait(SignalType signal, int callerIterationNo) {
 
 bool ReceiveBarrier::shouldPerformTransfer(int activeSignalsCount, int callerIterationNo) {
 	return communicator->shouldReceive(activeSignalsCount, callerIterationNo);
+}
+
+void ReceiveBarrier::configureCache() {
+	communicator->cacheRecvBuffers();
 }
 
 void ReceiveBarrier::beforeTransfer(int order, int participants) {
@@ -165,6 +173,8 @@ Communicator::Communicator(int localSegmentTag,
 	commStat = NULL;
 	this->localSenderPpus = localSenderPpus;
 	this->localReceiverPpus = localReceiverPpus;
+	cachedSendBuffers = NULL;
+	cachedRecvBuffers = NULL;
 }
 
 void Communicator::describe(int indentation) {
@@ -180,36 +190,40 @@ void Communicator::describe(int indentation) {
 	}
 }
 
+void Communicator::cacheSendBuffers() {
+	cachedSendBuffers = getSortedList(false);
+}
+
 void Communicator::prepareBuffersForSend() {
-        List<CommBuffer*> *sendBufferList = getSortedList(false);
-        for (int i = 0; i < sendBufferList->NumElements(); i++) {
-                sendBufferList->Nth(i)->readData(false, *logFile);
+        if (cachedSendBuffers == NULL) return;
+        for (int i = 0; i < cachedSendBuffers->NumElements(); i++) {
+                cachedSendBuffers->Nth(i)->readData(false, *logFile);
         }
-        delete sendBufferList;
+}
+
+void Communicator::cacheRecvBuffers() {
+	cachedRecvBuffers = getSortedList(true);
 }
 
 void Communicator::processBuffersAfterReceive() {
-        List<CommBuffer*> *receiveBufferList = getSortedList(true);
-        for (int i = 0; i < receiveBufferList->NumElements(); i++) {
-                receiveBufferList->Nth(i)->writeData(false, *logFile);
+        if (cachedRecvBuffers == NULL) return;
+        for (int i = 0; i < cachedRecvBuffers->NumElements(); i++) {
+                cachedRecvBuffers->Nth(i)->writeData(false, *logFile);
         }
-        delete receiveBufferList;
 }
 
 void Communicator::prepareBuffersForSend(int currentPpuOrder, int participantsCount) {
-        List<CommBuffer*> *sendBufferList = getFilteredList(false);
-        for (int i = currentPpuOrder; i < sendBufferList->NumElements(); i += participantsCount) {
-                sendBufferList->Nth(i)->readData(false, *logFile);
+        if (cachedSendBuffers == NULL) return;
+        for (int i = currentPpuOrder; i < cachedSendBuffers->NumElements(); i += participantsCount) {
+                cachedSendBuffers->Nth(i)->readData(false, *logFile);
         }
-        delete sendBufferList;
 }
         
 void Communicator::processBuffersAfterReceive(int currentPpuOrder, int participantsCount) {
-	List<CommBuffer*> *receiveBufferList = getFilteredList(true);
-        for (int i = currentPpuOrder; i < receiveBufferList->NumElements(); i += participantsCount) {
-                receiveBufferList->Nth(i)->writeData(false, *logFile);
+        if (cachedRecvBuffers == NULL) return;
+        for (int i = currentPpuOrder; i < cachedRecvBuffers->NumElements(); i += participantsCount) {
+                cachedRecvBuffers->Nth(i)->writeData(false, *logFile);
         }
-        delete receiveBufferList;
 }
 
 void Communicator::setupBufferTags(int communicatorId, int totalSegmentsInMachine) {

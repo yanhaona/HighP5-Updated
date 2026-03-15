@@ -14,6 +14,7 @@ ParallelCommBarrier::ParallelCommBarrier(int size) {
         _signalList = new List<SignalType>;
 	_activeSignals = 0;
         _iterationNo = 0;
+	_cachingAttempted = false;
 	pthread_barrier_init(&_barrier, NULL, _size);	
 }
 
@@ -41,6 +42,13 @@ void ParallelCommBarrier::wait(SignalType signal, int callerIterationNo) {
         _signalList->Append(signal);                            	// register the signal type
 
 	if (_count == 0) { // this is the leader thread scenario; the thread registered for a communication last
+			   
+		// provide the opportunity to cache costly communication resource computation
+		if (_cachingAttempted == false) {
+			_cachingAttempted = true;
+			configureCache();
+		}
+
 
                 // Count the number of active signals
                 _activeSignals = 0;

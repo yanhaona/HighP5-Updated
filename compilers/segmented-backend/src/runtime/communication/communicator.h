@@ -39,6 +39,7 @@ class SendBarrier : public ParallelCommBarrier {
 	// barrier interface functions
 	bool shouldWait(SignalType signal, int callerIterationNo);
 	bool shouldPerformTransfer(int activeSignalsCount, int callerIterationNo);
+	void configureCache();
 	void beforeTransfer(int order, int participants);
         void transferFunction();
         void afterTransfer(int order, int participants);
@@ -61,6 +62,7 @@ class ReceiveBarrier : public ParallelCommBarrier {
 	// barrier interface functions
         bool shouldWait(SignalType signal, int callerIterationNo);
 	bool shouldPerformTransfer(int activeSignalsCount, int callerIterationNo);
+	void configureCache();
         void beforeTransfer(int order, int participants);
         void transferFunction();
         void afterTransfer(int order, int participants);	
@@ -88,6 +90,9 @@ class Communicator : public CommBufferManager {
 	// two barriers to pause/resume PPU controllers participating in communication
 	SendBarrier *sendBarrier;
 	ReceiveBarrier *receiveBarrier;
+	// two list of communication buffers to avoid recomputing them during each communication
+	List<CommBuffer*> *cachedSendBuffers;
+	List<CommBuffer*> *cachedRecvBuffers;
 	// for a communicator within a group for MPI communications
 	SegmentGroup *segmentGroup;
 	// the list of segments interacting for this communicator; this is needed to set up the segment group
@@ -105,6 +110,11 @@ class Communicator : public CommBufferManager {
 	void setCommStat(CommStatistics *commStat) { this->commStat = commStat; }
 	CommStatistics *getCommStat() { return commStat; }
 	virtual void describe(int indentation);
+
+	// these two functions are provided to temporarilly hold send and receive communication buffers with the communicator to
+	// avoid filtering them from their mix during every communication.
+	void cacheSendBuffers();
+	void cacheRecvBuffers();
 
 	// two functions to pre and post process communication buffers before a send and after a receive respectively these basically 
 	// read and write the communication buffers
