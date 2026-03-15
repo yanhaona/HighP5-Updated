@@ -243,7 +243,7 @@ class PreprocessedPhysicalCommBuffer : public PreprocessedCommBuffer {
 	void readData(bool loggingEnabled, std::ostream &logFile);
 	void writeData(bool loggingEnabled, std::ostream &logFile);
 	void setData(char *data) { this->data = data; }
-	char *getData() { return data; }
+	char *getData();
 	virtual bool intraSegmentBufferType() { return false; }
 	
 	// the optimization process is the same for both sender and receiver sides of the communication buffer. So single
