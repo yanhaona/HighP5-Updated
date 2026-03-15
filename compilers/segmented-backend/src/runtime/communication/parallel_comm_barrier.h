@@ -31,6 +31,8 @@ class ParallelCommBarrier {
         int _iterationNo;               // How many times the barrier has been reset/reused so far
 	pthread_barrier_t _barrier;	// Internal barrier needed for stepping through different phases
 					// This flag tells if one-step parallel data transfer is possible
+	bool _cachingAttempted;		// This flag variable indicates if any attempt has been made to cache
+					// computation of costly communication resources
   public:	
 	ParallelCommBarrier(int size);
         virtual ~ParallelCommBarrier();
@@ -49,6 +51,11 @@ class ParallelCommBarrier {
 
 	// function to determine whether or not to skip data transfer in a specific scenario
 	virtual bool shouldPerformTransfer(int activeSignalsCount, int callerIterationNo) = 0;
+
+	// in some cases where a lot of communication resource processing is involved for each communication,
+	// it may be benefitial to cache reusable resource processing only once; this method open up that
+	// opportunity.
+	virtual void configureCache() = 0;
 
 	// function to be extended by subclasses to distribute any communication buffer preparation and other
 	// parallelizable activities that precede actual communications. Different participant threads should
