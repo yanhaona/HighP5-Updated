@@ -18,6 +18,17 @@ Total communication time: 139.152 Seconds
 Computation without communication time: 339.86 Seconds
 Execution Time: 518.263 Seconds
 
+After Buffer Optimization
+Parallel Execution Time: 503.677 Seconds
+Parallel Execution Time: 512.409 Seconds
+Parallel Execution Time: 517.105 Seconds
+Parallel Execution Time: 487.478 Seconds
+Parallel Execution Time: 502.148 Seconds
+Parallel Execution Time: 494.183 Seconds
+Parallel Execution Time: 508.259 Seconds
+Parallel Execution Time: 500.649 Seconds
+Parallel Execution Time: 492.357 Seconds
+
 
 ------------------------------------------------------------------------- 32 Nodes
 Parallel Execution Time: 601.425 Seconds
