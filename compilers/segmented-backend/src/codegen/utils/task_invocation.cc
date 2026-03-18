@@ -508,7 +508,8 @@ void generateMain(ProgramDef *programDef, const char *programFile) {
 	// create a log file for overall program log printing
         stream << std::endl << indent << "// creating a program log file\n";
 	stream << indent << "std::ostringstream logFileName" << stmtSeparator;
-	stream << indent << "logFileName << " << "\"segment_\" << segmentId << \".log\"" << stmtSeparator;
+	stream << indent << "logFileName << " << "\"segment_\" << segmentId << \"_\" << start.tv_sec"; 
+	stream << " << \".log\"" << stmtSeparator;
         stream << indent << "std::ofstream logFile" << stmtSeparator;
         stream << indent << "logFile.open(logFileName.str().c_str())" << stmtSeparator << std::endl;
 
