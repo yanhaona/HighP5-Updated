@@ -55,6 +55,9 @@ double alpha_i;
 int processId;
 int processCount;
 
+//----------------------------------------------------Communication Time Capturing Variable
+double commTime;
+
 //-------------------------------------------------------------------- Supporting functions
 
 
@@ -163,10 +166,17 @@ void performConjugateGradientIterations() {
 
                 // do an all to all scatter-getter communication so that everyone get the updated full copy
 		// of r_i and also know that a_r_i can be recomputed now
+		struct timeval start;
+        	gettimeofday(&start, NULL);
 		double *sendStart = &r_i[rowStart];
 		memcpy(sendBuffer, sendStart, selfRowCount * sizeof(double));
                 MPI_Allgather(sendBuffer, rowsPerProcess, MPI_DOUBLE, receiveBuffer, rowsPerProcess, MPI_DOUBLE, MPI_COMM_WORLD);
 		memcpy(r_i, receiveBuffer, xDims[0].length * sizeof(double));
+		struct timeval end;
+        	gettimeofday(&end, NULL);
+		double timeTaken = ((end.tv_sec + end.tv_usec / 1000000.0)
+				- (start.tv_sec + start.tv_usec / 1000000.0));
+		commTime += timeTaken;
 
 		//----------------------------------------------------------- a_r_i = A * r_i computation
 		//
@@ -183,10 +193,16 @@ void performConjugateGradientIterations() {
                 
 		// do an all to all scatter-getter communication so that everyone get the updated full copy
 		// of a_r_i
+        	gettimeofday(&start, NULL);
 		sendStart = &a_r_i[rowStart];
 		memcpy(sendBuffer, sendStart, selfRowCount * sizeof(double));
                 MPI_Allgather(sendBuffer, rowsPerProcess, MPI_DOUBLE, receiveBuffer, rowsPerProcess, MPI_DOUBLE, MPI_COMM_WORLD);
 		memcpy(a_r_i, receiveBuffer, xDims[0].length * sizeof(double));
+        	gettimeofday(&end, NULL);
+		timeTaken = ((end.tv_sec + end.tv_usec / 1000000.0)
+				- (start.tv_sec + start.tv_usec / 1000000.0));
+		commTime += timeTaken;
+
 
 		//------------------------------------- alpha_i = (r_i * r_i) / (r_i * a_r_i) computation
                 //
@@ -200,8 +216,13 @@ void performConjugateGradientIterations() {
                 }
 
 		// accumulate the partial dot products in all processes
+        	gettimeofday(&start, NULL);
 		MPI_Allreduce(&partNorm, &norm, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
 		MPI_Allreduce(&partDenorm, &denorm, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
+        	gettimeofday(&end, NULL);
+		timeTaken = ((end.tv_sec + end.tv_usec / 1000000.0)
+				- (start.tv_sec + start.tv_usec / 1000000.0));
+		commTime += timeTaken;
 
 		alpha_i = norm / denorm;
 
@@ -213,10 +234,15 @@ void performConjugateGradientIterations() {
 
 		// do an all to all scatter-getter communication so that everyone get the updated full copy
 		// of updated x_i
+        	gettimeofday(&start, NULL);
 		sendStart = &x_i[rowStart];
 		memcpy(sendBuffer, sendStart, selfRowCount * sizeof(double));
                 MPI_Allgather(sendBuffer, rowsPerProcess, MPI_DOUBLE, receiveBuffer, rowsPerProcess, MPI_DOUBLE, MPI_COMM_WORLD);
 		memcpy(x_i, receiveBuffer, xDims[0].length * sizeof(double));
+        	gettimeofday(&end, NULL);
+		timeTaken = ((end.tv_sec + end.tv_usec / 1000000.0)
+				- (start.tv_sec + start.tv_usec / 1000000.0));
+		commTime += timeTaken;
 
 		iteration++;
         } while (iteration < maxIterations);
@@ -229,7 +255,7 @@ using namespace mpi_cg;
 
 //--------------------------------------------------------------------------- Main Function
 
-int mainMpiConj(int argc, char *argv[]) {
+int mainMpiConjGrad(int argc, char *argv[]) {
 	
 	// do MPI intialization
 	MPI_Init(&argc, &argv);
@@ -337,7 +363,10 @@ int mainMpiConj(int argc, char *argv[]) {
 				- (start.tv_sec + start.tv_usec / 1000000.0));
 		double executionTime = ((end.tv_sec + end.tv_usec / 1000000.0)
 				- (start.tv_sec + start.tv_usec / 1000000.0));
+		double computationTime = executionTime - dataReadingTime - commTime;
 		std::cout << "Memory initialization time: " << dataReadingTime << " Seconds\n";
+		std::cout << "Computation time: " << computationTime << " Seconds\n";
+		std::cout << "Communication time: " << commTime << " Seconds\n";
 		std::cout << "Execution time: " << executionTime << " Seconds\n";
 		std::cout << "Matrix dimension: " << rowDims[0].length << " by " << rowDims[0].length << "\n";
 		std::cout << "Refinement iterations: " << maxIterations << "\n";

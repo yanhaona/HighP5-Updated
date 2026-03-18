@@ -19,6 +19,16 @@ Memory preparation time: 11.3625 Seconds
 Total communication time: 153.317 Seconds
 Computation without communication time: 374.67 Seconds
 Execution Time: 539.395 Seconds
+Parallel Execution Time: 532.965 Seconds
+Parallel Execution Time: 535.002 Seconds
+Parallel Execution Time: 530.265 Seconds
+Parallel Execution Time: 536.511 Seconds
+Parallel Execution Time: 540.712 Seconds
+Parallel Execution Time: 540.267 Seconds
+Parallel Execution Time: 532.557 Seconds
+Parallel Execution Time: 535.623 Seconds
+Parallel Execution Time: 530.158 Seconds
+Parallel Execution Time: 530.91 Seconds
 
 
 32 Nodes
