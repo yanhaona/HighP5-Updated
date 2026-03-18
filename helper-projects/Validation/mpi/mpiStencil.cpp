@@ -36,6 +36,10 @@ int padding;
 int processId;
 int processCount;
 
+//--------------------------------------------------- Communication Time Capturing Variable
+
+double commTime = 0;
+
 //-------------------------------------------------------------------- Supporting functions
 
 void readPlateFromFile(const char *filePath) {
@@ -199,6 +203,10 @@ void refinePlate() {
                         totalIteration++;
 		}
 		
+	
+		struct timeval start;
+        	gettimeofday(&start, NULL);
+
 		MPI_Request sendNextReq, sendPrevReq;
         	MPI_Request recvNextReq, recvPrevReq;
 
@@ -244,6 +252,12 @@ void refinePlate() {
         		MPI_Wait(&recvPrevReq, &statusRPrev);
 		}
 		
+		struct timeval end;
+        	gettimeofday(&end, NULL);
+		double timeTaken = ((end.tv_sec + end.tv_usec / 1000000.0)
+				- (start.tv_sec + start.tv_usec / 1000000.0));
+		commTime += timeTaken;
+		
 	}
 
 }
@@ -255,7 +269,7 @@ using namespace mpi_stencil;
 
 //--------------------------------------------------------------------------- Main Function
 
-int mainMStencil(int argc, char *argv[]) {
+int mainMpiStencil(int argc, char *argv[]) {
 	
 	// do MPI intialization
 	MPI_Init(&argc, &argv);
@@ -319,6 +333,9 @@ int mainMStencil(int argc, char *argv[]) {
 		double executionTime = ((end.tv_sec + end.tv_usec / 1000000.0)
 				- (start.tv_sec + start.tv_usec / 1000000.0));
 		std::cout << "Memory initialization time: " << dataReadingTime << " Seconds\n";
+		double computationTime = executionTime - dataReadingTime - commTime;
+		std::cout << "Communication time: " << commTime << " Seconds\n";
+		std::cout << "Computation time: " << computationTime << " Seconds\n";
 		std::cout << "Execution time: " << executionTime << " Seconds\n";
 		std::cout << "Plate dimension: " << plateDims[0].length << " by " << plateDims[1].length << "\n";
 		std::cout << "Padding rows: " << padding << "\n";

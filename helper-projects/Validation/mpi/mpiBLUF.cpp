@@ -46,6 +46,10 @@ int blockSize;
 int processId;
 int processCount;
 
+//--------------------------------------------------- Communication Time Capturing Variable
+
+double commTime;
+
 
 //-------------------------------------------------------------------- Supporting functions
 
@@ -417,7 +421,7 @@ using namespace mpi_bluf;
 
 //--------------------------------------------------------------------------- Main Function
 
-int mainMBluf(int argc, char *argv[]) {
+int mainMpiBluf(int argc, char *argv[]) {
 	
 	// do MPI intialization
 	MPI_Init(&argc, &argv);
@@ -496,7 +500,14 @@ int mainMBluf(int argc, char *argv[]) {
 				}
 
 				// perform an MPI broadcast of the pivot variable
+				struct timeval commStart;
+        			gettimeofday(&commStart, NULL);
 				MPI_Bcast(&pivot, 1, MPI_INT, strideIndex, MPI_COMM_WORLD);
+				struct timeval commEnd;
+        			gettimeofday(&commEnd, NULL);
+				double timeTaken = ((commEnd.tv_sec + commEnd.tv_usec / 1000000.0)
+						- (commStart.tv_sec + commStart.tv_usec / 1000000.0));
+				commTime += timeTaken;
 
 				// store the pivot in the pivot array if the process processId is 0
 				if (processId == 0) {
@@ -515,7 +526,12 @@ int mainMBluf(int argc, char *argv[]) {
                                 }
 
 				// perform an MPI broadcast of the updated row of l
+        			gettimeofday(&commStart, NULL);
 				MPI_Bcast(lRow, cols, MPI_DOUBLE, strideIndex, MPI_COMM_WORLD);
+        			gettimeofday(&commEnd, NULL);
+				timeTaken = ((commEnd.tv_sec + commEnd.tv_usec / 1000000.0)
+						- (commStart.tv_sec + commStart.tv_usec / 1000000.0));
+				commTime += timeTaken;
 
 				// perform the update of a selected sequence of rows of U
 				updateURowsBlock(k, range);
@@ -526,7 +542,12 @@ int mainMBluf(int argc, char *argv[]) {
 				}
 
 				// perform an MPI broadcast to share the pivot column
+        			gettimeofday(&commStart, NULL);
 				MPI_Bcast(pColumn, blockSize, MPI_DOUBLE, strideIndex, MPI_COMM_WORLD);
+        			gettimeofday(&commEnd, NULL);
+				timeTaken = ((commEnd.tv_sec + commEnd.tv_usec / 1000000.0)
+						- (commStart.tv_sec + commStart.tv_usec / 1000000.0));
+				commTime += timeTaken;
 				
 				// perform the update of a selected sequence of columns of U
 				updateUColsBlock(k, range);				
@@ -546,8 +567,15 @@ int mainMBluf(int argc, char *argv[]) {
 			}
 
 			// do an MPI broadcast to share the l-Block among all processes
+			struct timeval commStart;
+        		gettimeofday(&commStart, NULL);
 			int lBlockLength = lBlockDims[0].length * lBlockDims[1].length; 
 			MPI_Bcast(lBlock, lBlockLength, MPI_DOUBLE, strideIndex, MPI_COMM_WORLD);
+			struct timeval commEnd;
+        		gettimeofday(&commEnd, NULL);
+			double timeTaken = ((commEnd.tv_sec + commEnd.tv_usec / 1000000.0)
+					- (commStart.tv_sec + commStart.tv_usec / 1000000.0));
+			commTime += timeTaken;
 
 			// perform the saxpy computation
 			saxpy(range);
@@ -573,7 +601,10 @@ int mainMBluf(int argc, char *argv[]) {
 				- (start.tv_sec + start.tv_usec / 1000000.0));
 		double executionTime = ((end.tv_sec + end.tv_usec / 1000000.0)
 				- (start.tv_sec + start.tv_usec / 1000000.0));
+		double computationTime = executionTime - dataReadingTime - commTime;
 		cout << "Memory initialization time: " << dataReadingTime << " Seconds\n";
+		cout << "Computation time: " << computationTime << " Seconds\n";
+		cout << "Communication time: " << commTime << " Seconds\n";
 		cout << "Execution time: " << executionTime << " Seconds\n";
 		cout << "Matrix dimension: " << aDims[0].length << " by " << aDims[1].length << "\n";
 		cout << "Block size for block stride partition: " << blockSize << "\n";
