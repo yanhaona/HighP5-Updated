@@ -1,0 +1,80 @@
+Running MPI Stencil experiment with 3200 MPI processes
+Memory initialization time: 6.7118 Seconds
+Communication time: 62.064 Seconds
+Computation time: 529.46 Seconds
+Execution time: 598.236 Seconds
+Plate dimension: 409600 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 3200 MPI processes
+Memory initialization time: 10.0288 Seconds
+Communication time: 60.12 Seconds
+Computation time: 529.144 Seconds
+Execution time: 599.293 Seconds
+Plate dimension: 409600 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 3200 MPI processes
+Memory initialization time: 8.72041 Seconds
+Communication time: 63.362 Seconds
+Computation time: 529.489 Seconds
+Execution time: 601.571 Seconds
+Plate dimension: 409600 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 3200 MPI processes
+Memory initialization time: 5.23525 Seconds
+Communication time: 64.1035 Seconds
+Computation time: 529.371 Seconds
+Execution time: 598.709 Seconds
+Plate dimension: 409600 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 3200 MPI processes
+Memory initialization time: 13.5866 Seconds
+Communication time: 50.2018 Seconds
+Computation time: 528.954 Seconds
+Execution time: 592.742 Seconds
+Plate dimension: 409600 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 3200 MPI processes
+Memory initialization time: 6.15735 Seconds
+Communication time: 76.2583 Seconds
+Computation time: 529.539 Seconds
+Execution time: 611.955 Seconds
+Plate dimension: 409600 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 3200 MPI processes
+Memory initialization time: 14.8942 Seconds
+Communication time: 80.6453 Seconds
+Computation time: 529.326 Seconds
+Execution time: 624.866 Seconds
+Plate dimension: 409600 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 3200 MPI processes
+Memory initialization time: 7.21619 Seconds
+Communication time: 65.8267 Seconds
+Computation time: 528.991 Seconds
+Execution time: 602.034 Seconds
+Plate dimension: 409600 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 3200 MPI processes
+Memory initialization time: 12.2833 Seconds
+Communication time: 60.3715 Seconds
+Computation time: 529.079 Seconds
+Execution time: 601.733 Seconds
+Plate dimension: 409600 by 2048
+Padding rows: 4
+Refinement iterations: 100000
+Running MPI Stencil experiment with 3200 MPI processes
+Memory initialization time: 1.39902 Seconds
+Communication time: 72.0883 Seconds
+Computation time: 529.303 Seconds
+Execution time: 602.79 Seconds
+Plate dimension: 409600 by 2048
+Padding rows: 4
+Refinement iterations: 100000
