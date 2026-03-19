@@ -970,6 +970,13 @@ void UpdatedCrossSyncCommunicator::setupCommunicator(bool includeNonInteractingS
 	// all inter-segment communication buffers are needed for doing a successful gather operation
 	remoteBuffers = CrossSyncCommunicator::getRemoteBuffers();
 
+	// however, given we will use group communication; a separate gather buffer is needed in the communicator and
+	// maximum send side also need to be large enough to be equal to maximum data to be send from a single segment.
+	// Thus, we are going to clear intermediate data holders in the comm buffers.
+	for (int i = 0; i < remoteBuffers->NumElements(); i++) {
+		remoteBuffers->Nth(i)->clearRedundentDataHolders(true);
+	}
+		
 	// determine the maximum amount of data each participants will send
 	long int currSegData = 0;
 	for (int i = 0; i < remoteSends->NumElements(); i++) {
@@ -1081,6 +1088,8 @@ void UpdatedCrossSyncCommunicator::sendData() {
 void UpdatedCrossSyncCommunicator::sendDataWithCachedSettings() {
 
 	char *cachedSendBuffer = NULL;
+	// TODO: may be you should check for buffer size equal to maximum amount to be send in the if condition to avoid a
+	// potential segmentation fault
 	if (singleSenderBuffer == true) {
 		// if there is only one buffer in the sender side then avoid memcpy to the intermediate buffer
 		CommBuffer *buffer = remoteSends->Nth(0);

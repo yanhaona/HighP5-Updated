@@ -304,7 +304,8 @@ PreprocessedPhysicalCommBuffer::PreprocessedPhysicalCommBuffer(DataExchange *exc
 	for (long int i = 0; i < bufferSize; i++) {
 		data[i] = 0;
 	}
-        
+
+	localDataHolder = true;
 	sendLocationArray = NULL;
         recvLocationArray = NULL;
         sendRanges = NULL;
@@ -323,7 +324,7 @@ PreprocessedPhysicalCommBuffer::PreprocessedPhysicalCommBuffer(DataExchange *exc
 
 PreprocessedPhysicalCommBuffer::~PreprocessedPhysicalCommBuffer() { 
 	
-	delete[] data; 
+	if (localDataHolder && data != NULL) delete[] data; 
 	
 	if (sendJumpStartPoints != 0) {
 		delete[] sendLocationArray;
@@ -435,6 +436,17 @@ void PreprocessedPhysicalCommBuffer::optimizeMappingBuffer(bool senderSide) {
 		recvRanges = ranges;
         	recvJumpStartPoints = jumpStartPoints;
 	
+	}
+}
+
+void PreprocessedPhysicalCommBuffer::clearRedundentDataHolders(bool recvHolderNotNeeded) {
+	
+	if (senderTransferMapping != NULL && sendJumpStartPoints == 1) {
+		delete[] data;
+		localDataHolder = false;
+	} else if (receiverTransferMapping != NULL && recvHolderNotNeeded) {
+		delete[] data;
+		localDataHolder = false;
 	}
 }
 

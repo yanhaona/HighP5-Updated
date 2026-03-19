@@ -116,6 +116,13 @@ class CommBuffer {
 
 	// subclasses should return true or false depending on the type of data communication they are intended for
 	virtual bool intraSegmentBufferType() = 0;
+
+	// In some communication scenario, in particular, with aggregate communications, we have to allocate buffers inside
+	// the communicators. In that case, having intermediate data holders inside the comm buffers, if done, is wasteful.
+	// However, only the communicator implementations can say whether data holders in the comm buffers are needed or not.
+	// This method is provided to be overriden by specific buffer implementations that can be called from communicator
+	// construction functions for possible removal of unnecessary data holders.
+	virtual void clearRedundentDataHolders(bool recvHolderNotNeeded) {}
   protected:
 	ExchangeIterator *getIterator() { return new ExchangeIterator(dataExchange); }
 };
@@ -220,6 +227,10 @@ class PhysicalCommBuffer : public CommBuffer {
 class PreprocessedPhysicalCommBuffer : public PreprocessedCommBuffer {
   protected:
 	char *data;
+	// Sometimes we use the setData function from the communicator to assign a non-local buffer as the data holder
+	// for this comm buffer. In that case, the data holder should be deleted by the communicator -- not by the 
+	// comm buffer. This flag variable indicates which is the case.
+	bool localDataHolder;
 
 	// These variables are further added to enable faster data transfer between communication buffer and data parts
 	// using fewer memcpy operations when the transfer mapping indices are consecutive. In that case, instead of
@@ -249,6 +260,8 @@ class PreprocessedPhysicalCommBuffer : public PreprocessedCommBuffer {
 	// the optimization process is the same for both sender and receiver sides of the communication buffer. So single
 	// method is used with flag to decide which side to process now. 
 	void optimizeMappingBuffer(bool senderSide);
+	
+	void clearRedundentDataHolders(bool recvHolderNotNeeded);
 };
 
 /* The extension of physical communication buffer to be used with index-mapping enabled
