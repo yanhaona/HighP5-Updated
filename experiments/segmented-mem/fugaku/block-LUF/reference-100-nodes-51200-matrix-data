@@ -1,0 +1,142 @@
+Running MPI Block LUF experiment with 3200 MPI processes
+Memory initialization time: 1950.12 Seconds
+Computation time: 0.277367 Seconds
+Communication time: 1007.2 Seconds
+Execution time: 2957.6 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Running MPI Block LUF experiment with 3200 MPI processes
+Memory initialization time: 725.283 Seconds
+Computation time: 0.292354 Seconds
+Communication time: 992.264 Seconds
+Execution time: 1717.84 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Running MPI Block LUF experiment with 3200 MPI processes
+Memory initialization time: 1617.25 Seconds
+Computation time: 0.289638 Seconds
+Communication time: 997.153 Seconds
+Execution time: 2614.7 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Running MPI Block LUF experiment with 3200 MPI processes
+Memory initialization time: 1220.82 Seconds
+Computation time: 0.292033 Seconds
+Communication time: 1020.33 Seconds
+Execution time: 2241.44 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Running MPI Block LUF experiment with 3200 MPI processes
+Memory initialization time: 869.329 Seconds
+Computation time: 0.292585 Seconds
+Communication time: 995.779 Seconds
+Execution time: 1865.4 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Running MPI Block LUF experiment with 3200 MPI processes
+Memory initialization time: 903.732 Seconds
+Computation time: 0.295591 Seconds
+Communication time: 1015.35 Seconds
+Execution time: 1919.37 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Running MPI Block LUF experiment with 3200 MPI processes
+Memory initialization time: 1634.24 Seconds
+Computation time: 0.290493 Seconds
+Communication time: 1007 Seconds
+Execution time: 2641.54 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Running MPI Block LUF experiment with 3200 MPI processes
+Memory initialization time: 1647.42 Seconds
+Computation time: 0.290516 Seconds
+Communication time: 982.511 Seconds
+Execution time: 2630.22 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Running MPI Block LUF experiment with 3200 MPI processes
+Memory initialization time: 1397.44 Seconds
+Computation time: 0.290803 Seconds
+Communication time: 1018.99 Seconds
+Execution time: 2416.73 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Running MPI Block LUF experiment with 3200 MPI processes
+Memory initialization time: 1681.64 Seconds
+Computation time: 0.292616 Seconds
+Communication time: 980.491 Seconds
+Execution time: 2662.43 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Memory initialization time: 604.99 Seconds
+Computation time: 763.504 Seconds
+Communication time: 258.944 Seconds
+Execution time: 1627.44 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Memory initialization time: 1097.16 Seconds
+Computation time: 763.404 Seconds
+Communication time: 218.252 Seconds
+Execution time: 2078.81 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Memory initialization time: 1092.74 Seconds
+Computation time: 763.372 Seconds
+Communication time: 234.245 Seconds
+Execution time: 2090.36 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Memory initialization time: 709.708 Seconds
+Computation time: 763.734 Seconds
+Communication time: 231.488 Seconds
+Execution time: 1704.93 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Memory initialization time: 871.278 Seconds
+Computation time: 763.441 Seconds
+Communication time: 229.804 Seconds
+Execution time: 1864.52 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Memory initialization time: 1383.03 Seconds
+Computation time: 763.502 Seconds
+Communication time: 222.39 Seconds
+Execution time: 2368.92 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Memory initialization time: 834.391 Seconds
+Computation time: 763.583 Seconds
+Communication time: 263.51 Seconds
+Execution time: 1861.48 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Memory initialization time: 1187.63 Seconds
+Computation time: 763.46 Seconds
+Communication time: 238.061 Seconds
+Execution time: 2189.15 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Memory initialization time: 1339.32 Seconds
+Computation time: 763.42 Seconds
+Communication time: 255.086 Seconds
+Execution time: 2357.83 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Memory initialization time: 945.194 Seconds
+Computation time: 761.911 Seconds
+Communication time: 218.2 Seconds
+Execution time: 1925.3 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Memory initialization time: 853.575 Seconds
+Computation time: 762.775 Seconds
+Communication time: 226.187 Seconds
+Execution time: 1842.54 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
+Memory initialization time: 1090.38 Seconds
+Computation time: 763.39 Seconds
+Communication time: 219.335 Seconds
+Execution time: 2073.11 Seconds
+Matrix dimension: 51200 by 51200
+Block size for block stride partition: 16
