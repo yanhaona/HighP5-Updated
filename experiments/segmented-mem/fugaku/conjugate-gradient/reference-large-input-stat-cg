@@ -1,0 +1,70 @@
+Running MPI Conjugate Gradient experiment with 800 MPI processes
+Memory initialization time: 34.9152 Seconds
+Computation time: 155.159 Seconds
+Communication time: 171.557 Seconds
+Execution time: 361.632 Seconds
+Matrix dimension: 51200 by 51200
+Refinement iterations: 51200
+Running MPI Conjugate Gradient experiment with 800 MPI processes
+Memory initialization time: 34.0105 Seconds
+Computation time: 155.165 Seconds
+Communication time: 193.55 Seconds
+Execution time: 382.726 Seconds
+Matrix dimension: 51200 by 51200
+Refinement iterations: 51200
+Running MPI Conjugate Gradient experiment with 800 MPI processes
+Memory initialization time: 34.467 Seconds
+Computation time: 155.205 Seconds
+Communication time: 177.854 Seconds
+Execution time: 367.527 Seconds
+Matrix dimension: 51200 by 51200
+Refinement iterations: 51200
+Running MPI Conjugate Gradient experiment with 800 MPI processes
+Memory initialization time: 33.94 Seconds
+Computation time: 155.117 Seconds
+Communication time: 237.522 Seconds
+Execution time: 426.579 Seconds
+Matrix dimension: 51200 by 51200
+Refinement iterations: 51200
+Running MPI Conjugate Gradient experiment with 800 MPI processes
+Memory initialization time: 33.119 Seconds
+Computation time: 155.13 Seconds
+Communication time: 163.58 Seconds
+Execution time: 351.829 Seconds
+Matrix dimension: 51200 by 51200
+Refinement iterations: 51200
+Running MPI Conjugate Gradient experiment with 800 MPI processes
+Memory initialization time: 33.1344 Seconds
+Computation time: 155.159 Seconds
+Communication time: 204.247 Seconds
+Execution time: 392.54 Seconds
+Matrix dimension: 51200 by 51200
+Refinement iterations: 51200
+Running MPI Conjugate Gradient experiment with 800 MPI processes
+Memory initialization time: 33.9491 Seconds
+Computation time: 155.111 Seconds
+Communication time: 223.993 Seconds
+Execution time: 413.053 Seconds
+Matrix dimension: 51200 by 51200
+Refinement iterations: 51200
+Running MPI Conjugate Gradient experiment with 800 MPI processes
+Memory initialization time: 33.1932 Seconds
+Computation time: 155.102 Seconds
+Communication time: 299.593 Seconds
+Execution time: 487.889 Seconds
+Matrix dimension: 51200 by 51200
+Refinement iterations: 51200
+Running MPI Conjugate Gradient experiment with 800 MPI processes
+Memory initialization time: 32.6663 Seconds
+Computation time: 155.226 Seconds
+Communication time: 237.737 Seconds
+Execution time: 425.63 Seconds
+Matrix dimension: 51200 by 51200
+Refinement iterations: 51200
+Running MPI Conjugate Gradient experiment with 800 MPI processes
+Memory initialization time: 33.0508 Seconds
+Computation time: 155.22 Seconds
+Communication time: 232.211 Seconds
+Execution time: 420.482 Seconds
+Matrix dimension: 51200 by 51200
+Refinement iterations: 51200
