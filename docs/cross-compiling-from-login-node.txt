@@ -1,0 +1,10 @@
+# environment for executable generation for the compute nodes
+. /vol0004/apps/oss/gcc-arm-11.2.1/setup-env.sh
+
+# environment for executable generation for the login node
+# First alternative
+source /opt/intel/oneapi/setvars.sh intel64
+# Second alternative
+export MODULES_AUTO_HANDLING=1
+module load mpi/latest
+
