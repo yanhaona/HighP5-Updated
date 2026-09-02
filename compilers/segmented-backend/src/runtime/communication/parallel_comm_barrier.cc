@@ -44,10 +44,10 @@ void ParallelCommBarrier::wait(SignalType signal, int callerIterationNo) {
 	if (_count == 0) { // this is the leader thread scenario; the thread registered for a communication last
 			   
 		// provide the opportunity to cache costly communication resource computation
-		if (_cachingAttempted == false) {
-			_cachingAttempted = true;
+		//if (_cachingAttempted == false) {
+			//_cachingAttempted = true;
 			configureCache();
-		}
+		//}
 
 
                 // Count the number of active signals
