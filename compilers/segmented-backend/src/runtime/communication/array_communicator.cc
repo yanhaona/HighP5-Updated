@@ -1022,10 +1022,10 @@ void UpdatedCrossSyncCommunicator::setupCommunicator(bool includeNonInteractingS
 void UpdatedCrossSyncCommunicator::sendData() {
 
 	// call the optimized sendData method for repeated use
-	if (settingsCollected == true) {
+	/*if (settingsCollected == true) {
 		sendDataWithCachedSettings();
 		return;
-	}
+	}*/
 
 	// for the first time, do regular buffer computations during MPI gather based communication and also collect settings
 	// information of the communicator 
