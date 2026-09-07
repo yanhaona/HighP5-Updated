@@ -1,0 +1,45 @@
+Matrix Size is 30720 by 30720
+Total communication time: 80.9667 Seconds
+Computation without communication time: 372.173 Seconds
+
+Version 0: old version
+Parallel Execution Time: 453.288 Seconds
+Parallel Execution Time: 458.186 Seconds
+Parallel Execution Time: 467.655 Seconds
+Parallel Execution Time: 457.11 Seconds
+Parallel Execution Time: 457.752 Seconds
+Parallel Execution Time: 468.271 Seconds
+Parallel Execution Time: 462.297 Seconds
+Parallel Execution Time: 444.782 Seconds
+Parallel Execution Time: 461.802 Seconds
+Parallel Execution Time: 451.41 Seconds
+
+Version 1: after disabling caching of sorted buffers in the communicators
+Parallel Execution Time: 454.344 Seconds
+Parallel Execution Time: 455.04 Seconds
+Parallel Execution Time: 454.856 Seconds
+Parallel Execution Time: 453.472 Seconds
+Parallel Execution Time: 453.947 Seconds
+Parallel Execution Time: 460.429 Seconds
+Parallel Execution Time: 456.938 Seconds
+Parallel Execution Time: 450.298 Seconds
+Parallel Execution Time: 452.211 Seconds
+Parallel Execution Time: 449.593 Seconds
+
+Version 2: after stopping barrier wait reductions
+Parallel Execution Time: 449.044 Seconds
+Parallel Execution Time: 451.89 Seconds
+Parallel Execution Time: 450.876 Seconds
+Parallel Execution Time: 448.809 Seconds
+Parallel Execution Time: 446.577 Seconds
+Parallel Execution Time: 447.55 Seconds
+Parallel Execution Time: 451.206 Seconds
+Parallel Execution Time: 451.079 Seconds
+Parallel Execution Time: 446.64 Seconds
+Parallel Execution Time: 452.77 Seconds
+
+
+
+
+
+
