@@ -83,7 +83,8 @@ void ParallelCommBarrier::wait(SignalType signal, int callerIterationNo) {
 				// kick off the before-transfer parallel processing
 				struct timeval start;
 				gettimeofday(&start, NULL);
-				beforeTransfer(order, _size);
+				//beforeTransfer(order, _size);
+				beforeTransfer(0, 1);
 
 				// wait on the barrier for all threads to finish before-transfer processing
 				if (_size > 0) pthread_barrier_wait(&_barrier);
@@ -100,7 +101,8 @@ void ParallelCommBarrier::wait(SignalType signal, int callerIterationNo) {
 				// join the barrier again and kick of after-transfer parallel processing
 				gettimeofday(&start, NULL);
 				if (_size > 0) pthread_barrier_wait(&_barrier);
-				afterTransfer(order, _size);
+				//afterTransfer(order, _size);
+				afterTransfer(0, 1);
 
 				reset();                                        // Reset the barrier
 				if (_size > 0) pthread_barrier_wait(&_barrier);	// release others by joining the barrier
@@ -136,7 +138,7 @@ void ParallelCommBarrier::wait(SignalType signal, int callerIterationNo) {
 				 // data transfer while all threads help in buffer pre and post-processing.
 
 				// participate in the parallel before-transfer processing activity
-				beforeTransfer(order, _size);
+				//beforeTransfer(order, _size);
 
 				// wait on the barrier again to indicate that processing is done for the current thread
 				if (_size > 0) pthread_barrier_wait(&_barrier);
@@ -146,7 +148,7 @@ void ParallelCommBarrier::wait(SignalType signal, int callerIterationNo) {
 				if (_size > 0) pthread_barrier_wait(&_barrier);
 
 				// participate in the parralel after-transfer processing activity
-				afterTransfer(order, _size);
+				//afterTransfer(order, _size);
 
 				// lock ownself by waiting on the barrier one last time
 				if (_size > 0) pthread_barrier_wait(&_barrier);
