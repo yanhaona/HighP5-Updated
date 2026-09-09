@@ -249,7 +249,8 @@ void GhostRegionSyncCommunicator::performTransfer() {
 
 bool GhostRegionSyncCommunicator::directCommunicationPossible() {
 	
-	return intraSegmentCommunicator && (localSenderPpus == localReceiverPpus);
+	//return intraSegmentCommunicator && (localSenderPpus == localReceiverPpus);
+	return false;
 }
         
 void GhostRegionSyncCommunicator::performDirectSend(int currentPpuOrder, int participantsCount) {
