@@ -340,13 +340,6 @@ PreprocessedPhysicalCommBuffer::~PreprocessedPhysicalCommBuffer() {
 
 void PreprocessedPhysicalCommBuffer::readData(bool loggingEnabled, std::ostream &logFile) {
 
-	// if the data to be read is coming form a single data part and also from its consecutive indices then there is no
-	// need to do an extra memory copy during buffer read; we can rather just return the memory location from the data
-	// part to optimize things
-	if (sendJumpStartPoints == 1) {
-		return;
-	}
-
 	int currDataIndex = 0;
 	for (long int i = 0; i < sendJumpStartPoints; i++) {
 		char *readLocation = sendLocationArray[i];
@@ -355,19 +348,6 @@ void PreprocessedPhysicalCommBuffer::readData(bool loggingEnabled, std::ostream 
 		memcpy(writeLocation, readLocation, copyRange * elementSize);
 		currDataIndex += copyRange;
 	}
-}
-
-char *PreprocessedPhysicalCommBuffer::getData() { 
-	
-	// if there is only one data part whose consecutive indices are the source of data then we did not do any reading
-	// from data part to the intermediate comm buffer; we will directly returns the data part's memory location to be
-	// used for communication
-	if (sendJumpStartPoints == 1) {
-		return sendLocationArray[0];
-	}
-	// Otherwise, the data is read from different data parts or disjointed locations of a data parts in the readData
-	// method call inside the intermediate buffer	
-	return data; 
 }
 
 void PreprocessedPhysicalCommBuffer::writeData(bool loggingEnabled, std::ostream &logFile) {
