@@ -315,10 +315,10 @@ PreprocessedPhysicalCommBuffer::PreprocessedPhysicalCommBuffer(DataExchange *exc
 	
 	// check for optimization opportunities in the sender and receiver sides' buffer management
 	if (senderTransferMapping != NULL) {
-		optimizeMappingBuffer(true);
+		//optimizeMappingBuffer(true);
 	}
 	if (receiverTransferMapping != NULL) {
-		optimizeMappingBuffer(false);
+		//optimizeMappingBuffer(false);
 	}
 }
 
@@ -340,7 +340,7 @@ PreprocessedPhysicalCommBuffer::~PreprocessedPhysicalCommBuffer() {
 
 void PreprocessedPhysicalCommBuffer::readData(bool loggingEnabled, std::ostream &logFile) {
 
-	int currDataIndex = 0;
+/*	int currDataIndex = 0;
 	for (long int i = 0; i < sendJumpStartPoints; i++) {
 		char *readLocation = sendLocationArray[i];
 		int copyRange = sendRanges[i];
@@ -348,11 +348,18 @@ void PreprocessedPhysicalCommBuffer::readData(bool loggingEnabled, std::ostream 
 		memcpy(writeLocation, readLocation, copyRange * elementSize);
 		currDataIndex += copyRange;
 	}
+*/
+       for (long int i = 0; i < elementCount; i++) {
+               char *readLocation = senderTransferMapping[i];
+               char *writeLocation = data + i * elementSize;
+               memcpy(writeLocation, readLocation, elementSize);
+       }
+
 }
 
 void PreprocessedPhysicalCommBuffer::writeData(bool loggingEnabled, std::ostream &logFile) {
 
-	int currDataIndex = 0;
+/*	int currDataIndex = 0;
 	for (long int i = 0; i < recvJumpStartPoints; i++) {
 		char *readLocation = data + currDataIndex * elementSize;
 		char *writeLocation = recvLocationArray[i];
@@ -360,6 +367,13 @@ void PreprocessedPhysicalCommBuffer::writeData(bool loggingEnabled, std::ostream
 		memcpy(writeLocation, readLocation, copyRange * elementSize);
 		currDataIndex += copyRange;
 	}
+*/
+	for (long int i = 0; i < elementCount; i++) {
+        	char *readLocation = data + i * elementSize;              
+		char *writeLocation = receiverTransferMapping[i];
+		memcpy(writeLocation, readLocation, elementSize);
+	}
+
 }
 
 void PreprocessedPhysicalCommBuffer::optimizeMappingBuffer(bool senderSide) {
