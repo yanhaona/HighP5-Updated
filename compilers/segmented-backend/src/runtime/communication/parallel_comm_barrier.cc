@@ -67,7 +67,8 @@ void ParallelCommBarrier::wait(SignalType signal, int callerIterationNo) {
 				
 				struct timeval start;
 				gettimeofday(&start, NULL);
-				doSingleStepTransfer(order, _size);		// do the single step parallel data transfer
+				//doSingleStepTransfer(order, _size);		// do the single step parallel data transfer
+				doSingleStepTransfer(0, 1);		
 
 				reset();                                        // Reset the barrier
 				if (_size > 0) pthread_barrier_wait(&_barrier);	// release others by joining the barrier
@@ -131,7 +132,7 @@ void ParallelCommBarrier::wait(SignalType signal, int callerIterationNo) {
 
 			if (supportSingleStepTransfer()) { // single-step parallel transfer mechanism
 
-				doSingleStepTransfer(order, _size);		// do the single step parallel data transfer
+				//doSingleStepTransfer(order, _size);		// do the single step parallel data transfer
 				if (_size > 0) pthread_barrier_wait(&_barrier);	// release others by joining the barrier
 			
 			} else { // regular multi-step data transfer operation that makes the last thread do the actual
