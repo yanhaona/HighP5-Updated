@@ -38,7 +38,14 @@ Parallel Execution Time: 451.079 Seconds
 Parallel Execution Time: 446.64 Seconds
 Parallel Execution Time: 452.77 Seconds
 
+Version 3: after stopping parallelizations in communication buffer processing
 
+Parallel Execution Time: 453.22 Seconds
+Parallel Execution Time: 451.087 Seconds
+Parallel Execution Time: 447.994 Seconds
+Parallel Execution Time: 450.156 Seconds
+Parallel Execution Time: 456.982 Seconds
+Parallel Execution Time: 451.025 Seconds
 
 
 
