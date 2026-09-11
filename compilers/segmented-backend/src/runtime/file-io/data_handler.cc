@@ -361,7 +361,7 @@ void PartReader::processParts() {
 	}
 
 	// no need to create threads to do concurrent reading
-	if (concurrency == 1) {
+	if (concurrency < 1000) {
 		PartHandler::processParts();
 
 	// this is the root PartReader that should create new worker reader
