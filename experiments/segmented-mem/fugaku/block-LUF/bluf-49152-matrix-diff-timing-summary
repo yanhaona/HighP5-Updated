@@ -1,0 +1,18 @@
+64 Nodes
+48 Threads Per Node
+A square matrix of 41952 dimensions
+64 by 256 blocking
+
+Original: 
+	Parallel Execution Time: 1543.84 Seconds
+After Disabling Caching: 
+	Parallel Execution Time: 1654.62 Seconds
+Disabling Parallelization of Buffer Processing:
+	Parallel Execution Time: 1768.78 Seconds
+	Parallel Execution Time: 1739.56 Seconds
+	Parallel Execution Time: 1782.91 Seconds
+	Parallel Execution Time: 1875.28 Seconds
+Disabling Parallalization on Setup: 
+	Parallel Execution Time: 2150.35 Seconds
+Disabling Optimization of Barrier Sync: 
+	Parallel Execution Time: 2967.49 Seconds

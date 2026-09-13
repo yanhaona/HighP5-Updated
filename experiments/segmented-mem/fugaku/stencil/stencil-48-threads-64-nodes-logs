@@ -1,0 +1,108 @@
+Memory preparation time: 3.78457 Seconds
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage8No1
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage9No1
+	communicators have been created
+Computation time: 2477.38 Seconds
+Computation + overhead time: 2477.38 Seconds
+		Dependency: plateStage8No1:
+			Confinements processing time: 0.00523305
+			Buffer setup time: 1.52483
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 108.595
+				Buffer writing: 0
+				Total: 108.595
+		Dependency: plateStage9No1:
+			Confinements processing time: 0.0289981
+			Buffer setup time: 0.0726669
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 0.0581396
+				MPI transfer: 2153.4
+				Buffer writing: 0.0462999
+				Total: 2153.51
+Total communication time: 2262.1 Seconds
+Computation without communication time: 215.277 Seconds
+Execution Time: 2481.23 Seconds
+Memory preparation time: 3.61572 Seconds
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage8No1
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage9No1
+	communicators have been created
+Computation time: 2479.65 Seconds
+Computation + overhead time: 2479.65 Seconds
+		Dependency: plateStage8No1:
+			Confinements processing time: 0.00522208
+			Buffer setup time: 1.48225
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 108.671
+				Buffer writing: 0
+				Total: 108.671
+		Dependency: plateStage9No1:
+			Confinements processing time: 0.0290079
+			Buffer setup time: 0.0687211
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 0.0416901
+				MPI transfer: 2160.46
+				Buffer writing: 0.0395143
+				Total: 2160.54
+Total communication time: 2269.21 Seconds
+Computation without communication time: 210.434 Seconds
+Execution Time: 2483.3 Seconds
+Memory preparation time: 5.90708 Seconds
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage8No1
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage9No1
+	communicators have been created
+Computation time: 2480.49 Seconds
+Computation + overhead time: 2480.49 Seconds
+		Dependency: plateStage8No1:
+			Confinements processing time: 0.00522709
+			Buffer setup time: 1.48327
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 108.602
+				Buffer writing: 0
+				Total: 108.602
+		Dependency: plateStage9No1:
+			Confinements processing time: 0.0289412
+			Buffer setup time: 0.0695739
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 0.0579569
+				MPI transfer: 2161.52
+				Buffer writing: 0.0722623
+				Total: 2161.65
+Total communication time: 2270.25 Seconds
+Computation without communication time: 210.239 Seconds
+Execution Time: 2486.43 Seconds
+Memory preparation time: 1.61086 Seconds
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage8No1
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage9No1
+	communicators have been created
+Computation time: 2592.33 Seconds
+Computation + overhead time: 2592.33 Seconds
+		Dependency: plateStage8No1:
+			Confinements processing time: 0.00524902
+			Buffer setup time: 1.48975
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 108.625
+				MPI transfer: 0.0104887
+				Buffer writing: 111.096
+				Total: 219.731
+		Dependency: plateStage9No1:
+			Confinements processing time: 0.029068
+			Buffer setup time: 0.0730629
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 0.0573235
+				MPI transfer: 2162.02
+				Buffer writing: 0.0735562
+				Total: 2162.15
+Total communication time: 2381.88 Seconds
+Computation without communication time: 210.454 Seconds
+Execution Time: 2593.99 Seconds

@@ -1,0 +1,22 @@
+input_file=plate-409600-2048
+upper_block=64
+lower_block=48
+p1=8
+p2=2
+iterations=5000
+
+Orig
+Parallel Execution Time: 2481.23 Seconds
+Disable Caching
+Parallel Execution Time: 2483.3 Seconds
+Disable Sync Optimization:
+Parallel Execution Time: 2486.43 Seconds
+Disable Parallelization in Buffer Processing:
+Parallel Execution Time: 2481.46 Seconds
+Disable Buffer Access Optimization:
+Parallel Execution Time: 2593.44 Seconds
+Parallel Execution Time: 2593.99 Seconds
+Disable Setup Efficiency:
+Parallel Execution Time: 2592.6 Seconds
+Disable Sync Implementation Efficiency:
+Parallel Execution Time: 2593.64 Seconds
