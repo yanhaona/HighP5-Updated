@@ -11,6 +11,7 @@ Disabling Parallelization of Buffer Processing:
 	Parallel Execution Time: 1768.78 Seconds
 	Parallel Execution Time: 1739.56 Seconds
 	Parallel Execution Time: 1782.91 Seconds
+Disabling Optimization on Buffer Transfers:
 	Parallel Execution Time: 1875.28 Seconds
 Disabling Parallalization on Setup: 
 	Parallel Execution Time: 2150.35 Seconds
