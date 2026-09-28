@@ -359,7 +359,10 @@ void PreprocessedPhysicalCommBuffer::readData(bool loggingEnabled, std::ostream 
 
 void PreprocessedPhysicalCommBuffer::writeData(bool loggingEnabled, std::ostream &logFile) {
 
-/*	int currDataIndex = 0;
+/*	
+	if (localDataHolder == false) return;
+
+	int currDataIndex = 0;
 	for (long int i = 0; i < recvJumpStartPoints; i++) {
 		char *readLocation = data + currDataIndex * elementSize;
 		char *writeLocation = recvLocationArray[i];
@@ -663,7 +666,7 @@ void VirtualCommBuffer::readData(bool loggingEnabled, std::ostream &logFile) {
 		delete writePartSpec;
 		delete writeTransferSpec;
 		delete transformVector;
-		delete dataEntry;
+		delete[] dataEntry;
 	}
 }
 

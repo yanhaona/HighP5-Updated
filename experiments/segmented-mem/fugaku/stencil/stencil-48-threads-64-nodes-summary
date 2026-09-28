@@ -1,0 +1,28 @@
+Node count: 64
+Threads/cores per nodes: 48
+
+Plate Size 409600 by 2048
+Upper Layer Padding: 32 rows
+Lower Layer Padding: 2 rows
+OUtward Iterations: 1250
+
+The experiment is done on an unusual time in Fugaku when point-to-point communication was performing
+abysmally bad and the results were not matching the results of previous experiments on same input
+and parameter configurations for either the reference program and the HighP5 program versions. So we
+have to drastically reduce the number of iterations and increase the amount of padding in the upper
+layer to dampen the impact of highly costly MPI point-to-point communications.
+
+Original: 
+	Parallel Execution Time: 2460.76 Seconds
+After Disabling Caching: 
+	Parallel Execution Time: 2462.78 Seconds
+Disabling Parallelization of Buffer Processing:
+	Parallel Execution Time: 2576.95 Seconds
+	Parallel Execution Time: 2574.24 Seconds
+	Parallel Execution Time: 2573.57 Seconds
+Disabling Optimization on Buffer Transfers:
+	Parallel Execution Time: 4485.71 Seconds
+Disabling Parallalization on Setup: 
+	Parallel Execution Time: 4455.88 Seconds
+Disabling Optimization of Barrier Sync: 
+	Parallel Execution Time: 4602.57 Seconds

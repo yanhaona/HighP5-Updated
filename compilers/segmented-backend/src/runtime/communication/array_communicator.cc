@@ -974,9 +974,9 @@ void UpdatedCrossSyncCommunicator::setupCommunicator(bool includeNonInteractingS
 	// however, given we will use group communication; a separate gather buffer is needed in the communicator and
 	// maximum send side also need to be large enough to be equal to maximum data to be send from a single segment.
 	// Thus, we are going to clear intermediate data holders in the comm buffers.
-	for (int i = 0; i < remoteBuffers->NumElements(); i++) {
+	/*for (int i = 0; i < remoteBuffers->NumElements(); i++) {
 		remoteBuffers->Nth(i)->clearRedundentDataHolders(true);
-	}
+	}*/
 		
 	// determine the maximum amount of data each participants will send
 	long int currSegData = 0;
