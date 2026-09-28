@@ -1,0 +1,451 @@
+Memory preparation time: 94.5419 Seconds
+	Setting up scalar communicator for row_rangeStage5No1
+	Setup done for scalar communicator row_rangeStage5No1
+	Setting up scalar communicator for row_rangeStage5No2
+	Setup done for scalar communicator row_rangeStage5No2
+	Setting up scalar communicator for row_rangeStage5No8
+	Setup done for scalar communicator row_rangeStage5No8
+	Setting up communicator for l_rowStage16No1
+	Setup done for communicator for l_rowStage16No1
+	Setting up communicator for l_columnStage18No1
+	Setup done for communicator for l_columnStage18No1
+	setting up the mode for up-sync communicator for l_columnStage18No1
+	mode setup done for up-sync communicator for l_columnStage18No1
+	Setting up communicator for p_columnStage19No1
+	Setup done for communicator for p_columnStage19No1
+	setting up the mode for down-sync communicator for p_columnStage19No1
+	mode setup done for down-sync communicator for p_columnStage19No1
+	Setting up communicator for l_blockStage25No1
+	Setup done for communicator for l_blockStage25No1
+	setting up the mode for down-sync communicator for l_blockStage25No1
+	mode setup done for down-sync communicator for l_blockStage25No1
+	communicators have been created
+Computation time: 1780.68 Seconds
+Computation + overhead time: 1780.68 Seconds
+		Dependency: row_rangeStage5No1:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 6.17515
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 0
+				Buffer writing: 0
+				Total: 0
+		Dependency: row_rangeStage5No2:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 0.00923991
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 0
+				Buffer writing: 0
+				Total: 0
+		Dependency: row_rangeStage5No8:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 0.00719094
+			Communication time: 
+				Buffer reading: 0.000362158
+				MPI transfer: 615.549
+				Buffer writing: 0.000356436
+				Total: 615.55
+		Dependency: l_rowStage16No1:
+			Confinements processing time: 0.00617814
+			Buffer setup time: 0.0543308
+			Communication resources setup time: 3.8147e-05
+			Communication time: 
+				Buffer reading: 0.00770831
+				MPI transfer: 98.3495
+				Buffer writing: 0.950751
+				Total: 99.308
+		Dependency: l_columnStage18No1:
+			Confinements processing time: 0.00156403
+			Buffer setup time: 0.0233939
+			Communication resources setup time: 0.000708103
+			Communication time: 
+				Buffer reading: 0.292331
+				MPI transfer: 82.2319
+				Buffer writing: 2.53443
+				Total: 85.0587
+		Dependency: p_columnStage19No1:
+			Confinements processing time: 0.000717878
+			Buffer setup time: 0.046042
+			Communication resources setup time: 1.0252e-05
+			Communication time: 
+				Buffer reading: 0.0103137
+				MPI transfer: 44.2415
+				Buffer writing: 0.831505
+				Total: 45.0833
+		Dependency: l_blockStage25No1:
+			Confinements processing time: 0.00715494
+			Buffer setup time: 5.88162
+			Communication resources setup time: 0.606537
+			Communication time: 
+				Buffer reading: 4.09501
+				MPI transfer: 10.6951
+				Buffer writing: 3.03523
+				Total: 17.8254
+Total communication time: 862.826 Seconds
+Computation without communication time: 917.856 Seconds
+Execution Time: 1875.28 Seconds
+
+Memory preparation time: 93.5247 Seconds
+	Setting up scalar communicator for row_rangeStage5No1
+	Setup done for scalar communicator row_rangeStage5No1
+	Setting up scalar communicator for row_rangeStage5No2
+	Setup done for scalar communicator row_rangeStage5No2
+	Setting up scalar communicator for row_rangeStage5No8
+	Setup done for scalar communicator row_rangeStage5No8
+	Setting up communicator for l_rowStage16No1
+	Setup done for communicator for l_rowStage16No1
+	Setting up communicator for l_columnStage18No1
+	Setup done for communicator for l_columnStage18No1
+	setting up the mode for up-sync communicator for l_columnStage18No1
+	mode setup done for up-sync communicator for l_columnStage18No1
+	Setting up communicator for p_columnStage19No1
+	Setup done for communicator for p_columnStage19No1
+	setting up the mode for down-sync communicator for p_columnStage19No1
+	mode setup done for down-sync communicator for p_columnStage19No1
+	Setting up communicator for l_blockStage25No1
+	Setup done for communicator for l_blockStage25No1
+	setting up the mode for down-sync communicator for l_blockStage25No1
+	mode setup done for down-sync communicator for l_blockStage25No1
+	communicators have been created
+Computation time: 1675.21 Seconds
+Computation + overhead time: 1675.21 Seconds
+		Dependency: row_rangeStage5No1:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 49.5404
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 0
+				Buffer writing: 0
+				Total: 0
+		Dependency: row_rangeStage5No2:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 0.00420213
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 0
+				Buffer writing: 0
+				Total: 0
+		Dependency: row_rangeStage5No8:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 0.00538278
+			Communication time: 
+				Buffer reading: 0.00156355
+				MPI transfer: 471.158
+				Buffer writing: 0.00331855
+				Total: 471.163
+		Dependency: l_rowStage16No1:
+			Confinements processing time: 0.00634909
+			Buffer setup time: 0.0567129
+			Communication resources setup time: 3.50475e-05
+			Communication time: 
+				Buffer reading: 0.0741119
+				MPI transfer: 83.3536
+				Buffer writing: 1.20549
+				Total: 84.6332
+		Dependency: l_columnStage18No1:
+			Confinements processing time: 0.00155807
+			Buffer setup time: 0.021656
+			Communication resources setup time: 0.00071311
+			Communication time: 
+				Buffer reading: 0.527346
+				MPI transfer: 77.8648
+				Buffer writing: 2.77978
+				Total: 81.1719
+		Dependency: p_columnStage19No1:
+			Confinements processing time: 0.000705004
+			Buffer setup time: 0.0464251
+			Communication resources setup time: 1.09673e-05
+			Communication time: 
+				Buffer reading: 0.0829566
+				MPI transfer: 30.2852
+				Buffer writing: 1.11961
+				Total: 31.4877
+		Dependency: l_blockStage25No1:
+			Confinements processing time: 0.007195
+			Buffer setup time: 6.06427
+			Communication resources setup time: 0.578578
+			Communication time: 
+				Buffer reading: 4.09494
+				MPI transfer: 7.96936
+				Buffer writing: 3.04136
+				Total: 15.1057
+Total communication time: 683.562 Seconds
+Computation without communication time: 991.644 Seconds
+Execution Time: 1768.78 Seconds
+Memory preparation time: 265.953 Seconds
+	Setting up scalar communicator for row_rangeStage5No1
+	Setup done for scalar communicator row_rangeStage5No1
+	Setting up scalar communicator for row_rangeStage5No2
+	Setup done for scalar communicator row_rangeStage5No2
+	Setting up scalar communicator for row_rangeStage5No8
+	Setup done for scalar communicator row_rangeStage5No8
+	Setting up communicator for l_rowStage16No1
+	Setup done for communicator for l_rowStage16No1
+	Setting up communicator for l_columnStage18No1
+	Setup done for communicator for l_columnStage18No1
+	setting up the mode for up-sync communicator for l_columnStage18No1
+	mode setup done for up-sync communicator for l_columnStage18No1
+	Setting up communicator for p_columnStage19No1
+	Setup done for communicator for p_columnStage19No1
+	setting up the mode for down-sync communicator for p_columnStage19No1
+	mode setup done for down-sync communicator for p_columnStage19No1
+	Setting up communicator for l_blockStage25No1
+	Setup done for communicator for l_blockStage25No1
+	setting up the mode for down-sync communicator for l_blockStage25No1
+	mode setup done for down-sync communicator for l_blockStage25No1
+	communicators have been created
+Computation time: 1884.35 Seconds
+Computation + overhead time: 1884.35 Seconds
+		Dependency: row_rangeStage5No1:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 16.9662
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 0
+				Buffer writing: 0
+				Total: 0
+		Dependency: row_rangeStage5No2:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 0.00728917
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 0
+				Buffer writing: 0
+				Total: 0
+		Dependency: row_rangeStage5No8:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 0.00522995
+			Communication time: 
+				Buffer reading: 0.00151944
+				MPI transfer: 488.015
+				Buffer writing: 0.0032022
+				Total: 488.019
+		Dependency: l_rowStage16No1:
+			Confinements processing time: 0.00611901
+			Buffer setup time: 0.0539279
+			Communication resources setup time: 3.40939e-05
+			Communication time: 
+				Buffer reading: 0.260265
+				MPI transfer: 135.534
+				Buffer writing: 12.1879
+				Total: 147.983
+		Dependency: l_columnStage18No1:
+			Confinements processing time: 0.00157881
+			Buffer setup time: 0.0204861
+			Communication resources setup time: 0.000718117
+			Communication time: 
+				Buffer reading: 0.485317
+				MPI transfer: 77.9966
+				Buffer writing: 15.9571
+				Total: 94.439
+		Dependency: p_columnStage19No1:
+			Confinements processing time: 0.000717878
+			Buffer setup time: 0.046494
+			Communication resources setup time: 1.09673e-05
+			Communication time: 
+				Buffer reading: 11.4815
+				MPI transfer: 79.7569
+				Buffer writing: 12.0593
+				Total: 103.298
+		Dependency: l_blockStage25No1:
+			Confinements processing time: 0.00767803
+			Buffer setup time: 5.86875
+			Communication resources setup time: 0.96796
+			Communication time: 
+				Buffer reading: 4.37313
+				MPI transfer: 23.5495
+				Buffer writing: 19.0359
+				Total: 46.9585
+Total communication time: 880.697 Seconds
+Computation without communication time: 1003.65 Seconds
+Execution Time: 2150.35 Seconds
+Memory preparation time: 104.727 Seconds
+	Setting up scalar communicator for row_rangeStage5No1
+	Setup done for scalar communicator row_rangeStage5No1
+	Setting up scalar communicator for row_rangeStage5No2
+	Setup done for scalar communicator row_rangeStage5No2
+	Setting up scalar communicator for row_rangeStage5No8
+	Setup done for scalar communicator row_rangeStage5No8
+	Setting up communicator for l_rowStage16No1
+	Setup done for communicator for l_rowStage16No1
+	Setting up communicator for l_columnStage18No1
+	Setup done for communicator for l_columnStage18No1
+	setting up the mode for up-sync communicator for l_columnStage18No1
+	mode setup done for up-sync communicator for l_columnStage18No1
+	Setting up communicator for p_columnStage19No1
+	Setup done for communicator for p_columnStage19No1
+	setting up the mode for down-sync communicator for p_columnStage19No1
+	mode setup done for down-sync communicator for p_columnStage19No1
+	Setting up communicator for l_blockStage25No1
+	Setup done for communicator for l_blockStage25No1
+	setting up the mode for down-sync communicator for l_blockStage25No1
+	mode setup done for down-sync communicator for l_blockStage25No1
+	communicators have been created
+Computation time: 1549.81 Seconds
+Computation + overhead time: 1549.81 Seconds
+		Dependency: row_rangeStage5No1:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 7.93632
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 0
+				Buffer writing: 0
+				Total: 0
+		Dependency: row_rangeStage5No2:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 0.00904298
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 0
+				Buffer writing: 0
+				Total: 0
+		Dependency: row_rangeStage5No8:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 0.00314403
+			Communication time: 
+				Buffer reading: 0.00148964
+				MPI transfer: 416.629
+				Buffer writing: 0.00315261
+				Total: 416.633
+		Dependency: l_rowStage16No1:
+			Confinements processing time: 0.00611997
+			Buffer setup time: 0.05516
+			Communication resources setup time: 3.88622e-05
+			Communication time: 
+				Buffer reading: 0.0749154
+				MPI transfer: 72.3374
+				Buffer writing: 1.19196
+				Total: 73.6042
+		Dependency: l_columnStage18No1:
+			Confinements processing time: 0.00155592
+			Buffer setup time: 0.0206501
+			Communication resources setup time: 0.00071311
+			Communication time: 
+				Buffer reading: 0.467449
+				MPI transfer: 59.5449
+				Buffer writing: 2.76462
+				Total: 62.7769
+		Dependency: p_columnStage19No1:
+			Confinements processing time: 0.000701904
+			Buffer setup time: 0.044944
+			Communication resources setup time: 1.00136e-05
+			Communication time: 
+				Buffer reading: 0.0799718
+				MPI transfer: 35.6755
+				Buffer writing: 1.22594
+				Total: 36.9814
+		Dependency: l_blockStage25No1:
+			Confinements processing time: 0.00718307
+			Buffer setup time: 6.02552
+			Communication resources setup time: 0.475301
+			Communication time: 
+				Buffer reading: 4.09406
+				MPI transfer: 9.01378
+				Buffer writing: 3.03918
+				Total: 16.147
+Total communication time: 606.143 Seconds
+Computation without communication time: 943.664 Seconds
+Execution Time: 1654.62 Seconds
+Memory preparation time: 268.667 Seconds
+	Setting up scalar communicator for row_rangeStage5No1
+	Setup done for scalar communicator row_rangeStage5No1
+	Setting up scalar communicator for row_rangeStage5No2
+	Setup done for scalar communicator row_rangeStage5No2
+	Setting up scalar communicator for row_rangeStage5No8
+	Setup done for scalar communicator row_rangeStage5No8
+	Setting up communicator for l_rowStage16No1
+	Setup done for communicator for l_rowStage16No1
+	Setting up communicator for l_columnStage18No1
+	Setup done for communicator for l_columnStage18No1
+	setting up the mode for up-sync communicator for l_columnStage18No1
+	mode setup done for up-sync communicator for l_columnStage18No1
+	Setting up communicator for p_columnStage19No1
+	Setup done for communicator for p_columnStage19No1
+	setting up the mode for down-sync communicator for p_columnStage19No1
+	mode setup done for down-sync communicator for p_columnStage19No1
+	Setting up communicator for l_blockStage25No1
+	Setup done for communicator for l_blockStage25No1
+	setting up the mode for down-sync communicator for l_blockStage25No1
+	mode setup done for down-sync communicator for l_blockStage25No1
+	communicators have been created
+Computation time: 2698.74 Seconds
+Computation + overhead time: 2698.74 Seconds
+		Dependency: row_rangeStage5No1:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 20.3874
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 0
+				Buffer writing: 0
+				Total: 0
+		Dependency: row_rangeStage5No2:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 0.00512195
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 0
+				Buffer writing: 0
+				Total: 0
+		Dependency: row_rangeStage5No8:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 0.00731397
+			Communication time: 
+				Buffer reading: 0.00154805
+				MPI transfer: 633.605
+				Buffer writing: 0.00324607
+				Total: 633.61
+		Dependency: l_rowStage16No1:
+			Confinements processing time: 0.00611401
+			Buffer setup time: 0.0527031
+			Communication resources setup time: 3.40939e-05
+			Communication time: 
+				Buffer reading: 0.258654
+				MPI transfer: 146.708
+				Buffer writing: 12.2793
+				Total: 159.246
+		Dependency: l_columnStage18No1:
+			Confinements processing time: 0.00156283
+			Buffer setup time: 0.020503
+			Communication resources setup time: 0.000720024
+			Communication time: 
+				Buffer reading: 0.465609
+				MPI transfer: 102.826
+				Buffer writing: 14.9291
+				Total: 118.22
+		Dependency: p_columnStage19No1:
+			Confinements processing time: 0.000715971
+			Buffer setup time: 0.046433
+			Communication resources setup time: 9.05991e-06
+			Communication time: 
+				Buffer reading: 11.6867
+				MPI transfer: 66.3674
+				Buffer writing: 12.1891
+				Total: 90.2433
+		Dependency: l_blockStage25No1:
+			Confinements processing time: 0.00718713
+			Buffer setup time: 5.77828
+			Communication resources setup time: 0.697659
+			Communication time: 
+				Buffer reading: 4.424
+				MPI transfer: 27.2051
+				Buffer writing: 19.1889
+				Total: 50.8181
+Total communication time: 1052.14 Seconds
+Computation without communication time: 1646.6 Seconds
+Execution Time: 2967.49 Seconds
