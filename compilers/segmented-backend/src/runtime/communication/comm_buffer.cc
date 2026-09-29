@@ -359,7 +359,7 @@ void PreprocessedPhysicalCommBuffer::readData(bool loggingEnabled, std::ostream 
 
 void PreprocessedPhysicalCommBuffer::writeData(bool loggingEnabled, std::ostream &logFile) {
 
-/*	
+/*
 	if (localDataHolder == false) return;
 
 	int currDataIndex = 0;
