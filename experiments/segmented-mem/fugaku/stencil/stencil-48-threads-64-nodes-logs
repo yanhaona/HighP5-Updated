@@ -1,0 +1,189 @@
+Memory preparation time: 2.36767 Seconds
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage8No1
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage9No1
+	communicators have been created
+Computation time: 2460.37 Seconds
+Computation + overhead time: 2460.37 Seconds
+		Dependency: plateStage8No1:
+			Confinements processing time: 0.00521994
+			Buffer setup time: 1.52514
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 108.674
+				Buffer writing: 0
+				Total: 108.674
+		Dependency: plateStage9No1:
+			Confinements processing time: 0.029062
+			Buffer setup time: 0.291378
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 0.0344961
+				MPI transfer: 2163.82
+				Buffer writing: 0.0337529
+				Total: 2163.89
+Total communication time: 2272.56 Seconds
+Computation without communication time: 187.809 Seconds
+Execution Time: 2462.78 Seconds
+Memory preparation time: 4.82883 Seconds
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage8No1
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage9No1
+	communicators have been created
+Computation time: 2572.08 Seconds
+Computation + overhead time: 2572.08 Seconds
+		Dependency: plateStage8No1:
+			Confinements processing time: 0.00525403
+			Buffer setup time: 1.52162
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 108.721
+				MPI transfer: 0.0147467
+				Buffer writing: 111.564
+				Total: 220.3
+		Dependency: plateStage9No1:
+			Confinements processing time: 0.0290251
+			Buffer setup time: 0.306637
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 0.0391922
+				MPI transfer: 2162.7
+				Buffer writing: 0.0421824
+				Total: 2162.78
+Total communication time: 2383.08 Seconds
+Computation without communication time: 189.005 Seconds
+Execution Time: 2576.95 Seconds
+Memory preparation time: 1.87665 Seconds
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage8No1
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage9No1
+	communicators have been created
+Computation time: 2571.66 Seconds
+Computation + overhead time: 2571.66 Seconds
+		Dependency: plateStage8No1:
+			Confinements processing time: 0.00524712
+			Buffer setup time: 1.51869
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 108.562
+				MPI transfer: 0.0116277
+				Buffer writing: 111.223
+				Total: 219.796
+		Dependency: plateStage9No1:
+			Confinements processing time: 0.029031
+			Buffer setup time: 0.299012
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 0.0386553
+				MPI transfer: 2165.13
+				Buffer writing: 0.042953
+				Total: 2165.21
+Total communication time: 2385.01 Seconds
+Computation without communication time: 186.649 Seconds
+Execution Time: 2573.57 Seconds
+Memory preparation time: 1.05982 Seconds
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage8No1
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage9No1
+	communicators have been created
+Computation time: 2573.15 Seconds
+Computation + overhead time: 2573.15 Seconds
+		Dependency: plateStage8No1:
+			Confinements processing time: 0.00526118
+			Buffer setup time: 1.49032
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 108.64
+				MPI transfer: 0.0141189
+				Buffer writing: 111.549
+				Total: 220.203
+		Dependency: plateStage9No1:
+			Confinements processing time: 0.0286741
+			Buffer setup time: 0.301894
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 0.0381324
+				MPI transfer: 2161.8
+				Buffer writing: 0.0424037
+				Total: 2161.88
+Total communication time: 2382.08 Seconds
+Computation without communication time: 191.071 Seconds
+Execution Time: 2574.24 Seconds
+Memory preparation time: 6.01728 Seconds
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage8No1
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage9No1
+	communicators have been created
+Computation time: 4479.66 Seconds
+Computation + overhead time: 4479.66 Seconds
+		Dependency: plateStage8No1:
+			Confinements processing time: 0.00524902
+			Buffer setup time: 1.43104
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 2410.62
+				MPI transfer: 0.0139093
+				Buffer writing: 112.614
+				Total: 2523.25
+		Dependency: plateStage9No1:
+			Confinements processing time: 0.0290229
+			Buffer setup time: 0.262442
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 12.9681
+				MPI transfer: 1664.43
+				Buffer writing: 16.6247
+				Total: 1694.02
+Total communication time: 4217.27 Seconds
+Computation without communication time: 262.392 Seconds
+Execution Time: 4485.71 Seconds
+Memory preparation time: 2.01039 Seconds
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage8No1
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage9No1
+	communicators have been created
+Computation time: 4453.83 Seconds
+Computation + overhead time: 4453.83 Seconds
+		Dependency: plateStage8No1:
+			Confinements processing time: 0.0052321
+			Buffer setup time: 1.39806
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 2316.72
+				MPI transfer: 0.0131187
+				Buffer writing: 112.548
+				Total: 2429.28
+		Dependency: plateStage9No1:
+			Confinements processing time: 0.0289919
+			Buffer setup time: 0.261418
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 12.8871
+				MPI transfer: 1733.66
+				Buffer writing: 16.455
+				Total: 1763
+Total communication time: 4192.29 Seconds
+Computation without communication time: 261.545 Seconds
+Execution Time: 4455.88 Seconds
+Memory preparation time: 1.61643 Seconds
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage8No1
+	No MPI resource setup was needed for Ghost-region Sync Communicator for plateStage9No1
+	communicators have been created
+Computation time: 4600.93 Seconds
+Computation + overhead time: 4600.93 Seconds
+		Dependency: plateStage8No1:
+			Confinements processing time: 0.00524688
+			Buffer setup time: 1.41366
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 2546.19
+				MPI transfer: 0.0129793
+				Buffer writing: 112.542
+				Total: 2658.75
+		Dependency: plateStage9No1:
+			Confinements processing time: 0.029166
+			Buffer setup time: 0.257983
+			Communication resources setup time: 0
+			Communication time: 
+				Buffer reading: 12.8463
+				MPI transfer: 1653.69
+				Buffer writing: 15.9914
+				Total: 1682.53
+Total communication time: 4341.27 Seconds
+Computation without communication time: 259.655 Seconds
+Execution Time: 4602.57 Seconds
