@@ -191,6 +191,7 @@ void Communicator::describe(int indentation) {
 }
 
 void Communicator::cacheSendBuffers() {
+        if (cachedSendBuffers != NULL) delete cachedSendBuffers;
 	cachedSendBuffers = getSortedList(false);
 }
 
@@ -202,6 +203,7 @@ void Communicator::prepareBuffersForSend() {
 }
 
 void Communicator::cacheRecvBuffers() {
+        if (cachedRecvBuffers != NULL) delete cachedRecvBuffers;
 	cachedRecvBuffers = getSortedList(true);
 }
 
