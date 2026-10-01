@@ -714,7 +714,7 @@ void generateArrayCommmunicatorFn(std::ofstream &headerFile,
 		// optimized cross sync communicator that use less communication. Otherwise, we generate the regular communicator
 		CrossPropagationSync* crossSync = dynamic_cast<CrossPropagationSync*>(syncRequirement);
 		if (crossSync->isDestReplicated()) {
-			fnBody << indent << "communicator = new UpdatedCrossSyncCommunicator(localSegmentTag";
+			fnBody << indent << "communicator = new CrossSyncCommunicator(localSegmentTag";
 		} else {
 			fnBody << indent << "communicator = new CrossSyncCommunicator(localSegmentTag";
 		}
