@@ -177,11 +177,9 @@ void StageInstanciation::generateInvocationCode(std::ofstream &stream, int inden
 		}
 	}
 
-	/*----------------------------------------------- Turned off	
 	// write a log entry for the stage executed
 	stream << nextIndent.str() << "threadState->logExecution(\"";
 	stream << name << "\", Space_" << space->getName() << ");\n";
-	----------------------------------------------------------*/ 	
 	
 	// end of the entry checking condition block
 	stream << indentStr.str() << "}\n";

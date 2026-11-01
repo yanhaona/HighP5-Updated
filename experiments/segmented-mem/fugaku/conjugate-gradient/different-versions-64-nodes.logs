@@ -1,0 +1,271 @@
+Skipping duplicate parts allocation for shared data parts
+Reading data parts from file: b_51200
+Skipping duplicate parts allocation for shared data parts
+Reading data parts from file: columns-51200-95-percent
+Skipping parts reading for secondary copy shared data parts from file: columns-51200-95-percent
+Skipping duplicate parts allocation for shared data parts
+Reading data parts from file: rows-51200-95-percent
+Skipping parts reading for secondary copy shared data parts from file: rows-51200-95-percent
+Skipping duplicate parts allocation for shared data parts
+Reading data parts from file: values-51200-95-percent
+Skipping parts reading for secondary copy shared data parts from file: values-51200-95-percent
+Reading data parts from file: x_51200
+Reading data parts from file: x_51200
+Parallel Execution Time: 291.305 Seconds
+Memory preparation time: 36.358 Seconds
+	setting up the  updated cross-sync communicator for r_iStage5No1
+	Setting up communicator for r_iStage5No1
+	Setup done for communicator for r_iStage5No1
+	Cross-Sync Communicator Setup is Done for r_iStage5No1
+	setup done for updated cross-sync communicator for r_iStage5No1
+	Setting up communicator for r_iStage5No3
+	Setup done for communicator for r_iStage5No3
+	Cross-Sync Communicator Setup is Done for r_iStage5No3
+	Setting up communicator for a_r_iStage7No1
+	Setup done for communicator for a_r_iStage7No1
+	Cross-Sync Communicator Setup is Done for a_r_iStage7No1
+	Setting up scalar communicator for alphaStage11No1
+	Setup done for scalar communicator alphaStage11No1
+	setting up the  updated cross-sync communicator for x_iStage13No1
+	Setting up communicator for x_iStage13No1
+	Setup done for communicator for x_iStage13No1
+	Cross-Sync Communicator Setup is Done for x_iStage13No1
+	setup done for updated cross-sync communicator for x_iStage13No1
+	setting up the  updated cross-sync communicator for x_iStage13No2
+	Setting up communicator for x_iStage13No2
+	Setup done for communicator for x_iStage13No2
+	Cross-Sync Communicator Setup is Done for x_iStage13No2
+	setup done for updated cross-sync communicator for x_iStage13No2
+	communicators have been created
+Computation time: 254.694 Seconds
+Computation + overhead time: 254.694 Seconds
+		Dependency: r_iStage5No1:
+			Confinements processing time: 7.42725
+			Buffer setup time: 0.112742
+			Communication resources setup time: 5.51463
+			Communication time: 
+				Buffer reading: 0.0412421
+				MPI transfer: 40.2926
+				Buffer writing: 0.574152
+				Total: 40.908
+		Dependency: r_iStage5No3:
+			Confinements processing time: 0.497636
+			Buffer setup time: 0.00100994
+			Communication resources setup time: 0.0394242
+			Communication time: 
+				Buffer reading: 0.090831
+				MPI transfer: 0.157675
+				Buffer writing: 0.0228755
+				Total: 0.271381
+		Dependency: a_r_iStage7No1:
+			Confinements processing time: 0.514504
+			Buffer setup time: 0.00101519
+			Communication resources setup time: 0.0226979
+			Communication time: 
+				Buffer reading: 0.147828
+				MPI transfer: 0.0660946
+				Buffer writing: 0.0150955
+				Total: 0.229018
+		Dependency: alphaStage11No1:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 0.00592804
+			Communication time: 
+				Buffer reading: 0.00648117
+				MPI transfer: 0.717029
+				Buffer writing: 0.00959468
+				Total: 0.733105
+		Dependency: x_iStage13No1:
+			Confinements processing time: 8.9698
+			Buffer setup time: 0.13334
+			Communication resources setup time: 0.77069
+			Communication time: 
+				Buffer reading: 0.0353277
+				MPI transfer: 39.9065
+				Buffer writing: 0.503188
+				Total: 40.4451
+		Dependency: x_iStage13No2:
+			Confinements processing time: 9.94369
+			Buffer setup time: 0.118277
+			Communication resources setup time: 0.624289
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 0
+				Buffer writing: 0
+				Total: 0
+Total communication time: 82.5865 Seconds
+Computation without communication time: 172.107 Seconds
+Execution Time: 291.305 Seconds
+Memory preparation time: 39.4667 Seconds
+	setting up the  updated cross-sync communicator for r_iStage5No1
+	Setting up communicator for r_iStage5No1
+	Setup done for communicator for r_iStage5No1
+	Cross-Sync Communicator Setup is Done for r_iStage5No1
+	setup done for updated cross-sync communicator for r_iStage5No1
+	Setting up communicator for r_iStage5No3
+	Setup done for communicator for r_iStage5No3
+	Cross-Sync Communicator Setup is Done for r_iStage5No3
+	Setting up communicator for a_r_iStage7No1
+	Setup done for communicator for a_r_iStage7No1
+	Cross-Sync Communicator Setup is Done for a_r_iStage7No1
+	Setting up scalar communicator for alphaStage11No1
+	Setup done for scalar communicator alphaStage11No1
+	setting up the  updated cross-sync communicator for x_iStage13No1
+	Setting up communicator for x_iStage13No1
+	Setup done for communicator for x_iStage13No1
+	Cross-Sync Communicator Setup is Done for x_iStage13No1
+	setup done for updated cross-sync communicator for x_iStage13No1
+	setting up the  updated cross-sync communicator for x_iStage13No2
+	Setting up communicator for x_iStage13No2
+	Setup done for communicator for x_iStage13No2
+	Cross-Sync Communicator Setup is Done for x_iStage13No2
+	setup done for updated cross-sync communicator for x_iStage13No2
+	communicators have been created
+Computation time: 254.456 Seconds
+Computation + overhead time: 254.456 Seconds
+		Dependency: r_iStage5No1:
+			Confinements processing time: 7.39769
+			Buffer setup time: 0.112539
+			Communication resources setup time: 5.42626
+			Communication time: 
+				Buffer reading: 0.0494645
+				MPI transfer: 40.2063
+				Buffer writing: 0.581437
+				Total: 40.8372
+		Dependency: r_iStage5No3:
+			Confinements processing time: 0.498043
+			Buffer setup time: 0.00100207
+			Communication resources setup time: 0.032057
+			Communication time: 
+				Buffer reading: 0.132858
+				MPI transfer: 0.152249
+				Buffer writing: 0.0227051
+				Total: 0.307812
+		Dependency: a_r_iStage7No1:
+			Confinements processing time: 0.511254
+			Buffer setup time: 0.00105
+			Communication resources setup time: 0.0240541
+			Communication time: 
+				Buffer reading: 0.162617
+				MPI transfer: 0.0892532
+				Buffer writing: 0.015105
+				Total: 0.266975
+		Dependency: alphaStage11No1:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 0.0034318
+			Communication time: 
+				Buffer reading: 0.00651979
+				MPI transfer: 0.746713
+				Buffer writing: 0.00863624
+				Total: 0.761869
+		Dependency: x_iStage13No1:
+			Confinements processing time: 8.98064
+			Buffer setup time: 0.133262
+			Communication resources setup time: 0.787154
+			Communication time: 
+				Buffer reading: 0.0289948
+				MPI transfer: 39.8333
+				Buffer writing: 0.508543
+				Total: 40.3708
+		Dependency: x_iStage13No2:
+			Confinements processing time: 9.94135
+			Buffer setup time: 0.118453
+			Communication resources setup time: 0.646095
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 0
+				Buffer writing: 0
+				Total: 0
+Total communication time: 82.5447 Seconds
+Computation without communication time: 171.912 Seconds
+Execution Time: 294.103 Seconds
+Memory preparation time: 40.8252 Seconds
+	setting up the  updated cross-sync communicator for r_iStage5No1
+	Setting up communicator for r_iStage5No1
+	Setup done for communicator for r_iStage5No1
+	Cross-Sync Communicator Setup is Done for r_iStage5No1
+Memory preparation time: 73.2722 Seconds
+	setting up the  updated cross-sync communicator for r_iStage5No1
+	Setting up communicator for r_iStage5No1
+	Setup done for communicator for r_iStage5No1
+	Cross-Sync Communicator Setup is Done for r_iStage5No1
+	setup done for updated cross-sync communicator for r_iStage5No1
+	Setting up communicator for r_iStage5No3
+	Setup done for communicator for r_iStage5No3
+	Cross-Sync Communicator Setup is Done for r_iStage5No3
+	Setting up communicator for a_r_iStage7No1
+	Setup done for communicator for a_r_iStage7No1
+	Cross-Sync Communicator Setup is Done for a_r_iStage7No1
+	Setting up scalar communicator for alphaStage11No1
+	Setup done for scalar communicator alphaStage11No1
+	setting up the  updated cross-sync communicator for x_iStage13No1
+	Setting up communicator for x_iStage13No1
+	Setup done for communicator for x_iStage13No1
+	Cross-Sync Communicator Setup is Done for x_iStage13No1
+	setup done for updated cross-sync communicator for x_iStage13No1
+	setting up the  updated cross-sync communicator for x_iStage13No2
+	Setting up communicator for x_iStage13No2
+	Setup done for communicator for x_iStage13No2
+	Cross-Sync Communicator Setup is Done for x_iStage13No2
+	setup done for updated cross-sync communicator for x_iStage13No2
+	communicators have been created
+Computation time: 5345.32 Seconds
+Computation + overhead time: 5345.32 Seconds
+		Dependency: r_iStage5No1:
+			Confinements processing time: 7.61981
+			Buffer setup time: 0.113173
+			Communication resources setup time: 5.51784
+			Communication time: 
+				Buffer reading: 0.0264707
+				MPI transfer: 238.989
+				Buffer writing: 5.58705
+				Total: 244.603
+		Dependency: r_iStage5No3:
+			Confinements processing time: 0.503627
+			Buffer setup time: 0.000980139
+			Communication resources setup time: 0.0305159
+			Communication time: 
+				Buffer reading: 0.098809
+				MPI transfer: 0.0664902
+				Buffer writing: 0.0297322
+				Total: 0.195031
+		Dependency: a_r_iStage7No1:
+			Confinements processing time: 0.514107
+			Buffer setup time: 0.00102782
+			Communication resources setup time: 0.0190609
+			Communication time: 
+				Buffer reading: 0.1302
+				MPI transfer: 0.05931
+				Buffer writing: 0.0198953
+				Total: 0.209405
+		Dependency: alphaStage11No1:
+			Confinements processing time: 0
+			Buffer setup time: 0
+			Communication resources setup time: 0.00317597
+			Communication time: 
+				Buffer reading: 0.00897908
+				MPI transfer: 0.680768
+				Buffer writing: 0.0104997
+				Total: 0.700247
+		Dependency: x_iStage13No1:
+			Confinements processing time: 8.98413
+			Buffer setup time: 0.133823
+			Communication resources setup time: 0.785199
+			Communication time: 
+				Buffer reading: 0.0225956
+				MPI transfer: 42.5644
+				Buffer writing: 7.19888
+				Total: 49.7858
+		Dependency: x_iStage13No2:
+			Confinements processing time: 9.8809
+			Buffer setup time: 0.118018
+			Communication resources setup time: 0.850666
+			Communication time: 
+				Buffer reading: 0
+				MPI transfer: 0
+				Buffer writing: 0
+				Total: 0
+Total communication time: 295.493 Seconds
+Computation without communication time: 5049.82 Seconds
+Execution Time: 5419.01 Seconds

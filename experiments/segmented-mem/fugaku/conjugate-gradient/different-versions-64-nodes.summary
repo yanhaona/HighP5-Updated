@@ -1,0 +1,27 @@
+Input configuration:
+51200 square matrix 95% sparse
+gradient iterations 51200
+
+Runtime configuration:
+All cores ran MPI processes
+There were 8 processes per node and 64 nodes
+
+
+Original:
+	Parallel Execution Time: 291.305 Seconds
+	Parallel Execution Time: 294.103 Seconds
+
+After Disabling Caching:
+	Parallel Execution Time: 5419.01 Seconds
+
+Disabling Parallelization of Buffer Processing:
+	Non-effective due to process per core configuration
+
+Disabling Optimization on Buffer Transfers:
+	Parallel Execution Time: 5421.67 Seconds
+	Parallel Execution Time: 5445.56 Seconds
+	Parallel Execution Time: 5423.7 Seconds
+	Parallel Execution Time: 5463.96 Seconds
+
+Initialization Parallelization and Sync Primitive Optimization Steps are Not Relevant
+because all Cores Ran MPI Processes.

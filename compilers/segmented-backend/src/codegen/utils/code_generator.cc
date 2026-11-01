@@ -15,6 +15,7 @@
 #include "../../../../common-libs/utils/string_utils.h"
 #include "../../../../common-libs/utils/common_utils.h"
 #include "../../../../common-libs/utils/decorator_utils.h"
+#include "../../../../common-libs/utils/properties.h"
 #include "../../../../common-libs/domain-obj/constant.h"
 
 #include <cstdlib>
@@ -94,7 +95,29 @@ void initializeOutputFiles(const char *headerFileName,
 	}
 
 	headerFile << "namespace " << string_utils::toLower(initials) << " {\n\n";
+
+	// generate constants for executable mode for enabling execution debugging 
+	const char *modeConstMsg = "Executable Modes";
+	decorator::writeSubsectionHeader(headerFile, modeConstMsg);
+	headerFile << "\n" << "const int PRODUCTION_MODE = 0" << stmtSeparator;
+	headerFile << "const int DEVELOPMENT_MODE = 1" << stmtSeparator;
+
 	programFile << "using namespace " << string_utils::toLower(initials) << ";\n\n";
+
+	// set the executable mode to logging enabled development or production based on property configuration
+        bool developmentMode = true;
+        Properties *deploymentProps = PropertyReader::propertiesGroups->Lookup("deployment");
+        if (deploymentProps != NULL) {
+                const char *execModeKey = "executable.mode";
+                const char *modeSetting = deploymentProps->getProperty(execModeKey);
+                if (modeSetting != NULL && strcmp(modeSetting, "development") == 0) {
+                        std::cout << "\tGenerating code with detailed logging for development-time debugging\n";
+			programFile << "int executableMode = DEVELOPMENT_MODE;\n";
+                } else {
+			programFile << "int executableMode = PRODUCTION_MODE;\n";
+		}
+        }
+
 
 	commIncludeFile.close();
 	programFile.close();

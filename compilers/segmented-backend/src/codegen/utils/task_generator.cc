@@ -578,9 +578,11 @@ void TaskGenerator::initializeSegmentMemory(std::ofstream &stream) {
 	stream << doubleIndent << "threadStateList[i]->setPartIteratorMap(";
 	stream << "taskData->generatePartIteratorMap())" << stmtSeparator;
 	
-	// enable logging for the participant threads
-	stream << doubleIndent << "threadStateList[i]->initiateLogFile(\"" << initials << "\")" << stmtSeparator;	
-	stream << doubleIndent << "threadStateList[i]->enableLogging()" << stmtSeparator;
+	// enable logging for the participant threads if the deployment mode is development mode
+	stream << doubleIndent << "if (executableMode == DEVELOPMENT_MODE) {\n";
+	stream << doubleIndent << indent << "threadStateList[i]->initiateLogFile(\"" << initials << "\")" << stmtSeparator;	
+	stream << doubleIndent << indent << "threadStateList[i]->enableLogging()" << stmtSeparator;
+	stream << doubleIndent << "}\n";
 
 	stream << indent << "}\n";
 	stream << indent << "delete[] ppuCounts" << stmtSeparator;

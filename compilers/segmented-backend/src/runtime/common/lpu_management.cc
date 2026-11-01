@@ -243,7 +243,6 @@ LPU *ThreadState::getNextLpu(int lpsId, int containerLpsId, int currentLpuId) {
 			counter->setCurrentCompositeLpuId(nextLpuId);
 			LPU *lpu = computeNextLpu(lpsId);
 		
-			/*---------------------- Disabled	
 			// log LPU execution
 			if(loggingEnabled) {
 				for (int i = 0; i < lpsId; i++) threadLog << '\t';
@@ -251,7 +250,6 @@ LPU *ThreadState::getNextLpu(int lpsId, int containerLpsId, int currentLpuId) {
 				counter->logCompositeLpuId(threadLog, lpsId);
 				lpu->print(threadLog, lpsId + 1);
 			}
-			-------------------------------*/
 		
 			// set the LPU Id so that recursion can advance to the next LPU in next call 
 			lpu->setId(nextLpuId);	
@@ -293,13 +291,11 @@ LPU *ThreadState::getNextLpu(int lpsId, int containerLpsId, int currentLpuId) {
 					delete[] newLpuCounts;
 					counter->setCurrentRange(threadIds->ppuIds[lpsId]);
 	
-					/*---------------------- Disabled	
 					// log counter update
 					if (loggingEnabled) {
 						counter->logLpuCount(threadLog, lpsId);
 						counter->logLpuRange(threadLog, lpsId);
 					}
-					-------------------------------*/
 					
 					// retrieve next LPU Id from the updated counter
 					nextLpuId = counter->getNextLpuId(INVALID_ID);
@@ -309,7 +305,6 @@ LPU *ThreadState::getNextLpu(int lpsId, int containerLpsId, int currentLpuId) {
 				counter->setCurrentCompositeLpuId(nextLpuId);
 				LPU *lpu = computeNextLpu(lpsId);
 				
-				/*---------------------- Disabled	
 				// log LPU execution
 				if (loggingEnabled) {
 					for (int i = 0; i < lpsId; i++) threadLog << '\t';
@@ -317,7 +312,6 @@ LPU *ThreadState::getNextLpu(int lpsId, int containerLpsId, int currentLpuId) {
 					counter->logCompositeLpuId(threadLog, lpsId);
 					lpu->print(threadLog, lpsId + 1);
 				}
-				-------------------------------*/
 	
 				// set the LPU Id so that recursion can advance to the next LPU in next call 
 				lpu->setId(nextLpuId);	
@@ -348,13 +342,11 @@ LPU *ThreadState::getNextLpu(int lpsId, int containerLpsId, int currentLpuId) {
 	delete[] newLpuCounts;
 	counter->setCurrentRange(threadIds->ppuIds[lpsId]);
 			
-	/*---------------------- Disabled	
 	// log counter update
 	if (loggingEnabled) {	
 		counter->logLpuCount(threadLog, lpsId);
 		counter->logLpuRange(threadLog, lpsId);
 	}	
-	-------------------------------*/
 	
 	// compute the next LPU for the current LPS using a recursive procedure
 	int nextLpuId = counter->getNextLpuId(INVALID_ID);
@@ -382,13 +374,11 @@ LPU *ThreadState::getNextLpu(int lpsId, int containerLpsId, int currentLpuId) {
 		delete[] newLpuCounts;
 		counter->setCurrentRange(threadIds->ppuIds[lpsId]);
 
-		/*---------------------- Disabled	
 		// log counter update
 		if (loggingEnabled) {
 			counter->logLpuCount(threadLog, lpsId);
 			counter->logLpuRange(threadLog, lpsId);
 		}
-		-------------------------------*/
 		
 		// retrieve next LPU Id from the updated counter
 		nextLpuId = counter->getNextLpuId(INVALID_ID);
@@ -396,7 +386,6 @@ LPU *ThreadState::getNextLpu(int lpsId, int containerLpsId, int currentLpuId) {
 	counter->setCurrentCompositeLpuId(nextLpuId);
 	LPU *lpu = computeNextLpu(lpsId);
 	
-	/*---------------------- Disabled	
 	// log LPU execution
 	if (loggingEnabled) {
 		for (int i = 0; i < lpsId; i++) threadLog << '\t';
@@ -404,7 +393,6 @@ LPU *ThreadState::getNextLpu(int lpsId, int containerLpsId, int currentLpuId) {
 		counter->logCompositeLpuId(threadLog, lpsId);
 		lpu->print(threadLog, lpsId + 1);
 	}
-	-------------------------------*/
 	
 	// set the LPU Id so that recursion can advance to the next LPU in next call 
 	lpu->setId(nextLpuId);	
@@ -486,6 +474,13 @@ void ThreadState::initiateLogFile(const char *fileNamePrefix) {
 	threadLog.open(fileName.str().c_str(), std::ofstream::out | std::ofstream::app);
 	if (!threadLog.is_open()) {
 		std::cout << "Could not open log file for Thread-" << threadIds->threadNo << "\n";
+	}
+}
+
+void ThreadState::logRepeatIteration(int iterationIndex, int indentation) {
+	if (loggingEnabled) {
+		for (int i = 0; i <= indentation; i++) threadLog << '\t';
+		threadLog << "Starting repeat iteration no " << iterationIndex << std::endl;
 	}
 }
 

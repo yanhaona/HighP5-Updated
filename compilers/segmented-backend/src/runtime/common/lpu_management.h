@@ -224,6 +224,7 @@ class ThreadState {
 	std::ofstream threadLog;
 	bool loggingEnabled;
 	void logExecution(const char *stageName, int spaceId);
+	void logRepeatIteration(int iterationIndex, int indentation);
 	void logThreadAffinity();
 	void closeLogFile();
 	void enableLogging() { loggingEnabled = true; }

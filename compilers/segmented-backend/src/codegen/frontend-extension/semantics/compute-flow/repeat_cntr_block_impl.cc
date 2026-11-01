@@ -63,6 +63,12 @@ void RepeatControlBlock::generateInvocationCode(std::ofstream &stream, int inden
 		rangeExpr->generateLoopForRangeExpr(rangeLoop, indentation, space);
 		stream << rangeLoop.str();
 	}
+
+	// generate a log message for repeat iteration
+	stream << indentStr << indent << "threadState->logRepeatIteration(repeatIteration" << paramSeparator;
+        stream << indentation - 1 << ")" << stmtSeparator;
+
+
 	// declare all synchronization counter variables here that will be updated inside repeat loop 
 	declareSynchronizationCounters(stream, indentation + 1, this->repeatIndex + 1);
 

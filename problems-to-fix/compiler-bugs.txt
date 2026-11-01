@@ -3,7 +3,7 @@ NOTE: Update the last-update-date below each time you make a change in this docu
       still been listed here, remove the problem from the list or move them to list of problem fixes
       section at the end.
 
-Last Update Date: June 5, 2025
+Last Update Date: Oct 30, 2026
 
 
 URGENT: LPU metadata is leaking memory in conjugate gradient and stopping the machine when iteration
@@ -12,6 +12,11 @@ URGENT: LPU metadata is leaking memory in conjugate gradient and stopping the ma
 URGENT: Block LUF for 20 by 20 matrix and block-stride partionning with 2 rows per block and 4 MPI 
 	processes get stuck on an infinite loop. It is most probably a problem with the partition or
 	communication handling code where the last and extra block was entirely within the 1st segement.
+
+URGENT: A memory leak (bad:alloc) problem is fixed after stopping buffer delete. It seems this is not the 
+	root cause of the problem observed in conjugate gradient code. However, we are running short of 
+	time and stopping the delete solved program crashing in local machine. So this commit is kept for 
+	now. However, we have to re-check this issue in the future.
 
 
 1. In some machines, compilation fails for correct IT sample programs showing wierd errors related to
