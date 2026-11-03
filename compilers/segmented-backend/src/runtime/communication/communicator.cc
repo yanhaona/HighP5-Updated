@@ -175,6 +175,7 @@ Communicator::Communicator(int localSegmentTag,
 	this->localReceiverPpus = localReceiverPpus;
 	cachedSendBuffers = NULL;
 	cachedRecvBuffers = NULL;
+	loggingEnabled = false;
 }
 
 void Communicator::describe(int indentation) {
@@ -214,6 +215,10 @@ void Communicator::processBuffersAfterReceive() {
 
 void Communicator::prepareBuffersForSend(int currentPpuOrder, int participantsCount) {
         if (cachedSendBuffers == NULL) return;
+	if (currentPpuOrder == 0 && loggingEnabled == true) {
+		*logFile << "\tPreparing communication buffer for sending on " << dependencyName << "\n";
+		logFile->flush();
+	}
         for (int i = currentPpuOrder; i < cachedSendBuffers->NumElements(); i += participantsCount) {
                 cachedSendBuffers->Nth(i)->readData(false, *logFile);
         }
@@ -221,6 +226,10 @@ void Communicator::prepareBuffersForSend(int currentPpuOrder, int participantsCo
         
 void Communicator::processBuffersAfterReceive(int currentPpuOrder, int participantsCount) {
         if (cachedRecvBuffers == NULL) return;
+	if (currentPpuOrder == 0 && loggingEnabled == true) {
+		*logFile << "\tPost processing communication buffer after receive on " << dependencyName << "\n";
+		logFile->flush();
+	}
         for (int i = currentPpuOrder; i < cachedRecvBuffers->NumElements(); i += participantsCount) {
                 cachedRecvBuffers->Nth(i)->writeData(false, *logFile);
         }
@@ -238,9 +247,11 @@ void Communicator::setupBufferTags(int communicatorId, int totalSegmentsInMachin
 }
 
 void Communicator::setupCommunicator(bool includeNonInteractingSegments) {
-	
-	*logFile << "\tSetting up communicator for " << dependencyName << "\n";
-	logFile->flush();
+
+	if (loggingEnabled == true) {	
+		*logFile << "\tSetting up communicator for " << dependencyName << "\n";
+		logFile->flush();
+	}
 	
 	struct timeval start;
         gettimeofday(&start, NULL);
@@ -256,8 +267,10 @@ void Communicator::setupCommunicator(bool includeNonInteractingSegments) {
         gettimeofday(&end, NULL);
 	commStat->addCommResourcesSetupTime(dependencyName, start, end);
 
-	*logFile << "\tSetup done for communicator for " << dependencyName << "\n";
-	logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tSetup done for communicator for " << dependencyName << "\n";
+		logFile->flush();
+	}
 }
 
 void Communicator::excludeOwnselfFromCommunication(const char *dependencyName, 

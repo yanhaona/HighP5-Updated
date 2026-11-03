@@ -152,6 +152,10 @@ void StageInstanciation::generateInvocationCode(std::ofstream &stream, int inden
 	stream << indentStr.str() << "if (threadState->isValidPpu(Space_" << space->getName();
 	stream << ")) {\n";
 	
+	// write a log entry for the stage execution attempted
+	stream << nextIndent.str() << "threadState->logExecution(\"";
+	stream << name << "\", Space_" << space->getName() << ", false);\n";
+	
 	// invoke the related method with current LPU parameter ...
 	stream << nextIndent.str() << "// invoking user computation\n";
 	stream << nextIndent.str();
@@ -179,7 +183,7 @@ void StageInstanciation::generateInvocationCode(std::ofstream &stream, int inden
 
 	// write a log entry for the stage executed
 	stream << nextIndent.str() << "threadState->logExecution(\"";
-	stream << name << "\", Space_" << space->getName() << ");\n";
+	stream << name << "\", Space_" << space->getName() << ", true);\n";
 	
 	// end of the entry checking condition block
 	stream << indentStr.str() << "}\n";

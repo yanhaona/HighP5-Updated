@@ -99,6 +99,8 @@ class Communicator : public CommBufferManager {
 	std::vector<int> *participantSegments;
 	// a stream for logging events on the communicator
 	std::ofstream *logFile;
+	// a logging enable-disable flag
+	bool loggingEnabled;
 	// a communicator Id to be used as tag if needed
 	int communicatorId;
 	// a reference to the communication-statistics gatherer object to log time spent on this communicator
@@ -106,6 +108,7 @@ class Communicator : public CommBufferManager {
   public:
 	Communicator(int localSegmentTag, const char *dependencyName, int localSenderPpus, int localReceiverPpus);
 	void setLogFile(std::ofstream *logFile) { this->logFile = logFile; }
+	void enableLogging() { loggingEnabled = true; }
 	void setParticipants(std::vector<int> *participants) { this->participantSegments = participants; }
 	void setCommStat(CommStatistics *commStat) { this->commStat = commStat; }
 	CommStatistics *getCommStat() { return commStat; }

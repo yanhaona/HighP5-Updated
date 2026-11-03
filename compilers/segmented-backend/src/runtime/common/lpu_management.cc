@@ -484,10 +484,15 @@ void ThreadState::logRepeatIteration(int iterationIndex, int indentation) {
 	}
 }
 
-void ThreadState::logExecution(const char *stageName, int spaceId) {
+void ThreadState::logExecution(const char *stageName, int spaceId, bool executionDone) {
 	if (loggingEnabled) {
 		for (int i = 0; i <= spaceId; i++) threadLog << '\t';
-		threadLog << "Executed: " << stageName << std::endl;
+		if (executionDone == false) {
+			threadLog << "Going to execute: ";
+		} else {
+			threadLog << "Executed: ";
+		}
+		threadLog << stageName << std::endl;
 	}
 }
 

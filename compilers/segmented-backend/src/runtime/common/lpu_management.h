@@ -223,7 +223,7 @@ class ThreadState {
 	// a log file for diagnostics and corresponding methods
 	std::ofstream threadLog;
 	bool loggingEnabled;
-	void logExecution(const char *stageName, int spaceId);
+	void logExecution(const char *stageName, int spaceId, bool executionDone);
 	void logRepeatIteration(int iterationIndex, int indentation);
 	void logThreadAffinity();
 	void closeLogFile();

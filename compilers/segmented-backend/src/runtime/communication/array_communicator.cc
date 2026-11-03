@@ -31,8 +31,10 @@ ReplicationSyncCommunicator::ReplicationSyncCommunicator(int localSegmentTag,
 
 void ReplicationSyncCommunicator::sendData() {
 
-	//*logFile << "\tReplication-sync communicator is sending data for " << dependencyName << "\n";
-	//logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tReplication-sync communicator is sending data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 	
 	MPI_Comm mpiComm = segmentGroup->getCommunicator();
         int participants = segmentGroup->getParticipantsCount();
@@ -57,14 +59,18 @@ void ReplicationSyncCommunicator::sendData() {
                 exit(EXIT_FAILURE);
         }
 	
-	//*logFile << "\tReplication-sync communicator sent data for " << dependencyName << "\n";
-	//logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tReplication-sync communicator sent data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 }
 
 void ReplicationSyncCommunicator::receiveData() {
 	
-	//*logFile << "\tReplication-sync communicator is waiting for data for " << dependencyName << "\n";
-	//logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tReplication-sync communicator is waiting for data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 
 	MPI_Comm mpiComm = segmentGroup->getCommunicator();
         int participants = segmentGroup->getParticipantsCount();
@@ -98,8 +104,10 @@ void ReplicationSyncCommunicator::receiveData() {
 		}
 	}
 	
-	//*logFile << "\tReplication-sync communicator received data for " << dependencyName << "\n";
-	//logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tReplication-sync communicator received data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 }
 
 
@@ -150,15 +158,19 @@ void GhostRegionSyncCommunicator::setupCommunicator(bool includeNonInteractingSe
 	delete localBufferList;
         delete remoteBufferList;
 
-	*logFile << "\tNo MPI resource setup was needed for Ghost-region Sync Communicator for ";
-	*logFile << dependencyName << "\n";
-	logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tNo MPI resource setup was needed for Ghost-region Sync Communicator for ";
+		*logFile << dependencyName << "\n";
+		logFile->flush();
+	}
 }
 
 void GhostRegionSyncCommunicator::performTransfer() {
 	
-	//*logFile << "\tGhost-sync communicator is communicating data for " << dependencyName << "\n";
-	//logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tGhost-sync communicator is communicating data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 
 	// retrieve all buffers holding data for cross-segment communication	
 	List<CommBuffer*> *localBufferList = new List<CommBuffer*>;
@@ -243,8 +255,10 @@ void GhostRegionSyncCommunicator::performTransfer() {
 	delete[] recvRequests;
 	delete[] sendRequests;
 	
-	//*logFile << "\tGhost-sync communicator sent-received data for " << dependencyName << "\n";
-	//logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tGhost-sync communicator sent-received data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 }
 
 bool GhostRegionSyncCommunicator::directCommunicationPossible() {
@@ -297,8 +311,10 @@ void UpSyncCommunicator::setupCommunicator(bool includeNonInteractingSegments) {
 	
 	Communicator::setupCommunicator(includeNonInteractingSegments);
 
-	*logFile << "\tsetting up the mode for up-sync communicator for " << dependencyName << "\n";
-	logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tsetting up the mode for up-sync communicator for " << dependencyName << "\n";
+		logFile->flush();
+	}
 
 	struct timeval start;
         gettimeofday(&start, NULL);
@@ -337,14 +353,18 @@ void UpSyncCommunicator::setupCommunicator(bool includeNonInteractingSegments) {
         gettimeofday(&end, NULL);
         commStat->addCommResourcesSetupTime(dependencyName, start, end);
 	
-	*logFile << "\tmode setup done for up-sync communicator for " << dependencyName << "\n";
-	logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tmode setup done for up-sync communicator for " << dependencyName << "\n";
+		logFile->flush();
+	}
 }
 
 void UpSyncCommunicator::sendData() {
 	
-	//*logFile << "\tUp-sync communicator is sending data for " << dependencyName << "\n";
-	//logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tUp-sync communicator is sending data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 	
 	// note that the logic of confinement and upward sync enforce that there is just one communication buffer in each
 	// sender segment
@@ -380,14 +400,18 @@ void UpSyncCommunicator::sendData() {
 		}
 	}
 	
-	//*logFile << "\tUp-sync communicator sent data for " << dependencyName << "\n";
-	//logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tUp-sync communicator sent data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 }
 
 void UpSyncCommunicator::receiveData() {
 
-	//*logFile << "\tUp-sync communicator is waiting for data for " << dependencyName << "\n";
-	//logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tUp-sync communicator is waiting for data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 
 	MPI_Comm mpiComm = segmentGroup->getCommunicator();
 	int myRank = segmentGroup->getRank(localSegmentTag);
@@ -412,8 +436,10 @@ void UpSyncCommunicator::receiveData() {
                 }
 	}
 	
-	//*logFile << "\tUp-sync communicator received data for " << dependencyName << "\n";
-	//logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tUp-sync communicator received data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 }
 
 void UpSyncCommunicator::allocateAndLinkGatherBuffer() {
@@ -499,8 +525,10 @@ void DownSyncCommunicator::setupCommunicator(bool includeNonInteractingSegments)
 	
 	Communicator::setupCommunicator(includeNonInteractingSegments);
 	
-	*logFile << "\tsetting up the mode for down-sync communicator for " << dependencyName << "\n";
-	logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tsetting up the mode for down-sync communicator for " << dependencyName << "\n";
+		logFile->flush();
+	}
 	
 	struct timeval start;
         gettimeofday(&start, NULL);
@@ -537,14 +565,18 @@ void DownSyncCommunicator::setupCommunicator(bool includeNonInteractingSegments)
         gettimeofday(&end, NULL);
         commStat->addCommResourcesSetupTime(dependencyName, start, end);
 	
-	*logFile << "\tmode setup done for down-sync communicator for " << dependencyName << "\n";
-	logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tmode setup done for down-sync communicator for " << dependencyName << "\n";
+		logFile->flush();
+	}
 }
 
 void DownSyncCommunicator::sendData() {
 
-	//*logFile << "\tDown-sync communicator is sending data for " << dependencyName << "\n";
-	//logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tDown-sync communicator is sending data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 	
 	MPI_Comm mpiComm = segmentGroup->getCommunicator();
 	int myRank = segmentGroup->getRank(localSegmentTag);
@@ -580,14 +612,18 @@ void DownSyncCommunicator::sendData() {
                 }
 	}
 	
-	//*logFile << "\tDown-sync communicator sent data for " << dependencyName << "\n";
-	//logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tDown-sync communicator sent data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 }
 
 void DownSyncCommunicator::receiveData() {
 	
-	//*logFile << "\tDown-sync communicator is waiting for data for " << dependencyName << "\n";
-	//logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tDown-sync communicator is waiting for data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 
 	// there will be one communication buffer per receiver regardless of the communication mode on a down-sync as there 
 	// is just one sender
@@ -618,8 +654,10 @@ void DownSyncCommunicator::receiveData() {
                 }
 	}
 
-	//*logFile << "\tDown-sync communicator received data for " << dependencyName << "\n";
-	//logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tDown-sync communicator received data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 } 
 
 void DownSyncCommunicator::performSendPostprocessing(int currentPpuOrder, int participantsCount) {
@@ -824,10 +862,11 @@ List<CommBuffer*> *CrossSyncCommunicator::filterRemoteRecvBuffers(List<CommBuffe
 
 void CrossSyncCommunicator::sendData() {
 
-	//*logFile << "\tCross-sync communicator is sending (and receiving) data for " << dependencyName << "\n";
-	//logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tCross-sync communicator is sending (and receiving) data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 	
-
 	// issue asynchronous receives first, when applicable
 	MPI_Request *receiveRequests = NULL;
 	int receiveCount = remoteReceives->NumElements();
@@ -884,15 +923,18 @@ void CrossSyncCommunicator::sendData() {
 	if (receiveCount > 0) delete[] receiveRequests;
 	delete[] sendRequests;
 	
-	//*logFile << "\tCross-sync communicator sent (and received) data for " << dependencyName << "\n";
-	//logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tCross-sync communicator sent (and received) data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 }
 
 void CrossSyncCommunicator::receiveData() {
 
-	//*logFile << "\tCross-sync communicator is waiting for data for " << dependencyName << "\n";
-	//logFile->flush();
-	
+	if (loggingEnabled == true) {
+		*logFile << "\tCross-sync communicator is waiting for data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 	
 	// issue asynchronous receives
 	MPI_Request *receiveRequests = NULL;
@@ -912,8 +954,10 @@ void CrossSyncCommunicator::receiveData() {
 
 	if (receiveCount > 0) delete[] receiveRequests;
 	
-	//*logFile << "\tCross-sync communicator received data for " << dependencyName << "\n";
-	//logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tCross-sync communicator received data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 }
 
 MPI_Request *CrossSyncCommunicator::issueAsyncReceives(List<CommBuffer*> *remoteReceiveBuffers) {
@@ -959,8 +1003,10 @@ UpdatedCrossSyncCommunicator::~UpdatedCrossSyncCommunicator() {
 
 void UpdatedCrossSyncCommunicator::setupCommunicator(bool includeNonInteractingSegments) {
 	
-	*logFile << "\tsetting up the  updated cross-sync communicator for " << dependencyName << "\n";
-	logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tsetting up the  updated cross-sync communicator for " << dependencyName << "\n";
+		logFile->flush();
+	}
 	
 	CrossSyncCommunicator::setupCommunicator(includeNonInteractingSegments);
 	
@@ -1015,11 +1061,18 @@ void UpdatedCrossSyncCommunicator::setupCommunicator(bool includeNonInteractingS
         gettimeofday(&end, NULL);
         commStat->addCommResourcesSetupTime(dependencyName, start, end);
 		
-	*logFile << "\tsetup done for updated cross-sync communicator for " << dependencyName << "\n";
-	logFile->flush();
+	if (loggingEnabled == true) {
+		*logFile << "\tsetup done for updated cross-sync communicator for " << dependencyName << "\n";
+		logFile->flush();
+	}
 }
 
 void UpdatedCrossSyncCommunicator::sendData() {
+
+	if (loggingEnabled == true) {
+		*logFile << "\tUpdated Cross-sync communicator is sending (and receiving) data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 
 	// call the optimized sendData method for repeated use
 	if (settingsCollected == true) {
@@ -1083,6 +1136,11 @@ void UpdatedCrossSyncCommunicator::sendData() {
 		// buffers that interface data parts
 		gatherBufferIndicesForRecv[i] = dataStart;	
 	}
+	
+	if (loggingEnabled == true) {
+		*logFile << "\tUpdated cross-sync communicator sent-received data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 }
 
 void UpdatedCrossSyncCommunicator::sendDataWithCachedSettings() {
@@ -1130,4 +1188,8 @@ void UpdatedCrossSyncCommunicator::sendDataWithCachedSettings() {
 		}
 	}
 
+	if (loggingEnabled == true) {
+		*logFile << "\tUpdated cross-sync communicator sent-received data for " << dependencyName << "\n";
+		logFile->flush();
+	}
 }

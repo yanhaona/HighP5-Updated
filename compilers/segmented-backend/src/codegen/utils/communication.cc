@@ -548,6 +548,9 @@ void generateScalarCommmunicatorFn(std::ofstream &headerFile,
 	fnBody << indent << "Assert(communicator != NULL)" << stmtSeparator;
 	fnBody << indent << "communicator->setDataBufferReference(&(taskGlobals->" << varName << "))" << stmtSeparator;
 	fnBody << indent << "communicator->setCommStat(commStat)" << stmtSeparator;
+	fnBody << indent << "if (executableMode == DEVELOPMENT_MODE) {\n";
+	fnBody << indent << indent << "communicator->enableLogging()" << stmtSeparator;
+	fnBody << indent << "}\n";
 
 	fnBody << indent << "return communicator" << stmtSeparator;
 	fnBody << "}\n";
@@ -730,6 +733,9 @@ void generateArrayCommmunicatorFn(std::ofstream &headerFile,
 	fnBody << indent << "Assert(communicator != NULL)" << stmtSeparator;
 	fnBody << indent << "communicator->setParticipants(participantTags)" << stmtSeparator;
 	fnBody << indent << "communicator->setCommStat(commStat)" << stmtSeparator;
+	fnBody << indent << "if (executableMode == DEVELOPMENT_MODE) {\n";
+	fnBody << indent << indent << "communicator->enableLogging()" << stmtSeparator;
+	fnBody << indent << "}\n";
 
 	fnBody << indent << "return communicator" << stmtSeparator;
 	fnBody << "}\n";
